@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>근력학교 이화 — 홈</title>
+<style>
+  /* ── FONT FACES ── */
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'TYPE졸업식';
+    src: url('fonts/TypeGraduation.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* ── RESET & VARIABLES ── */
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+  :root {
+    --purple-700: #3B2650;
+    --purple-600: #4B2D5E;
+    --purple-500: #5E3D74;
+    --purple-400: #7B5A93;
+    --purple-300: #9E82B0;
+    --purple-200: #C4B0D2;
+    --purple-100: #E8DFF0;
+    --purple-50:  #F5F0F8;
+
+    --rose-400: #D4829A;
+    --rose-300: #E4A5B8;
+    --rose-200: #F0C6D4;
+    --rose-100: #F9E4EC;
+    --rose-50:  #FDF5F8;
+
+    --bg-gradient-1: #EDE0F5;
+    --bg-gradient-2: #F9DDE8;
+    --bg-gradient-3: #E6DAF2;
+    --bg-card: rgba(255, 255, 255, 0.72);
+    --bg-card-solid: #fff;
+    --bg-input: rgba(245, 240, 248, 0.6);
+    --border-subtle: rgba(196, 176, 210, 0.3);
+
+    --text-primary: #2E1A3E;
+    --text-secondary: #6B5A7E;
+    --text-muted: #A89AB8;
+    --text-placeholder: #C4B0D2;
+
+    --success: #5BB88A;
+    --warning: #E8A854;
+    --danger: #D94E6A;
+
+    --font-display: 'TYPE졸업식', sans-serif;
+    --font-body: 'CarmenSans', 'Noto Sans KR', sans-serif;
+
+    --nav-height: 68px;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: var(--font-body);
+    min-height: 100dvh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    background: var(--bg-gradient-1);
+    color: var(--text-primary);
+    padding-bottom: var(--nav-height);
+  }
+
+  /* ── GRADIENT BACKGROUND ── */
+  .bg-atmosphere {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 90% 70% at 10% 5%, rgba(190, 160, 220, 0.6) 0%, transparent 65%),
+      radial-gradient(ellipse 80% 60% at 90% 10%, rgba(240, 170, 200, 0.55) 0%, transparent 60%),
+      radial-gradient(ellipse 70% 60% at 75% 85%, rgba(180, 150, 220, 0.5) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 15% 85%, rgba(235, 180, 205, 0.45) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 50% 50%, rgba(255, 255, 255, 0.5) 0%, transparent 70%),
+      linear-gradient(150deg, #EDE0F5 0%, #F9DDE8 35%, #E6DAF2 65%, #F5E4EE 100%);
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    opacity: 0.018;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px;
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    position: relative;
+    z-index: 1;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 1.25rem 2rem;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0 1.25rem;
+    animation: fadeDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-12px); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+  }
+
+  .header__left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .header__avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    color: var(--purple-600);
+    flex-shrink: 0;
+  }
+
+  .header__greeting {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  .header__name {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    color: var(--text-primary);
+    margin-top: 0.125rem;
+  }
+
+  .header__actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .icon-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 2px 10px rgba(75, 45, 94, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--purple-600);
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    text-decoration: none;
+  }
+
+  .icon-btn:hover {
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 4px 14px rgba(75, 45, 94, 0.12), inset 0 1px 2px rgba(255, 255, 255, 0.7);
+    transform: translateY(-1px);
+  }
+
+  .icon-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .icon-btn__badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background: var(--danger);
+    color: #fff;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 6px rgba(217, 78, 106, 0.4);
+  }
+
+  /* ── AFFIRMATION CARD ── */
+  .affirmation {
+    margin-bottom: 1.25rem;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+  }
+
+  .affirmation__photo {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--purple-200), var(--rose-200));
+  }
+
+  .affirmation__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .affirmation__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(46, 26, 62, 0.15) 0%,
+      rgba(46, 26, 62, 0.05) 40%,
+      rgba(46, 26, 62, 0.05) 60%,
+      rgba(46, 26, 62, 0.4) 100%
+    );
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.25rem;
+  }
+
+  .affirmation__top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .affirmation__date {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  img.affirmation__logo {
+    width: 32px !important;
+    height: 32px !important;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    opacity: 0.85;
+  }
+
+  .affirmation__text {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    line-height: 1.5;
+    color: #fff;
+    text-shadow: 0 1px 8px rgba(46, 26, 62, 0.3), 0 0 20px rgba(0,0,0,0.15);
+    text-align: center;
+    padding: 0 0.5rem;
+  }
+
+  .affirmation__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+
+  .affirmation__coach {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+
+  .affirmation__coach-emoji {
+    font-size: 1rem;
+  }
+
+  img.affirmation__stamp {
+    width: 72px !important;
+    height: 72px !important;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+    transform: rotate(-8deg);
+  }
+
+  /* ── AFFIRMATION SIMPLE ── */
+  .affirmation-simple {
+    margin-bottom: 1.25rem;
+    padding: 1rem 1.25rem;
+    background: linear-gradient(135deg, rgba(255, 249, 220, 0.8) 0%, rgba(252, 220, 210, 0.7) 30%, rgba(245, 190, 200, 0.75) 60%, rgba(240, 175, 190, 0.8) 100%);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 14px;
+    text-align: center;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+  }
+
+  .affirmation-simple__label {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--rose-400);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+
+  .affirmation-simple__text {
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    color: var(--purple-600);
+    line-height: 1.6;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  }
+
+  /* ── TODAY'S CLASS CARD ── */
+  .today-card {
+    background: linear-gradient(135deg, var(--purple-600), var(--purple-500), var(--rose-400));
+    border-radius: 16px;
+    padding: 1.25rem 1.25rem 1rem;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+  }
+
+  .today-card::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -20%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  }
+
+  .today-card__label {
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 0.75rem;
+  }
+
+  .today-card__class {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .today-card__time {
+    font-size: 0.8125rem;
+    opacity: 0.8;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+
+  .today-card__time svg {
+    width: 14px;
+    height: 14px;
+    opacity: 0.7;
+  }
+
+  .today-card__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .today-card__trainer {
+    font-size: 0.75rem;
+    opacity: 0.7;
+    font-weight: 400;
+  }
+
+  .today-card__status {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    background: rgba(255,255,255,0.2);
+    padding: 0.25rem 0.625rem;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+  }
+
+  /* ── STATS ROW ── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.625rem;
+    margin-bottom: 1.25rem;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+  }
+
+  .stat-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 1rem 0.75rem;
+    text-align: center;
+  }
+
+  .stat-card__value {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--purple-600);
+    line-height: 1;
+  }
+
+  .stat-card__value span {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+
+  .stat-card__label {
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-top: 0.375rem;
+  }
+
+  /* ── QUICK ACTIONS ── */
+  .quick-actions {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.625rem;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+  }
+
+  .action-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 0.5rem;
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .action-btn:hover {
+    transform: translateY(-2px);
+    border-color: var(--purple-200);
+    box-shadow: 0 4px 16px rgba(75, 45, 94, 0.08);
+  }
+
+  .action-btn__icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .action-btn__icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .action-btn__icon--schedule {
+    background: linear-gradient(135deg, rgba(75,45,94,0.12), rgba(75,45,94,0.05));
+    color: var(--purple-500);
+  }
+  .action-btn__icon--substitute {
+    background: linear-gradient(135deg, rgba(230,90,20,0.12), rgba(230,90,20,0.05));
+    color: #E65A14;
+  }
+  .action-btn__icon--holding {
+    background: linear-gradient(135deg, rgba(160,125,32,0.12), rgba(160,125,32,0.05));
+    color: #7A5E10;
+  }
+  .action-btn__icon--journal {
+    background: linear-gradient(135deg, rgba(61,107,58,0.12), rgba(61,107,58,0.05));
+    color: #3D6B3A;
+  }
+
+  .action-btn__text {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    white-space: nowrap;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+  }
+
+  .section__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+
+  .section__title {
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    color: var(--text-primary);
+  }
+
+  .section__more {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .section__more:hover {
+    color: var(--purple-500);
+  }
+
+  /* ── SCHEDULE LIST ── */
+  .schedule-list {
+    display: flex;
+    gap: 0.625rem;
+  }
+
+  .schedule-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 0.875rem 0.75rem;
+    transition: all 0.2s;
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+  }
+
+  .schedule-item:hover {
+    border-color: var(--purple-200);
+    box-shadow: 0 2px 12px rgba(75, 45, 94, 0.06);
+  }
+
+  .schedule-item--attended {
+    background: rgba(91, 184, 138, 0.15);
+    border-color: rgba(91, 184, 138, 0.3);
+  }
+  .schedule-item--attended .schedule-item__day { background: transparent; }
+  .schedule-item--attended .schedule-item__day-num { color: #3A9A64; }
+  .schedule-item--attended .schedule-item__day-label { color: #5BB88A; }
+  .schedule-item--attended .schedule-item__name { color: #3A9A64; }
+  .schedule-item--attended .schedule-item__meta { color: #5BB88A; }
+
+  .schedule-item__day {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--purple-50), var(--rose-50));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .schedule-item__day-label {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+
+  .schedule-item__day-num {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    color: var(--purple-600);
+    line-height: 1;
+  }
+
+  .schedule-item__info {
+    min-width: 0;
+  }
+
+  .schedule-item__name {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.125rem;
+    white-space: nowrap;
+  }
+
+  .schedule-item__meta {
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  .schedule-item__badge {
+    font-size: 0.625rem;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 20px;
+    flex-shrink: 0;
+  }
+
+  .schedule-item__badge--confirmed {
+    background: rgba(91, 184, 138, 0.1);
+    color: var(--success);
+  }
+
+  .schedule-item__badge--pending {
+    background: rgba(230, 90, 20, 0.1);
+    color: #E65A14;
+  }
+
+  /* ── NOTICE CARD ── */
+  .notice-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 1rem 1.125rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .notice-card:hover {
+    border-color: var(--purple-200);
+  }
+
+  .notice-card__icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(75,45,94,0.08), rgba(212,130,154,0.08));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--purple-400);
+  }
+
+  .notice-card__icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .notice-card__content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .notice-card__title {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.1875rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .notice-card__date {
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  .notice-card__new {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--rose-400);
+    flex-shrink: 0;
+    margin-top: 0.375rem;
+  }
+
+  /* ── BOTTOM NAV ── */
+  /* ── FLOATING ACTION BUTTON ── */
+  .fab-journal {
+    position: fixed;
+    bottom: calc(var(--nav-height) + env(safe-area-inset-bottom, 0px) + 16px);
+    right: 20px;
+    z-index: 55;
+    width: 54px;
+    height: 54px;
+    border-radius: 16px;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--purple-600), var(--purple-500));
+    box-shadow:
+      0 4px 16px rgba(75, 45, 94, 0.35),
+      0 2px 6px rgba(75, 45, 94, 0.2),
+      inset 0 1px 0 rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s;
+  }
+  .fab-journal:active {
+    transform: scale(0.92);
+    box-shadow: 0 2px 8px rgba(75, 45, 94, 0.3);
+  }
+  .fab-journal svg {
+    width: 26px;
+    height: 26px;
+    color: #fff;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+  }
+  .fab-journal__tooltip {
+    position: absolute;
+    right: calc(100% + 10px);
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(46, 26, 62, 0.88);
+    backdrop-filter: blur(8px);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+    padding: 0.375rem 0.75rem;
+    border-radius: 8px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .fab-journal:hover .fab-journal__tooltip,
+  .fab-journal:focus .fab-journal__tooltip {
+    opacity: 1;
+  }
+
+  @keyframes fab-enter {
+    from { opacity: 0; transform: scale(0.5) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .fab-journal {
+    animation: fab-enter 0.4s 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--nav-height);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 50;
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    text-decoration: none;
+    color: var(--text-muted);
+    transition: color 0.2s;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .nav-item.active {
+    color: var(--purple-600);
+  }
+
+  .nav-item.active::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--purple-400), var(--rose-300));
+    border-radius: 1px;
+  }
+
+  .nav-item svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .nav-item__label {
+    font-size: 0.5625rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── NOTIFICATION PANEL ── */
+  .notif-overlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(46, 26, 62, 0.4);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    align-items: flex-end; justify-content: center;
+  }
+
+  .notif-overlay.open {
+    display: flex;
+    animation: notifFadeIn 0.2s ease;
+  }
+
+  @keyframes notifFadeIn { from { opacity: 0; } }
+  @keyframes notifSlideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+
+  .notif-panel {
+    width: 100%; max-width: 480px;
+    max-height: 75dvh;
+    background: #fff;
+    border-radius: 20px 20px 0 0;
+    display: flex; flex-direction: column;
+    animation: notifSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  .notif-panel__handle {
+    width: 36px; height: 4px; border-radius: 2px;
+    background: var(--border-subtle);
+    margin: 0.75rem auto 0;
+    flex-shrink: 0;
+  }
+
+  .notif-panel__header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 1.5rem 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .notif-panel__title {
+    font-family: var(--font-display);
+    font-size: 1.0625rem; color: var(--text-primary);
+  }
+
+  .notif-panel__mark-read {
+    font-size: 0.75rem; font-weight: 500;
+    color: var(--purple-400); cursor: pointer;
+    background: none; border: none;
+    font-family: var(--font-body);
+    transition: color 0.2s;
+  }
+  .notif-panel__mark-read:hover { color: var(--purple-600); }
+
+  .notif-list {
+    overflow-y: auto; flex: 1;
+    padding: 0 1rem 1.5rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .notif-item {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    padding: 0.875rem 0.5rem;
+    border-bottom: 1px solid rgba(196, 176, 210, 0.1);
+    cursor: pointer;
+    transition: background 0.15s;
+    border-radius: 10px;
+  }
+  .notif-item:last-child { border-bottom: none; }
+  .notif-item:active { background: rgba(94, 61, 116, 0.04); }
+
+  .notif-item.unread { background: rgba(245, 240, 248, 0.5); }
+
+  .notif-item__icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .notif-item__icon svg { width: 17px; height: 17px; }
+
+  .notif-item__icon--class {
+    background: linear-gradient(135deg, rgba(75,45,94,0.1), rgba(75,45,94,0.04));
+    color: var(--purple-500);
+  }
+  .notif-item__icon--holding {
+    background: linear-gradient(135deg, rgba(160,125,32,0.1), rgba(160,125,32,0.04));
+    color: #7A5E10;
+  }
+  .notif-item__icon--substitute {
+    background: linear-gradient(135deg, rgba(230,90,20,0.1), rgba(230,90,20,0.04));
+    color: #E65A14;
+  }
+  .notif-item__icon--notice {
+    background: linear-gradient(135deg, rgba(91,184,138,0.1), rgba(91,184,138,0.04));
+    color: var(--success);
+  }
+  .notif-item__icon--system {
+    background: linear-gradient(135deg, rgba(168,154,184,0.12), rgba(168,154,184,0.04));
+    color: var(--text-muted);
+  }
+
+  .notif-item__body { flex: 1; min-width: 0; }
+
+  .notif-item__text {
+    font-size: 0.8125rem; font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.45;
+    margin-bottom: 0.25rem;
+  }
+  .notif-item.unread .notif-item__text { font-weight: 600; }
+
+  .notif-item__time {
+    font-size: 0.6875rem; font-weight: 400;
+    color: var(--text-muted);
+  }
+
+  .notif-item__dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--rose-400);
+    flex-shrink: 0; margin-top: 0.5rem;
+  }
+
+  .notif-empty {
+    text-align: center; padding: 3rem 1rem;
+    color: var(--text-muted);
+  }
+  .notif-empty__icon { font-size: 2.5rem; margin-bottom: 0.75rem; opacity: 0.5; }
+  .notif-empty__icon svg { width: 48px; height: 48px; color: var(--purple-200); }
+  .notif-empty__text {
+    font-size: 0.875rem; font-weight: 500;
+  }
+
+  /* ── ANIMATIONS ── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (min-width: 480px) {
+    .main { padding: 0 1.5rem 2rem; }
+  }
+
+  @media (min-width: 768px) {
+    .main {
+      max-width: 560px;
+      padding: 0 2rem 2rem;
+    }
+
+    .stats-row {
+      gap: 0.875rem;
+    }
+
+    .quick-actions {
+      gap: 0.875rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-atmosphere"></div>
+
+<div class="main">
+  <!-- Header -->
+  <header class="header">
+    <div class="header__left">
+      <div class="header__avatar" style="overflow:hidden; border: 2px solid rgba(255,255,255,0.7); box-shadow: 0 2px 12px rgba(75,45,94,0.12);"><img src="profile-photo.jpg" alt="프로필" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
+      <div>
+        <p class="header__greeting">안녕하세요</p>
+        <p class="header__name">은또 님</p>
+      </div>
+    </div>
+    <div class="header__actions">
+      <button class="icon-btn" aria-label="알림">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+        </svg>
+        <span class="icon-btn__badge">2</span>
+      </button>
+      <a href="profile.html" class="icon-btn" aria-label="내 정보">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+        </svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- Notice -->
+  <div class="section">
+    <div class="section__header">
+      <h2 class="section__title">공지사항</h2>
+      <a href="#" class="section__more">전체보기</a>
+    </div>
+    <div class="notice-card">
+      <div class="notice-card__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"/>
+        </svg>
+      </div>
+      <div class="notice-card__content">
+        <div class="notice-card__title">2월 설 연휴 휴관 안내 (2/7~2/10)</div>
+        <div class="notice-card__date">2026.02.05</div>
+      </div>
+      <div class="notice-card__new"></div>
+    </div>
+  </div>
+
+  <!-- Next Class -->
+  <div class="today-card">
+    <div class="today-card__label">Next Class</div>
+    <div class="today-card__class">2월 10일 (월) · 1교시</div>
+    <div class="today-card__time">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      10:00 — 11:00
+    </div>
+    <div class="today-card__bottom">
+      <span class="today-card__status">출석 예정</span>
+    </div>
+  </div>
+
+  <!-- 오늘의 응원 -->
+  <div class="affirmation-simple">
+    <p class="affirmation-simple__label">✨ 오늘의 응원 ✨</p>
+    <p class="affirmation-simple__text">"강한 몸은 강한 마음을 만들고,<br>강한 마음은 강한 인생을 만든다"</p>
+  </div>
+
+  <!-- This Week's Schedule -->
+  <div class="section">
+    <div class="section__header">
+      <h2 class="section__title">이번 주 일정</h2>
+      <a href="#" class="section__more">전체보기</a>
+    </div>
+    <div class="schedule-list">
+      <div class="schedule-item schedule-item--attended">
+        <div class="schedule-item__day">
+          <span class="schedule-item__day-num">10<span class="schedule-item__day-label">(월)</span></span>
+        </div>
+        <div class="schedule-item__info">
+          <div class="schedule-item__name">1교시</div>
+          <div class="schedule-item__meta">10:00 — 11:00</div>
+        </div>
+        <span class="schedule-item__badge schedule-item__badge--confirmed">출석</span>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-item__day">
+          <span class="schedule-item__day-num">12<span class="schedule-item__day-label">(수)</span></span>
+        </div>
+        <div class="schedule-item__info">
+          <div class="schedule-item__name">1교시</div>
+          <div class="schedule-item__meta">10:00 — 11:00</div>
+        </div>
+        <span class="schedule-item__badge schedule-item__badge--confirmed">예정</span>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-item__day">
+          <span class="schedule-item__day-num">14<span class="schedule-item__day-label">(금)</span></span>
+        </div>
+        <div class="schedule-item__info">
+          <div class="schedule-item__name">1교시</div>
+          <div class="schedule-item__meta">10:00 — 11:00</div>
+        </div>
+        <span class="schedule-item__badge schedule-item__badge--pending">대체</span>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<!-- Notification Panel -->
+<div class="notif-overlay" id="notif-overlay">
+  <div class="notif-panel">
+    <div class="notif-panel__handle"></div>
+    <div class="notif-panel__header">
+      <span class="notif-panel__title">알림</span>
+      <button class="notif-panel__mark-read" id="mark-all-read">모두 읽음</button>
+    </div>
+    <div class="notif-list" id="notif-list">
+      <div class="notif-item unread" data-id="1">
+        <div class="notif-item__icon notif-item__icon--class">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        </div>
+        <div class="notif-item__body">
+          <div class="notif-item__text">내일 <strong>1교시 수업</strong>이 예정되어 있습니다. (10:00~11:00)</div>
+          <div class="notif-item__time">30분 전</div>
+        </div>
+        <div class="notif-item__dot"></div>
+      </div>
+      <div class="notif-item unread" data-id="2">
+        <div class="notif-item__icon notif-item__icon--notice">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"/>
+          </svg>
+        </div>
+        <div class="notif-item__body">
+          <div class="notif-item__text"><strong>공지사항</strong> 2월 설 연휴 휴관 안내 (2/7~2/10)</div>
+          <div class="notif-item__time">2시간 전</div>
+        </div>
+        <div class="notif-item__dot"></div>
+      </div>
+      <div class="notif-item" data-id="3">
+        <div class="notif-item__icon notif-item__icon--substitute">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+          </svg>
+        </div>
+        <div class="notif-item__body">
+          <div class="notif-item__text"><strong>대체수강 신청</strong>이 승인되었습니다. (2/14 금 1교시)</div>
+          <div class="notif-item__time">어제</div>
+        </div>
+      </div>
+      <div class="notif-item" data-id="4">
+        <div class="notif-item__icon notif-item__icon--holding">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><line x1="10" y1="15" x2="10" y2="9"/><line x1="14" y1="15" x2="14" y2="9"/>
+          </svg>
+        </div>
+        <div class="notif-item__body">
+          <div class="notif-item__text"><strong>홀딩 신청</strong>이 완료되었습니다. (1/20~1/26, 7일)</div>
+          <div class="notif-item__time">1월 20일</div>
+        </div>
+      </div>
+      <div class="notif-item" data-id="5">
+        <div class="notif-item__icon notif-item__icon--system">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
+        </div>
+        <div class="notif-item__body">
+          <div class="notif-item__text">1월 수업 출석률 <strong>92%</strong> 달성! 이번 달도 화이팅하세요.</div>
+          <div class="notif-item__time">1월 31일</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Floating Action Button: 훈련일지 -->
+<a href="journal.html" class="fab-journal" aria-label="훈련일지 작성">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+  </svg>
+  <span class="fab-journal__tooltip">훈련일지 작성</span>
+</a>
+
+<!-- Bottom Navigation -->
+<nav class="bottom-nav">
+  <a class="nav-item active" href="#">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+    </svg>
+    <span class="nav-item__label">홈</span>
+  </a>
+  <a class="nav-item" href="challenge.html">
+    <span style="font-size:1.25rem;line-height:1;">🔥</span>
+    <span class="nav-item__label">챌린지</span>
+  </a>
+  <a class="nav-item" href="program.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+    </svg>
+    <span class="nav-item__label">프로그램</span>
+  </a>
+  <a class="nav-item" href="change.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+    </svg>
+    <span class="nav-item__label">변경</span>
+  </a>
+  <a class="nav-item" href="class-status.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+    </svg>
+    <span class="nav-item__label">수업현황</span>
+  </a>
+</nav>
+
+<script>
+(function() {
+  var overlay = document.getElementById('notif-overlay');
+  var notifBtn = document.querySelector('.icon-btn[aria-label="알림"]');
+  var badge = notifBtn.querySelector('.icon-btn__badge');
+  var markAllBtn = document.getElementById('mark-all-read');
+
+  function getUnreadCount() {
+    return document.querySelectorAll('.notif-item.unread').length;
+  }
+
+  function updateBadge() {
+    var count = getUnreadCount();
+    if (count > 0) {
+      badge.textContent = count;
+      badge.style.display = 'flex';
+    } else {
+      badge.style.display = 'none';
+    }
+  }
+
+  notifBtn.addEventListener('click', function() {
+    overlay.classList.add('open');
+  });
+
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) overlay.classList.remove('open');
+  });
+
+  // Mark individual as read on click
+  document.querySelectorAll('.notif-item').forEach(function(item) {
+    item.addEventListener('click', function() {
+      item.classList.remove('unread');
+      var dot = item.querySelector('.notif-item__dot');
+      if (dot) dot.remove();
+      updateBadge();
+    });
+  });
+
+  // Mark all as read
+  markAllBtn.addEventListener('click', function() {
+    document.querySelectorAll('.notif-item.unread').forEach(function(item) {
+      item.classList.remove('unread');
+      var dot = item.querySelector('.notif-item__dot');
+      if (dot) dot.remove();
+    });
+    updateBadge();
+    markAllBtn.textContent = '완료!';
+    setTimeout(function() { markAllBtn.textContent = '모두 읽음'; }, 1000);
+  });
+})();
+
+</script>
+
+</body>
+</html>

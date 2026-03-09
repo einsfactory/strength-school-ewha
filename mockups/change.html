@@ -1,0 +1,2357 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>근력학교 이화 — 변경</title>
+<style>
+  /* ── FONT FACES ── */
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'TYPE졸업식';
+    src: url('fonts/TypeGraduation.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* ── RESET & VARIABLES ── */
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+  :root {
+    --purple-700: #3B2650;
+    --purple-600: #4B2D5E;
+    --purple-500: #5E3D74;
+    --purple-400: #7B5A93;
+    --purple-300: #9E82B0;
+    --purple-200: #C4B0D2;
+    --purple-100: #E8DFF0;
+    --purple-50:  #F5F0F8;
+
+    --rose-400: #D4829A;
+    --rose-300: #E4A5B8;
+    --rose-200: #F0C6D4;
+    --rose-100: #F9E4EC;
+    --rose-50:  #FDF5F8;
+
+    --bg-gradient-1: #EDE0F5;
+    --bg-gradient-2: #F9DDE8;
+    --bg-gradient-3: #E6DAF2;
+    --bg-card: rgba(255, 255, 255, 0.72);
+    --bg-card-solid: #fff;
+    --border-subtle: rgba(196, 176, 210, 0.3);
+
+    --text-primary: #2E1A3E;
+    --text-secondary: #6B5A7E;
+    --text-muted: #A89AB8;
+
+    --success: #5BB88A;
+    --warning: #E8A854;
+    --danger: #D94E6A;
+    --orange: #E65A14;
+    --holding: #5E3D74;
+    --holding-light: rgba(120, 60, 180, 0.08);
+
+    --font-display: 'TYPE졸업식', sans-serif;
+    --font-body: 'CarmenSans', 'Noto Sans KR', sans-serif;
+
+    --nav-height: 68px;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: var(--font-body);
+    min-height: 100dvh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    background: var(--bg-gradient-1);
+    color: var(--text-primary);
+    padding-bottom: var(--nav-height);
+  }
+
+  /* ── GRADIENT BACKGROUND ── */
+  .bg-atmosphere {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 90% 70% at 10% 5%, rgba(190, 160, 220, 0.6) 0%, transparent 65%),
+      radial-gradient(ellipse 80% 60% at 90% 10%, rgba(240, 170, 200, 0.55) 0%, transparent 60%),
+      radial-gradient(ellipse 70% 60% at 75% 85%, rgba(180, 150, 220, 0.5) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 15% 85%, rgba(235, 180, 205, 0.45) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 50% 50%, rgba(255, 255, 255, 0.5) 0%, transparent 70%),
+      linear-gradient(150deg, #EDE0F5 0%, #F9DDE8 35%, #E6DAF2 65%, #F5E4EE 100%);
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    opacity: 0.018;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px;
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    position: relative;
+    z-index: 1;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 1.25rem 2rem;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-12px); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+  }
+
+  @keyframes popIn {
+    0% { transform: scale(0.92); opacity: 0.6; }
+    50% { transform: scale(1.04); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes cellPulse {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.15); }
+    60% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+  }
+
+  @keyframes viewSlideIn {
+    from { opacity: 0; transform: translateX(40px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes viewSlideOut {
+    from { opacity: 1; transform: translateX(0); }
+    to { opacity: 0; transform: translateX(-40px); }
+  }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 0 1.25rem;
+    animation: fadeDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .back-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+
+  .back-btn:hover {
+    border-color: var(--purple-200);
+    color: var(--purple-500);
+  }
+
+  .back-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .page-header__title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--text-primary);
+  }
+
+  /* ══════════════════════════════════════
+     MENU VIEW — 대형 카드 버튼
+     ══════════════════════════════════════ */
+  .view { display: none; }
+  .view.active { display: block; }
+  .view.active.slide-in { animation: viewSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+
+  .menu-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: 0.5rem;
+    animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+  }
+
+  .menu-card {
+    display: flex;
+    align-items: center;
+    gap: 1.125rem;
+    padding: 1.5rem 1.25rem;
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1.5px solid var(--border-subtle);
+    border-radius: 18px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    -webkit-tap-highlight-color: transparent;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .menu-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .menu-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--purple-200);
+    box-shadow: 0 8px 28px rgba(75, 45, 94, 0.1);
+  }
+
+  .menu-card:active {
+    transform: scale(0.98);
+  }
+
+  .menu-card--substitute::before {
+    background: linear-gradient(135deg, rgba(75, 45, 94, 0.04), rgba(212, 130, 154, 0.04));
+  }
+
+  .menu-card--substitute:hover::before { opacity: 1; }
+
+  .menu-card--holding::before {
+    background: linear-gradient(135deg, rgba(120, 60, 180, 0.04), rgba(94, 61, 116, 0.04));
+  }
+
+  .menu-card--holding:hover::before { opacity: 1; }
+
+  .menu-card--timechange::before {
+    background: linear-gradient(135deg, rgba(56, 142, 142, 0.05), rgba(75, 45, 94, 0.03));
+  }
+
+  .menu-card--timechange:hover::before { opacity: 1; }
+
+  .menu-card__icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .menu-card__icon svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .menu-card--substitute .menu-card__icon {
+    background: linear-gradient(135deg, var(--purple-600), var(--purple-500));
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(75, 45, 94, 0.25);
+  }
+
+  .menu-card--holding .menu-card__icon {
+    background: linear-gradient(135deg, var(--purple-500), var(--rose-400));
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(212, 130, 154, 0.25);
+  }
+
+  .menu-card--timechange .menu-card__icon {
+    background: linear-gradient(135deg, #2D8B8B, #3DA4A4);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(45, 139, 139, 0.25);
+  }
+
+  .menu-card__content {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .menu-card__title {
+    font-family: var(--font-display);
+    font-size: 1.1875rem;
+    color: var(--text-primary);
+    margin-bottom: 0.3125rem;
+  }
+
+  .menu-card__desc {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+  }
+
+  .menu-card__arrow {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(196, 176, 210, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    transition: all 0.25s;
+    position: relative;
+    z-index: 1;
+  }
+
+  .menu-card__arrow svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .menu-card:hover .menu-card__arrow {
+    background: var(--purple-100);
+    color: var(--purple-500);
+    transform: translateX(2px);
+  }
+
+  /* ── MENU HISTORY SUMMARY ── */
+  .menu-history {
+    margin-top: 2rem;
+    animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+  }
+
+  .menu-history__title {
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  /* ── FORM VIEW HEADER ── */
+  .form-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .form-back-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .form-back-btn:active {
+    transform: scale(0.92);
+  }
+
+  .form-back-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .form-header__title {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    color: var(--text-primary);
+  }
+
+  /* ── SHARED FORM STYLES ── */
+  .info-banner {
+    background: linear-gradient(135deg, rgba(75,45,94,0.08), rgba(75,45,94,0.03));
+    border: 1px solid rgba(75,45,94,0.12);
+    border-radius: 12px;
+    padding: 0.875rem 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .info-banner__icon {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    color: var(--purple-500);
+    margin-top: 1px;
+  }
+
+  .info-banner__text {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .section {
+    margin-bottom: 1.5rem;
+  }
+
+  .section__title {
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+
+  .form-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .form-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .form-textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    background: rgba(255,255,255,0.6);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    resize: vertical;
+    min-height: 80px;
+    transition: border-color 0.2s;
+  }
+
+  .form-textarea:focus {
+    outline: none;
+    border-color: var(--purple-300);
+  }
+
+  .form-textarea::placeholder {
+    color: var(--text-muted);
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 0.9375rem;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--purple-600), var(--purple-500), var(--rose-400));
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+    margin-top: 1rem;
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(75, 45, 94, 0.25);
+  }
+
+  .submit-btn:active {
+    transform: translateY(0);
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .submit-btn:disabled:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* ══════════════════════════════════════
+     SUBSTITUTE FORM STYLES
+     ══════════════════════════════════════ */
+  .selection-guide {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .selection-guide__step {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 0.75rem;
+    border-radius: 10px;
+    background: var(--bg-card);
+    border: 1.5px solid var(--border-subtle);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .selection-guide__step--active {
+    border-color: var(--purple-200);
+    box-shadow: 0 2px 8px rgba(75, 45, 94, 0.08);
+  }
+
+  .selection-guide__step--absent.selection-guide__step--done {
+    background: var(--purple-500);
+    border-color: var(--purple-500);
+    border-width: 2px;
+    box-shadow: 0 4px 16px rgba(75, 45, 94, 0.3);
+    animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .selection-guide__step--absent.selection-guide__step--done .selection-guide__label {
+    color: rgba(255, 255, 255, 0.75); font-weight: 700;
+  }
+
+  .selection-guide__step--absent.selection-guide__step--done .selection-guide__value {
+    color: #fff; font-size: 1.0625rem;
+  }
+
+  .selection-guide__step--absent.selection-guide__step--done .selection-guide__num {
+    background: rgba(255, 255, 255, 0.2); color: #fff;
+  }
+
+  .selection-guide__step--sub.selection-guide__step--done {
+    background: #3A9A64;
+    border-color: #3A9A64;
+    border-width: 2px;
+    box-shadow: 0 4px 16px rgba(58, 154, 100, 0.3);
+    animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .selection-guide__step--sub.selection-guide__step--done .selection-guide__label {
+    color: rgba(255, 255, 255, 0.75); font-weight: 700;
+  }
+
+  .selection-guide__step--sub.selection-guide__step--done .selection-guide__value {
+    color: #fff; font-size: 1.0625rem;
+  }
+
+  .selection-guide__step--sub.selection-guide__step--done .selection-guide__num {
+    background: rgba(255, 255, 255, 0.2); color: #fff;
+  }
+
+  .selection-guide__step--sub .selection-guide__num {
+    background: rgba(91, 184, 138, 0.12); color: var(--success);
+  }
+
+  .selection-guide__num {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--purple-100); color: var(--purple-500);
+    font-size: 0.625rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: all 0.3s;
+  }
+
+  .selection-guide__step--absent .selection-guide__num {
+    background: rgba(158, 130, 176, 0.2); color: var(--purple-400);
+  }
+
+  .selection-guide__step--done .selection-guide__num { transform: scale(1.1); }
+
+  .selection-guide__info { flex: 1; min-width: 0; }
+
+  .selection-guide__label {
+    font-size: 0.625rem; font-weight: 600;
+    color: var(--text-muted); margin-bottom: 1px;
+  }
+
+  .selection-guide__value {
+    font-size: 0.875rem; font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+
+  .selection-guide__arrow { color: var(--text-muted); flex-shrink: 0; }
+  .selection-guide__arrow svg { width: 16px; height: 16px; }
+
+  /* ── TIMETABLE ── */
+  .timetable-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 0.875rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .timetable {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 3px;
+  }
+
+  .timetable__header th {
+    font-size: 0.6875rem; font-weight: 600;
+    color: var(--text-secondary);
+    padding: 0.25rem 0; text-align: center;
+  }
+
+  .timetable__header th:first-child { width: 64px; }
+
+  .timetable__period-label {
+    font-size: 0.5625rem; font-weight: 400;
+    color: var(--text-muted);
+    padding-right: 0.375rem; text-align: right;
+    white-space: nowrap; vertical-align: middle;
+  }
+
+  .timetable__period-time {
+    display: block; font-size: 0.8125rem;
+    font-weight: 600; color: var(--text-primary);
+    margin-top: 1px;
+  }
+
+  .timetable__cell {
+    min-width: 40px; height: 42px; border-radius: 8px;
+    background: rgba(255,255,255,0.45);
+    border: 1.5px solid rgba(196, 176, 210, 0.15);
+    cursor: pointer; transition: all 0.2s;
+    text-align: center; vertical-align: middle;
+    position: relative; font-family: var(--font-body);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .timetable__cell:active { transform: scale(0.93); }
+
+  .timetable__cell--mine {
+    background: rgba(75, 45, 94, 0.18);
+    border-color: rgba(75, 45, 94, 0.35);
+  }
+
+  .timetable__cell--absent {
+    background: rgba(75, 45, 94, 0.35) !important;
+    border-color: rgba(75, 45, 94, 0.6) !important;
+    box-shadow: 0 0 0 3px rgba(75, 45, 94, 0.15);
+    animation: cellPulse 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .timetable__cell--absent .cell-label {
+    font-size: 0.75rem; font-weight: 800;
+    color: var(--purple-600); letter-spacing: -0.02em;
+  }
+
+  .timetable__cell--substitute {
+    background: rgba(58, 154, 100, 0.22) !important;
+    border-color: rgba(58, 154, 100, 0.55) !important;
+    box-shadow: 0 0 0 3px rgba(58, 154, 100, 0.12);
+    animation: cellPulse 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .timetable__cell--substitute .cell-label {
+    font-size: 0.75rem; font-weight: 800;
+    color: #2D7A4E; letter-spacing: -0.02em;
+  }
+
+  .cell-seats { font-size: 0.75rem; font-weight: 400; color: var(--purple-500); }
+
+  .timetable__cell--noclass {
+    background: rgba(180, 180, 190, 0.08);
+    border-color: transparent; cursor: default;
+  }
+  .timetable__cell--noclass:active { transform: none; }
+
+  .timetable__cell--full {
+    background: rgba(217, 78, 106, 0.06);
+    border-color: rgba(217, 78, 106, 0.12);
+    cursor: default;
+  }
+  .timetable__cell--full:active { transform: none; }
+
+  .timetable__cell--full .cell-seats {
+    font-size: 0.6875rem; font-weight: 700;
+    color: var(--danger); opacity: 0.8;
+  }
+
+  .reason-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 1rem 1.25rem;
+    margin-top: 0.75rem;
+  }
+
+  /* ══════════════════════════════════════
+     HOLDING FORM STYLES
+     ══════════════════════════════════════ */
+  .status-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .status-card__row {
+    display: flex; justify-content: space-between;
+    align-items: center; padding: 0.5rem 0;
+  }
+
+  .status-card__row + .status-card__row {
+    border-top: 1px solid rgba(196, 176, 210, 0.12);
+  }
+
+  .status-card__label { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; }
+
+  .status-card__value { font-size: 0.875rem; font-weight: 600; color: var(--text-primary); }
+
+  .status-card__value--highlight { color: var(--holding); font-size: 1.125rem; }
+
+  .status-card__value--used { color: var(--text-muted); }
+
+  .form-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 1.25rem;
+  }
+
+  .calendar { user-select: none; -webkit-user-select: none; }
+
+  .calendar__nav {
+    display: flex; align-items: center;
+    justify-content: space-between; margin-bottom: 0.75rem;
+  }
+
+  .calendar__nav-btn {
+    width: 32px; height: 32px; border-radius: 8px;
+    border: 1px solid var(--border-subtle);
+    background: rgba(255,255,255,0.5);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; color: var(--text-secondary);
+    transition: all 0.2s; -webkit-tap-highlight-color: transparent;
+  }
+  .calendar__nav-btn:active { transform: scale(0.92); }
+  .calendar__nav-btn svg { width: 16px; height: 16px; }
+
+  .calendar__month { font-size: 0.9375rem; font-weight: 600; color: var(--text-primary); }
+
+  .calendar__weekdays {
+    display: grid; grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 0.25rem;
+  }
+
+  .calendar__weekday {
+    text-align: center; font-size: 0.625rem;
+    font-weight: 600; color: var(--text-muted);
+    padding: 0.25rem 0;
+  }
+
+  .calendar__days {
+    display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px;
+  }
+
+  .calendar__day {
+    aspect-ratio: 1; display: flex;
+    align-items: center; justify-content: center;
+    font-size: 0.8125rem; font-weight: 500;
+    color: var(--text-primary); border-radius: 50%;
+    cursor: pointer; transition: all 0.15s;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+  }
+  .calendar__day:active { transform: scale(0.88); }
+
+  .calendar__day--empty { cursor: default; }
+  .calendar__day--empty:active { transform: none; }
+
+  .calendar__day--past { color: var(--text-muted); opacity: 0.4; cursor: default; }
+  .calendar__day--past:active { transform: none; }
+
+  .calendar__day--today { font-weight: 700; color: var(--purple-500); }
+
+  .calendar__day--start {
+    background: var(--holding); color: #fff !important;
+    font-weight: 700; border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(120, 60, 180, 0.3);
+  }
+
+  .calendar__day--end {
+    background: var(--holding); color: #fff !important;
+    font-weight: 700; border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(120, 60, 180, 0.3);
+  }
+
+  .calendar__day--range {
+    background: rgba(120, 60, 180, 0.1);
+    color: var(--holding) !important;
+    font-weight: 600; border-radius: 4px;
+  }
+
+  .calendar--error .calendar__day--start {
+    background: var(--danger);
+    box-shadow: 0 2px 8px rgba(217, 78, 106, 0.3);
+  }
+  .calendar--error .calendar__day--end {
+    background: var(--danger);
+    box-shadow: 0 2px 8px rgba(217, 78, 106, 0.3);
+  }
+  .calendar--error .calendar__day--range {
+    background: rgba(217, 78, 106, 0.1);
+    color: var(--danger) !important;
+  }
+
+  .selection-summary {
+    margin-top: 0.75rem; padding: 0.75rem 1rem;
+    border-radius: 10px;
+    background: rgba(120, 60, 180, 0.06);
+    border: 1px solid rgba(120, 60, 180, 0.15);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .selection-summary__dates { font-size: 0.8125rem; font-weight: 600; color: var(--text-primary); }
+
+  .selection-summary__badge {
+    padding: 0.25rem 0.625rem; border-radius: 20px;
+    background: rgba(120, 60, 180, 0.1);
+    font-size: 0.6875rem; font-weight: 700; color: var(--holding);
+  }
+
+  .selection-summary__badge--error {
+    background: rgba(217, 78, 106, 0.1);
+    color: var(--danger); font-size: 0.875rem;
+    padding: 0.375rem 0.75rem;
+  }
+
+  .selection-summary--error {
+    background: rgba(217, 78, 106, 0.06);
+    border-color: rgba(217, 78, 106, 0.2);
+  }
+  .selection-summary--error .selection-summary__dates { color: var(--danger); }
+
+  .selection-summary--empty {
+    justify-content: center;
+    background: transparent;
+    border: 1px dashed var(--border-subtle);
+  }
+  .selection-summary--empty .selection-summary__dates {
+    font-size: 0.75rem; font-weight: 500; color: var(--text-muted);
+  }
+
+  /* ══════════════════════════════════════
+     TIME CHANGE FORM STYLES
+     ══════════════════════════════════════ */
+  .tc-current {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .tc-current__label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 0.625rem;
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+
+  .tc-current__label svg {
+    width: 14px;
+    height: 14px;
+    color: #2D8B8B;
+  }
+
+  .tc-current__slots {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .tc-slot {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    background: rgba(45, 139, 139, 0.06);
+    border: 1px solid rgba(45, 139, 139, 0.15);
+    cursor: pointer;
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .tc-slot:active { transform: scale(0.98); }
+
+  .tc-slot--selected {
+    background: rgba(45, 139, 139, 0.14);
+    border-color: rgba(45, 139, 139, 0.4);
+    box-shadow: 0 2px 8px rgba(45, 139, 139, 0.1);
+  }
+
+  .tc-slot__radio {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid rgba(45, 139, 139, 0.35);
+    flex-shrink: 0;
+    position: relative;
+    transition: all 0.2s;
+  }
+
+  .tc-slot--selected .tc-slot__radio {
+    border-color: #2D8B8B;
+    background: #2D8B8B;
+  }
+
+  .tc-slot--selected .tc-slot__radio::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    background: #fff;
+  }
+
+  .tc-slot__info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .tc-slot__day {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .tc-slot__time {
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+    margin-top: 1px;
+  }
+
+  .tc-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 0;
+    color: #2D8B8B;
+  }
+
+  .tc-arrow svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .tc-new-selection {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 1.25rem;
+    margin-bottom: 0;
+  }
+
+  .tc-new-selection__label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 0.625rem;
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+
+  .tc-new-selection__label svg {
+    width: 14px;
+    height: 14px;
+    color: #2D8B8B;
+  }
+
+  .tc-selected-result {
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    background: rgba(45, 139, 139, 0.08);
+    border: 1px dashed rgba(45, 139, 139, 0.25);
+    text-align: center;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    transition: all 0.3s;
+    margin-bottom: 0.75rem;
+  }
+
+  .tc-selected-result--done {
+    background: rgba(45, 139, 139, 0.12);
+    border: 1.5px solid rgba(45, 139, 139, 0.35);
+    color: #2D8B8B;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tc-timetable-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 0.875rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tc-timetable {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 3px;
+  }
+
+  .tc-timetable .timetable__header th {
+    font-size: 0.6875rem; font-weight: 600;
+    color: var(--text-secondary);
+    padding: 0.25rem 0; text-align: center;
+  }
+
+  .tc-timetable .timetable__header th:first-child { width: 64px; }
+
+  .tc-cell {
+    min-width: 40px; height: 42px; border-radius: 8px;
+    background: rgba(255,255,255,0.45);
+    border: 1.5px solid rgba(196, 176, 210, 0.15);
+    cursor: pointer; transition: all 0.2s;
+    text-align: center; vertical-align: middle;
+    position: relative; font-family: var(--font-body);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .tc-cell:active { transform: scale(0.93); }
+
+  .tc-cell--current {
+    background: rgba(94, 61, 116, 0.22);
+    border-color: rgba(75, 45, 94, 0.4);
+    cursor: default;
+  }
+
+  .tc-cell--current:active { transform: none; }
+
+  .tc-cell--current .tc-cell-label {
+    font-size: 0.625rem; font-weight: 700;
+    color: var(--purple-600);
+  }
+
+  .tc-cell--noclass {
+    background: rgba(180, 180, 190, 0.08);
+    border-color: transparent; cursor: default;
+  }
+  .tc-cell--noclass:active { transform: none; }
+
+  .tc-cell--full {
+    background: rgba(217, 78, 106, 0.06);
+    border-color: rgba(217, 78, 106, 0.12);
+    cursor: pointer;
+  }
+
+  .tc-cell--full .tc-cell-seats {
+    font-size: 0.6875rem; font-weight: 700;
+    color: var(--danger); opacity: 0.8;
+  }
+
+  .tc-cell--full .tc-cell-waitcount {
+    display: block;
+    font-size: 0.5rem; font-weight: 500;
+    color: var(--text-muted);
+    margin-top: -1px;
+  }
+
+  .tc-cell-seats { font-size: 0.75rem; font-weight: 400; color: var(--purple-500); }
+
+  .tc-cell--selected {
+    background: rgba(45, 139, 139, 0.28) !important;
+    border-color: rgba(45, 139, 139, 0.6) !important;
+    box-shadow: 0 0 0 3px rgba(45, 139, 139, 0.12);
+    animation: cellPulse 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tc-cell--selected .tc-cell-label {
+    font-size: 0.75rem; font-weight: 800;
+    color: #1A6B6B; letter-spacing: -0.02em;
+  }
+
+  .tc-cell--waitlist {
+    background: rgba(217, 78, 106, 0.25) !important;
+    border-color: rgba(217, 78, 106, 0.6) !important;
+    box-shadow: 0 0 0 3px rgba(217, 78, 106, 0.12);
+    animation: cellPulse 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tc-cell--waitlist .tc-cell-label {
+    font-size: 0.5625rem; font-weight: 800;
+    color: #B8344E; letter-spacing: -0.02em;
+  }
+
+  .tc-selected-result--waitlist {
+    background: rgba(217, 78, 106, 0.08);
+    border: 1.5px solid rgba(217, 78, 106, 0.3);
+    color: #B8344E;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tc-waitlist-notice {
+    margin-top: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    background: rgba(217, 78, 106, 0.06);
+    border: 1px solid rgba(217, 78, 106, 0.15);
+    font-size: 0.6875rem;
+    color: #B8344E;
+    display: none;
+    align-items: center;
+    gap: 0.375rem;
+  }
+
+  .tc-waitlist-notice.active {
+    display: flex;
+  }
+
+  .tc-waitlist-notice svg {
+    width: 14px; height: 14px; flex-shrink: 0;
+  }
+
+  .tc-start-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 1.25rem;
+    margin-top: 1rem;
+  }
+
+  .tc-start-options {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tc-start-pill {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: 1.5px solid var(--border-subtle);
+    background: rgba(255,255,255,0.5);
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .tc-start-pill:active { transform: scale(0.95); }
+
+  .tc-start-pill--selected {
+    background: rgba(45, 139, 139, 0.12);
+    border-color: rgba(45, 139, 139, 0.4);
+    color: #2D8B8B;
+    font-weight: 600;
+  }
+
+  .tc-start-date {
+    margin-top: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #2D8B8B;
+  }
+
+  .history-card__type-badge--tc {
+    background: rgba(45, 139, 139, 0.1);
+    color: #2D8B8B;
+  }
+
+  .history-card__icon--tc {
+    background: rgba(45, 139, 139, 0.1);
+    color: #2D8B8B;
+  }
+
+  .history-card__status--pending {
+    background: rgba(232, 168, 84, 0.12);
+    color: var(--warning);
+  }
+
+  /* ── HISTORY ── */
+  .history-section { margin-top: 2rem; }
+
+  .history-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.625rem;
+    display: flex; align-items: center; gap: 0.875rem;
+  }
+
+  .history-card__icon {
+    width: 38px; height: 38px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .history-card__icon svg { width: 18px; height: 18px; }
+
+  .history-card__icon--approved { background: rgba(91, 184, 138, 0.12); color: var(--success); }
+  .history-card__icon--pending { background: rgba(120, 60, 180, 0.1); color: var(--holding); }
+  .history-card__icon--substitute { background: rgba(75, 45, 94, 0.1); color: var(--purple-500); }
+
+  .history-card__content { flex: 1; min-width: 0; }
+
+  .history-card__title { font-size: 0.8125rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.2rem; }
+  .history-card__detail { font-size: 0.6875rem; color: var(--text-muted); }
+
+  .history-card__status {
+    font-size: 0.6875rem; font-weight: 600;
+    padding: 0.25rem 0.625rem; border-radius: 20px; flex-shrink: 0;
+  }
+  .history-card__status--approved { background: rgba(91, 184, 138, 0.12); color: var(--success); }
+
+  .history-card__type-badge {
+    font-size: 0.5625rem; font-weight: 600;
+    padding: 0.125rem 0.4375rem; border-radius: 6px;
+    display: inline-block; margin-bottom: 0.25rem;
+  }
+  .history-card__type-badge--sub { background: rgba(75, 45, 94, 0.1); color: var(--purple-500); }
+  .history-card__type-badge--hold { background: rgba(212, 130, 154, 0.12); color: var(--rose-400); }
+
+  /* ── BOTTOM NAV ── */
+  .bottom-nav {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    height: var(--nav-height);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border-subtle);
+    display: flex; align-items: center; justify-content: space-around;
+    z-index: 50;
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  .nav-item {
+    display: flex; flex-direction: column;
+    align-items: center; gap: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    text-decoration: none; color: var(--text-muted);
+    transition: color 0.2s; cursor: pointer; position: relative;
+  }
+
+  .nav-item.active { color: var(--purple-600); }
+
+  .nav-item.active::before {
+    content: ''; position: absolute;
+    top: -1px; left: 50%; transform: translateX(-50%);
+    width: 20px; height: 2px;
+    background: linear-gradient(90deg, var(--purple-400), var(--rose-300));
+    border-radius: 1px;
+  }
+
+  .nav-item svg { width: 22px; height: 22px; }
+
+  .nav-item__label {
+    font-size: 0.5625rem; font-weight: 600; letter-spacing: 0.02em;
+  }
+
+  /* ── MEDIA QUERIES ── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  @media (min-width: 480px) { .main { padding: 0 1.5rem 2rem; } }
+
+  @media (min-width: 768px) {
+    .main { max-width: 560px; padding: 0 2rem 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-atmosphere"></div>
+
+<div class="main">
+  <!-- Page Header -->
+  <header class="page-header">
+    <a href="index.html" class="back-btn" aria-label="뒤로가기">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </a>
+    <h1 class="page-header__title">변경</h1>
+  </header>
+
+  <!-- ════════════════════════════════
+       MENU VIEW — 카드 선택
+       ════════════════════════════════ -->
+  <div class="view active" id="view-menu">
+    <div class="menu-cards">
+      <!-- 대체수강 카드 -->
+      <div class="menu-card menu-card--substitute" data-target="view-substitute">
+        <div class="menu-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+          </svg>
+        </div>
+        <div class="menu-card__content">
+          <div class="menu-card__title">대체수강</div>
+          <div class="menu-card__desc">다른 시간대로 수업을 변경합니다</div>
+        </div>
+        <div class="menu-card__arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- 홀딩 카드 -->
+      <div class="menu-card menu-card--holding" data-target="view-holding">
+        <div class="menu-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><line x1="10" y1="15" x2="10" y2="9"/><line x1="14" y1="15" x2="14" y2="9"/>
+          </svg>
+        </div>
+        <div class="menu-card__content">
+          <div class="menu-card__title">홀딩</div>
+          <div class="menu-card__desc">수업을 일시 정지합니다</div>
+        </div>
+        <div class="menu-card__arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- 시간 변경 카드 -->
+      <div class="menu-card menu-card--timechange" data-target="view-timechange">
+        <div class="menu-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/><path d="M17.5 17.5L21 21" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="menu-card__content">
+          <div class="menu-card__title">시간 변경</div>
+          <div class="menu-card__desc">정규반 수업 시간을 변경합니다</div>
+        </div>
+        <div class="menu-card__arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- 최근 신청 내역 (메뉴에서 요약) -->
+    <div class="menu-history">
+      <h2 class="menu-history__title">최근 내역</h2>
+
+      <div class="history-card">
+        <div class="history-card__icon history-card__icon--approved">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+        </div>
+        <div class="history-card__content">
+          <span class="history-card__type-badge history-card__type-badge--sub">대체수강</span>
+          <div class="history-card__title">2/10(월) 1교시 → 2/11(화) 6교시</div>
+          <div class="history-card__detail">2026.02.08 신청</div>
+        </div>
+        <span class="history-card__status history-card__status--approved">완료</span>
+      </div>
+
+      <div class="history-card">
+        <div class="history-card__icon history-card__icon--approved">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+        </div>
+        <div class="history-card__content">
+          <span class="history-card__type-badge history-card__type-badge--hold">홀딩</span>
+          <div class="history-card__title">2/17(월) ~ 2/21(금) · 5일</div>
+          <div class="history-card__detail">2026.02.08 신청 · 출장</div>
+        </div>
+        <span class="history-card__status history-card__status--approved">완료</span>
+      </div>
+
+      <div class="history-card">
+        <div class="history-card__icon history-card__icon--tc">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <div class="history-card__content">
+          <span class="history-card__type-badge history-card__type-badge--tc">시간변경</span>
+          <div class="history-card__title">월 1교시 → 월 7교시</div>
+          <div class="history-card__detail">2026.01.15 신청 · 직장 일정 변경</div>
+        </div>
+        <span class="history-card__status history-card__status--approved">완료</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════
+       SUBSTITUTE FORM VIEW
+       ════════════════════════════════ -->
+  <div class="view" id="view-substitute">
+    <div class="form-header">
+      <button class="form-back-btn" data-back aria-label="뒤로">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+      <h2 class="form-header__title">대체수강 신청</h2>
+    </div>
+
+    <div class="info-banner">
+      <svg class="info-banner__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+      </svg>
+      <p class="info-banner__text">1) 같은 주에 한해<br>2) 클래스 여석이 있는 경우 대체수강이 가능합니다.<br>당일 변경은 불가하며, 전날까지 신청 가능합니다.</p>
+    </div>
+
+    <div class="section">
+      <h2 class="section__title">신청하기</h2>
+
+      <div class="selection-guide">
+        <div class="selection-guide__step selection-guide__step--absent selection-guide__step--active" id="step-absent">
+          <span class="selection-guide__num">1</span>
+          <div class="selection-guide__info">
+            <div class="selection-guide__label">대체 전</div>
+            <div class="selection-guide__value" id="absent-value">선택해주세요</div>
+          </div>
+        </div>
+        <div class="selection-guide__arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </div>
+        <div class="selection-guide__step selection-guide__step--sub" id="step-sub">
+          <span class="selection-guide__num">2</span>
+          <div class="selection-guide__info">
+            <div class="selection-guide__label">대체 후</div>
+            <div class="selection-guide__value" id="sub-value">선택해주세요</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timetable-card">
+        <table class="timetable">
+          <thead>
+            <tr class="timetable__header">
+              <th></th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="timetable__period-label">1교시<span class="timetable__period-time">11:30~12:40</span></td>
+              <td class="timetable__cell timetable__cell--mine" data-period="1" data-day="월" data-seats="0"></td>
+              <td class="timetable__cell timetable__cell--noclass" data-period="1" data-day="화"></td>
+              <td class="timetable__cell timetable__cell--noclass" data-period="1" data-day="수"></td>
+              <td class="timetable__cell timetable__cell--noclass" data-period="1" data-day="목"></td>
+              <td class="timetable__cell timetable__cell--mine" data-period="1" data-day="금" data-seats="0"></td>
+            </tr>
+            <tr>
+              <td class="timetable__period-label">2교시<span class="timetable__period-time">13:00~14:10</span></td>
+              <td class="timetable__cell" data-period="2" data-day="월" data-seats="4"><span class="cell-seats">4</span></td>
+              <td class="timetable__cell timetable__cell--noclass" data-period="2" data-day="화"></td>
+              <td class="timetable__cell timetable__cell--noclass" data-period="2" data-day="수"></td>
+              <td class="timetable__cell timetable__cell--noclass" data-period="2" data-day="목"></td>
+              <td class="timetable__cell" data-period="2" data-day="금" data-seats="3"><span class="cell-seats">3</span></td>
+            </tr>
+            <tr>
+              <td class="timetable__period-label">6교시<span class="timetable__period-time">17:00~18:10</span></td>
+              <td class="timetable__cell" data-period="6" data-day="월" data-seats="1"><span class="cell-seats">1</span></td>
+              <td class="timetable__cell timetable__cell--noclass" data-period="6" data-day="화"></td>
+              <td class="timetable__cell timetable__cell--full" data-period="6" data-day="수" data-seats="0"><span class="cell-seats">만석</span></td>
+              <td class="timetable__cell timetable__cell--noclass" data-period="6" data-day="목"></td>
+              <td class="timetable__cell" data-period="6" data-day="금" data-seats="2"><span class="cell-seats">2</span></td>
+            </tr>
+            <tr>
+              <td class="timetable__period-label">7교시<span class="timetable__period-time">18:30~19:40</span></td>
+              <td class="timetable__cell" data-period="7" data-day="월" data-seats="2"><span class="cell-seats">2</span></td>
+              <td class="timetable__cell timetable__cell--full" data-period="7" data-day="화" data-seats="0"><span class="cell-seats">만석</span></td>
+              <td class="timetable__cell" data-period="7" data-day="수" data-seats="2"><span class="cell-seats">2</span></td>
+              <td class="timetable__cell" data-period="7" data-day="목" data-seats="1"><span class="cell-seats">1</span></td>
+              <td class="timetable__cell timetable__cell--full" data-period="7" data-day="금" data-seats="0"><span class="cell-seats">만석</span></td>
+            </tr>
+            <tr>
+              <td class="timetable__period-label">8교시<span class="timetable__period-time">20:00~21:10</span></td>
+              <td class="timetable__cell" data-period="8" data-day="월" data-seats="3"><span class="cell-seats">3</span></td>
+              <td class="timetable__cell" data-period="8" data-day="화" data-seats="1"><span class="cell-seats">1</span></td>
+              <td class="timetable__cell" data-period="8" data-day="수" data-seats="1"><span class="cell-seats">1</span></td>
+              <td class="timetable__cell timetable__cell--full" data-period="8" data-day="목" data-seats="0"><span class="cell-seats">만석</span></td>
+              <td class="timetable__cell" data-period="8" data-day="금" data-seats="3"><span class="cell-seats">3</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="reason-card">
+        <div class="form-group">
+          <label class="form-label">사유 (선택)</label>
+          <textarea class="form-textarea" placeholder="대체수강 사유를 입력해 주세요"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <button class="submit-btn" id="sub-submit-btn" disabled>대체수강 신청하기</button>
+
+    <div class="section history-section">
+      <h2 class="section__title">신청 내역</h2>
+      <div class="history-card">
+        <div class="history-card__icon history-card__icon--approved">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="history-card__content">
+          <div class="history-card__title">2/10(월) 1교시 → 2/11(화) 6교시</div>
+          <div class="history-card__detail">2026.02.08 신청</div>
+        </div>
+        <span class="history-card__status history-card__status--approved">완료</span>
+      </div>
+      <div class="history-card">
+        <div class="history-card__icon history-card__icon--approved">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="history-card__content">
+          <div class="history-card__title">2/3(월) 1교시 → 2/4(화) 7교시</div>
+          <div class="history-card__detail">2026.02.01 신청</div>
+        </div>
+        <span class="history-card__status history-card__status--approved">완료</span>
+      </div>
+      <div class="history-card">
+        <div class="history-card__icon history-card__icon--approved">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="history-card__content">
+          <div class="history-card__title">1/27(월) 1교시 → 1/29(수) 8교시</div>
+          <div class="history-card__detail">2026.01.25 신청</div>
+        </div>
+        <span class="history-card__status history-card__status--approved">완료</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════
+       HOLDING FORM VIEW
+       ════════════════════════════════ -->
+  <div class="view" id="view-holding">
+    <div class="form-header">
+      <button class="form-back-btn" data-back aria-label="뒤로">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+      <h2 class="form-header__title">홀딩 신청</h2>
+    </div>
+
+    <div class="info-banner">
+      <svg class="info-banner__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+      </svg>
+      <p class="info-banner__text">1) 월 1회, 최대 7일까지 홀딩 신청이 가능합니다.<br>2) 홀딩 기간만큼 수강 종료일이 연장됩니다.</p>
+    </div>
+
+    <div class="section">
+      <h2 class="section__title">내 홀딩 현황</h2>
+      <div class="status-card">
+        <div class="status-card__row">
+          <span class="status-card__label">이번 달 신청</span>
+          <span class="status-card__value status-card__value--used">0 / 1회</span>
+        </div>
+        <div class="status-card__row">
+          <span class="status-card__label">1회 최대 신청일</span>
+          <span class="status-card__value">7일</span>
+        </div>
+        <div class="status-card__row">
+          <span class="status-card__label">이번 달 상태</span>
+          <span class="status-card__value status-card__value--highlight">신청 가능</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section__title">신청하기</h2>
+      <div class="form-card">
+        <div class="form-group">
+          <label class="form-label">홀딩 기간 선택</label>
+          <div class="calendar" id="calendar">
+            <div class="calendar__nav">
+              <button class="calendar__nav-btn" id="prev-month">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <span class="calendar__month" id="calendar-month"></span>
+              <button class="calendar__nav-btn" id="next-month">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+            <div class="calendar__weekdays">
+              <span class="calendar__weekday">일</span><span class="calendar__weekday">월</span>
+              <span class="calendar__weekday">화</span><span class="calendar__weekday">수</span>
+              <span class="calendar__weekday">목</span><span class="calendar__weekday">금</span>
+              <span class="calendar__weekday">토</span>
+            </div>
+            <div class="calendar__days" id="calendar-days"></div>
+          </div>
+          <div class="selection-summary selection-summary--empty" id="selection-summary">
+            <span class="selection-summary__dates">날짜를 선택해주세요</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">사유 <span style="font-weight:400; color:var(--text-muted);">(선택)</span></label>
+          <textarea class="form-textarea" placeholder="사유가 있다면 입력해 주세요 (예: 출장, 부상 등)"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <button class="submit-btn" id="hold-submit-btn">홀딩 신청하기</button>
+
+    <div class="section history-section">
+      <h2 class="section__title">신청 내역</h2>
+      <div class="history-card">
+        <div class="history-card__icon history-card__icon--approved">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="history-card__content">
+          <div class="history-card__title">2/17(월) ~ 2/21(금) · 5일</div>
+          <div class="history-card__detail">2026.02.08 신청 · 출장</div>
+        </div>
+        <span class="history-card__status history-card__status--approved">완료</span>
+      </div>
+      <div class="history-card">
+        <div class="history-card__icon history-card__icon--approved">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="history-card__content">
+          <div class="history-card__title">1/20(월) ~ 1/24(금) · 5일</div>
+          <div class="history-card__detail">2026.01.18 신청 · 부상 회복</div>
+        </div>
+        <span class="history-card__status history-card__status--approved">완료</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════
+       TIME CHANGE FORM VIEW
+       ════════════════════════════════ -->
+  <div class="view" id="view-timechange">
+    <div class="form-header">
+      <button class="form-back-btn" data-back aria-label="뒤로">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+      <h2 class="form-header__title">시간 변경 신청</h2>
+    </div>
+
+    <div class="info-banner">
+      <svg class="info-banner__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+      </svg>
+      <p class="info-banner__text">1) 월 1회 시간 변경이 가능합니다.<br>2) 희망 시간대에 여석이 있는 경우 자동 변경됩니다.</p>
+    </div>
+
+    <div class="section">
+      <h2 class="section__title">내 변경 현황</h2>
+      <div class="status-card">
+        <div class="status-card__row">
+          <span class="status-card__label">이번 달 신청</span>
+          <span class="status-card__value status-card__value--used">0 / 1회</span>
+        </div>
+        <div class="status-card__row">
+          <span class="status-card__label">이번 달 상태</span>
+          <span class="status-card__value status-card__value--highlight" style="color:#2D8B8B;">신청 가능</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section__title">변경할 수업 선택</h2>
+      <div class="tc-current">
+        <div class="tc-current__label">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          내 정규 수업
+        </div>
+        <div class="tc-current__slots">
+          <div class="tc-slot tc-slot--selected" data-tc-slot="mon-1">
+            <div class="tc-slot__radio"></div>
+            <div class="tc-slot__info">
+              <div class="tc-slot__day">월요일 · 1교시</div>
+              <div class="tc-slot__time">11:30 ~ 12:40</div>
+            </div>
+          </div>
+          <div class="tc-slot" data-tc-slot="fri-1">
+            <div class="tc-slot__radio"></div>
+            <div class="tc-slot__info">
+              <div class="tc-slot__day">금요일 · 1교시</div>
+              <div class="tc-slot__time">11:30 ~ 12:40</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tc-arrow">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>
+      </svg>
+    </div>
+
+    <div class="section">
+      <h2 class="section__title">희망 시간 선택</h2>
+      <div class="tc-new-selection">
+        <div class="tc-new-selection__label">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          변경 희망 시간대
+        </div>
+        <div class="tc-selected-result" id="tc-new-value">시간표에서 선택해주세요</div>
+        <div class="tc-waitlist-notice" id="tc-waitlist-notice">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span>만석입니다. 자리가 나면 자동으로 변경됩니다.</span>
+        </div>
+      </div>
+
+      <div class="tc-timetable-card" style="margin-top: 0.75rem;">
+        <table class="tc-timetable timetable">
+          <thead>
+            <tr class="timetable__header">
+              <th></th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="timetable__period-label">1교시<span class="timetable__period-time">11:30~12:40</span></td>
+              <td class="tc-cell tc-cell--current" data-tc-period="1" data-tc-day="월"><span class="tc-cell-label">현재</span></td>
+              <td class="tc-cell" data-tc-period="1" data-tc-day="화" data-tc-seats="2"><span class="tc-cell-seats">2</span></td>
+              <td class="tc-cell tc-cell--noclass" data-tc-period="1" data-tc-day="수"></td>
+              <td class="tc-cell" data-tc-period="1" data-tc-day="목" data-tc-seats="3"><span class="tc-cell-seats">3</span></td>
+              <td class="tc-cell tc-cell--current" data-tc-period="1" data-tc-day="금"><span class="tc-cell-label">현재</span></td>
+            </tr>
+            <tr>
+              <td class="timetable__period-label">2교시<span class="timetable__period-time">13:00~14:10</span></td>
+              <td class="tc-cell" data-tc-period="2" data-tc-day="월" data-tc-seats="4"><span class="tc-cell-seats">4</span></td>
+              <td class="tc-cell tc-cell--noclass" data-tc-period="2" data-tc-day="화"></td>
+              <td class="tc-cell tc-cell--noclass" data-tc-period="2" data-tc-day="수"></td>
+              <td class="tc-cell tc-cell--noclass" data-tc-period="2" data-tc-day="목"></td>
+              <td class="tc-cell" data-tc-period="2" data-tc-day="금" data-tc-seats="3"><span class="tc-cell-seats">3</span></td>
+            </tr>
+            <tr>
+              <td class="timetable__period-label">6교시<span class="timetable__period-time">17:00~18:10</span></td>
+              <td class="tc-cell" data-tc-period="6" data-tc-day="월" data-tc-seats="1"><span class="tc-cell-seats">1</span></td>
+              <td class="tc-cell tc-cell--noclass" data-tc-period="6" data-tc-day="화"></td>
+              <td class="tc-cell tc-cell--full" data-tc-period="6" data-tc-day="수" data-tc-seats="0" data-tc-wait="1"><span class="tc-cell-seats">만석</span><span class="tc-cell-waitcount">대기예약 1</span></td>
+              <td class="tc-cell tc-cell--noclass" data-tc-period="6" data-tc-day="목"></td>
+              <td class="tc-cell" data-tc-period="6" data-tc-day="금" data-tc-seats="2"><span class="tc-cell-seats">2</span></td>
+            </tr>
+            <tr>
+              <td class="timetable__period-label">7교시<span class="timetable__period-time">18:30~19:40</span></td>
+              <td class="tc-cell" data-tc-period="7" data-tc-day="월" data-tc-seats="2"><span class="tc-cell-seats">2</span></td>
+              <td class="tc-cell tc-cell--full" data-tc-period="7" data-tc-day="화" data-tc-seats="0" data-tc-wait="0"><span class="tc-cell-seats">만석</span></td>
+              <td class="tc-cell" data-tc-period="7" data-tc-day="수" data-tc-seats="2"><span class="tc-cell-seats">2</span></td>
+              <td class="tc-cell" data-tc-period="7" data-tc-day="목" data-tc-seats="1"><span class="tc-cell-seats">1</span></td>
+              <td class="tc-cell tc-cell--full" data-tc-period="7" data-tc-day="금" data-tc-seats="0" data-tc-wait="2"><span class="tc-cell-seats">만석</span><span class="tc-cell-waitcount">대기예약 2</span></td>
+            </tr>
+            <tr>
+              <td class="timetable__period-label">8교시<span class="timetable__period-time">20:00~21:10</span></td>
+              <td class="tc-cell" data-tc-period="8" data-tc-day="월" data-tc-seats="3"><span class="tc-cell-seats">3</span></td>
+              <td class="tc-cell" data-tc-period="8" data-tc-day="화" data-tc-seats="1"><span class="tc-cell-seats">1</span></td>
+              <td class="tc-cell" data-tc-period="8" data-tc-day="수" data-tc-seats="1"><span class="tc-cell-seats">1</span></td>
+              <td class="tc-cell tc-cell--full" data-tc-period="8" data-tc-day="목" data-tc-seats="0" data-tc-wait="0"><span class="tc-cell-seats">만석</span></td>
+              <td class="tc-cell" data-tc-period="8" data-tc-day="금" data-tc-seats="3"><span class="tc-cell-seats">3</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="tc-start-card">
+        <div class="form-group">
+          <label class="form-label">적용 시작일</label>
+          <div class="tc-start-options" id="tc-start-options">
+            <button class="tc-start-pill tc-start-pill--selected" data-tc-start="next-week">다음 주부터</button>
+            <button class="tc-start-pill" data-tc-start="next-month">다음 달부터</button>
+          </div>
+          <div class="tc-start-date" id="tc-start-date"></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">사유 <span style="font-weight:400; color:var(--text-muted);">(선택)</span></label>
+          <textarea class="form-textarea" placeholder="시간 변경 사유를 입력해 주세요 (예: 근무시간 변경, 개인 일정 등)"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <button class="submit-btn" id="tc-submit-btn" disabled>시간 변경 신청하기</button>
+
+    <div class="section history-section">
+      <h2 class="section__title">신청 내역</h2>
+      <div class="history-card">
+        <div class="history-card__icon history-card__icon--approved">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="history-card__content">
+          <div class="history-card__title">월 1교시 → 월 7교시</div>
+          <div class="history-card__detail">2026.01.15 신청 · 직장 일정 변경</div>
+        </div>
+        <span class="history-card__status history-card__status--approved">완료</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Bottom Navigation -->
+<nav class="bottom-nav">
+  <a class="nav-item" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+    </svg>
+    <span class="nav-item__label">홈</span>
+  </a>
+  <a class="nav-item" href="challenge.html">
+    <span style="font-size:1.25rem;line-height:1;">🔥</span>
+    <span class="nav-item__label">챌린지</span>
+  </a>
+  <a class="nav-item" href="program.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+    </svg>
+    <span class="nav-item__label">프로그램</span>
+  </a>
+  <a class="nav-item active" href="change.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+    </svg>
+    <span class="nav-item__label">변경</span>
+  </a>
+  <a class="nav-item" href="class-status.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+    </svg>
+    <span class="nav-item__label">수업현황</span>
+  </a>
+</nav>
+
+<script>
+(function() {
+  /* ══════════════════════════════════════
+     VIEW NAVIGATION
+     ══════════════════════════════════════ */
+  var views = {
+    menu: document.getElementById('view-menu'),
+    substitute: document.getElementById('view-substitute'),
+    holding: document.getElementById('view-holding'),
+    timechange: document.getElementById('view-timechange')
+  };
+
+  function showView(id) {
+    Object.keys(views).forEach(function(key) {
+      views[key].classList.remove('active', 'slide-in');
+    });
+    views[id].classList.add('active', 'slide-in');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  // Menu card clicks
+  document.querySelectorAll('.menu-card').forEach(function(card) {
+    card.addEventListener('click', function() {
+      var target = card.dataset.target;
+      if (target === 'view-substitute') showView('substitute');
+      if (target === 'view-holding') showView('holding');
+      if (target === 'view-timechange') showView('timechange');
+    });
+  });
+
+  // Back buttons
+  document.querySelectorAll('[data-back]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      showView('menu');
+    });
+  });
+
+  /* ══════════════════════════════════════
+     SUBSTITUTE LOGIC
+     ══════════════════════════════════════ */
+  var absentCell = null;
+  var subCell = null;
+
+  var absentValue = document.getElementById('absent-value');
+  var subValue = document.getElementById('sub-value');
+  var stepAbsent = document.getElementById('step-absent');
+  var stepSub = document.getElementById('step-sub');
+  var subSubmitBtn = document.getElementById('sub-submit-btn');
+
+  var cells = document.querySelectorAll('.timetable__cell:not(.timetable__cell--noclass):not(.timetable__cell--full)');
+
+  function getCellText(cell) {
+    return cell.dataset.day + ' ' + cell.dataset.period + '교시';
+  }
+
+  function retriggerAnim(el) {
+    el.style.animation = 'none';
+    el.offsetHeight;
+    el.style.animation = '';
+  }
+
+  function updateSubUI() {
+    if (absentCell) {
+      absentValue.textContent = getCellText(absentCell);
+      if (!stepAbsent.classList.contains('selection-guide__step--done')) {
+        stepAbsent.classList.add('selection-guide__step--done');
+        retriggerAnim(stepAbsent);
+      }
+      stepAbsent.classList.remove('selection-guide__step--active');
+      if (!subCell) stepSub.classList.add('selection-guide__step--active');
+    } else {
+      absentValue.textContent = '선택해주세요';
+      stepAbsent.classList.remove('selection-guide__step--done');
+      stepAbsent.classList.add('selection-guide__step--active');
+      stepSub.classList.remove('selection-guide__step--active');
+    }
+
+    if (subCell) {
+      subValue.textContent = getCellText(subCell);
+      if (!stepSub.classList.contains('selection-guide__step--done')) {
+        stepSub.classList.add('selection-guide__step--done');
+        retriggerAnim(stepSub);
+      }
+      stepSub.classList.remove('selection-guide__step--active');
+    } else {
+      subValue.textContent = '선택해주세요';
+      stepSub.classList.remove('selection-guide__step--done');
+    }
+
+    subSubmitBtn.disabled = !(absentCell && subCell);
+  }
+
+  function restoreCell(cell) {
+    cell.classList.remove('timetable__cell--absent', 'timetable__cell--substitute');
+    var label = cell.querySelector('.cell-label');
+    if (label) label.remove();
+    if (!cell.classList.contains('timetable__cell--mine')) {
+      if (!cell.querySelector('.cell-seats') && cell.dataset.seats) {
+        var s = document.createElement('span');
+        s.className = 'cell-seats';
+        s.textContent = cell.dataset.seats;
+        cell.appendChild(s);
+      }
+    }
+  }
+
+  function selectCell(cell, type) {
+    var seats = cell.querySelector('.cell-seats');
+    if (seats) seats.remove();
+    var old = cell.querySelector('.cell-label');
+    if (old) old.remove();
+    cell.classList.add(type === 'absent' ? 'timetable__cell--absent' : 'timetable__cell--substitute');
+    var label = document.createElement('span');
+    label.className = 'cell-label';
+    label.textContent = type === 'absent' ? '전' : '후';
+    cell.appendChild(label);
+  }
+
+  cells.forEach(function(cell) {
+    cell.addEventListener('click', function() {
+      var isMine = cell.classList.contains('timetable__cell--mine');
+      var hasSeats = parseInt(cell.dataset.seats || '0') > 0;
+
+      if (cell === absentCell) {
+        restoreCell(cell); absentCell = null;
+        if (subCell) { restoreCell(subCell); subCell = null; }
+        updateSubUI(); return;
+      }
+      if (cell === subCell) {
+        restoreCell(cell); subCell = null;
+        updateSubUI(); return;
+      }
+      if (isMine) {
+        if (absentCell) { restoreCell(absentCell); if (subCell) { restoreCell(subCell); subCell = null; } }
+        absentCell = cell; selectCell(cell, 'absent');
+        updateSubUI(); return;
+      }
+      if (hasSeats) {
+        if (!absentCell) {
+          stepAbsent.style.animation = 'none'; stepAbsent.offsetHeight;
+          stepAbsent.style.animation = 'shake 0.4s ease'; return;
+        }
+        if (subCell) restoreCell(subCell);
+        subCell = cell; selectCell(cell, 'substitute');
+        updateSubUI(); return;
+      }
+    });
+  });
+
+  subSubmitBtn.addEventListener('click', function() {
+    if (subSubmitBtn.disabled) return;
+    subSubmitBtn.textContent = '자동승인 완료!';
+    subSubmitBtn.style.background = 'linear-gradient(135deg, #5BB88A, #4AA87A)';
+    setTimeout(function() {
+      subSubmitBtn.textContent = '대체수강 신청하기';
+      subSubmitBtn.style.background = '';
+      if (absentCell) { restoreCell(absentCell); absentCell = null; }
+      if (subCell) { restoreCell(subCell); subCell = null; }
+      updateSubUI();
+    }, 1500);
+  });
+
+  /* ══════════════════════════════════════
+     HOLDING LOGIC
+     ══════════════════════════════════════ */
+  var MAX_DAYS = 7;
+  var today = new Date(); today.setHours(0,0,0,0);
+  var currentMonth = today.getMonth();
+  var currentYear = today.getFullYear();
+  var startDate = null, endDate = null;
+
+  var daysContainer = document.getElementById('calendar-days');
+  var monthLabel = document.getElementById('calendar-month');
+  var prevBtn = document.getElementById('prev-month');
+  var nextBtn = document.getElementById('next-month');
+  var summary = document.getElementById('selection-summary');
+  var holdSubmitBtn = document.getElementById('hold-submit-btn');
+
+  function formatDate(d) {
+    var m = d.getMonth() + 1, day = d.getDate();
+    var w = ['일','월','화','수','목','금','토'][d.getDay()];
+    return m + '/' + day + '(' + w + ')';
+  }
+
+  function isSameDay(a, b) {
+    return a && b && a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+  }
+
+  function renderCalendar() {
+    monthLabel.textContent = currentYear + '년 ' + (currentMonth + 1) + '월';
+    var firstDay = new Date(currentYear, currentMonth, 1).getDay();
+    var daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    daysContainer.innerHTML = '';
+
+    var cal = document.getElementById('calendar');
+    var overLimit = false;
+    if (startDate && endDate) {
+      overLimit = (Math.round((endDate - startDate) / 86400000) + 1) > MAX_DAYS;
+    }
+    cal.classList.toggle('calendar--error', overLimit);
+
+    for (var i = 0; i < firstDay; i++) {
+      var empty = document.createElement('div');
+      empty.className = 'calendar__day calendar__day--empty';
+      daysContainer.appendChild(empty);
+    }
+
+    for (var d = 1; d <= daysInMonth; d++) {
+      var cell = document.createElement('div');
+      cell.className = 'calendar__day';
+      cell.textContent = d;
+      var cellDate = new Date(currentYear, currentMonth, d);
+      cellDate.setHours(0,0,0,0);
+
+      if (cellDate < today) { cell.classList.add('calendar__day--past'); daysContainer.appendChild(cell); continue; }
+      if (isSameDay(cellDate, today)) cell.classList.add('calendar__day--today');
+      if (isSameDay(cellDate, startDate)) cell.classList.add('calendar__day--start');
+      else if (isSameDay(cellDate, endDate)) cell.classList.add('calendar__day--end');
+      else if (startDate && endDate && cellDate > startDate && cellDate < endDate) cell.classList.add('calendar__day--range');
+
+      (function(date) { cell.addEventListener('click', function() { handleDayClick(date); }); })(cellDate);
+      daysContainer.appendChild(cell);
+    }
+  }
+
+  function handleDayClick(date) {
+    if (!startDate || (startDate && endDate)) { startDate = date; endDate = null; }
+    else {
+      if (date < startDate) { startDate = date; endDate = null; }
+      else { endDate = date; }
+    }
+    renderCalendar(); updateSummary();
+  }
+
+  function updateSummary() {
+    if (!startDate) { summary.className = 'selection-summary selection-summary--empty'; summary.innerHTML = '<span class="selection-summary__dates">날짜를 선택해주세요</span>'; return; }
+    if (!endDate) { summary.className = 'selection-summary selection-summary--empty'; summary.innerHTML = '<span class="selection-summary__dates">종료일을 선택해주세요</span>'; return; }
+    var diff = Math.round((endDate - startDate) / 86400000) + 1;
+    var overLimit = diff > MAX_DAYS;
+    summary.className = 'selection-summary' + (overLimit ? ' selection-summary--error' : '');
+    summary.innerHTML = '<span class="selection-summary__dates">' + formatDate(startDate) + ' ~ ' + formatDate(endDate) + '</span>' +
+      '<span class="selection-summary__badge' + (overLimit ? ' selection-summary__badge--error' : '') + '">' + diff + '일' + (overLimit ? ' · 최대 ' + MAX_DAYS + '일 초과' : '') + '</span>';
+  }
+
+  prevBtn.addEventListener('click', function() { currentMonth--; if (currentMonth < 0) { currentMonth = 11; currentYear--; } renderCalendar(); });
+  nextBtn.addEventListener('click', function() { currentMonth++; if (currentMonth > 11) { currentMonth = 0; currentYear++; } renderCalendar(); });
+
+  holdSubmitBtn.addEventListener('click', function() {
+    if (!startDate || !endDate) return;
+    if ((Math.round((endDate - startDate) / 86400000) + 1) > MAX_DAYS) return;
+    holdSubmitBtn.textContent = '신청 완료!';
+    holdSubmitBtn.style.background = 'linear-gradient(135deg, #5BB88A, #4AA87A)';
+    setTimeout(function() { holdSubmitBtn.textContent = '홀딩 신청하기'; holdSubmitBtn.style.background = ''; }, 1500);
+  });
+
+  renderCalendar();
+
+  /* ══════════════════════════════════════
+     TIME CHANGE LOGIC
+     ══════════════════════════════════════ */
+  var tcSelectedSlot = 'mon-1'; // default selected slot
+  var tcSelectedCell = null;
+  var tcNewValue = document.getElementById('tc-new-value');
+  var tcSubmitBtn = document.getElementById('tc-submit-btn');
+
+  // Slot selection (current schedule)
+  document.querySelectorAll('.tc-slot').forEach(function(slot) {
+    slot.addEventListener('click', function() {
+      document.querySelectorAll('.tc-slot').forEach(function(s) {
+        s.classList.remove('tc-slot--selected');
+      });
+      slot.classList.add('tc-slot--selected');
+      tcSelectedSlot = slot.dataset.tcSlot;
+      // Reset cell selection when switching slot
+      if (tcSelectedCell) {
+        tcResetCell(tcSelectedCell);
+        tcSelectedCell = null;
+      }
+      tcNewValue.textContent = '시간표에서 선택해주세요';
+      tcNewValue.classList.remove('tc-selected-result--done', 'tc-selected-result--waitlist');
+      tcUpdateWaitlistUI(false);
+      tcSubmitBtn.disabled = true;
+    });
+  });
+
+  // Timetable cell selection (new time) — includes waitlist for full cells
+  var tcAllCells = document.querySelectorAll('.tc-cell:not(.tc-cell--current):not(.tc-cell--noclass)');
+  var tcWaitlistNotice = document.getElementById('tc-waitlist-notice');
+  var tcIsWaitlist = false;
+
+  function tcResetCell(cell) {
+    cell.classList.remove('tc-cell--selected', 'tc-cell--waitlist');
+    var oldLabel = cell.querySelector('.tc-cell-label');
+    if (oldLabel) oldLabel.remove();
+    // Restore original content
+    if (cell.classList.contains('tc-cell--full')) {
+      if (!cell.querySelector('.tc-cell-seats')) {
+        var s = document.createElement('span');
+        s.className = 'tc-cell-seats';
+        s.textContent = '만석';
+        cell.appendChild(s);
+      }
+      var waitNum = parseInt(cell.dataset.tcWait || '0');
+      if (waitNum > 0 && !cell.querySelector('.tc-cell-waitcount')) {
+        var w = document.createElement('span');
+        w.className = 'tc-cell-waitcount';
+        w.textContent = '대기예약 ' + waitNum;
+        cell.appendChild(w);
+      }
+    } else {
+      if (!cell.querySelector('.tc-cell-seats') && cell.dataset.tcSeats) {
+        var s = document.createElement('span');
+        s.className = 'tc-cell-seats';
+        s.textContent = cell.dataset.tcSeats;
+        cell.appendChild(s);
+      }
+    }
+  }
+
+  function tcUpdateWaitlistUI(isWaitlist) {
+    tcIsWaitlist = isWaitlist;
+    tcWaitlistNotice.classList.toggle('active', isWaitlist);
+    if (isWaitlist) {
+      tcNewValue.classList.remove('tc-selected-result--done');
+      tcNewValue.classList.add('tc-selected-result--waitlist');
+      tcSubmitBtn.textContent = '대기 예약 신청하기';
+    } else {
+      tcNewValue.classList.remove('tc-selected-result--waitlist');
+      tcSubmitBtn.textContent = '시간 변경 신청하기';
+    }
+  }
+
+  tcAllCells.forEach(function(cell) {
+    cell.addEventListener('click', function() {
+      var isFull = cell.classList.contains('tc-cell--full');
+      var seats = parseInt(cell.dataset.tcSeats || '0');
+      if (!isFull && seats <= 0) return;
+
+      // Deselect previous
+      if (tcSelectedCell) {
+        tcResetCell(tcSelectedCell);
+      }
+
+      // Toggle if same cell
+      if (tcSelectedCell === cell) {
+        tcSelectedCell = null;
+        tcNewValue.textContent = '시간표에서 선택해주세요';
+        tcNewValue.classList.remove('tc-selected-result--done', 'tc-selected-result--waitlist');
+        tcSubmitBtn.disabled = true;
+        tcUpdateWaitlistUI(false);
+        return;
+      }
+
+      // Select new cell
+      tcSelectedCell = cell;
+      // Clear existing content
+      var seatsEl = cell.querySelector('.tc-cell-seats');
+      if (seatsEl) seatsEl.remove();
+      var waitEl = cell.querySelector('.tc-cell-waitcount');
+      if (waitEl) waitEl.remove();
+
+      var label = document.createElement('span');
+      label.className = 'tc-cell-label';
+
+      var day = cell.dataset.tcDay;
+      var period = cell.dataset.tcPeriod;
+
+      if (isFull) {
+        cell.classList.add('tc-cell--waitlist');
+        label.textContent = '대기 예약';
+        cell.appendChild(label);
+        tcNewValue.textContent = day + '요일 · ' + period + '교시 (대기 예약)';
+        tcUpdateWaitlistUI(true);
+      } else {
+        cell.classList.add('tc-cell--selected');
+        label.textContent = '변경';
+        cell.appendChild(label);
+        tcNewValue.textContent = day + '요일 · ' + period + '교시';
+        tcNewValue.classList.add('tc-selected-result--done');
+        tcUpdateWaitlistUI(false);
+      }
+      tcSubmitBtn.disabled = false;
+    });
+  });
+
+  // Start date pills
+  var tcStartDate = document.getElementById('tc-start-date');
+
+  function getNextMonday() {
+    var d = new Date();
+    var day = d.getDay();
+    var diff = day === 0 ? 1 : 8 - day;
+    d.setDate(d.getDate() + diff);
+    return d;
+  }
+
+  function getFirstOfNextMonth() {
+    var d = new Date();
+    return new Date(d.getFullYear(), d.getMonth() + 1, 1);
+  }
+
+  function formatStartDate(d) {
+    var m = d.getMonth() + 1;
+    var day = d.getDate();
+    var w = ['일','월','화','수','목','금','토'][d.getDay()];
+    return m + '월 ' + day + '일(' + w + ')부터 적용';
+  }
+
+  function updateStartDate() {
+    var selected = document.querySelector('.tc-start-pill--selected');
+    if (!selected) return;
+    var type = selected.dataset.tcStart;
+    var date = type === 'next-week' ? getNextMonday() : getFirstOfNextMonth();
+    tcStartDate.textContent = formatStartDate(date);
+  }
+
+  updateStartDate();
+
+  document.querySelectorAll('.tc-start-pill').forEach(function(pill) {
+    pill.addEventListener('click', function() {
+      document.querySelectorAll('.tc-start-pill').forEach(function(p) {
+        p.classList.remove('tc-start-pill--selected');
+      });
+      pill.classList.add('tc-start-pill--selected');
+      updateStartDate();
+    });
+  });
+
+  // Submit
+  tcSubmitBtn.addEventListener('click', function() {
+    if (tcSubmitBtn.disabled) return;
+    var wasWaitlist = tcIsWaitlist;
+    tcSubmitBtn.textContent = wasWaitlist ? '대기 예약 완료!' : '자동승인 완료!';
+    tcSubmitBtn.style.background = wasWaitlist
+      ? 'linear-gradient(135deg, #B8344E, #D94E6A)'
+      : 'linear-gradient(135deg, #2D8B8B, #3DA4A4)';
+    setTimeout(function() {
+      tcSubmitBtn.textContent = '시간 변경 신청하기';
+      tcSubmitBtn.style.background = '';
+      if (tcSelectedCell) {
+        tcResetCell(tcSelectedCell);
+        tcSelectedCell = null;
+      }
+      tcNewValue.textContent = '시간표에서 선택해주세요';
+      tcNewValue.classList.remove('tc-selected-result--done', 'tc-selected-result--waitlist');
+      tcUpdateWaitlistUI(false);
+      tcSubmitBtn.disabled = true;
+    }, 2000);
+  });
+})();
+</script>
+
+</body>
+</html>

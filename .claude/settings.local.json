@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(open:*)",
+      "Bash(sips --help:*)",
+      "Bash(python3:*)",
+      "Bash(pip3 install:*)",
+      "Bash(ipconfig:*)"
+    ]
+  }
+}

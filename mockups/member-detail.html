@@ -1,0 +1,1896 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>근력학교 이화 — 회원 상세</title>
+<style>
+  /* ── FONT FACES ── */
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Light.ttf') format('truetype');
+    font-weight: 300; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Regular.ttf') format('truetype');
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Medium.ttf') format('truetype');
+    font-weight: 500; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-SemiBold.ttf') format('truetype');
+    font-weight: 600; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Bold.ttf') format('truetype');
+    font-weight: 700; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'TYPE졸업식';
+    src: url('fonts/TypeGraduation.ttf') format('truetype');
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+
+  /* ── RESET & VARIABLES ── */
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+  :root {
+    --purple-700: #3B2650;
+    --purple-600: #4B2D5E;
+    --purple-500: #5E3D74;
+    --purple-400: #7B5A93;
+    --purple-300: #9E82B0;
+    --purple-200: #C4B0D2;
+    --purple-100: #E8DFF0;
+    --purple-50:  #F5F0F8;
+
+    --rose-400: #D4829A;
+    --rose-300: #E4A5B8;
+    --rose-200: #F0C6D4;
+    --rose-100: #F9E4EC;
+    --rose-50:  #FDF5F8;
+
+    --bg-gradient-1: #EDE0F5;
+    --bg-gradient-2: #F9DDE8;
+    --bg-gradient-3: #E6DAF2;
+    --bg-card: rgba(255, 255, 255, 0.72);
+    --bg-card-solid: #fff;
+    --border-subtle: rgba(196, 176, 210, 0.3);
+
+    --text-primary: #2E1A3E;
+    --text-secondary: #6B5A7E;
+    --text-muted: #A89AB8;
+
+    --success: #3A9A64;
+    --success-light: rgba(58, 154, 100, 0.12);
+    --warning: #E8A854;
+    --warning-light: rgba(232, 168, 84, 0.12);
+    --danger: #D94E6A;
+    --danger-light: rgba(217, 78, 106, 0.1);
+    --holding: #5E3D74;
+    --holding-light: rgba(120, 60, 180, 0.08);
+
+    --font-display: 'TYPE졸업식', sans-serif;
+    --font-body: 'CarmenSans', 'Noto Sans KR', sans-serif;
+
+    --nav-height: 68px;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: var(--font-body);
+    min-height: 100dvh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    background: var(--bg-gradient-1);
+    color: var(--text-primary);
+    padding-bottom: var(--nav-height);
+  }
+
+  /* ── GRADIENT BACKGROUND ── */
+  .bg-atmosphere {
+    position: fixed; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 90% 70% at 10% 5%, rgba(190, 160, 220, 0.6) 0%, transparent 65%),
+      radial-gradient(ellipse 80% 60% at 90% 10%, rgba(240, 170, 200, 0.55) 0%, transparent 60%),
+      radial-gradient(ellipse 70% 60% at 75% 85%, rgba(180, 150, 220, 0.5) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 15% 85%, rgba(235, 180, 205, 0.45) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 50% 50%, rgba(255, 255, 255, 0.5) 0%, transparent 70%),
+      linear-gradient(150deg, #EDE0F5 0%, #F9DDE8 35%, #E6DAF2 65%, #F5E4EE 100%);
+  }
+
+  body::after {
+    content: '';
+    position: fixed; inset: 0; opacity: 0.018;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px; pointer-events: none; z-index: 100;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-12px); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } }
+  @keyframes fadeIn { from { opacity: 0; } }
+  @keyframes modalSlideUp { from { opacity: 0; transform: translateY(30px) scale(0.95); } }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    position: relative; z-index: 1;
+    max-width: 480px; margin: 0 auto;
+    padding: 0 1.25rem 2rem;
+  }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 1rem 0 1.5rem;
+    animation: fadeDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .back-btn {
+    width: 40px; height: 40px; border-radius: 12px;
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-card); backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-secondary); cursor: pointer;
+    transition: all 0.2s; flex-shrink: 0; text-decoration: none;
+  }
+  .back-btn:hover { border-color: var(--purple-200); color: var(--purple-500); }
+  .back-btn svg { width: 20px; height: 20px; }
+
+  .page-header__title {
+    font-family: var(--font-display); font-size: 1.25rem;
+    color: var(--text-primary); flex: 1;
+  }
+
+  .manage-btn {
+    width: 40px; height: 40px; border-radius: 50%; border: none;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 2px 10px rgba(75, 45, 94, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--purple-600); cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    flex-shrink: 0;
+  }
+  .manage-btn:hover {
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 4px 14px rgba(75, 45, 94, 0.12), inset 0 1px 2px rgba(255, 255, 255, 0.7);
+    transform: translateY(-1px);
+  }
+  .manage-btn svg { width: 20px; height: 20px; }
+
+  /* ── PROFILE HEADER ── */
+  .profile-header {
+    background: var(--bg-card); backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle); border-radius: 16px;
+    padding: 1.25rem; margin-bottom: 1.25rem;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+  }
+
+  .profile-header__top {
+    display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;
+  }
+
+  .profile-header__avatar {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--purple-600), var(--purple-500));
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-size: 1.25rem; color: #fff;
+    flex-shrink: 0;
+    border: 2px solid rgba(255,255,255,0.5);
+    box-shadow: 0 2px 12px rgba(75, 45, 94, 0.2);
+  }
+
+  .profile-header__info { flex: 1; min-width: 0; }
+
+  .profile-header__name-row {
+    display: flex; align-items: center; gap: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .profile-header__name {
+    font-family: var(--font-body); font-size: 1.25rem;
+    font-weight: 700; color: var(--text-primary);
+  }
+
+  .profile-header__badge {
+    font-size: 1.125rem; line-height: 1; flex-shrink: 0;
+  }
+  .profile-header__badge:empty { display: none; }
+
+  .profile-header__level {
+    display: inline-block;
+    font-size: 0.625rem; font-weight: 700; letter-spacing: 0.06em;
+    padding: 0.2rem 0.5rem; border-radius: 20px;
+  }
+  .profile-header__level--default { background: rgba(179,157,219,0.25); color: #7E57C2; }
+  .profile-header__level--beginner { background: rgba(234,179,56,0.2); color: #B8860B; }
+  .profile-header__level--newcomer { background: rgba(158,158,158,0.12); color: #888; }
+
+  .profile-header__meta {
+    display: flex; flex-direction: column; gap: 0.375rem;
+    padding-top: 0.875rem;
+    border-top: 1px solid rgba(196, 176, 210, 0.15);
+  }
+
+  .profile-header__meta-item {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8125rem;
+  }
+
+  .profile-header__meta-icon {
+    width: 16px; height: 16px; color: var(--purple-300); flex-shrink: 0;
+  }
+
+  .profile-header__meta-label {
+    color: var(--text-muted); font-weight: 500; min-width: 3.5rem;
+  }
+
+  .profile-header__meta-value {
+    color: var(--text-primary); font-weight: 600;
+  }
+
+  /* ── SPECIAL NOTE (특이사항) ── */
+  .profile-header__note {
+    margin-top: 0.75rem; padding: 0.625rem 0.875rem;
+    background: rgba(234, 179, 56, 0.08);
+    border-left: 3px solid #D4A026;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.8125rem; color: var(--text-primary);
+    line-height: 1.5;
+  }
+  .profile-header__note-label {
+    font-size: 0.6875rem; font-weight: 600; color: #B8860B;
+    margin-bottom: 0.25rem; display: flex; align-items: center; gap: 0.25rem;
+  }
+  .profile-header__note-label svg { width: 14px; height: 14px; }
+  .profile-header__note-text { font-weight: 500; }
+
+  /* ── MEMBERSHIP CARD ── */
+  .membership-card {
+    background: linear-gradient(135deg, var(--purple-600), var(--purple-500), var(--rose-400));
+    border-radius: 16px; padding: 1.75rem 1.25rem;
+    color: #fff; position: relative; overflow: hidden;
+    margin-bottom: 1.25rem;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.16s both;
+  }
+  .membership-card::before {
+    content: ''; position: absolute; top: -40%; right: -20%;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  }
+
+  .membership-card__dates {
+    display: flex; align-items: center; justify-content: center; gap: 1rem;
+  }
+  .membership-card__date-block {
+    display: flex; flex-direction: column; align-items: center; gap: 0.25rem;
+  }
+  .membership-card__date-label {
+    font-size: 0.9375rem; font-weight: 600;
+    letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.65;
+  }
+  .membership-card__date-value {
+    font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0.02em;
+  }
+  .membership-card__arrow { font-size: 1.5rem; opacity: 0.5; margin-top: 1.1rem; }
+  .membership-card__badge {
+    position: absolute; top: 1.25rem; right: 1.25rem;
+    font-size: 0.6875rem; font-weight: 600;
+    background: rgba(255,255,255,0.2); padding: 0.25rem 0.625rem;
+    border-radius: 20px; backdrop-filter: blur(4px);
+  }
+
+  /* ── STATS ROW ── */
+  .stats-row {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem; margin-bottom: 1.25rem;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both;
+  }
+
+  .stat-card {
+    background: var(--bg-card); backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle); border-radius: 14px;
+    padding: 0.75rem 0.375rem; text-align: center;
+  }
+
+  .stat-card__value {
+    font-family: var(--font-display); font-size: 1.25rem;
+    color: var(--purple-600); line-height: 1;
+  }
+  .stat-card__value span {
+    font-family: var(--font-body); font-size: 0.625rem;
+    font-weight: 400; color: var(--text-muted);
+  }
+  .stat-card__value--success { color: var(--success); }
+  .stat-card__value--danger { color: var(--danger); }
+  .stat-card__value--holding { color: var(--holding); }
+
+  .stat-card__label {
+    font-size: 0.5625rem; color: var(--text-muted);
+    font-weight: 500; margin-top: 0.25rem;
+  }
+
+  /* ── PROGRESS BAR ── */
+  .progress-section {
+    margin-bottom: 1.25rem;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.32s both;
+  }
+  .progress-card {
+    background: var(--bg-card); backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle); border-radius: 14px;
+    padding: 1.125rem 1.25rem;
+  }
+  .progress-card__header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+  .progress-card__title { font-size: 0.875rem; font-weight: 600; color: var(--text-primary); }
+  .progress-card__count { font-size: 0.8125rem; color: var(--purple-500); font-weight: 600; }
+  .progress-bar { width: 100%; height: 8px; background: var(--purple-50); border-radius: 4px; overflow: hidden; }
+  .progress-bar__fill {
+    height: 100%; border-radius: 4px;
+    background: linear-gradient(90deg, var(--purple-500), var(--rose-400));
+    transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 1.5rem; }
+  .section__header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+  .section__title {
+    font-family: var(--font-display); font-size: 1.0625rem;
+    color: var(--text-primary);
+  }
+  .section__sub {
+    font-size: 0.6875rem; color: var(--text-muted); font-weight: 500;
+  }
+
+  /* ── MONTH FILTER ── */
+  .month-filter {
+    display: flex; align-items: center; justify-content: center;
+    gap: 0.75rem; margin-bottom: 1rem;
+  }
+  .month-filter__btn {
+    width: 32px; height: 32px; border-radius: 8px;
+    border: 1px solid var(--border-subtle); background: var(--bg-card);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-muted); cursor: pointer; transition: all 0.2s;
+  }
+  .month-filter__btn:hover { border-color: var(--purple-200); color: var(--purple-500); }
+  .month-filter__btn svg { width: 16px; height: 16px; }
+  .month-filter__label {
+    font-family: var(--font-display); font-size: 1.1875rem; color: var(--text-primary);
+  }
+
+  /* ── CALENDAR ── */
+  .calendar {
+    background: var(--bg-card); backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle); border-radius: 14px;
+    padding: 1rem;
+  }
+  .calendar__weekdays {
+    display: grid; grid-template-columns: repeat(7, 1fr); margin-bottom: 0.5rem;
+  }
+  .calendar__weekday {
+    text-align: center; font-size: 0.625rem; font-weight: 600;
+    color: var(--text-muted); padding: 0.25rem 0; letter-spacing: 0.05em;
+  }
+  .calendar__weekday:first-child { color: var(--danger); }
+
+  .calendar__days {
+    display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.25rem 0;
+  }
+  .calendar__day {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; aspect-ratio: 1; position: relative;
+    transition: background 0.2s;
+  }
+  .calendar__day--present,
+  .calendar__day--absent,
+  .calendar__day--substitute,
+  .calendar__day--scheduled,
+  .calendar__day--last { border-radius: 50%; }
+
+  .calendar__day-num {
+    font-size: 0.8125rem; font-weight: 500; color: var(--text-primary);
+    line-height: 1; margin-bottom: 0.2rem;
+  }
+  .calendar__day--empty .calendar__day-num { color: transparent; }
+  .calendar__day--sunday .calendar__day-num { color: var(--danger); }
+  .calendar__day--other .calendar__day-num { color: var(--text-muted); opacity: 0.4; }
+
+  .calendar__day--today .calendar__day-num {
+    background: var(--text-primary); color: #fff;
+    width: 22px; height: 22px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-weight: 600;
+  }
+
+  .calendar__day--present { background: #3A9A64; }
+  .calendar__day--present .calendar__day-num { color: #fff; font-weight: 600; }
+  .calendar__day--present .calendar__day-tag { color: rgba(255,255,255,0.9); }
+
+  .calendar__day--absent { background: #555; }
+  .calendar__day--absent .calendar__day-num { color: #fff; font-weight: 600; }
+  .calendar__day--absent .calendar__day-tag { color: rgba(255,255,255,0.85); }
+
+  .calendar__day--substitute { background: #3A9A64; }
+  .calendar__day--substitute .calendar__day-num { color: #fff; font-weight: 600; }
+  .calendar__day--substitute .calendar__day-tag { color: rgba(255,255,255,0.9); }
+
+  .calendar__day--scheduled { background: rgba(158, 130, 176, 0.25); }
+  .calendar__day--scheduled .calendar__day-num { color: var(--purple-400); }
+  .calendar__day--scheduled .calendar__day-tag { color: var(--purple-400); }
+
+  .calendar__day--last { background: rgba(120, 60, 180, 0.25); }
+  .calendar__day--last .calendar__day-num { color: #5E3D74; font-weight: 700; }
+  .calendar__day--last .calendar__day-tag { color: #5E3D74; }
+
+  .calendar__day--holiday .calendar__day-num { color: var(--danger); font-weight: 500; }
+  .calendar__day--holiday .calendar__day-tag { color: var(--danger); font-weight: 400; opacity: 0.7; }
+
+  .calendar__day--holding {
+    border-radius: 6px; border: 1.5px dashed rgba(168, 154, 184, 0.5);
+    background: repeating-linear-gradient(-45deg, transparent, transparent 3px,
+      rgba(168, 154, 184, 0.13) 3px, rgba(168, 154, 184, 0.13) 5px);
+  }
+  .calendar__day--holding .calendar__day-num { color: var(--text-muted); font-weight: 500; }
+  .calendar__day--holding .calendar__day-tag { color: var(--text-muted); font-size: 0.4375rem; }
+
+  .calendar__day-tag {
+    font-size: 0.5rem; font-weight: 600; line-height: 1.2;
+    white-space: nowrap; text-align: center;
+  }
+
+  /* Calendar Legend */
+  .calendar__legend {
+    display: flex; flex-wrap: wrap; justify-content: space-between;
+    gap: 0.5rem; margin-top: 1rem; padding-top: 0.75rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .legend-item {
+    font-size: 0.75rem; font-weight: 600;
+    padding: 0.3rem 0.625rem; border-radius: 6px;
+  }
+  .legend-item--present { background: #3A9A64; color: #fff; }
+  .legend-item--absent { background: #555; color: #fff; }
+  .legend-item--scheduled { background: rgba(158, 130, 176, 0.25); color: var(--purple-400); }
+  .legend-item--holding {
+    background: repeating-linear-gradient(-45deg, transparent, transparent 3px,
+      rgba(168, 154, 184, 0.13) 3px, rgba(168, 154, 184, 0.13) 5px);
+    color: var(--text-muted); border: 1.5px dashed rgba(168, 154, 184, 0.5);
+  }
+  .legend-item--holiday {
+    background: transparent; color: var(--danger);
+    border: 1px dashed rgba(217, 78, 106, 0.3);
+  }
+
+  /* ── HISTORY CARD ── */
+  .history-card {
+    background: var(--bg-card); backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle); border-radius: 14px;
+    padding: 1rem 1.25rem; margin-bottom: 0.625rem;
+    display: flex; align-items: center; gap: 0.875rem;
+  }
+
+  .history-card__icon {
+    width: 38px; height: 38px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .history-card__icon svg { width: 18px; height: 18px; }
+  .history-card__icon--approved { background: rgba(58, 154, 100, 0.12); color: var(--success); }
+  .history-card__icon--pending { background: rgba(120, 60, 180, 0.1); color: var(--holding); }
+  .history-card__icon--swap { background: rgba(94, 61, 116, 0.08); color: var(--purple-400); }
+
+  .history-card__content { flex: 1; min-width: 0; }
+  .history-card__title {
+    font-size: 0.8125rem; font-weight: 600; color: var(--text-primary);
+    margin-bottom: 0.2rem;
+  }
+  .history-card__detail { font-size: 0.6875rem; color: var(--text-muted); }
+
+  .history-card__status {
+    font-size: 0.6875rem; font-weight: 600;
+    padding: 0.25rem 0.625rem; border-radius: 20px; flex-shrink: 0;
+  }
+  .history-card__status--approved { background: rgba(58, 154, 100, 0.12); color: var(--success); }
+  .history-card__status--pending { background: rgba(120, 60, 180, 0.1); color: var(--holding); }
+
+  /* ── NOTE CARD (Coaching Memos) ── */
+  .note-card {
+    background: var(--bg-card); backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle); border-radius: 14px;
+    padding: 1rem 1.25rem; margin-bottom: 0.625rem;
+  }
+
+  .note-card--resolved {
+    background: rgba(255, 235, 130, 0.55);
+    border-color: rgba(200, 170, 50, 0.3);
+  }
+  .note-card--resolved .note-card__text {
+    color: #4A3800;
+  }
+  .note-card--resolved .note-card__date {
+    color: #6B4F00;
+  }
+  .note-card--resolved .note-card__icon {
+    color: #6B4F00;
+  }
+  .note-card--resolved .note-card__resolve-btn {
+    color: #6B4F00; border-color: rgba(107, 79, 0, 0.3);
+  }
+
+  .note-card__header {
+    display: flex; align-items: center; gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .note-card__icon {
+    width: 20px; height: 20px; color: #B8860B; flex-shrink: 0;
+  }
+
+  .note-card__date {
+    font-size: 0.75rem; font-weight: 600; color: #B8860B;
+    flex: 1;
+  }
+
+  .note-card__resolve-btn {
+    font-size: 0.625rem; font-weight: 600;
+    padding: 0.2rem 0.5rem; border-radius: 12px;
+    border: 1px solid var(--border-subtle);
+    background: rgba(255,255,255,0.5); color: var(--text-muted);
+    cursor: pointer; transition: all 0.2s;
+  }
+  .note-card__resolve-btn:hover {
+    background: rgba(255,255,255,0.8);
+  }
+
+  .note-card__text {
+    font-size: 0.8125rem; color: var(--text-primary);
+    line-height: 1.6; padding-left: 1.75rem;
+  }
+
+  /* ── MEMO FORM ── */
+  .memo-form {
+    background: var(--bg-card); backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle); border-radius: 14px;
+    padding: 1rem 1.25rem; margin-bottom: 0.625rem;
+  }
+
+  .memo-form__input {
+    width: 100%; padding: 0.625rem 0.75rem;
+    border: 1px solid var(--border-subtle); border-radius: 10px;
+    background: rgba(255,255,255,0.6);
+    font-family: var(--font-body); font-size: 0.8125rem;
+    color: var(--text-primary); resize: vertical; min-height: 60px;
+    transition: border-color 0.2s;
+  }
+  .memo-form__input:focus { outline: none; border-color: var(--purple-300); }
+  .memo-form__input::placeholder { color: var(--text-muted); }
+
+  .memo-form__footer {
+    display: flex; justify-content: flex-end; margin-top: 0.5rem;
+  }
+
+  .memo-form__submit {
+    padding: 0.5rem 1rem; border: none; border-radius: 8px;
+    background: var(--purple-600); color: #fff;
+    font-family: var(--font-body); font-size: 0.75rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .memo-form__submit:hover {
+    background: var(--purple-500);
+    box-shadow: 0 2px 8px rgba(75, 45, 94, 0.2);
+  }
+
+  /* ── EMPTY STATE ── */
+  .empty-state {
+    text-align: center; padding: 2rem 1rem;
+    color: var(--text-muted); font-size: 0.8125rem; font-weight: 500;
+  }
+  .empty-state__icon {
+    width: 32px; height: 32px; margin: 0 auto 0.5rem;
+    color: var(--text-muted); opacity: 0.5;
+  }
+
+  /* ── MANAGE MODAL ── */
+  .manage-modal {
+    position: fixed; inset: 0; z-index: 1000;
+    display: none; align-items: center; justify-content: center;
+    padding: 1rem;
+  }
+  .manage-modal.active { display: flex; }
+
+  .manage-modal__overlay {
+    position: absolute; inset: 0;
+    background: rgba(43, 26, 58, 0.7);
+    backdrop-filter: blur(8px);
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .manage-modal__content {
+    position: relative;
+    background: var(--bg-card); backdrop-filter: blur(20px);
+    border: 1px solid var(--border-subtle); border-radius: 20px;
+    max-width: 380px; width: 100%; max-height: 85vh; overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(43, 26, 58, 0.3);
+    animation: modalSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .manage-modal__header {
+    padding: 1.25rem 1.25rem 0.75rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .manage-modal__title {
+    font-family: var(--font-body); font-size: 1.125rem;
+    font-weight: 700; color: var(--text-primary);
+  }
+
+  .manage-modal__close {
+    width: 28px; height: 28px; border-radius: 50%; border: none;
+    background: rgba(75, 45, 94, 0.06);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; color: var(--text-muted); transition: all 0.2s;
+  }
+  .manage-modal__close:hover { background: rgba(75, 45, 94, 0.12); color: var(--text-primary); }
+
+  .manage-modal__body { padding: 0.5rem 1.25rem 1.25rem; }
+
+  .manage-modal__item {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.875rem 0.75rem; border-radius: 10px;
+    cursor: pointer; transition: all 0.15s;
+    border: none; background: none; width: 100; text-align: left;
+    font-family: var(--font-body);
+  }
+  .manage-modal__item:hover { background: rgba(94, 61, 116, 0.06); }
+  .manage-modal__item + .manage-modal__item {
+    border-top: 1px solid rgba(196, 176, 210, 0.1);
+  }
+
+  .manage-modal__item-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .manage-modal__item-icon svg { width: 18px; height: 18px; }
+  .manage-modal__item-icon--purple { background: rgba(94, 61, 116, 0.08); color: var(--purple-400); }
+  .manage-modal__item-icon--rose { background: rgba(212, 130, 154, 0.12); color: var(--rose-400); }
+  .manage-modal__item-icon--warning { background: var(--warning-light); color: var(--warning); }
+  .manage-modal__item-icon--danger { background: var(--danger-light); color: var(--danger); }
+
+  .manage-modal__item-text {
+    font-size: 0.875rem; font-weight: 500; color: var(--text-primary);
+  }
+  .manage-modal__item-sub {
+    font-size: 0.6875rem; color: var(--text-muted); margin-top: 0.125rem;
+  }
+
+  .manage-modal__item-arrow {
+    margin-left: auto; color: var(--text-muted); flex-shrink: 0;
+  }
+  .manage-modal__item-arrow svg { width: 16px; height: 16px; }
+
+  /* ── BOTTOM NAV ── */
+  .bottom-nav {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    height: var(--nav-height);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border-subtle);
+    display: flex; align-items: center; justify-content: space-around;
+    z-index: 50; padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+  .nav-item {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 0.25rem; padding: 0.5rem 0.75rem;
+    text-decoration: none; color: var(--text-muted);
+    transition: color 0.2s; cursor: pointer; position: relative;
+  }
+  .nav-item.active { color: var(--purple-600); }
+  .nav-item.active::before {
+    content: ''; position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+    width: 20px; height: 2px;
+    background: linear-gradient(90deg, var(--purple-400), var(--rose-300));
+    border-radius: 1px;
+  }
+  .nav-item svg { width: 22px; height: 22px; }
+  .nav-item__label { font-size: 0.5625rem; font-weight: 600; letter-spacing: 0.02em; }
+
+  .nav-item__badge {
+    position: absolute; top: 2px; right: 8px;
+    min-width: 16px; height: 16px; border-radius: 8px;
+    background: var(--danger); color: #fff;
+    font-size: 0.5625rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 4px; border: 1.5px solid #fff;
+  }
+
+  /* ── SIDEBAR (Desktop) ── */
+  .sidebar { display: none; }
+  .sidebar__logo { display: flex; align-items: center; gap: 0.625rem; padding: 1.5rem 1.25rem 1.75rem; }
+  .sidebar__logo-img { width: 36px; height: 36px; border-radius: 10px; object-fit: cover; }
+  .sidebar__logo-text { font-family: var(--font-display); font-size: 1rem; color: var(--text-primary); }
+  .sidebar__nav { padding: 0 0.75rem; }
+  .sidebar__item {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.75rem 1rem; margin-bottom: 0.25rem; border-radius: 10px;
+    text-decoration: none; color: var(--text-secondary);
+    font-size: 0.8125rem; font-weight: 500; transition: all 0.2s; cursor: pointer; position: relative;
+  }
+  .sidebar__item:hover { background: rgba(94, 61, 116, 0.06); color: var(--purple-600); }
+  .sidebar__item.active { background: rgba(94, 61, 116, 0.1); color: var(--purple-600); font-weight: 600; }
+  .sidebar__item.active::before {
+    content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+    width: 3px; height: 20px;
+    background: linear-gradient(180deg, var(--purple-500), var(--rose-400));
+    border-radius: 0 2px 2px 0;
+  }
+  .sidebar__item svg { width: 20px; height: 20px; flex-shrink: 0; }
+  .sidebar__item-badge {
+    margin-left: auto; font-size: 0.625rem; font-weight: 700;
+    min-width: 20px; height: 20px; border-radius: 10px;
+    background: var(--danger); color: #fff;
+    display: flex; align-items: center; justify-content: center; padding: 0 6px;
+  }
+  .sidebar__divider { height: 1px; background: var(--border-subtle); margin: 0.75rem 1.25rem; }
+  .sidebar__profile {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 1rem 1.25rem; margin-top: auto; border-top: 1px solid var(--border-subtle);
+  }
+  .sidebar__profile-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--purple-600), var(--purple-500));
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-size: 0.75rem; color: #fff; flex-shrink: 0;
+  }
+  .sidebar__profile-name { font-size: 0.8125rem; font-weight: 600; color: var(--text-primary); }
+  .sidebar__profile-role { font-size: 0.625rem; color: var(--text-muted); font-weight: 500; }
+
+  /* ── RESPONSIVE ── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  @media (min-width: 480px) {
+    .main { padding: 0 1.5rem 2rem; }
+  }
+
+  @media (min-width: 768px) {
+    body { padding-bottom: 0; }
+    .bottom-nav { display: none; }
+
+    .sidebar {
+      display: flex; flex-direction: column;
+      position: fixed; left: 0; top: 0; bottom: 0; width: 240px; z-index: 50;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-right: 1px solid var(--border-subtle);
+    }
+
+    .main { max-width: none; margin-left: 240px; padding: 0 2rem 2rem; }
+
+    .stats-row { gap: 0.75rem; }
+    .stat-card { padding: 1rem 0.5rem; }
+    .stat-card__value { font-size: 1.5rem; }
+    .stat-card__label { font-size: 0.6875rem; }
+  }
+
+  @media (min-width: 1200px) {
+    .sidebar { width: 260px; }
+    .main { margin-left: 260px; padding: 0 2.5rem 2rem; }
+  }
+
+  /* ── JOURNAL SPROUT BUTTON ── */
+  .profile-header__sprout {
+    font-size: 1.125rem; cursor: pointer; border: none; background: none;
+    padding: 0.125rem 0.25rem; border-radius: 8px; transition: all 0.25s;
+    line-height: 1; flex-shrink: 0;
+  }
+  .profile-header__sprout:hover {
+    background: rgba(76, 175, 80, 0.12); transform: scale(1.15);
+  }
+  .profile-header__sprout:active { transform: scale(0.95); }
+
+  /* ── JOURNAL OVERLAY ── */
+  .journal-overlay {
+    position: fixed; inset: 0; z-index: 2000;
+    background: rgba(30, 15, 40, 0.55); backdrop-filter: blur(6px);
+    display: flex; align-items: flex-end; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  }
+  .journal-overlay.visible { opacity: 1; pointer-events: auto; }
+
+  .journal-modal {
+    width: 100%; max-width: 480px; max-height: 88vh;
+    background: linear-gradient(170deg, #FAF6FF 0%, #FFF5F9 40%, #F5F0F8 100%);
+    border-radius: 20px 20px 0 0; padding: 0;
+    overflow-y: auto; -webkit-overflow-scrolling: touch;
+    transform: translateY(100%); transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 -8px 40px rgba(60, 30, 80, 0.15);
+  }
+  .journal-overlay.visible .journal-modal { transform: translateY(0); }
+
+  .journal-modal__header {
+    position: sticky; top: 0; z-index: 1;
+    background: linear-gradient(170deg, rgba(250,246,255,0.95), rgba(255,245,249,0.95));
+    backdrop-filter: blur(12px);
+    padding: 1.25rem 1.25rem 0.75rem; border-bottom: 1px solid var(--border-subtle);
+  }
+  .journal-modal__handle {
+    width: 36px; height: 4px; border-radius: 2px;
+    background: rgba(158, 130, 176, 0.3); margin: 0 auto 0.75rem;
+  }
+  .journal-modal__title-row {
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .journal-modal__title {
+    font-family: var(--font-body); font-size: 1.125rem; font-weight: 700;
+    color: var(--text-primary); flex: 1;
+  }
+  .journal-modal__title-icon { font-size: 1.125rem; }
+  .journal-modal__close {
+    width: 32px; height: 32px; border-radius: 50%; border: none;
+    background: rgba(158, 130, 176, 0.12); display: flex;
+    align-items: center; justify-content: center;
+    color: var(--text-secondary); cursor: pointer; transition: all 0.2s;
+  }
+  .journal-modal__close:hover { background: rgba(158, 130, 176, 0.2); }
+  .journal-modal__close svg { width: 16px; height: 16px; }
+
+  .journal-modal__body { padding: 1rem 1.25rem 2rem; }
+
+  /* Journal entry card */
+  .jentry {
+    background: var(--bg-card); border: 1px solid var(--border-subtle);
+    border-radius: 14px; padding: 1rem; margin-bottom: 0.75rem;
+    animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .jentry__date {
+    font-size: 0.6875rem; font-weight: 600; color: var(--text-muted);
+    letter-spacing: 0.04em; margin-bottom: 0.5rem;
+  }
+  .jentry__text {
+    font-family: var(--font-body); font-size: 0.8125rem; line-height: 1.6;
+    color: var(--text-primary); margin-bottom: 0.75rem;
+  }
+  .jentry__workout {
+    font-size: 0.75rem; color: var(--text-secondary);
+    background: rgba(94, 61, 116, 0.04); border-radius: 8px;
+    padding: 0.5rem 0.625rem; margin-bottom: 0.75rem;
+    line-height: 1.5;
+  }
+  .jentry__workout-label {
+    font-weight: 700; font-size: 0.625rem; letter-spacing: 0.06em;
+    color: var(--purple-400); margin-bottom: 0.25rem;
+    text-transform: uppercase;
+  }
+
+  /* Sticker reaction area */
+  .jentry__reactions {
+    display: flex; align-items: center; gap: 0.375rem;
+    margin-bottom: 0.5rem; flex-wrap: wrap;
+  }
+  .jentry__sticker {
+    width: 32px; height: 32px; border-radius: 10px; border: 1.5px solid var(--border-subtle);
+    background: rgba(255,255,255,0.6); display: flex; align-items: center;
+    justify-content: center; font-size: 1rem; cursor: pointer;
+    transition: all 0.2s; user-select: none;
+  }
+  .jentry__sticker:hover { transform: scale(1.15); border-color: var(--purple-300); }
+  .jentry__sticker:active { transform: scale(0.9); }
+  .jentry__sticker.active {
+    background: var(--purple-50); border-color: var(--purple-400);
+    box-shadow: 0 0 0 2px rgba(126, 87, 194, 0.15);
+  }
+  .jentry__sticker-count {
+    font-size: 0.5625rem; font-weight: 700; color: var(--purple-500);
+    min-width: 0.875rem; text-align: center;
+  }
+
+  /* Comment section */
+  .jentry__comments { margin-top: 0.5rem; }
+  .jentry__comment {
+    display: flex; gap: 0.5rem; align-items: flex-start;
+    padding: 0.5rem 0; border-top: 1px solid rgba(196, 176, 210, 0.15);
+  }
+  .jentry__comment-avatar {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--purple-500), var(--rose-400));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.5625rem; color: #fff; font-weight: 700; flex-shrink: 0;
+  }
+  .jentry__comment-body { flex: 1; min-width: 0; }
+  .jentry__comment-name {
+    font-size: 0.6875rem; font-weight: 700; color: var(--text-primary);
+  }
+  .jentry__comment-text {
+    font-size: 0.75rem; color: var(--text-secondary); line-height: 1.4;
+    margin-top: 0.125rem;
+  }
+  .jentry__comment-time {
+    font-size: 0.5625rem; color: var(--text-muted); margin-top: 0.125rem;
+  }
+
+  /* Comment input */
+  .jentry__add-comment {
+    display: flex; gap: 0.375rem; margin-top: 0.5rem;
+    padding-top: 0.5rem; border-top: 1px solid rgba(196, 176, 210, 0.15);
+  }
+  .jentry__comment-input {
+    flex: 1; border: 1px solid var(--border-subtle); border-radius: 10px;
+    padding: 0.5rem 0.625rem; font-family: var(--font-body);
+    font-size: 0.75rem; background: rgba(245, 240, 248, 0.5);
+    color: var(--text-primary); outline: none; transition: border-color 0.2s;
+  }
+  .jentry__comment-input::placeholder { color: var(--text-placeholder); }
+  .jentry__comment-input:focus { border-color: var(--purple-300); }
+  .jentry__comment-send {
+    width: 32px; height: 32px; border-radius: 10px; border: none;
+    background: var(--purple-500); color: #fff; display: flex;
+    align-items: center; justify-content: center; cursor: pointer;
+    transition: all 0.2s; flex-shrink: 0;
+  }
+  .jentry__comment-send:hover { background: var(--purple-600); }
+  .jentry__comment-send svg { width: 14px; height: 14px; }
+
+  /* Empty state */
+  .journal-empty {
+    text-align: center; padding: 2rem 1rem;
+    color: var(--text-muted); font-size: 0.8125rem;
+  }
+  .journal-empty__icon { font-size: 2.5rem; margin-bottom: 0.75rem; opacity: 0.5; }
+</style>
+</head>
+<body>
+
+<div class="bg-atmosphere"></div>
+
+<!-- Sidebar (Desktop) -->
+<aside class="sidebar">
+  <div class="sidebar__logo">
+    <img src="logo_no_text.png" alt="근력학교" class="sidebar__logo-img">
+    <span class="sidebar__logo-text">근력학교 이화</span>
+  </div>
+  <nav class="sidebar__nav">
+    <a class="sidebar__item" href="admin-dashboard.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+      대시보드
+    </a>
+    <a class="sidebar__item" href="admin-timetable.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="10" y1="4" x2="10" y2="22"/>
+      </svg>
+      시간표
+    </a>
+    <a class="sidebar__item" href="admin-revenue.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+      </svg>
+      매출
+    </a>
+    <a class="sidebar__item active" href="admin-members.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+      수강생 관리
+      <span class="sidebar__item-badge">47</span>
+    </a>
+    <a class="sidebar__item" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+      </svg>
+      훈련일지
+    </a>
+    <a class="sidebar__item" href="admin-notice.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"/>
+      </svg>
+      공지
+    </a>
+    <div class="sidebar__divider"></div>
+    <a class="sidebar__item" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+      </svg>
+      설정
+    </a>
+  </nav>
+  <div class="sidebar__profile">
+    <div class="sidebar__profile-avatar">코치</div>
+    <div>
+      <div class="sidebar__profile-name">김코치</div>
+      <div class="sidebar__profile-role">TRAINER</div>
+    </div>
+  </div>
+</aside>
+
+<div class="main">
+  <!-- Page Header -->
+  <header class="page-header">
+    <a href="javascript:void(0)" class="back-btn" id="backBtn" aria-label="뒤로가기">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </a>
+    <h1 class="page-header__title">회원 상세</h1>
+    <button class="manage-btn" id="manageBtn" aria-label="회원 관리">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+      </svg>
+    </button>
+  </header>
+
+  <!-- Profile Header -->
+  <div class="profile-header" id="profileHeader">
+    <div class="profile-header__top">
+      <div class="profile-header__avatar" id="profileAvatar">김</div>
+      <div class="profile-header__info">
+        <div class="profile-header__name-row">
+          <span class="profile-header__name" id="profileName">김지은 (은또)</span>
+          <span class="profile-header__badge" id="profileBadge"></span>
+          <button class="profile-header__sprout" id="profileSprout" style="display:none;" title="훈련일지 보기">🌱</button>
+        </div>
+        <span class="profile-header__level profile-header__level--default" id="profileLevel">일반</span>
+      </div>
+    </div>
+    <div class="profile-header__meta">
+      <div class="profile-header__meta-item">
+        <svg class="profile-header__meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        <span class="profile-header__meta-label">수업</span>
+        <span class="profile-header__meta-value" id="profileSchedule">월·금 1교시</span>
+      </div>
+      <div class="profile-header__meta-item">
+        <svg class="profile-header__meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        <span class="profile-header__meta-label">연락처</span>
+        <span class="profile-header__meta-value" id="profilePhone">010-1234-5678</span>
+      </div>
+      <div class="profile-header__meta-item">
+        <svg class="profile-header__meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/>
+        </svg>
+        <span class="profile-header__meta-label">등록일</span>
+        <span class="profile-header__meta-value" id="profileRegistered">2025.12.01</span>
+      </div>
+    </div>
+    <div class="profile-header__note" id="profileNote" style="display:none;">
+      <div class="profile-header__note-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        특이사항
+      </div>
+      <div class="profile-header__note-text" id="profileNoteText"></div>
+    </div>
+  </div>
+
+  <!-- Membership Card -->
+  <div class="membership-card" id="membershipCard">
+    <div class="membership-card__dates">
+      <div class="membership-card__date-block">
+        <span class="membership-card__date-label">시작일</span>
+        <span class="membership-card__date-value" id="passStart">25.12.01</span>
+      </div>
+      <span class="membership-card__arrow">→</span>
+      <div class="membership-card__date-block">
+        <span class="membership-card__date-label">종료일</span>
+        <span class="membership-card__date-value" id="passEnd">26.05.31</span>
+      </div>
+    </div>
+    <span class="membership-card__badge" id="passBadge">수강중</span>
+  </div>
+
+  <!-- Stats Row -->
+  <div class="stats-row" id="statsRow">
+    <div class="stat-card">
+      <div class="stat-card__value" id="statTotal">40<span>회</span></div>
+      <div class="stat-card__label">전체수업</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card__value stat-card__value--success" id="statPresent">26<span>회</span></div>
+      <div class="stat-card__label">출석</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card__value stat-card__value--danger" id="statAbsent">2<span>회</span></div>
+      <div class="stat-card__label">결석</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card__value stat-card__value--holding" id="statHolding">5<span>일</span></div>
+      <div class="stat-card__label">홀딩일</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card__value" id="statRate">93<span>%</span></div>
+      <div class="stat-card__label">출석률</div>
+    </div>
+  </div>
+
+  <!-- Progress Bar -->
+  <div class="progress-section" id="progressSection">
+    <div class="progress-card">
+      <div class="progress-card__header">
+        <span class="progress-card__title">수강 진행률</span>
+        <span class="progress-card__count" id="progressCount">28 / 40회</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-bar__fill" id="progressFill" style="width: 70%"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Attendance Calendar -->
+  <div class="section" id="calendarSection" style="animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;">
+    <div class="month-filter">
+      <button class="month-filter__btn" id="prevMonth" aria-label="이전 달">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <span class="month-filter__label" id="monthLabel">2026년 2월</span>
+      <button class="month-filter__btn" id="nextMonth" aria-label="다음 달">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+    <div class="calendar">
+      <div class="calendar__weekdays">
+        <span class="calendar__weekday">일</span>
+        <span class="calendar__weekday">월</span>
+        <span class="calendar__weekday">화</span>
+        <span class="calendar__weekday">수</span>
+        <span class="calendar__weekday">목</span>
+        <span class="calendar__weekday">금</span>
+        <span class="calendar__weekday">토</span>
+      </div>
+      <div class="calendar__days" id="calendarDays"></div>
+      <div class="calendar__legend">
+        <span class="legend-item legend-item--present">출석</span>
+        <span class="legend-item legend-item--absent">결석</span>
+        <span class="legend-item legend-item--scheduled">예정</span>
+        <span class="legend-item legend-item--holding">홀딩</span>
+        <span class="legend-item legend-item--holiday">휴일</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Substitute History (±1 month) -->
+  <div class="section" id="substituteSection" style="animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.48s both;">
+    <div class="section__header">
+      <h2 class="section__title">대체수강 내역</h2>
+      <span class="section__sub" id="subRange"></span>
+    </div>
+    <div id="substituteList"></div>
+  </div>
+
+  <!-- Holding History (±1 month) -->
+  <div class="section" id="holdingSection" style="animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.56s both;">
+    <div class="section__header">
+      <h2 class="section__title">홀딩 내역</h2>
+      <span class="section__sub" id="holdRange"></span>
+    </div>
+    <div id="holdingList"></div>
+  </div>
+
+  <!-- Coaching Memos -->
+  <div class="section" id="coachingSection" style="animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.64s both;">
+    <div class="section__header">
+      <h2 class="section__title">코칭 메모</h2>
+    </div>
+    <div class="memo-form">
+      <textarea class="memo-form__input" id="memoInput" placeholder="새로운 코칭 메모를 입력하세요..."></textarea>
+      <div class="memo-form__footer">
+        <button class="memo-form__submit" id="memoSubmit">메모 추가</button>
+      </div>
+    </div>
+    <div id="coachingList"></div>
+  </div>
+
+</div>
+
+<!-- Manage Modal -->
+<div class="manage-modal" id="manageModal">
+  <div class="manage-modal__overlay" id="manageOverlay"></div>
+  <div class="manage-modal__content">
+    <div class="manage-modal__header">
+      <h2 class="manage-modal__title">회원 관리</h2>
+      <button class="manage-modal__close" id="manageClose">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="manage-modal__body">
+      <div class="manage-modal__item" onclick="alert('수강권 관리 (추후 구현)')">
+        <div class="manage-modal__item-icon manage-modal__item-icon--purple">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/>
+          </svg>
+        </div>
+        <div>
+          <div class="manage-modal__item-text">수강권 관리</div>
+          <div class="manage-modal__item-sub">기간 연장, 횟수 조정, 상태 변경</div>
+        </div>
+        <span class="manage-modal__item-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+      </div>
+      <div class="manage-modal__item" onclick="alert('별명 변경 (추후 구현)')">
+        <div class="manage-modal__item-icon manage-modal__item-icon--purple">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="manage-modal__item-text">별명 변경</div>
+          <div class="manage-modal__item-sub">닉네임 수정</div>
+        </div>
+        <span class="manage-modal__item-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+      </div>
+      <div class="manage-modal__item" onclick="alert('레벨 변경 (추후 구현)')">
+        <div class="manage-modal__item-icon manage-modal__item-icon--rose">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
+        <div>
+          <div class="manage-modal__item-text">레벨 변경</div>
+          <div class="manage-modal__item-sub">일반 / 삐약이 / 입학생</div>
+        </div>
+        <span class="manage-modal__item-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+      </div>
+      <div class="manage-modal__item" onclick="alert('연락처 수정 (추후 구현)')">
+        <div class="manage-modal__item-icon manage-modal__item-icon--purple">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="manage-modal__item-text">연락처 수정</div>
+          <div class="manage-modal__item-sub">전화번호 변경</div>
+        </div>
+        <span class="manage-modal__item-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+      </div>
+      <div class="manage-modal__item" onclick="alert('아이디 변경 (추후 구현)')">
+        <div class="manage-modal__item-icon manage-modal__item-icon--warning">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="manage-modal__item-text">아이디 변경</div>
+          <div class="manage-modal__item-sub">로그인 아이디 수정</div>
+        </div>
+        <span class="manage-modal__item-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+      </div>
+      <div class="manage-modal__item" onclick="alert('비밀번호가 초기화되었습니다. (목업)')">
+        <div class="manage-modal__item-icon manage-modal__item-icon--danger">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="manage-modal__item-text">비밀번호 초기화</div>
+          <div class="manage-modal__item-sub">임시 비밀번호로 재설정</div>
+        </div>
+        <span class="manage-modal__item-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bottom Navigation (Mobile) -->
+<nav class="bottom-nav">
+  <a class="nav-item" href="admin-dashboard.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+    </svg>
+    <span class="nav-item__label">대시보드</span>
+  </a>
+  <a class="nav-item" href="admin-timetable.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="10" y1="4" x2="10" y2="22"/>
+    </svg>
+    <span class="nav-item__label">시간표</span>
+  </a>
+  <a class="nav-item active" href="admin-members.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+    </svg>
+    <span class="nav-item__label">수강생</span>
+    <span class="nav-item__badge">47</span>
+  </a>
+  <a class="nav-item" href="admin-revenue.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+    </svg>
+    <span class="nav-item__label">매출</span>
+  </a>
+  <a class="nav-item" href="admin-notice.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"/>
+    </svg>
+    <span class="nav-item__label">공지</span>
+  </a>
+</nav>
+
+<script>
+(function() {
+  // ══════════════════════════════════════════════
+  // MOCK DATA — 레벨: default(일반) / beginner(삐약이) / newcomer(입학생)
+  // ══════════════════════════════════════════════
+  var membersDB = {
+    '김지은 (은또)': {
+      name: '김지은', nickname: '은또', level: 'default', levelText: '일반', hasJournal: true,
+      schedule: '월·금 1교시', phone: '010-1234-5678', registered: '2025.12.01',
+      specialNote: '직업: 회사원(IT) / 어깨 부상 이력 (2025.09), 오버헤드 동작 주의',
+      passStart: '25.12.01', passEnd: '26.05.31', passStatus: '수강중',
+      totalSessions: 40, used: 28, remaining: 12,
+      present: 26, absent: 2, holdingDays: 5, rate: 93,
+      attendance: {
+        '2026-02': {
+          2: 'present', 3: 'substitute', 5: 'present', 6: 'present',
+          7: 'holiday', 8: 'holiday', 9: 'holiday', 10: 'holiday',
+          11: 'absent', 13: 'present', 16: 'present', 17: 'holding',
+          18: 'holding', 19: 'holding', 20: 'present', 23: 'scheduled',
+          24: 'scheduled', 25: 'scheduled', 26: 'scheduled', 27: 'scheduled'
+        },
+        '2026-01': {
+          5: 'present', 6: 'present', 8: 'present', 9: 'present',
+          12: 'present', 13: 'present', 15: 'present', 16: 'present',
+          19: 'present', 20: 'holding', 21: 'holding', 22: 'holding',
+          23: 'holding', 24: 'holding', 26: 'present', 27: 'present',
+          29: 'present', 30: 'present'
+        },
+        '2025-12': {
+          1: 'present', 2: 'present', 4: 'present', 5: 'present',
+          8: 'present', 9: 'present', 11: 'present', 12: 'absent',
+          15: 'present', 16: 'present', 18: 'present', 19: 'present',
+          22: 'present', 23: 'present', 25: 'holiday', 26: 'present',
+          29: 'present', 30: 'present'
+        }
+      },
+      holidays: {
+        '2026-02': { 7: '설연휴', 8: '설연휴', 9: '설연휴', 10: '설연휴' },
+        '2025-12': { 25: '성탄절' }
+      },
+      substitutes: [
+        { from: '화 2교시', to: '화 1교시', requestDate: '2026.02.01', month: '2026-02', status: 'approved' },
+        { from: '금 1교시', to: '목 1교시', requestDate: '2026.01.10', month: '2026-01', status: 'approved' },
+        { from: '월 1교시', to: '수 6교시', requestDate: '2025.11.15', month: '2025-11', status: 'approved' }
+      ],
+      holdings: [
+        { period: '2/17(월) ~ 2/19(수)', days: 3, reason: '출장', requestDate: '2026.02.10', month: '2026-02', status: 'approved' },
+        { period: '1/20(월) ~ 1/24(금)', days: 5, reason: '부상 회복', requestDate: '2026.01.18', month: '2026-01', status: 'approved' },
+        { period: '11/10(월) ~ 11/14(금)', days: 5, reason: '여행', requestDate: '2025.11.05', month: '2025-11', status: 'approved' }
+      ],
+      coachingMemos: [
+        { date: '2026.02.20', text: '스쿼트 폼 교정 — 무릎이 안쪽으로 들어가는 경향. 밴드 활용 워밍업 추가 권장.', resolved: false },
+        { date: '2026.02.13', text: '데드리프트 40kg 성공! 그립 힘이 부족한 편이라 스트랩 사용 허용.', resolved: true },
+        { date: '2026.02.06', text: '컨디션 좋음. 벤치프레스 30kg 3세트 완료. 다음 주 35kg 도전 예정.', resolved: true }
+      ]
+    },
+    '한예린 (린이)': {
+      name: '한예린', nickname: '린이', level: 'beginner', levelText: '삐약이',
+      schedule: '월·금 1교시', phone: '010-5678-1234', registered: '2026.01.06',
+      specialNote: '직업: 대학생(체대) / 허리 디스크 주의, 무거운 데드리프트 제한',
+      passStart: '26.01.06', passEnd: '26.07.05', passStatus: '수강중',
+      totalSessions: 48, used: 12, remaining: 36,
+      present: 11, absent: 1, holdingDays: 0, rate: 92,
+      attendance: {
+        '2026-02': {
+          2: 'present', 5: 'present', 6: 'present', 7: 'holiday', 8: 'holiday',
+          9: 'holiday', 10: 'holiday', 13: 'present', 16: 'present',
+          20: 'absent', 23: 'scheduled', 24: 'scheduled', 27: 'scheduled'
+        },
+        '2026-01': {
+          6: 'present', 8: 'present', 9: 'present', 13: 'present',
+          15: 'present', 16: 'present', 20: 'present', 22: 'present',
+          27: 'present', 29: 'present', 30: 'present'
+        }
+      },
+      holidays: {
+        '2026-02': { 7: '설연휴', 8: '설연휴', 9: '설연휴', 10: '설연휴' }
+      },
+      substitutes: [],
+      holdings: [],
+      coachingMemos: [
+        { date: '2026.02.13', text: '기초 체력 훈련 중. 스쿼트 맨몸으로 폼 잡기 집중. 자세 안정적.', resolved: false }
+      ]
+    }
+  };
+
+  var defaultMember = '김지은 (은또)';
+  var params = new URLSearchParams(window.location.search);
+  var memberKey = params.get('name') || defaultMember;
+  var member = membersDB[memberKey] || membersDB[defaultMember];
+
+  // ══════════════════════════════════════════════
+  // BACK BUTTON
+  // ══════════════════════════════════════════════
+  document.getElementById('backBtn').addEventListener('click', function() {
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      window.location.href = 'admin-dashboard.html';
+    }
+  });
+
+  // ══════════════════════════════════════════════
+  // MANAGE MODAL
+  // ══════════════════════════════════════════════
+  var manageModal = document.getElementById('manageModal');
+  document.getElementById('manageBtn').addEventListener('click', function() {
+    manageModal.classList.add('active');
+  });
+  function closeManageModal() { manageModal.classList.remove('active'); }
+  document.getElementById('manageClose').addEventListener('click', closeManageModal);
+  document.getElementById('manageOverlay').addEventListener('click', closeManageModal);
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && manageModal.classList.contains('active')) closeManageModal();
+  });
+
+  // ══════════════════════════════════════════════
+  // PROFILE HEADER — 레벨: default(일반) / beginner(삐약이) / newcomer(입학생)
+  // ══════════════════════════════════════════════
+  document.getElementById('profileAvatar').textContent = member.name.charAt(0);
+  document.getElementById('profileName').textContent = member.name + ' (' + member.nickname + ')';
+
+  var profileBadge = document.getElementById('profileBadge');
+  var profileLevel = document.getElementById('profileLevel');
+
+  if (member.level === 'beginner') {
+    profileBadge.textContent = '\uD83D\uDC25';
+    profileLevel.className = 'profile-header__level profile-header__level--beginner';
+  } else if (member.level === 'newcomer') {
+    profileBadge.textContent = '';
+    profileLevel.className = 'profile-header__level profile-header__level--newcomer';
+  } else {
+    profileBadge.textContent = '';
+    profileLevel.style.display = 'none';
+  }
+  if (member.level !== 'default') {
+    profileLevel.textContent = member.levelText;
+  }
+
+  document.getElementById('profileSchedule').textContent = member.schedule;
+  document.getElementById('profilePhone').textContent = member.phone;
+  document.getElementById('profileRegistered').textContent = member.registered;
+
+  // 특이사항
+  if (member.specialNote) {
+    document.getElementById('profileNote').style.display = 'block';
+    document.getElementById('profileNoteText').textContent = member.specialNote;
+  }
+
+  // ══════════════════════════════════════════════
+  // MEMBERSHIP CARD
+  // ══════════════════════════════════════════════
+  document.getElementById('passStart').textContent = member.passStart;
+  document.getElementById('passEnd').textContent = member.passEnd;
+  document.getElementById('passBadge').textContent = member.passStatus;
+
+  // ══════════════════════════════════════════════
+  // STATS
+  // ══════════════════════════════════════════════
+  document.getElementById('statTotal').innerHTML = member.totalSessions + '<span>회</span>';
+  document.getElementById('statPresent').innerHTML = member.present + '<span>회</span>';
+  document.getElementById('statAbsent').innerHTML = member.absent + '<span>회</span>';
+  document.getElementById('statHolding').innerHTML = member.holdingDays + '<span>일</span>';
+  document.getElementById('statRate').innerHTML = member.rate + '<span>%</span>';
+
+  // ══════════════════════════════════════════════
+  // PROGRESS
+  // ══════════════════════════════════════════════
+  var used = member.used;
+  var total = member.totalSessions;
+  document.getElementById('progressCount').textContent = used + ' / ' + total + '회';
+  document.getElementById('progressFill').style.width = Math.round((used / total) * 100) + '%';
+
+  // ══════════════════════════════════════════════
+  // CALENDAR
+  // ══════════════════════════════════════════════
+  var today = new Date();
+  today.setHours(0,0,0,0);
+  var calYear = today.getFullYear();
+  var calMonth = today.getMonth();
+
+  function padMonth(m) { return m < 10 ? '0' + m : '' + m; }
+
+  function renderCalendar() {
+    document.getElementById('monthLabel').textContent = calYear + '년 ' + (calMonth + 1) + '월';
+
+    var key = calYear + '-' + padMonth(calMonth + 1);
+    var attData = (member.attendance && member.attendance[key]) || {};
+    var holData = (member.holidays && member.holidays[key]) || {};
+
+    var firstDay = new Date(calYear, calMonth, 1).getDay();
+    var daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+
+    var container = document.getElementById('calendarDays');
+    container.innerHTML = '';
+
+    for (var e = 0; e < firstDay; e++) {
+      var emptyDiv = document.createElement('div');
+      emptyDiv.className = 'calendar__day calendar__day--empty';
+      emptyDiv.innerHTML = '<span class="calendar__day-num">&nbsp;</span>';
+      container.appendChild(emptyDiv);
+    }
+
+    for (var d = 1; d <= daysInMonth; d++) {
+      var dayDate = new Date(calYear, calMonth, d);
+      var isSunday = dayDate.getDay() === 0;
+      var isToday = dayDate.getTime() === today.getTime();
+      var status = attData[d] || null;
+      var holName = holData[d] || null;
+
+      var cls = 'calendar__day';
+      if (isSunday) cls += ' calendar__day--sunday';
+      if (isToday) cls += ' calendar__day--today';
+
+      if (holName && status !== 'present' && status !== 'absent') {
+        cls += ' calendar__day--holiday';
+      } else if (status) {
+        cls += ' calendar__day--' + status;
+      }
+
+      var tagText = '';
+      if (holName) { tagText = holName; }
+      else if (status === 'present') { tagText = '1교시'; }
+      else if (status === 'absent') { tagText = '결석'; }
+      else if (status === 'substitute') { tagText = '대체'; }
+      else if (status === 'scheduled') { tagText = '예정'; }
+      else if (status === 'holding') { tagText = '홀딩'; }
+
+      var dayDiv = document.createElement('div');
+      dayDiv.className = cls;
+      dayDiv.innerHTML = '<span class="calendar__day-num">' + d + '</span>' +
+        (tagText ? '<span class="calendar__day-tag">' + tagText + '</span>' : '');
+      container.appendChild(dayDiv);
+    }
+  }
+
+  renderCalendar();
+
+  document.getElementById('prevMonth').addEventListener('click', function() {
+    calMonth--;
+    if (calMonth < 0) { calMonth = 11; calYear--; }
+    renderCalendar();
+  });
+  document.getElementById('nextMonth').addEventListener('click', function() {
+    calMonth++;
+    if (calMonth > 11) { calMonth = 0; calYear++; }
+    renderCalendar();
+  });
+
+  // ══════════════════════════════════════════════
+  // ±1 MONTH RANGE HELPER
+  // ══════════════════════════════════════════════
+  var now = new Date();
+  var nowY = now.getFullYear();
+  var nowM = now.getMonth(); // 0-indexed
+
+  function getMonthRange() {
+    var prev = new Date(nowY, nowM - 1, 1);
+    var next = new Date(nowY, nowM + 1, 1);
+    var months = [];
+    // prev month
+    months.push(prev.getFullYear() + '-' + padMonth(prev.getMonth() + 1));
+    // current month
+    months.push(nowY + '-' + padMonth(nowM + 1));
+    // next month
+    months.push(next.getFullYear() + '-' + padMonth(next.getMonth() + 1));
+    return months;
+  }
+
+  var allowedMonths = getMonthRange();
+  var rangeLabel = (nowM) + '월 ~ ' + (nowM + 2) + '월';
+  // More precise range labels
+  var prevMDate = new Date(nowY, nowM - 1, 1);
+  var nextMDate = new Date(nowY, nowM + 1, 1);
+  var rangeTxt = (prevMDate.getMonth() + 1) + '월 ~ ' + (nextMDate.getMonth() + 1) + '월';
+
+  document.getElementById('subRange').textContent = '최근 ' + rangeTxt;
+  document.getElementById('holdRange').textContent = '최근 ' + rangeTxt;
+
+  // ══════════════════════════════════════════════
+  // SUBSTITUTE HISTORY (±1 month)
+  // ══════════════════════════════════════════════
+  var subListEl = document.getElementById('substituteList');
+  var filteredSubs = (member.substitutes || []).filter(function(s) {
+    return allowedMonths.indexOf(s.month) !== -1;
+  });
+
+  if (filteredSubs.length > 0) {
+    filteredSubs.forEach(function(sub) {
+      var html = '<div class="history-card">' +
+        '<div class="history-card__icon history-card__icon--swap">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+            '<polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/>' +
+            '<polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>' +
+          '</svg>' +
+        '</div>' +
+        '<div class="history-card__content">' +
+          '<div class="history-card__title">' + sub.from + ' → ' + sub.to + '</div>' +
+          '<div class="history-card__detail">' + sub.requestDate + ' 신청</div>' +
+        '</div>' +
+        '<span class="history-card__status history-card__status--approved">완료</span>' +
+      '</div>';
+      subListEl.insertAdjacentHTML('beforeend', html);
+    });
+  } else {
+    subListEl.innerHTML = '<div class="empty-state"><svg class="empty-state__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>최근 대체수강 내역이 없습니다</div>';
+  }
+
+  // ══════════════════════════════════════════════
+  // HOLDING HISTORY (±1 month)
+  // ══════════════════════════════════════════════
+  var holdListEl = document.getElementById('holdingList');
+  var filteredHolds = (member.holdings || []).filter(function(h) {
+    return allowedMonths.indexOf(h.month) !== -1;
+  });
+
+  if (filteredHolds.length > 0) {
+    filteredHolds.forEach(function(h) {
+      var html = '<div class="history-card">' +
+        '<div class="history-card__icon history-card__icon--approved">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+            '<circle cx="12" cy="12" r="10"/><line x1="10" y1="15" x2="10" y2="9"/><line x1="14" y1="15" x2="14" y2="9"/>' +
+          '</svg>' +
+        '</div>' +
+        '<div class="history-card__content">' +
+          '<div class="history-card__title">' + h.period + ' · ' + h.days + '일</div>' +
+          '<div class="history-card__detail">' + h.requestDate + ' 신청 · ' + h.reason + '</div>' +
+        '</div>' +
+        '<span class="history-card__status history-card__status--approved">완료</span>' +
+      '</div>';
+      holdListEl.insertAdjacentHTML('beforeend', html);
+    });
+  } else {
+    holdListEl.innerHTML = '<div class="empty-state"><svg class="empty-state__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="10" y1="15" x2="10" y2="9"/><line x1="14" y1="15" x2="14" y2="9"/></svg>최근 홀딩 내역이 없습니다</div>';
+  }
+
+  // ══════════════════════════════════════════════
+  // COACHING MEMOS (resolved=노란색, unresolved=흰색)
+  // ══════════════════════════════════════════════
+  var coachListEl = document.getElementById('coachingList');
+
+  function renderMemos() {
+    coachListEl.innerHTML = '';
+    if (member.coachingMemos && member.coachingMemos.length > 0) {
+      member.coachingMemos.forEach(function(memo, idx) {
+        var cardClass = memo.resolved ? 'note-card note-card--resolved' : 'note-card';
+        var btnLabel = memo.resolved ? '해결됨' : '미해결';
+        var html = '<div class="' + cardClass + '">' +
+          '<div class="note-card__header">' +
+            '<svg class="note-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+              '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>' +
+            '</svg>' +
+            '<span class="note-card__date">' + memo.date + '</span>' +
+            '<button class="note-card__resolve-btn" data-idx="' + idx + '">' + btnLabel + '</button>' +
+          '</div>' +
+          '<p class="note-card__text">' + memo.text + '</p>' +
+        '</div>';
+        coachListEl.insertAdjacentHTML('beforeend', html);
+      });
+
+      // Toggle resolve buttons
+      coachListEl.querySelectorAll('.note-card__resolve-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var i = parseInt(this.getAttribute('data-idx'));
+          member.coachingMemos[i].resolved = !member.coachingMemos[i].resolved;
+          renderMemos();
+        });
+      });
+    } else {
+      coachListEl.innerHTML = '<div class="empty-state"><svg class="empty-state__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>코칭 메모가 없습니다</div>';
+    }
+  }
+
+  renderMemos();
+
+  // Memo form submission
+  document.getElementById('memoSubmit').addEventListener('click', function() {
+    var input = document.getElementById('memoInput');
+    var text = input.value.trim();
+    if (!text) return;
+
+    var todayStr = now.getFullYear() + '.' + padMonth(now.getMonth() + 1) + '.' + padMonth(now.getDate());
+    member.coachingMemos.unshift({ date: todayStr, text: text, resolved: false });
+    input.value = '';
+    renderMemos();
+  });
+
+  // ══════════════════════════════════════════════
+  // JOURNAL SPROUT BUTTON + OVERLAY
+  // ══════════════════════════════════════════════
+  if (member.hasJournal) {
+    document.getElementById('profileSprout').style.display = 'inline-block';
+  }
+
+  var journalOverlay = document.getElementById('journalOverlay');
+  var sproutBtn = document.getElementById('profileSprout');
+
+  if (sproutBtn && journalOverlay) {
+    sproutBtn.addEventListener('click', function() {
+      journalOverlay.classList.add('visible');
+    });
+
+    document.getElementById('journalClose').addEventListener('click', function() {
+      journalOverlay.classList.remove('visible');
+    });
+    journalOverlay.addEventListener('click', function(e) {
+      if (e.target === journalOverlay) journalOverlay.classList.remove('visible');
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && journalOverlay.classList.contains('visible')) {
+        journalOverlay.classList.remove('visible');
+      }
+    });
+
+    // Sticker toggle
+    journalOverlay.querySelectorAll('.jentry__sticker').forEach(function(sticker) {
+      sticker.addEventListener('click', function() {
+        var wasActive = this.classList.contains('active');
+        this.classList.toggle('active');
+        var countEl = this.nextElementSibling;
+        if (countEl && countEl.classList.contains('jentry__sticker-count')) {
+          var cnt = parseInt(countEl.textContent) || 0;
+          countEl.textContent = wasActive ? (cnt > 0 ? cnt - 1 : 0) : cnt + 1;
+          if (parseInt(countEl.textContent) === 0) countEl.textContent = '';
+        }
+      });
+    });
+
+    // Comment send
+    journalOverlay.querySelectorAll('.jentry__comment-send').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var wrap = this.closest('.jentry__add-comment');
+        var input = wrap.querySelector('.jentry__comment-input');
+        var text = input.value.trim();
+        if (!text) return;
+
+        var commentsContainer = this.closest('.jentry__comments');
+        var commentHTML = '<div class="jentry__comment">' +
+          '<div class="jentry__comment-avatar">T</div>' +
+          '<div class="jentry__comment-body">' +
+          '<div class="jentry__comment-name">트레이너</div>' +
+          '<div class="jentry__comment-text">' + text + '</div>' +
+          '<div class="jentry__comment-time">방금 전</div>' +
+          '</div></div>';
+
+        wrap.insertAdjacentHTML('beforebegin', commentHTML);
+        input.value = '';
+      });
+    });
+  }
+
+})();
+</script>
+
+<!-- Journal Overlay -->
+<div class="journal-overlay" id="journalOverlay">
+  <div class="journal-modal">
+    <div class="journal-modal__header">
+      <div class="journal-modal__handle"></div>
+      <div class="journal-modal__title-row">
+        <span class="journal-modal__title-icon">🌱</span>
+        <span class="journal-modal__title" id="journalTitle">훈련일지</span>
+        <button class="journal-modal__close" id="journalClose">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="journal-modal__body">
+
+      <!-- Entry 1 -->
+      <div class="jentry" style="animation-delay: 0.05s;">
+        <div class="jentry__date">2026.02.12 (수)</div>
+        <div class="jentry__workout">
+          <div class="jentry__workout-label">Today's Training</div>
+          스쿼트 5x5 @ 50kg · 런지 3x12 · 레그프레스 4x10
+        </div>
+        <div class="jentry__text">오늘 스쿼트 50kg 도전했는데 3세트 넘어가니까 허리가 좀 힘들었다. 폼 무너지지 않게 집중했는데 마지막 세트는 살짝 앞으로 기울어진 것 같다. 런지는 균형 잡기가 점점 나아지고 있는 느낌!</div>
+        <div class="jentry__reactions">
+          <span class="jentry__sticker" data-sticker="fire">🔥</span><span class="jentry__sticker-count"></span>
+          <span class="jentry__sticker" data-sticker="strong">💪</span><span class="jentry__sticker-count"></span>
+          <span class="jentry__sticker" data-sticker="star">⭐</span><span class="jentry__sticker-count"></span>
+          <span class="jentry__sticker" data-sticker="heart">❤️</span><span class="jentry__sticker-count"></span>
+          <span class="jentry__sticker" data-sticker="clap">👏</span><span class="jentry__sticker-count"></span>
+        </div>
+        <div class="jentry__comments">
+          <div class="jentry__add-comment">
+            <input class="jentry__comment-input" placeholder="코멘트 남기기..." />
+            <button class="jentry__comment-send">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Entry 2 -->
+      <div class="jentry" style="animation-delay: 0.1s;">
+        <div class="jentry__date">2026.02.10 (월)</div>
+        <div class="jentry__workout">
+          <div class="jentry__workout-label">Today's Training</div>
+          벤치프레스 5x5 @ 35kg · 덤벨플라이 3x12 · 케이블크로스 3x15
+        </div>
+        <div class="jentry__text">벤치프레스 35kg 처음으로 5세트 다 채웠다!! 그립 넓이를 살짝 좁혔더니 어깨 부담이 훨씬 줄었다. 트레이너님이 가르쳐준 호흡법이 확실히 효과 있는 것 같다.</div>
+        <div class="jentry__reactions">
+          <span class="jentry__sticker active" data-sticker="fire">🔥</span><span class="jentry__sticker-count">1</span>
+          <span class="jentry__sticker active" data-sticker="strong">💪</span><span class="jentry__sticker-count">1</span>
+          <span class="jentry__sticker" data-sticker="star">⭐</span><span class="jentry__sticker-count"></span>
+          <span class="jentry__sticker" data-sticker="heart">❤️</span><span class="jentry__sticker-count"></span>
+          <span class="jentry__sticker" data-sticker="clap">👏</span><span class="jentry__sticker-count"></span>
+        </div>
+        <div class="jentry__comments">
+          <div class="jentry__comment">
+            <div class="jentry__comment-avatar">T</div>
+            <div class="jentry__comment-body">
+              <div class="jentry__comment-name">트레이너</div>
+              <div class="jentry__comment-text">35kg 풀세트 축하해요! 호흡 타이밍 잘 잡고 있어요. 다음엔 내려올 때 2초 카운트 해보세요 💪</div>
+              <div class="jentry__comment-time">2/10 20:15</div>
+            </div>
+          </div>
+          <div class="jentry__add-comment">
+            <input class="jentry__comment-input" placeholder="코멘트 남기기..." />
+            <button class="jentry__comment-send">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Entry 3 -->
+      <div class="jentry" style="animation-delay: 0.15s;">
+        <div class="jentry__date">2026.02.07 (금)</div>
+        <div class="jentry__workout">
+          <div class="jentry__workout-label">Today's Training</div>
+          데드리프트 5x3 @ 40kg · 바벨로우 4x8 · 풀업밴드 3x8
+        </div>
+        <div class="jentry__text">설연휴 전 마지막 수업! 데드리프트 그립이 계속 미끄러져서 스트랩 쓰고 했다. 바벨로우는 등 수축 느끼는 게 어렵지만 거울 보면서 하니까 좀 나은 것 같다.</div>
+        <div class="jentry__reactions">
+          <span class="jentry__sticker active" data-sticker="fire">🔥</span><span class="jentry__sticker-count">1</span>
+          <span class="jentry__sticker" data-sticker="strong">💪</span><span class="jentry__sticker-count"></span>
+          <span class="jentry__sticker" data-sticker="star">⭐</span><span class="jentry__sticker-count"></span>
+          <span class="jentry__sticker active" data-sticker="heart">❤️</span><span class="jentry__sticker-count">1</span>
+          <span class="jentry__sticker" data-sticker="clap">👏</span><span class="jentry__sticker-count"></span>
+        </div>
+        <div class="jentry__comments">
+          <div class="jentry__comment">
+            <div class="jentry__comment-avatar">T</div>
+            <div class="jentry__comment-body">
+              <div class="jentry__comment-name">트레이너</div>
+              <div class="jentry__comment-text">그립 힘은 서서히 좋아질 거예요. 연휴 때 손가락 스트레칭 해주면 좋아요! 새해 복 많이 받으세요 🎊</div>
+              <div class="jentry__comment-time">2/7 21:30</div>
+            </div>
+          </div>
+          <div class="jentry__add-comment">
+            <input class="jentry__comment-input" placeholder="코멘트 남기기..." />
+            <button class="jentry__comment-send">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

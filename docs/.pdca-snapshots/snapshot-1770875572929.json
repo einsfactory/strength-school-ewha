@@ -1,0 +1,38 @@
+{
+  "timestamp": "2026-02-12T05:52:52.928Z",
+  "reason": "compaction",
+  "status": {
+    "version": "2.0",
+    "lastUpdated": "2026-02-08T03:50:00.000Z",
+    "activeFeatures": [
+      "strength-school-ewha"
+    ],
+    "primaryFeature": "strength-school-ewha",
+    "features": {
+      "strength-school-ewha": {
+        "phase": "plan",
+        "matchRate": null,
+        "iterationCount": 0,
+        "startedAt": "2026-02-08T03:50:00.000Z",
+        "planDoc": "docs/01-plan/features/strength-school-ewha.plan.md"
+      }
+    },
+    "pipeline": {
+      "currentPhase": 1,
+      "level": "Dynamic",
+      "phaseHistory": []
+    },
+    "session": {
+      "startedAt": "2026-02-08T03:35:08.526Z",
+      "onboardingCompleted": true,
+      "lastActivity": "2026-02-08T03:50:00.000Z"
+    },
+    "history": [
+      {
+        "action": "plan_created",
+        "feature": "strength-school-ewha",
+        "timestamp": "2026-02-08T03:50:00.000Z"
+      }
+    ]
+  }
+}

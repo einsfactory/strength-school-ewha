@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>근력학교 이화 — 트레이너</title>
+<style>
+  /* ── FONT FACES ── */
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/카르멘 산스 9종-OTF/CarmenSansOTF-Light.ttf') format('truetype');
+    font-weight: 300; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/카르멘 산스 9종-OTF/CarmenSansOTF-Regular.ttf') format('truetype');
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/카르멘 산스 9종-OTF/CarmenSansOTF-Medium.ttf') format('truetype');
+    font-weight: 500; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/카르멘 산스 9종-OTF/CarmenSansOTF-SemiBold.ttf') format('truetype');
+    font-weight: 600; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/카르멘 산스 9종-OTF/CarmenSansOTF-Bold.ttf') format('truetype');
+    font-weight: 700; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'TYPE졸업식';
+    src: url('fonts/TYPE졸업식.ttf') format('truetype');
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+
+  /* ── RESET & VARIABLES ── */
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+  :root {
+    --purple-700: #3B2650;
+    --purple-600: #4B2D5E;
+    --purple-500: #5E3D74;
+    --purple-400: #7B5A93;
+    --purple-300: #9E82B0;
+    --purple-200: #C4B0D2;
+    --purple-100: #E8DFF0;
+    --purple-50:  #F5F0F8;
+
+    --rose-400: #D4829A;
+    --rose-300: #E4A5B8;
+    --rose-200: #F0C6D4;
+    --rose-100: #F9E4EC;
+    --rose-50:  #FDF5F8;
+
+    --bg-gradient-1: #EDE0F5;
+    --bg-card: rgba(255, 255, 255, 0.72);
+    --border-subtle: rgba(196, 176, 210, 0.3);
+
+    --text-primary: #2E1A3E;
+    --text-secondary: #6B5A7E;
+    --text-muted: #A89AB8;
+
+    --success: #3A9A64;
+    --success-light: rgba(58, 154, 100, 0.12);
+    --warning: #E8A854;
+    --warning-light: rgba(232, 168, 84, 0.12);
+    --danger: #D94E6A;
+    --danger-light: rgba(217, 78, 106, 0.1);
+
+    --font-display: 'TYPE졸업식', sans-serif;
+    --font-body: 'CarmenSans', 'Noto Sans KR', sans-serif;
+
+    --nav-height: 68px;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: var(--font-body);
+    min-height: 100dvh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    background: var(--bg-gradient-1);
+    color: var(--text-primary);
+    padding-bottom: var(--nav-height);
+  }
+
+  /* ── GRADIENT BACKGROUND ── */
+  .bg-atmosphere {
+    position: fixed; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 90% 70% at 10% 5%, rgba(190, 160, 220, 0.6) 0%, transparent 65%),
+      radial-gradient(ellipse 80% 60% at 90% 10%, rgba(240, 170, 200, 0.55) 0%, transparent 60%),
+      radial-gradient(ellipse 70% 60% at 75% 85%, rgba(180, 150, 220, 0.5) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 15% 85%, rgba(235, 180, 205, 0.45) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 50% 50%, rgba(255, 255, 255, 0.5) 0%, transparent 70%),
+      linear-gradient(150deg, #EDE0F5 0%, #F9DDE8 35%, #E6DAF2 65%, #F5E4EE 100%);
+  }
+
+  body::after {
+    content: '';
+    position: fixed; inset: 0; opacity: 0.018;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px; pointer-events: none; z-index: 100;
+  }
+
+  .main {
+    position: relative; z-index: 1;
+    max-width: 480px; margin: 0 auto;
+    padding: 0 1.25rem 2rem;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-12px); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } }
+
+  /* ── HEADER ── */
+  .header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 0 1.25rem;
+    animation: fadeDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .header__left { display: flex; align-items: center; gap: 0.75rem; }
+
+  .header__avatar {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--purple-600), var(--purple-500));
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-size: 1rem; color: #fff;
+    flex-shrink: 0;
+    border: 2px solid rgba(255,255,255,0.5);
+    box-shadow: 0 2px 12px rgba(75, 45, 94, 0.2);
+  }
+
+  .header__greeting { font-size: 0.75rem; color: var(--text-muted); font-weight: 400; }
+  .header__name { font-family: var(--font-display); font-size: 1.25rem; color: var(--text-primary); margin-top: 0.125rem; }
+
+  .header__badge {
+    font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.08em;
+    background: linear-gradient(135deg, var(--purple-600), var(--purple-500));
+    color: #fff; padding: 0.2rem 0.5rem; border-radius: 20px;
+    margin-top: 0.25rem; display: inline-block;
+  }
+
+  .header__date {
+    font-size: 0.6875rem; color: var(--text-muted); font-weight: 500;
+    text-align: right;
+  }
+
+  /* ── OVERVIEW STATS ── */
+  .overview {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 0.625rem; margin-bottom: 1.25rem;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+  }
+
+  .overview__card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 1rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+
+  .overview__icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .overview__icon svg { width: 18px; height: 18px; }
+
+  .overview__icon--members { background: var(--success-light); color: var(--success); }
+  .overview__icon--classes { background: rgba(75,45,94,0.1); color: var(--purple-500); }
+  .overview__icon--attendance { background: var(--warning-light); color: var(--warning); }
+  .overview__icon--requests { background: var(--danger-light); color: var(--danger); }
+
+  .overview__value {
+    font-family: var(--font-display); font-size: 1.375rem;
+    color: var(--text-primary); line-height: 1;
+  }
+  .overview__value span {
+    font-family: var(--font-body); font-size: 0.6875rem;
+    color: var(--text-muted); font-weight: 400;
+  }
+  .overview__label {
+    font-size: 0.6875rem; color: var(--text-muted); font-weight: 500;
+    margin-top: 0.125rem;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    margin-bottom: 1.25rem;
+  }
+  .section__header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 0.625rem;
+  }
+  .section__title {
+    font-family: var(--font-display); font-size: 1.0625rem;
+    color: var(--text-primary);
+  }
+  .section__more {
+    font-size: 0.75rem; color: var(--text-muted);
+    text-decoration: none; font-weight: 500; transition: color 0.2s;
+  }
+  .section__more:hover { color: var(--purple-500); }
+
+  /* ── TODAY'S CLASSES ── */
+  .today-classes {
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+  }
+
+  .class-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 1rem 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .class-card__header {
+    display: flex; align-items: center; gap: 0.5rem;
+    margin-bottom: 0.625rem;
+  }
+
+  .class-card__time {
+    display: flex; align-items: baseline; gap: 0.375rem;
+  }
+  .class-card__period {
+    font-family: var(--font-display); font-size: 1.0625rem;
+    color: var(--purple-600); line-height: 1;
+  }
+  .class-card__hours {
+    font-size: 0.6875rem; color: var(--text-muted); font-weight: 500;
+  }
+
+  .class-card__members {
+    font-size: 0.6875rem; font-weight: 500; color: var(--text-muted);
+    margin-left: auto;
+  }
+  .class-card__members em {
+    font-style: normal; color: var(--text-secondary);
+  }
+
+  .class-card__slots {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.3rem;
+  }
+
+  .slot {
+    padding: 0.3rem 0.125rem;
+    border-radius: 8px;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.3;
+    min-height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    word-break: keep-all;
+  }
+
+  .slot--regular {
+    background: rgba(75, 45, 94, 0.15);
+    color: var(--text-primary);
+  }
+
+  .slot--sub {
+    background: rgba(158, 130, 176, 0.08);
+    color: var(--purple-400);
+    border: 1px dashed rgba(158, 130, 176, 0.4);
+  }
+
+  .slot--empty {
+    border: 1px dashed rgba(168, 154, 184, 0.2);
+  }
+
+  .class-card__status {
+    font-size: 0.625rem; font-weight: 600;
+    padding: 0.25rem 0.5rem; border-radius: 20px;
+  }
+  .class-card__status--upcoming {
+    background: rgba(75,45,94,0.1); color: var(--purple-500);
+  }
+  .class-card__status--live {
+    background: var(--success-light); color: var(--success);
+  }
+  .class-card__status--done {
+    background: rgba(168,154,184,0.12); color: var(--text-muted);
+  }
+
+  /* ── REQUESTS ── */
+  .requests {
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+  }
+
+  .request-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 0.875rem 1.125rem;
+    margin-bottom: 0.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+
+  .request-card__type {
+    width: 36px; height: 36px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .request-card__type svg { width: 16px; height: 16px; }
+  .request-card__type--sub {
+    background: rgba(230,90,20,0.1); color: #E65A14;
+  }
+  .request-card__type--hold {
+    background: var(--danger-light); color: var(--danger);
+  }
+
+  .request-card__body { flex: 1; min-width: 0; }
+  .request-card__title {
+    font-size: 0.8125rem; font-weight: 600; color: var(--text-primary);
+    margin-bottom: 0.125rem;
+  }
+  .request-card__meta {
+    font-size: 0.6875rem; color: var(--text-muted); font-weight: 400;
+  }
+
+  .request-card__badge {
+    flex-shrink: 0;
+    font-size: 0.625rem; font-weight: 600;
+    padding: 0.25rem 0.5rem; border-radius: 20px;
+  }
+  .request-card__badge--auto {
+    background: var(--success-light); color: var(--success);
+  }
+  .request-card__badge--pending {
+    background: var(--warning-light); color: var(--warning);
+  }
+
+  /* ── TIMETABLE ── */
+  .timetable-section {
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+  }
+
+  .timetable {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .timetable table {
+    width: 100%; border-collapse: collapse;
+  }
+
+  .timetable thead th {
+    font-size: 0.625rem; font-weight: 600;
+    color: var(--text-muted); text-align: center;
+    padding: 0.5rem 0.25rem;
+    background: rgba(94, 61, 116, 0.04);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .timetable thead th:first-child {
+    text-align: left; padding-left: 0.5rem;
+  }
+
+  .timetable td {
+    padding: 0.375rem 0.2rem;
+    border-bottom: 1px solid rgba(196, 176, 210, 0.1);
+    vertical-align: middle;
+  }
+  .timetable tr:last-child td { border-bottom: none; }
+
+  .tt-pcell {
+    padding-left: 0.5rem !important;
+    background: rgba(245, 240, 248, 0.5);
+    width: 64px;
+  }
+  .tt-pnum {
+    font-family: var(--font-display); font-size: 0.75rem;
+    color: var(--purple-600); line-height: 1;
+  }
+  .tt-ptime {
+    font-size: 0.5rem; color: var(--text-muted);
+    margin-top: 0.125rem; line-height: 1.2;
+  }
+
+  .tt-dcell--off { background: rgba(168, 154, 184, 0.03); }
+
+  .tt-spots {
+    text-align: center; font-size: 0.8125rem; font-weight: 700;
+    padding: 0.375rem 0; border-radius: 6px;
+  }
+  .tt-spots--full { background: var(--danger-light); color: var(--danger); }
+  .tt-spots--open { background: rgba(94, 61, 116, 0.06); color: var(--text-muted); }
+
+  /* 모바일: 학생 이름 숨김 (탭하면 팝업으로 표시) */
+  .tt-dg { display: none; }
+  .tt-dcell:not(.tt-dcell--off) { cursor: pointer; border-radius: 6px; }
+  .tt-dcell:active:not(.tt-dcell--off) { background: rgba(94, 61, 116, 0.08); }
+
+  /* ── 시간표 팝업 (바텀시트) ── */
+  .tt-popup-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(30, 20, 40, 0.45);
+    backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.25s, visibility 0.25s;
+  }
+  .tt-popup-overlay.active { opacity: 1; visibility: visible; }
+
+  .tt-popup {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 201;
+    background: #fff;
+    border-radius: 20px 20px 0 0;
+    padding: 0 1.25rem calc(1.25rem + env(safe-area-inset-bottom, 0));
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    max-height: 60vh; overflow-y: auto;
+    box-shadow: 0 -8px 32px rgba(94, 61, 116, 0.15);
+  }
+  .tt-popup-overlay.active .tt-popup { transform: translateY(0); }
+
+  .tt-popup__handle {
+    width: 36px; height: 4px; border-radius: 2px;
+    background: rgba(168, 154, 184, 0.3);
+    margin: 0.625rem auto 0;
+  }
+
+  .tt-popup__head {
+    display: flex; align-items: baseline; gap: 0.5rem;
+    padding: 0.875rem 0 0.625rem; border-bottom: 1px solid var(--border-subtle);
+  }
+  .tt-popup__day {
+    font-family: var(--font-display); font-size: 1.125rem;
+    color: var(--purple-600);
+  }
+  .tt-popup__period {
+    font-size: 0.8125rem; font-weight: 600; color: var(--text-primary);
+  }
+  .tt-popup__time {
+    font-size: 0.6875rem; color: var(--text-muted); margin-left: auto;
+  }
+
+  .tt-popup__badge {
+    display: inline-block; font-size: 0.625rem; font-weight: 700;
+    padding: 0.2rem 0.5rem; border-radius: 6px; margin: 0.625rem 0 0.375rem;
+  }
+  .tt-popup__badge--full { background: var(--danger-light); color: var(--danger); }
+  .tt-popup__badge--open { background: rgba(94, 61, 116, 0.06); color: var(--purple-600); }
+
+  .tt-popup__list { list-style: none; padding: 0; margin: 0; }
+  .tt-popup__list li {
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(196, 176, 210, 0.08);
+    font-size: 0.8125rem; font-weight: 500; color: var(--text-primary);
+  }
+  .tt-popup__list li:last-child { border-bottom: none; }
+  .tt-popup__list li .num {
+    width: 1.25rem; height: 1.25rem; border-radius: 50%;
+    background: rgba(94, 61, 116, 0.06); color: var(--purple-600);
+    font-size: 0.5625rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .tt-popup__list li.holding { color: var(--danger); }
+  .tt-popup__list li.holding .num { background: var(--danger-light); color: var(--danger); }
+  .tt-popup__list li .reason {
+    font-size: 0.625rem; color: var(--text-muted); font-weight: 400; margin-left: auto;
+  }
+
+  .tt-n {
+    font-size: 0.625rem; font-weight: 500; color: var(--text-primary);
+    padding: 0.15rem 0.2rem; border-radius: 4px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .tt-n--h { color: var(--danger); font-weight: 600; }
+
+  .tt-off {
+    text-align: center; font-size: 0.625rem;
+    color: var(--text-muted); opacity: 0.3; padding: 0.375rem 0;
+  }
+
+  /* ── QUICK ACTIONS ── */
+  .quick-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0.625rem;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+  }
+
+  .quick-btn {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 0.375rem; padding: 0.875rem 0.25rem;
+    background: var(--bg-card); backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px; cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    text-decoration: none; color: inherit;
+  }
+  .quick-btn:hover {
+    transform: translateY(-2px);
+    border-color: var(--purple-200);
+    box-shadow: 0 4px 16px rgba(75, 45, 94, 0.08);
+  }
+
+  .quick-btn__icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .quick-btn__icon svg { width: 17px; height: 17px; }
+
+  .quick-btn__icon--members { background: var(--success-light); color: var(--success); }
+  .quick-btn__icon--journal { background: rgba(61,107,58,0.1); color: #3D6B3A; }
+  .quick-btn__icon--notice { background: rgba(75,45,94,0.1); color: var(--purple-500); }
+  .quick-btn__icon--holiday { background: var(--danger-light); color: var(--danger); }
+
+  .quick-btn__text {
+    font-size: 0.625rem; font-weight: 500;
+    color: var(--text-secondary); white-space: nowrap;
+  }
+
+  .mobile-only { display: block; }
+  .desktop-only { display: none; }
+
+  /* ── BOTTOM NAV ── */
+  .bottom-nav {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    height: var(--nav-height);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border-subtle);
+    display: flex; align-items: center; justify-content: space-around;
+    z-index: 50;
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  .nav-item {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 0.25rem; padding: 0.5rem 0.75rem;
+    text-decoration: none; color: var(--text-muted);
+    transition: color 0.2s; cursor: pointer; position: relative;
+  }
+  .nav-item.active { color: var(--purple-600); }
+  .nav-item.active::before {
+    content: ''; position: absolute;
+    top: -1px; left: 50%; transform: translateX(-50%);
+    width: 20px; height: 2px;
+    background: linear-gradient(90deg, var(--purple-400), var(--rose-300));
+    border-radius: 1px;
+  }
+  .nav-item svg { width: 22px; height: 22px; }
+  .nav-item__label { font-size: 0.5625rem; font-weight: 600; letter-spacing: 0.02em; }
+
+  .nav-item__badge {
+    position: absolute; top: 2px; right: 8px;
+    min-width: 16px; height: 16px; border-radius: 8px;
+    background: var(--danger); color: #fff;
+    font-size: 0.5625rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 4px; border: 1.5px solid #fff;
+  }
+
+  /* ── SIDEBAR (hidden on mobile) ── */
+  .sidebar {
+    display: none;
+  }
+
+  .sidebar__logo {
+    display: flex; align-items: center; gap: 0.625rem;
+    padding: 1.5rem 1.25rem 1.75rem;
+  }
+  .sidebar__logo-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--purple-600), var(--rose-400));
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-family: var(--font-display); font-size: 0.875rem;
+  }
+  .sidebar__logo-text {
+    font-family: var(--font-display); font-size: 1rem;
+    color: var(--text-primary);
+  }
+
+  .sidebar__nav { padding: 0 0.75rem; }
+
+  .sidebar__item {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.75rem 1rem; margin-bottom: 0.25rem;
+    border-radius: 10px; text-decoration: none;
+    color: var(--text-secondary); font-size: 0.8125rem; font-weight: 500;
+    transition: all 0.2s; cursor: pointer; position: relative;
+  }
+  .sidebar__item:hover {
+    background: rgba(94, 61, 116, 0.06);
+    color: var(--purple-600);
+  }
+  .sidebar__item.active {
+    background: rgba(94, 61, 116, 0.1);
+    color: var(--purple-600); font-weight: 600;
+  }
+  .sidebar__item.active::before {
+    content: ''; position: absolute;
+    left: 0; top: 50%; transform: translateY(-50%);
+    width: 3px; height: 20px;
+    background: linear-gradient(180deg, var(--purple-500), var(--rose-400));
+    border-radius: 0 2px 2px 0;
+  }
+  .sidebar__item svg { width: 20px; height: 20px; flex-shrink: 0; }
+  .sidebar__item-badge {
+    margin-left: auto;
+    font-size: 0.625rem; font-weight: 700;
+    min-width: 20px; height: 20px; border-radius: 10px;
+    background: var(--danger); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 6px;
+  }
+
+  .sidebar__divider {
+    height: 1px; background: var(--border-subtle);
+    margin: 0.75rem 1.25rem;
+  }
+
+  .sidebar__profile {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    margin-top: auto;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .sidebar__profile-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--purple-600), var(--purple-500));
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-size: 0.75rem; color: #fff;
+    flex-shrink: 0;
+  }
+  .sidebar__profile-name {
+    font-size: 0.8125rem; font-weight: 600; color: var(--text-primary);
+  }
+  .sidebar__profile-role {
+    font-size: 0.625rem; color: var(--text-muted); font-weight: 500;
+  }
+
+  /* ── CONTENT GRID (desktop) ── */
+  .content-grid {
+    display: contents;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  @media (min-width: 480px) { .main { padding: 0 1.5rem 2rem; } }
+
+  /* ── DESKTOP LAYOUT ── */
+  @media (min-width: 768px) {
+    body { padding-bottom: 0; }
+
+    .bottom-nav { display: none; }
+
+    .sidebar {
+      display: flex; flex-direction: column;
+      position: fixed; left: 0; top: 0; bottom: 0;
+      width: 240px; z-index: 50;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-right: 1px solid var(--border-subtle);
+    }
+
+    .main {
+      max-width: none;
+      margin-left: 240px;
+      padding: 0 2rem 2rem;
+    }
+
+    .header { padding: 1.5rem 0; }
+    .header__avatar { width: 52px; height: 52px; }
+
+    .overview { grid-template-columns: repeat(4, 1fr); gap: 0.875rem; }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    .content-grid > .section { margin-bottom: 0; }
+    .content-grid > .section.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .mobile-only { display: none !important; }
+    .desktop-only { display: block !important; }
+
+    /* 데스크톱: 시간표 학생 이름 표시 */
+    .timetable table { min-width: 680px; }
+    .timetable thead th { font-size: 0.6875rem; padding: 0.625rem 0.375rem; }
+    .timetable thead th:first-child { padding-left: 0.875rem; }
+    .timetable td { padding: 0.5rem 0.375rem; vertical-align: top; }
+    .tt-pcell { padding-left: 0.875rem !important; min-width: 88px; width: auto; }
+    .tt-pnum { font-size: 0.9375rem; }
+    .tt-ptime { font-size: 0.5625rem; margin-top: 0.25rem; }
+    .tt-dcell { min-width: 108px; }
+    .tt-spots { font-size: 0.5625rem; padding: 0.125rem 0; border-radius: 4px; margin-bottom: 0.3rem; }
+    .tt-dcell { cursor: default; border-radius: 0; }
+    .tt-dg { display: grid; grid-template-columns: 1fr 1fr; gap: 0.15rem; }
+    .tt-popup-overlay, .tt-popup { display: none !important; }
+    .tt-off { font-size: 0.6875rem; padding: 1.5rem 0; }
+  }
+
+  @media (min-width: 1200px) {
+    .sidebar { width: 260px; }
+    .main { margin-left: 260px; padding: 0 2.5rem 2rem; }
+    .overview__card { padding: 1.25rem; }
+    .overview__value { font-size: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-atmosphere"></div>
+
+<!-- Sidebar (Desktop) -->
+<aside class="sidebar">
+  <div class="sidebar__logo">
+    <div class="sidebar__logo-icon">근</div>
+    <span class="sidebar__logo-text">근력학교 이화</span>
+  </div>
+  <nav class="sidebar__nav">
+    <a class="sidebar__item active" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+      대시보드
+    </a>
+    <a class="sidebar__item" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+      수강생 관리
+      <span class="sidebar__item-badge">47</span>
+    </a>
+    <a class="sidebar__item" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+      </svg>
+      훈련일지
+    </a>
+    <a class="sidebar__item" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"/>
+      </svg>
+      공지사항
+    </a>
+    <div class="sidebar__divider"></div>
+    <a class="sidebar__item" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+      </svg>
+      대체수강 내역
+      <span class="sidebar__item-badge" style="background:var(--warning);">2</span>
+    </a>
+    <a class="sidebar__item" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/><line x1="10" y1="15" x2="10" y2="9"/><line x1="14" y1="15" x2="14" y2="9"/>
+      </svg>
+      홀딩 내역
+      <span class="sidebar__item-badge" style="background:var(--warning);">1</span>
+    </a>
+    <div class="sidebar__divider"></div>
+    <a class="sidebar__item" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
+      휴일 관리
+    </a>
+    <a class="sidebar__item" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+      </svg>
+      설정
+    </a>
+  </nav>
+  <div class="sidebar__profile">
+    <div class="sidebar__profile-avatar">코치</div>
+    <div>
+      <div class="sidebar__profile-name">김코치</div>
+      <div class="sidebar__profile-role">TRAINER</div>
+    </div>
+  </div>
+</aside>
+
+<div class="main">
+  <!-- Header -->
+  <header class="header">
+    <div class="header__left">
+      <div class="header__avatar">코치</div>
+      <div>
+        <p class="header__greeting">근력학교 이화</p>
+        <p class="header__name">김코치</p>
+        <span class="header__badge">TRAINER</span>
+      </div>
+    </div>
+    <div class="header__date">
+      2026년 2월 9일<br>월요일
+    </div>
+  </header>
+
+  <!-- Overview Stats -->
+  <div class="overview">
+    <div class="overview__card">
+      <div class="overview__icon overview__icon--members">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      <div>
+        <div class="overview__value">47<span>명</span></div>
+        <div class="overview__label">전체 수강생</div>
+      </div>
+    </div>
+    <div class="overview__card">
+      <div class="overview__icon overview__icon--classes">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+      </div>
+      <div>
+        <div class="overview__value">5<span>교시</span></div>
+        <div class="overview__label">오늘 수업</div>
+      </div>
+    </div>
+    <div class="overview__card">
+      <div class="overview__icon overview__icon--attendance">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+      </div>
+      <div>
+        <div class="overview__value">89<span>%</span></div>
+        <div class="overview__label">이번 달 출석률</div>
+      </div>
+    </div>
+    <div class="overview__card">
+      <div class="overview__icon overview__icon--requests">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/>
+        </svg>
+      </div>
+      <div>
+        <div class="overview__value">3<span>건</span></div>
+        <div class="overview__label">최근 신청</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content Grid (2-col on desktop) -->
+  <div class="content-grid">
+
+  <!-- Today's Classes -->
+  <div class="section today-classes">
+    <div class="section__header">
+      <h2 class="section__title">오늘 수업</h2>
+      <span style="font-size:0.6875rem; color:var(--text-muted); font-weight:500;">총 32명 수강</span>
+    </div>
+
+    <div class="class-card">
+      <div class="class-card__header">
+        <div class="class-card__time">
+          <span class="class-card__period">1교시</span>
+          <span class="class-card__hours">11:30</span>
+        </div>
+        <span class="class-card__members"><em>7</em> / 8</span>
+        <span class="class-card__status class-card__status--done">완료</span>
+      </div>
+      <div class="class-card__slots">
+        <span class="slot slot--regular">김지은(은또)</span>
+        <span class="slot slot--regular">박서연(써니)</span>
+        <span class="slot slot--regular">정수민(수미니)</span>
+        <span class="slot slot--regular">최유진(유진)</span>
+        <span class="slot slot--regular">한예린(린이)</span>
+        <span class="slot slot--regular">송다은(다은)</span>
+        <span class="slot slot--sub">이하나(하나)</span>
+        <span class="slot slot--empty"></span>
+      </div>
+    </div>
+
+    <div class="class-card">
+      <div class="class-card__header">
+        <div class="class-card__time">
+          <span class="class-card__period">2교시</span>
+          <span class="class-card__hours">13:00</span>
+        </div>
+        <span class="class-card__members"><em>6</em> / 8</span>
+        <span class="class-card__status class-card__status--done">완료</span>
+      </div>
+      <div class="class-card__slots">
+        <span class="slot slot--regular">오지현(지현)</span>
+        <span class="slot slot--regular">윤서아(서아)</span>
+        <span class="slot slot--regular">임채원(채원)</span>
+        <span class="slot slot--regular">강민지(민지)</span>
+        <span class="slot slot--regular">배수빈(수비니)</span>
+        <span class="slot slot--regular">조은서(은서)</span>
+        <span class="slot slot--empty"></span>
+        <span class="slot slot--empty"></span>
+      </div>
+    </div>
+
+    <div class="class-card" style="border-color: rgba(58,154,100,0.3); background: rgba(255,255,255,0.85);">
+      <div class="class-card__header">
+        <div class="class-card__time">
+          <span class="class-card__period">6교시</span>
+          <span class="class-card__hours">17:00</span>
+        </div>
+        <span class="class-card__members"><em>8</em> / 8 · 만석</span>
+        <span class="class-card__status class-card__status--live">진행중</span>
+      </div>
+      <div class="class-card__slots">
+        <span class="slot slot--regular">문하은(하은)</span>
+        <span class="slot slot--regular">신지수(지수)</span>
+        <span class="slot slot--regular">양현서(현서)</span>
+        <span class="slot slot--regular">류미래(미래)</span>
+        <span class="slot slot--regular">홍가영(가영)</span>
+        <span class="slot slot--regular">장소율(소율)</span>
+        <span class="slot slot--regular">권나연(나연)</span>
+        <span class="slot slot--sub">서예림(예림)</span>
+      </div>
+    </div>
+
+    <div class="class-card">
+      <div class="class-card__header">
+        <div class="class-card__time">
+          <span class="class-card__period">7교시</span>
+          <span class="class-card__hours">18:30</span>
+        </div>
+        <span class="class-card__members"><em>6</em> / 8</span>
+        <span class="class-card__status class-card__status--upcoming">예정</span>
+      </div>
+      <div class="class-card__slots">
+        <span class="slot slot--regular">고은별(은별)</span>
+        <span class="slot slot--regular">남지아(지아)</span>
+        <span class="slot slot--regular">유하린(하린)</span>
+        <span class="slot slot--regular">전소이(소이)</span>
+        <span class="slot slot--regular">황다인(다인)</span>
+        <span class="slot slot--regular">안서현(서현)</span>
+        <span class="slot slot--empty"></span>
+        <span class="slot slot--empty"></span>
+      </div>
+    </div>
+
+    <div class="class-card">
+      <div class="class-card__header">
+        <div class="class-card__time">
+          <span class="class-card__period">8교시</span>
+          <span class="class-card__hours">20:00</span>
+        </div>
+        <span class="class-card__members"><em>5</em> / 8</span>
+        <span class="class-card__status class-card__status--upcoming">예정</span>
+      </div>
+      <div class="class-card__slots">
+        <span class="slot slot--regular">차유나(유나)</span>
+        <span class="slot slot--regular">하서율(서율)</span>
+        <span class="slot slot--regular">봉주희(주희)</span>
+        <span class="slot slot--regular">탁민서(민서)</span>
+        <span class="slot slot--regular">노예은(예은)</span>
+        <span class="slot slot--empty"></span>
+        <span class="slot slot--empty"></span>
+        <span class="slot slot--empty"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Requests -->
+  <div class="section requests">
+    <div class="section__header">
+      <h2 class="section__title">최근 신청</h2>
+      <a href="#" class="section__more">전체보기</a>
+    </div>
+
+    <div class="request-card">
+      <div class="request-card__type request-card__type--sub">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+        </svg>
+      </div>
+      <div class="request-card__body">
+        <div class="request-card__title">김지은(은또) · 대체수강</div>
+        <div class="request-card__meta">월 1교시 → 금 1교시 (2/13)</div>
+      </div>
+      <span class="request-card__badge request-card__badge--auto">자동승인</span>
+    </div>
+
+    <div class="request-card">
+      <div class="request-card__type request-card__type--hold">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><line x1="10" y1="15" x2="10" y2="9"/><line x1="14" y1="15" x2="14" y2="9"/>
+        </svg>
+      </div>
+      <div class="request-card__body">
+        <div class="request-card__title">박서연(써니) · 홀딩</div>
+        <div class="request-card__meta">2/17 ~ 2/23 (7일) · 개인 사유</div>
+      </div>
+      <span class="request-card__badge request-card__badge--auto">자동승인</span>
+    </div>
+
+    <div class="request-card">
+      <div class="request-card__type request-card__type--sub">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+        </svg>
+      </div>
+      <div class="request-card__body">
+        <div class="request-card__title">이하나(하나) · 대체수강</div>
+        <div class="request-card__meta">수 7교시 → 목 8교시 (2/12)</div>
+      </div>
+      <span class="request-card__badge request-card__badge--auto">자동승인</span>
+    </div>
+  </div>
+
+  <!-- Timetable -->
+  <div class="section timetable-section full-width">
+    <div class="section__header">
+      <h2 class="section__title">정규반 시간표</h2>
+      <span style="font-size:0.5625rem; color:var(--text-muted); font-weight:400;"><span style="color:var(--danger);">●</span> 만석 <span style="color:var(--purple-400);">●</span> 여석 <span class="desktop-only" style="display:none;"><span style="color:var(--danger);">A</span> 홀딩</span></span>
+    </div>
+    <div class="timetable">
+      <table>
+        <thead>
+          <tr><th>교시</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th></tr>
+        </thead>
+        <tbody>
+          <!-- 1교시 (월·금) -->
+          <tr>
+            <td class="tt-pcell"><div class="tt-pnum">1교시</div><div class="tt-ptime">11:30~12:40</div></td>
+            <td class="tt-dcell">
+              <div class="tt-spots tt-spots--full">0</div>
+              <div class="tt-dg">
+                <span class="tt-n">김지은(은또)</span><span class="tt-n">박서연(써니)</span>
+                <span class="tt-n">정수민(수미니)</span><span class="tt-n">최유진(유진)</span>
+                <span class="tt-n">한예린(린이)</span><span class="tt-n">송다은(다은)</span>
+                <span class="tt-n tt-n--h">장미라(미라) - 출산</span><span class="tt-n tt-n--h">백하린(하린이)</span>
+              </div>
+            </td>
+            <td class="tt-dcell tt-dcell--off"><div class="tt-off">—</div></td>
+            <td class="tt-dcell tt-dcell--off"><div class="tt-off">—</div></td>
+            <td class="tt-dcell tt-dcell--off"><div class="tt-off">—</div></td>
+            <td class="tt-dcell">
+              <div class="tt-spots tt-spots--open">1</div>
+              <div class="tt-dg">
+                <span class="tt-n">김지은(은또)</span><span class="tt-n">박서연(써니)</span>
+                <span class="tt-n">정수민(수미니)</span><span class="tt-n">최유진(유진)</span>
+                <span class="tt-n">한예린(린이)</span><span class="tt-n">송다은(다은)</span>
+                <span class="tt-n tt-n--h">장미라(미라) - 출산</span>
+              </div>
+            </td>
+          </tr>
+          <!-- 2교시 (월·금) -->
+          <tr>
+            <td class="tt-pcell"><div class="tt-pnum">2교시</div><div class="tt-ptime">13:00~14:10</div></td>
+            <td class="tt-dcell">
+              <div class="tt-spots tt-spots--open">2</div>
+              <div class="tt-dg">
+                <span class="tt-n">오지현(지현)</span><span class="tt-n">윤서아(서아)</span>
+                <span class="tt-n">임채원(채원)</span><span class="tt-n">강민지(민지)</span>
+                <span class="tt-n">배수빈(수비니)</span><span class="tt-n">조은서(은서)</span>
+              </div>
+            </td>
+            <td class="tt-dcell tt-dcell--off"><div class="tt-off">—</div></td>
+            <td class="tt-dcell tt-dcell--off"><div class="tt-off">—</div></td>
+            <td class="tt-dcell tt-dcell--off"><div class="tt-off">—</div></td>
+            <td class="tt-dcell">
+              <div class="tt-spots tt-spots--open">1</div>
+              <div class="tt-dg">
+                <span class="tt-n">오지현(지현)</span><span class="tt-n">윤서아(서아)</span>
+                <span class="tt-n">임채원(채원)</span><span class="tt-n">강민지(민지)</span>
+                <span class="tt-n">배수빈(수비니)</span><span class="tt-n">조은서(은서)</span>
+                <span class="tt-n tt-n--h">김나윤(나윤) - 여행</span>
+              </div>
+            </td>
+          </tr>
+          <!-- 6교시 (월·수·금) -->
+          <tr>
+            <td class="tt-pcell"><div class="tt-pnum">6교시</div><div class="tt-ptime">17:00~18:10</div></td>
+            <td class="tt-dcell">
+              <div class="tt-spots tt-spots--open">1</div>
+              <div class="tt-dg">
+                <span class="tt-n">문하은(하은)</span><span class="tt-n">신지수(지수)</span>
+                <span class="tt-n">양현서(현서)</span><span class="tt-n">류미래(미래)</span>
+                <span class="tt-n">홍가영(가영)</span><span class="tt-n">장소율(소율)</span>
+                <span class="tt-n">권나연(나연)</span>
+              </div>
+            </td>
+            <td class="tt-dcell tt-dcell--off"><div class="tt-off">—</div></td>
+            <td class="tt-dcell">
+              <div class="tt-spots tt-spots--full">0</div>
+              <div class="tt-dg">
+                <span class="tt-n">문하은(하은)</span><span class="tt-n">신지수(지수)</span>
+                <span class="tt-n">양현서(현서)</span><span class="tt-n">류미래(미래)</span>
+                <span class="tt-n">홍가영(가영)</span><span class="tt-n">장소율(소율)</span>
+                <span class="tt-n">권나연(나연)</span><span class="tt-n tt-n--h">도유정(유정) - 생리통</span>
+              </div>
+            </td>
+            <td class="tt-dcell tt-dcell--off"><div class="tt-off">—</div></td>
+            <td class="tt-dcell">
+              <div class="tt-spots tt-spots--open">2</div>
+              <div class="tt-dg">
+                <span class="tt-n">문하은(하은)</span><span class="tt-n">신지수(지수)</span>
+                <span class="tt-n">양현서(현서)</span><span class="tt-n">류미래(미래)</span>
+                <span class="tt-n">홍가영(가영)</span><span class="tt-n">장소율(소율)</span>
+              </div>
+            </td>
+          </tr>
+          <!-- 7교시 (월~금) -->
+          <tr>
+            <td class="tt-pcell"><div class="tt-pnum">7교시</div><div class="tt-ptime">18:30~19:40</div></td>
+            <td class="tt-dcell">
+              <div class="tt-spots tt-spots--open">2</div>
+              <div class="tt-dg">
+                <span class="tt-n">고은별(은별)</span><span class="tt-n">남지아(지아)</span>
+                <span class="tt-n">유하린(하린)</span><span class="tt-n">전소이(소이)</span>
+                <span class="tt-n">황다인(다인)</span><span class="tt-n">안서현(서현)</span>
+              </div>
+            </td>
+            <td class="tt-dcell">
+              <div class="tt-spots tt-spots--full">0</div>
+              <div class="tt-dg">
+                <span class="tt-n">고은별(은별)</span><span class="tt-n">남지아(지아)</span>
+                <span class="tt-n">유하린(하린)</span><span class="tt-n">전소이(소이)</span>
+                <span class="tt-n">황다인(다인)</span><span class="tt-n">안서현(서현)</span>
+                <span class="tt-n">김도연(도연이)</span><span class="tt-n tt-n--h">윤채영(채영) - 업무출장</span>
+              </div>
+            </td>
+            <td class="tt-dcell">
+              <div class="tt-spots tt-spots--open">1</div>
+              <div class="tt-dg">
+                <span class="tt-n">고은별(은별)</span><span class="tt-n">남지아(지아)</span>
+                <span class="tt-n">유하린(하린)</span><span class="tt-n">전소이(소이)</span>
+                <span class="tt-n">황다인(다인)</span><span class="tt-n">안서현(서현)</span>
+                <span class="tt-n">김도연(도연이)</span>
+              </div>
+            </td>
+            <td class="tt-dcell">
+              <div class="tt-spots tt-spots--open">1</div>
+              <div class="tt-dg">
+                <span class="tt-n">고은별(은별)</span><span class="tt-n">남지아(지아)</span>
+                <span class="tt-n">유하린(하린)</span><span class="tt-n">전소이(소이)</span>
+                <span class="tt-n">황다인(다인)</span><span class="tt-n">안서현(서현)</span>
+                <span class="tt-n">김도연(도연이)</span>
+              </div>
+            </td>
+            <td class="tt-dcell">
+              <div class="tt-spots tt-spots--full">0</div>
+              <div class="tt-dg">
+                <span class="tt-n">고은별(은별)</span><span class="tt-n">남지아(지아)</span>
+                <span class="tt-n">유하린(하린)</span><span class="tt-n">전소이(소이)</span>
+                <span class="tt-n">황다인(다인)</span><span class="tt-n">안서현(서현)</span>
+                <span class="tt-n">김도연(도연이)</span><span class="tt-n tt-n--h">윤채영(채영) - 업무출장</span>
+              </div>
+            </td>
+          </tr>
+          <!-- 8교시 (월~금) -->
+          <tr>
+            <td class="tt-pcell"><div class="tt-pnum">8교시</div><div class="tt-ptime">20:00~21:10</div></td>
+            <td class="tt-dcell">
+              <div class="tt-spots tt-spots--open">1</div>
+              <div class="tt-dg">
+                <span class="tt-n">차유나(유나)</span><span class="tt-n">하서율(서율)</span>
+                <span class="tt-n">봉주희(주희)</span><span class="tt-n">탁민서(민서)</span>
+                <span class="tt-n">노예은(예은)</span><span class="tt-n">이다인(다이니)</span>
+                <span class="tt-n">정시은(시은이)</span>
+              </div>
+            </td>
+            <td class="tt-dcell">
+              <div class="tt-spots tt-spots--open">1</div>
+              <div class="tt-dg">
+                <span class="tt-n">차유나(유나)</span><span class="tt-n">하서율(서율)</span>
+                <span class="tt-n">봉주희(주희)</span><span class="tt-n">탁민서(민서)</span>
+                <span class="tt-n">노예은(예은)</span><span class="tt-n">이다인(다이니)</span>
+                <span class="tt-n">정시은(시은이)</span>
+              </div>
+            </td>
+            <td class="tt-dcell">
+              <div class="tt-spots tt-spots--full">0</div>
+              <div class="tt-dg">
+                <span class="tt-n">차유나(유나)</span><span class="tt-n">하서율(서율)</span>
+                <span class="tt-n">봉주희(주희)</span><span class="tt-n">탁민서(민서)</span>
+                <span class="tt-n">노예은(예은)</span><span class="tt-n">이다인(다이니)</span>
+                <span class="tt-n">정시은(시은이)</span><span class="tt-n tt-n--h">한소미(소미) - 건강문제</span>
+              </div>
+            </td>
+            <td class="tt-dcell">
+              <div class="tt-spots tt-spots--full">0</div>
+              <div class="tt-dg">
+                <span class="tt-n">차유나(유나)</span><span class="tt-n">하서율(서율)</span>
+                <span class="tt-n">봉주희(주희)</span><span class="tt-n">탁민서(민서)</span>
+                <span class="tt-n">노예은(예은)</span><span class="tt-n">이다인(다이니)</span>
+                <span class="tt-n">정시은(시은이)</span><span class="tt-n tt-n--h">한소미(소미) - 건강문제</span>
+              </div>
+            </td>
+            <td class="tt-dcell">
+              <div class="tt-spots tt-spots--open">3</div>
+              <div class="tt-dg">
+                <span class="tt-n">차유나(유나)</span><span class="tt-n">하서율(서율)</span>
+                <span class="tt-n">봉주희(주희)</span><span class="tt-n">탁민서(민서)</span>
+                <span class="tt-n">노예은(예은)</span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  </div><!-- /content-grid -->
+
+  <!-- Quick Actions (mobile only, sidebar replaces on desktop) -->
+  <div class="section mobile-only">
+    <div class="section__header">
+      <h2 class="section__title">관리</h2>
+    </div>
+    <div class="quick-grid">
+      <a class="quick-btn" href="#">
+        <div class="quick-btn__icon quick-btn__icon--members">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <span class="quick-btn__text">수강생관리</span>
+      </a>
+      <a class="quick-btn" href="#">
+        <div class="quick-btn__icon quick-btn__icon--journal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+        </div>
+        <span class="quick-btn__text">일지작성</span>
+      </a>
+      <a class="quick-btn" href="#">
+        <div class="quick-btn__icon quick-btn__icon--notice">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"/>
+          </svg>
+        </div>
+        <span class="quick-btn__text">공지작성</span>
+      </a>
+      <a class="quick-btn" href="#">
+        <div class="quick-btn__icon quick-btn__icon--holiday">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="14" x2="8" y2="14.01"/><line x1="12" y1="14" x2="12" y2="14.01"/><line x1="16" y1="14" x2="16" y2="14.01"/>
+          </svg>
+        </div>
+        <span class="quick-btn__text">휴일관리</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Bottom Navigation (Admin) -->
+<nav class="bottom-nav">
+  <a class="nav-item active" href="#">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+    </svg>
+    <span class="nav-item__label">대시보드</span>
+  </a>
+  <a class="nav-item" href="#">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+    </svg>
+    <span class="nav-item__label">수강생</span>
+    <span class="nav-item__badge">47</span>
+  </a>
+  <a class="nav-item" href="#">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+    </svg>
+    <span class="nav-item__label">일지</span>
+  </a>
+  <a class="nav-item" href="#">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"/>
+    </svg>
+    <span class="nav-item__label">공지</span>
+  </a>
+  <a class="nav-item" href="#">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+    </svg>
+    <span class="nav-item__label">설정</span>
+  </a>
+</nav>
+
+<!-- 시간표 팝업 -->
+<div class="tt-popup-overlay" id="ttPopupOverlay">
+  <div class="tt-popup" id="ttPopup">
+    <div class="tt-popup__handle"></div>
+    <div class="tt-popup__head">
+      <span class="tt-popup__day" id="ttPopupDay"></span>
+      <span class="tt-popup__period" id="ttPopupPeriod"></span>
+      <span class="tt-popup__time" id="ttPopupTime"></span>
+    </div>
+    <div id="ttPopupBadge"></div>
+    <ul class="tt-popup__list" id="ttPopupList"></ul>
+  </div>
+</div>
+
+<script>
+(() => {
+  const DAY_NAMES = ['', '월요일', '화요일', '수요일', '목요일', '금요일'];
+  const overlay = document.getElementById('ttPopupOverlay');
+  const popup = document.getElementById('ttPopup');
+
+  function openPopup(cell) {
+    const row = cell.closest('tr');
+    const pcell = row.querySelector('.tt-pcell');
+    const period = pcell.querySelector('.tt-pnum').textContent;
+    const time = pcell.querySelector('.tt-ptime').textContent;
+    const colIdx = Array.from(row.children).indexOf(cell);
+    const day = DAY_NAMES[colIdx] || '';
+
+    const spots = cell.querySelector('.tt-spots');
+    const isFull = spots && spots.classList.contains('tt-spots--full');
+    const spotsNum = spots ? spots.textContent.trim() : '';
+
+    const names = cell.querySelectorAll('.tt-n');
+
+    document.getElementById('ttPopupDay').textContent = day;
+    document.getElementById('ttPopupPeriod').textContent = period;
+    document.getElementById('ttPopupTime').textContent = time;
+
+    const enrolled = names.length;
+    const badgeEl = document.getElementById('ttPopupBadge');
+    if (isFull) {
+      badgeEl.innerHTML = '<span class="tt-popup__badge tt-popup__badge--full">만석 ' + enrolled + '/8</span>';
+    } else {
+      badgeEl.innerHTML = '<span class="tt-popup__badge tt-popup__badge--open">여석 ' + spotsNum + ' · ' + enrolled + '/8명</span>';
+    }
+
+    const list = document.getElementById('ttPopupList');
+    list.innerHTML = '';
+    names.forEach((n, i) => {
+      const li = document.createElement('li');
+      const isHold = n.classList.contains('tt-n--h');
+      if (isHold) li.classList.add('holding');
+
+      const text = n.textContent.trim();
+      const parts = text.split(' - ');
+      const name = parts[0];
+      const reason = parts[1] || '';
+
+      li.innerHTML = '<span class="num">' + (i + 1) + '</span>' + name
+        + (reason ? '<span class="reason">' + reason + '</span>' : '')
+        + (isHold && !reason ? '<span class="reason">홀딩</span>' : '');
+      list.appendChild(li);
+    });
+
+    overlay.classList.add('active');
+  }
+
+  function closePopup() {
+    overlay.classList.remove('active');
+  }
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closePopup();
+  });
+
+  popup.addEventListener('click', (e) => e.stopPropagation());
+
+  document.querySelectorAll('.tt-dcell:not(.tt-dcell--off)').forEach(cell => {
+    cell.addEventListener('click', () => {
+      if (window.innerWidth >= 768) return;
+      openPopup(cell);
+    });
+  });
+})();
+</script>
+</body>
+</html>

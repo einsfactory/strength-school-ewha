@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>근력학교 이화 — 내 정보</title>
+<style>
+  /* ── FONT FACES ── */
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Light.ttf') format('truetype');
+    font-weight: 300; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Regular.ttf') format('truetype');
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Medium.ttf') format('truetype');
+    font-weight: 500; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-SemiBold.ttf') format('truetype');
+    font-weight: 600; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Bold.ttf') format('truetype');
+    font-weight: 700; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'TYPE졸업식';
+    src: url('fonts/TypeGraduation.ttf') format('truetype');
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+
+  /* ── RESET & VARIABLES ── */
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+  :root {
+    --purple-700: #3B2650;
+    --purple-600: #4B2D5E;
+    --purple-500: #5E3D74;
+    --purple-400: #7B5A93;
+    --purple-300: #9E82B0;
+    --purple-200: #C4B0D2;
+    --purple-100: #E8DFF0;
+    --purple-50:  #F5F0F8;
+
+    --rose-400: #D4829A;
+    --rose-300: #E4A5B8;
+    --rose-200: #F0C6D4;
+    --rose-100: #F9E4EC;
+    --rose-50:  #FDF5F8;
+
+    --bg-gradient-1: #EDE0F5;
+    --bg-gradient-2: #F9DDE8;
+    --bg-gradient-3: #E6DAF2;
+    --bg-card: rgba(255, 255, 255, 0.72);
+    --border-subtle: rgba(196, 176, 210, 0.3);
+
+    --text-primary: #2E1A3E;
+    --text-secondary: #6B5A7E;
+    --text-muted: #A89AB8;
+
+    --success: #5BB88A;
+    --danger: #D94E6A;
+
+    --font-display: 'TYPE졸업식', sans-serif;
+    --font-body: 'CarmenSans', 'Noto Sans KR', sans-serif;
+
+    --nav-height: 68px;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: var(--font-body);
+    min-height: 100dvh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    background: var(--bg-gradient-1);
+    color: var(--text-primary);
+    padding-bottom: var(--nav-height);
+  }
+
+  /* ── GRADIENT BACKGROUND ── */
+  .bg-atmosphere {
+    position: fixed; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 90% 70% at 10% 5%, rgba(190, 160, 220, 0.6) 0%, transparent 65%),
+      radial-gradient(ellipse 80% 60% at 90% 10%, rgba(240, 170, 200, 0.55) 0%, transparent 60%),
+      radial-gradient(ellipse 70% 60% at 75% 85%, rgba(180, 150, 220, 0.5) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 15% 85%, rgba(235, 180, 205, 0.45) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 50% 50%, rgba(255, 255, 255, 0.5) 0%, transparent 70%),
+      linear-gradient(150deg, #EDE0F5 0%, #F9DDE8 35%, #E6DAF2 65%, #F5E4EE 100%);
+  }
+
+  body::after {
+    content: '';
+    position: fixed; inset: 0; opacity: 0.018;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px; pointer-events: none; z-index: 100;
+  }
+
+  .main {
+    position: relative; z-index: 1;
+    max-width: 480px; margin: 0 auto;
+    padding: 0 1.25rem 2rem;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-12px); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 1rem 0 1.5rem;
+    animation: fadeDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .back-btn {
+    width: 40px; height: 40px; border-radius: 12px;
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-card); backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-secondary); cursor: pointer;
+    transition: all 0.2s; flex-shrink: 0; text-decoration: none;
+  }
+  .back-btn:hover { border-color: var(--purple-200); color: var(--purple-500); }
+  .back-btn svg { width: 20px; height: 20px; }
+
+  .page-header__title {
+    font-family: var(--font-display);
+    font-size: 1.25rem; color: var(--text-primary);
+  }
+
+  /* ── PROFILE HERO ── */
+  .profile-hero {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 1.5rem 0 1.75rem;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+  }
+
+  .avatar-wrapper {
+    position: relative; margin-bottom: 0.875rem;
+  }
+
+  .avatar {
+    width: 88px; height: 88px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--purple-100), var(--rose-100));
+    border: 3px solid rgba(255,255,255,0.8);
+    box-shadow: 0 4px 20px rgba(75, 45, 94, 0.15);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+
+  .avatar img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+
+  .avatar__placeholder {
+    font-size: 2rem; font-weight: 700;
+    color: var(--purple-400);
+    font-family: var(--font-display);
+  }
+
+  .avatar-edit {
+    position: absolute; bottom: 0; right: 0;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--purple-500);
+    border: 2px solid #fff;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(75, 45, 94, 0.25);
+    transition: transform 0.2s;
+  }
+  .avatar-edit:active { transform: scale(0.9); }
+  .avatar-edit svg { width: 13px; height: 13px; color: #fff; }
+
+  .profile-hero__name {
+    font-family: var(--font-display);
+    font-size: 1.375rem; color: var(--text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .profile-hero__id {
+    font-size: 0.8125rem; color: var(--text-muted); font-weight: 500;
+  }
+
+  /* ── INFO CARD ── */
+  .info-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    margin-bottom: 0.875rem;
+    overflow: hidden;
+  }
+
+  .info-card__title {
+    font-family: var(--font-display);
+    font-size: 0.9375rem; color: var(--text-primary);
+    padding: 1rem 1.25rem 0.5rem;
+  }
+
+  .info-row {
+    display: flex; align-items: center;
+    padding: 0.75rem 1.25rem;
+    gap: 0.75rem;
+    transition: background 0.15s;
+  }
+
+  .info-row + .info-row {
+    border-top: 1px solid rgba(196, 176, 210, 0.1);
+  }
+
+  .info-row__icon {
+    width: 34px; height: 34px; border-radius: 9px;
+    background: rgba(94, 61, 116, 0.07);
+    color: var(--purple-400);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .info-row__icon svg { width: 16px; height: 16px; }
+
+  .info-row__content { flex: 1; min-width: 0; }
+
+  .info-row__label {
+    font-size: 0.6875rem; font-weight: 500;
+    color: var(--text-muted); margin-bottom: 1px;
+  }
+
+  .info-row__value {
+    font-size: 1.0625rem; font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .info-row__arrow {
+    color: var(--text-muted); flex-shrink: 0;
+  }
+  .info-row__arrow svg { width: 16px; height: 16px; }
+
+  /* ── MENU LIST ── */
+  .menu-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    margin-bottom: 0.875rem;
+    overflow: hidden;
+  }
+
+  .menu-item {
+    display: flex; align-items: center;
+    padding: 0.875rem 1.25rem;
+    gap: 0.75rem; cursor: pointer;
+    transition: background 0.15s;
+    -webkit-tap-highlight-color: transparent;
+    text-decoration: none; color: inherit;
+  }
+
+  .menu-item:active {
+    background: rgba(94, 61, 116, 0.04);
+  }
+
+  .menu-item + .menu-item {
+    border-top: 1px solid rgba(196, 176, 210, 0.1);
+  }
+
+  .menu-item__icon {
+    width: 34px; height: 34px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .menu-item__icon svg { width: 16px; height: 16px; }
+
+  .menu-item__icon--purple {
+    background: rgba(94, 61, 116, 0.07);
+    color: var(--purple-400);
+  }
+
+  .menu-item__icon--danger {
+    background: rgba(217, 78, 106, 0.08);
+    color: var(--danger);
+  }
+
+  .menu-item__text {
+    flex: 1; font-size: 0.9375rem; font-weight: 400;
+    color: var(--text-primary);
+  }
+
+  .menu-item__text--danger {
+    color: var(--danger);
+  }
+
+  .menu-item__chevron {
+    color: var(--text-muted); flex-shrink: 0;
+  }
+  .menu-item__chevron svg { width: 16px; height: 16px; }
+
+  /* ── PASSWORD MODAL ── */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(46, 26, 62, 0.4);
+    backdrop-filter: blur(6px);
+    align-items: flex-end; justify-content: center;
+  }
+
+  .modal-overlay.open {
+    display: flex;
+    animation: fadeIn 0.2s ease;
+  }
+
+  @keyframes fadeIn { from { opacity: 0; } }
+
+  @keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+
+  .modal {
+    width: 100%; max-width: 480px;
+    background: #fff;
+    border-radius: 20px 20px 0 0;
+    padding: 1.5rem 1.5rem 2rem;
+    padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0));
+    animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .modal__handle {
+    width: 36px; height: 4px; border-radius: 2px;
+    background: var(--border-subtle);
+    margin: 0 auto 1.25rem;
+  }
+
+  .modal__title {
+    font-family: var(--font-display);
+    font-size: 1.0625rem; color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+
+  .modal__input-group {
+    margin-bottom: 0.875rem;
+  }
+
+  .modal__label {
+    font-size: 0.6875rem; font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.375rem; display: block;
+  }
+
+  .modal__input {
+    width: 100%; padding: 0.75rem 1rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px; font-family: var(--font-body);
+    font-size: 0.875rem; color: var(--text-primary);
+    background: rgba(245, 240, 248, 0.5);
+    transition: border-color 0.2s;
+  }
+
+  .modal__input:focus {
+    outline: none; border-color: var(--purple-300);
+  }
+
+  .modal__btn {
+    width: 100%; padding: 0.875rem;
+    border: none; border-radius: 12px;
+    background: linear-gradient(135deg, var(--purple-600), var(--purple-500), var(--rose-400));
+    color: #fff; font-family: var(--font-body);
+    font-size: 0.875rem; font-weight: 600;
+    cursor: pointer; margin-top: 0.5rem;
+    transition: all 0.25s;
+  }
+
+  .modal__btn:active { transform: scale(0.98); }
+
+  /* ── APP INFO ── */
+  .app-info {
+    text-align: center;
+    padding: 1.5rem 0 0.5rem;
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .app-info__logo {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    color: var(--purple-300);
+    margin-bottom: 0.25rem;
+  }
+
+  /* ── BOTTOM NAV ── */
+  .bottom-nav {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    height: var(--nav-height);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border-subtle);
+    display: flex; align-items: center; justify-content: space-around;
+    z-index: 50;
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  .nav-item {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 0.25rem; padding: 0.5rem 0.75rem;
+    text-decoration: none; color: var(--text-muted);
+    transition: color 0.2s; cursor: pointer; position: relative;
+  }
+
+  .nav-item.active { color: var(--purple-600); }
+
+  .nav-item.active::before {
+    content: ''; position: absolute;
+    top: -1px; left: 50%; transform: translateX(-50%);
+    width: 20px; height: 2px;
+    background: linear-gradient(90deg, var(--purple-400), var(--rose-300));
+    border-radius: 1px;
+  }
+
+  .nav-item svg { width: 22px; height: 22px; }
+  .nav-item__label { font-size: 0.5625rem; font-weight: 600; letter-spacing: 0.02em; }
+
+  /* ── RESPONSIVE ── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  @media (min-width: 480px) { .main { padding: 0 1.5rem 2rem; } }
+  @media (min-width: 768px) { .main { max-width: 560px; padding: 0 2rem 2rem; } }
+</style>
+</head>
+<body>
+
+<div class="bg-atmosphere"></div>
+
+<div class="main">
+  <!-- Page Header -->
+  <header class="page-header">
+    <a href="index.html" class="back-btn" aria-label="뒤로가기">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </a>
+    <h1 class="page-header__title">내 정보</h1>
+  </header>
+
+  <!-- Profile Hero -->
+  <div class="profile-hero">
+    <div class="avatar-wrapper">
+      <div class="avatar">
+        <img src="profile-photo.jpg" alt="프로필 사진">
+      </div>
+      <div class="avatar-edit" id="avatar-edit-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/>
+        </svg>
+      </div>
+    </div>
+    <div class="profile-hero__name">은또</div>
+    <div class="profile-hero__id">김지은1234</div>
+  </div>
+
+  <!-- Basic Info -->
+  <div class="info-card" style="animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.1s both;">
+    <div class="info-card__title">기본 정보</div>
+    <div class="info-row">
+      <div class="info-row__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>
+        </svg>
+      </div>
+      <div class="info-row__content">
+        <div class="info-row__label">닉네임</div>
+        <div class="info-row__value">은또</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info-row__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+        </svg>
+      </div>
+      <div class="info-row__content">
+        <div class="info-row__label">본명</div>
+        <div class="info-row__value">김지은</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info-row__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+      </div>
+      <div class="info-row__content">
+        <div class="info-row__label">전화번호</div>
+        <div class="info-row__value">010-1234-5678</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info-row__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+      </div>
+      <div class="info-row__content">
+        <div class="info-row__label">등록일</div>
+        <div class="info-row__value">2025.12.01</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Menu Items -->
+  <div class="menu-card" style="animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.2s both;">
+    <a class="menu-item" id="id-change-btn">
+      <div class="menu-item__icon menu-item__icon--purple">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+        </svg>
+      </div>
+      <span class="menu-item__text">아이디 변경</span>
+      <span class="menu-item__chevron">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </span>
+    </a>
+    <a class="menu-item" id="pw-change-btn">
+      <div class="menu-item__icon menu-item__icon--purple">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </div>
+      <span class="menu-item__text">비밀번호 변경</span>
+      <span class="menu-item__chevron">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </span>
+    </a>
+    <a class="menu-item" href="class-status.html">
+      <div class="menu-item__icon menu-item__icon--purple">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+      </div>
+      <span class="menu-item__text">수업 현황</span>
+      <span class="menu-item__chevron">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </span>
+    </a>
+    <a class="menu-item" id="excel-download-btn">
+      <div class="menu-item__icon menu-item__icon--purple">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+      </div>
+      <span class="menu-item__text">훈련일지 다운로드</span>
+      <span class="menu-item__chevron">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </span>
+    </a>
+  </div>
+
+  <div class="menu-card" style="animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.25s both;">
+    <a class="menu-item" id="logout-btn">
+      <div class="menu-item__icon menu-item__icon--danger">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+      </div>
+      <span class="menu-item__text menu-item__text--danger">로그아웃</span>
+      <span class="menu-item__chevron">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </span>
+    </a>
+    <a class="menu-item" id="delete-account-btn">
+      <div class="menu-item__icon menu-item__icon--danger">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/>
+        </svg>
+      </div>
+      <span class="menu-item__text menu-item__text--danger">회원탈퇴</span>
+      <span class="menu-item__chevron">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </span>
+    </a>
+  </div>
+
+  <!-- App Info -->
+  <div class="app-info" style="animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.3s both;">
+    <div class="app-info__logo">근력학교 이화</div>
+    버전 1.0.0
+  </div>
+</div>
+
+<!-- Password Change Modal -->
+<div class="modal-overlay" id="pw-modal">
+  <div class="modal">
+    <div class="modal__handle"></div>
+    <div class="modal__title">비밀번호 변경</div>
+    <div class="modal__input-group">
+      <label class="modal__label">현재 비밀번호</label>
+      <input type="password" class="modal__input" placeholder="현재 비밀번호를 입력하세요">
+    </div>
+    <div class="modal__input-group">
+      <label class="modal__label">새 비밀번호</label>
+      <input type="password" class="modal__input" placeholder="새 비밀번호를 입력하세요">
+    </div>
+    <div class="modal__input-group">
+      <label class="modal__label">새 비밀번호 확인</label>
+      <input type="password" class="modal__input" placeholder="새 비밀번호를 다시 입력하세요">
+    </div>
+    <button class="modal__btn" id="pw-submit">변경하기</button>
+  </div>
+</div>
+
+<!-- ID Change Modal -->
+<div class="modal-overlay" id="id-modal">
+  <div class="modal">
+    <div class="modal__handle"></div>
+    <div class="modal__title">아이디 변경</div>
+    <div class="modal__input-group">
+      <label class="modal__label">현재 아이디</label>
+      <input type="text" class="modal__input" value="김지은1234" readonly style="color: var(--text-muted); background: rgba(245,240,248,0.3);">
+    </div>
+    <div class="modal__input-group">
+      <label class="modal__label">새 아이디</label>
+      <input type="text" class="modal__input" id="new-id-input" placeholder="새 아이디를 입력하세요 (예: 은또5678)">
+    </div>
+    <p style="font-size: 0.6875rem; color: var(--text-muted); margin-bottom: 0.5rem; line-height: 1.5;">
+      아이디는 이름 + 전화번호 뒷4자리 형태를 권장합니다.
+    </p>
+    <button class="modal__btn" id="id-submit">변경하기</button>
+  </div>
+</div>
+
+<!-- Delete Account Modal -->
+<div class="modal-overlay" id="delete-modal">
+  <div class="modal">
+    <div class="modal__handle"></div>
+    <div class="modal__title" style="color: var(--danger);">회원탈퇴</div>
+    <p style="font-size: 0.8125rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">
+      탈퇴 시 모든 수업 기록, 훈련일지, 수강 정보가 삭제됩니다. 이 작업은 되돌릴 수 없습니다.
+    </p>
+    <div class="modal__input-group">
+      <label class="modal__label">확인을 위해 "탈퇴합니다"를 입력하세요</label>
+      <input type="text" class="modal__input" id="delete-confirm-input" placeholder="탈퇴합니다">
+    </div>
+    <button class="modal__btn" id="delete-submit" style="background: linear-gradient(135deg, #D94E6A, #C0445E);">탈퇴하기</button>
+  </div>
+</div>
+
+<!-- Bottom Navigation -->
+<nav class="bottom-nav">
+  <a class="nav-item" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+    </svg>
+    <span class="nav-item__label">홈</span>
+  </a>
+  <a class="nav-item" href="challenge.html">
+    <span style="font-size:1.25rem;line-height:1;">🔥</span>
+    <span class="nav-item__label">챌린지</span>
+  </a>
+  <a class="nav-item" href="program.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+    </svg>
+    <span class="nav-item__label">프로그램</span>
+  </a>
+  <a class="nav-item" href="change.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+    </svg>
+    <span class="nav-item__label">변경</span>
+  </a>
+  <a class="nav-item" href="class-status.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+    </svg>
+    <span class="nav-item__label">수업현황</span>
+  </a>
+</nav>
+
+<script>
+(function() {
+  var pwModal = document.getElementById('pw-modal');
+  var idModal = document.getElementById('id-modal');
+  var deleteModal = document.getElementById('delete-modal');
+  var pwBtn = document.getElementById('pw-change-btn');
+  var pwSubmit = document.getElementById('pw-submit');
+  var idChangeBtn = document.getElementById('id-change-btn');
+  var idSubmit = document.getElementById('id-submit');
+  var excelBtn = document.getElementById('excel-download-btn');
+  var logoutBtn = document.getElementById('logout-btn');
+  var deleteBtn = document.getElementById('delete-account-btn');
+  var deleteSubmit = document.getElementById('delete-submit');
+  var avatarBtn = document.getElementById('avatar-edit-btn');
+
+  // Password change modal
+  pwBtn.addEventListener('click', function() { pwModal.classList.add('open'); });
+  pwModal.addEventListener('click', function(e) { if (e.target === pwModal) pwModal.classList.remove('open'); });
+  pwSubmit.addEventListener('click', function() {
+    pwSubmit.textContent = '변경 완료!';
+    pwSubmit.style.background = 'linear-gradient(135deg, #5BB88A, #4AA87A)';
+    setTimeout(function() { pwModal.classList.remove('open'); pwSubmit.textContent = '변경하기'; pwSubmit.style.background = ''; }, 1200);
+  });
+
+  // ID change modal
+  idChangeBtn.addEventListener('click', function() { idModal.classList.add('open'); });
+  idModal.addEventListener('click', function(e) { if (e.target === idModal) idModal.classList.remove('open'); });
+  idSubmit.addEventListener('click', function() {
+    var newId = document.getElementById('new-id-input').value.trim();
+    if (!newId) { document.getElementById('new-id-input').focus(); return; }
+    idSubmit.textContent = '변경 완료!';
+    idSubmit.style.background = 'linear-gradient(135deg, #5BB88A, #4AA87A)';
+    document.querySelector('.profile-hero__id').textContent = newId;
+    setTimeout(function() { idModal.classList.remove('open'); idSubmit.textContent = '변경하기'; idSubmit.style.background = ''; }, 1200);
+  });
+
+  // Excel download
+  excelBtn.addEventListener('click', function() {
+    alert('훈련일지 엑셀 다운로드\n(프로토타입 - 실제 다운로드 미연동)');
+  });
+
+  // Logout
+  logoutBtn.addEventListener('click', function() {
+    if (confirm('로그아웃 하시겠습니까?')) { window.location.href = 'login.html'; }
+  });
+
+  // Delete account modal
+  deleteBtn.addEventListener('click', function() { deleteModal.classList.add('open'); });
+  deleteModal.addEventListener('click', function(e) { if (e.target === deleteModal) deleteModal.classList.remove('open'); });
+  deleteSubmit.addEventListener('click', function() {
+    var confirmText = document.getElementById('delete-confirm-input').value.trim();
+    if (confirmText !== '탈퇴합니다') {
+      document.getElementById('delete-confirm-input').style.borderColor = 'var(--danger)';
+      document.getElementById('delete-confirm-input').focus();
+      return;
+    }
+    deleteSubmit.textContent = '탈퇴 처리중...';
+    setTimeout(function() {
+      alert('회원탈퇴가 완료되었습니다.');
+      window.location.href = 'login.html';
+    }, 800);
+  });
+
+  // Avatar
+  avatarBtn.addEventListener('click', function() {
+    alert('프로필 사진 변경\n(프로토타입 - 실제 업로드 미연동)');
+  });
+})();
+</script>
+
+</body>
+</html>
