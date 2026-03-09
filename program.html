@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>근력학교 이화 — 프로그램</title>
+<style>
+  /* ── FONT FACES ── */
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'TYPE졸업식';
+    src: url('fonts/TypeGraduation.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* ── RESET & VARIABLES ── */
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+  :root {
+    --purple-700: #3B2650;
+    --purple-600: #4B2D5E;
+    --purple-500: #5E3D74;
+    --purple-400: #7B5A93;
+    --purple-300: #9E82B0;
+    --purple-200: #C4B0D2;
+    --purple-100: #E8DFF0;
+    --purple-50:  #F5F0F8;
+
+    --rose-400: #D4829A;
+    --rose-300: #E4A5B8;
+    --rose-200: #F0C6D4;
+    --rose-100: #F9E4EC;
+    --rose-50:  #FDF5F8;
+
+    --bg-gradient-1: #EDE0F5;
+    --bg-gradient-2: #F9DDE8;
+    --bg-gradient-3: #E6DAF2;
+    --bg-card: rgba(255, 255, 255, 0.72);
+    --bg-card-solid: #fff;
+    --border-subtle: rgba(196, 176, 210, 0.3);
+
+    --text-primary: #2E1A3E;
+    --text-secondary: #6B5A7E;
+    --text-muted: #A89AB8;
+
+    --success: #5BB88A;
+    --warning: #E8A854;
+    --danger: #D94E6A;
+
+    --font-display: 'TYPE졸업식', sans-serif;
+    --font-body: 'CarmenSans', 'Noto Sans KR', sans-serif;
+
+    --nav-height: 68px;
+
+    /* Program specific */
+    --aux-color: #6B8E7B;
+    --aux-bg: rgba(107, 142, 123, 0.1);
+    --aux-border: rgba(107, 142, 123, 0.2);
+    --main-color: var(--purple-500);
+    --main-bg: rgba(94, 61, 116, 0.08);
+    --main-border: rgba(94, 61, 116, 0.15);
+    --note-color: #8B7355;
+    --note-bg: rgba(139, 115, 85, 0.06);
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: var(--font-body);
+    min-height: 100dvh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    background: var(--bg-gradient-1);
+    color: var(--text-primary);
+    padding-bottom: var(--nav-height);
+  }
+
+  /* ── GRADIENT BACKGROUND ── */
+  .bg-atmosphere {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 90% 70% at 10% 5%, rgba(190, 160, 220, 0.6) 0%, transparent 65%),
+      radial-gradient(ellipse 80% 60% at 90% 10%, rgba(240, 170, 200, 0.55) 0%, transparent 60%),
+      radial-gradient(ellipse 70% 60% at 75% 85%, rgba(180, 150, 220, 0.5) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 15% 85%, rgba(235, 180, 205, 0.45) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 50% 50%, rgba(255, 255, 255, 0.5) 0%, transparent 70%),
+      linear-gradient(150deg, #EDE0F5 0%, #F9DDE8 35%, #E6DAF2 65%, #F5E4EE 100%);
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    opacity: 0.018;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px;
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    position: relative;
+    z-index: 1;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 1.25rem 2rem;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-12px); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+  }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 0 1.25rem;
+    animation: fadeDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .back-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+
+  .back-btn:hover { border-color: var(--purple-200); }
+  .back-btn svg { width: 18px; height: 18px; }
+
+  .page-header__title {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    color: var(--text-primary);
+  }
+
+  /* ── SECTION ── */
+  .section {
+    margin-bottom: 1.5rem;
+  }
+
+  .section__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+
+  .section__title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--text-primary);
+  }
+
+  .section__sub {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  /* ── PROGRAM HERO ── */
+  .program-hero {
+    background:
+      linear-gradient(135deg, rgba(75, 45, 94, 0.07), rgba(212, 130, 154, 0.05)),
+      var(--bg-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 20px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .program-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, rgba(212, 130, 154, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .program-hero__badge {
+    display: inline-block;
+    font-size: 0.5625rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--purple-400);
+    background: rgba(94, 61, 116, 0.08);
+    padding: 0.25rem 0.625rem;
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+  }
+
+  .program-hero__title {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    color: var(--text-primary);
+    margin-bottom: 0.375rem;
+    line-height: 1.3;
+  }
+
+  .program-hero__period {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+
+  .program-hero__desc {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    font-weight: 400;
+  }
+
+  /* ── WEEK PROGRESS ── */
+  .week-progress {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 18px;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+  }
+
+  .week-progress__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .week-progress__week {
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    color: var(--text-primary);
+  }
+
+  .week-progress__counter {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .week-progress__goal {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    padding: 0.625rem 0.875rem;
+    background: rgba(94, 61, 116, 0.04);
+    border-radius: 10px;
+    border-left: 3px solid var(--purple-300);
+  }
+
+  /* Step Track */
+  .step-track {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .step-track__dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    transition: all 0.3s;
+  }
+
+  .step-track__dot--done {
+    background: linear-gradient(135deg, var(--purple-400), var(--rose-300));
+    color: #fff;
+    box-shadow: 0 2px 6px rgba(94, 61, 116, 0.2);
+  }
+
+  .step-track__dot--current {
+    background: var(--purple-600);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(94, 61, 116, 0.3);
+    transform: scale(1.15);
+  }
+
+  .step-track__dot--future {
+    background: rgba(196, 176, 210, 0.15);
+    color: var(--text-muted);
+    border: 1.5px solid rgba(196, 176, 210, 0.25);
+  }
+
+  .step-track__line {
+    flex: 1;
+    height: 2px;
+    min-width: 4px;
+  }
+
+  .step-track__line--done {
+    background: linear-gradient(90deg, var(--purple-300), var(--rose-200));
+  }
+
+  .step-track__line--pending {
+    background: rgba(196, 176, 210, 0.2);
+  }
+
+  /* ── DAY CARD ── */
+  .day-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 18px;
+    padding: 1.25rem;
+    margin-bottom: 0.875rem;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    transition: border-color 0.2s;
+  }
+
+  .day-card:nth-child(1) { animation-delay: 0.25s; }
+  .day-card:nth-child(2) { animation-delay: 0.35s; }
+  .day-card:nth-child(3) { animation-delay: 0.45s; }
+
+  .day-card--today {
+    border-color: rgba(94, 61, 116, 0.3);
+    box-shadow: 0 2px 12px rgba(94, 61, 116, 0.08);
+  }
+
+  .day-card__header {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    margin-bottom: 1rem;
+  }
+
+  .day-card__badge {
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.3125rem 0.625rem;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--purple-500), var(--purple-400));
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .day-card__title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    flex: 1;
+  }
+
+  .day-card__today-tag {
+    font-size: 0.5625rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 0.1875rem 0.5rem;
+    border-radius: 6px;
+    background: rgba(91, 184, 138, 0.12);
+    color: var(--success);
+    flex-shrink: 0;
+  }
+
+  /* Exercise Row */
+  .exercise {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    padding: 0.75rem;
+    border-radius: 12px;
+    margin-bottom: 0.5rem;
+  }
+
+  .exercise--aux {
+    background: var(--aux-bg);
+    border: 1px solid var(--aux-border);
+  }
+
+  .exercise--main {
+    background: var(--main-bg);
+    border: 1px solid var(--main-border);
+  }
+
+  .exercise__type {
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    flex-shrink: 0;
+    margin-top: 0.0625rem;
+  }
+
+  .exercise__type--aux {
+    background: rgba(107, 142, 123, 0.18);
+    color: var(--aux-color);
+  }
+
+  .exercise__type--main {
+    background: rgba(94, 61, 116, 0.12);
+    color: var(--main-color);
+  }
+
+  .exercise__body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .exercise__name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.4;
+    margin-bottom: 0.125rem;
+  }
+
+  .exercise__note {
+    font-size: 0.75rem;
+    color: var(--note-color);
+    line-height: 1.4;
+    font-weight: 400;
+    font-style: italic;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .exercise__note::before {
+    content: '';
+    display: inline-block;
+    width: 3px;
+    min-height: 12px;
+    border-radius: 2px;
+    background: rgba(139, 115, 85, 0.2);
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+  }
+
+  /* ── NOTICE CARD ── */
+  .notice-card {
+    background:
+      linear-gradient(135deg, rgba(232, 168, 84, 0.04), rgba(212, 130, 154, 0.03)),
+      var(--bg-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(232, 168, 84, 0.15);
+    border-radius: 14px;
+    padding: 1rem 1.125rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+  }
+
+  .notice-card__icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(232, 168, 84, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--warning);
+  }
+
+  .notice-card__icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .notice-card__body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .notice-card__title {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.1875rem;
+  }
+
+  .notice-card__text {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+    font-weight: 400;
+  }
+
+  /* ── BOTTOM NAV ── */
+  .bottom-nav {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    height: var(--nav-height);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border-subtle);
+    display: flex; align-items: center; justify-content: space-around;
+    z-index: 50;
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  .nav-item {
+    display: flex; flex-direction: column;
+    align-items: center; gap: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    text-decoration: none; color: var(--text-muted);
+    transition: color 0.2s; cursor: pointer; position: relative;
+  }
+
+  .nav-item.active { color: var(--purple-600); }
+
+  .nav-item.active::before {
+    content: ''; position: absolute;
+    top: -1px; left: 50%; transform: translateX(-50%);
+    width: 20px; height: 2px;
+    background: linear-gradient(90deg, var(--purple-400), var(--rose-300));
+    border-radius: 1px;
+  }
+
+  .nav-item svg { width: 22px; height: 22px; }
+
+  .nav-item__label {
+    font-size: 0.5625rem; font-weight: 600; letter-spacing: 0.02em;
+  }
+
+  /* ── MEDIA QUERIES ── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  @media (min-width: 480px) { .main { padding: 0 1.5rem 2rem; } }
+</style>
+</head>
+<body>
+
+<!-- Gradient Background -->
+<div class="bg-atmosphere"></div>
+
+<div class="main">
+  <!-- Page Header -->
+  <div class="page-header">
+    <a class="back-btn" href="index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </a>
+    <h1 class="page-header__title">프로그램</h1>
+  </div>
+
+  <!-- ═══ PROGRAM HERO ═══ -->
+  <div class="program-hero">
+    <span class="program-hero__badge">Current Program</span>
+    <h2 class="program-hero__title">근력 기초 · 하체 시즌</h2>
+    <div class="program-hero__period">2026.02.01 ~ 2026.03.31 (8주)</div>
+    <p class="program-hero__desc">
+      기초 근력 패턴을 중심으로 하체 3대 리프트의 정확한 자세와 점진적 과부하를 목표로 합니다.
+      매주 보조훈련과 본훈련을 조합하여 3일 순환 프로그램으로 운영합니다.
+    </p>
+  </div>
+
+  <!-- ═══ WEEK PROGRESS ═══ -->
+  <div class="week-progress">
+    <div class="week-progress__header">
+      <span class="week-progress__week">3주차</span>
+      <span class="week-progress__counter">3 / 8주</span>
+    </div>
+    <div class="week-progress__goal">하체 집중 · 점진적 과부하 시작</div>
+
+    <!-- Step Track -->
+    <div class="step-track">
+      <div class="step-track__dot step-track__dot--done">1</div>
+      <div class="step-track__line step-track__line--done"></div>
+      <div class="step-track__dot step-track__dot--done">2</div>
+      <div class="step-track__line step-track__line--done"></div>
+      <div class="step-track__dot step-track__dot--current">3</div>
+      <div class="step-track__line step-track__line--pending"></div>
+      <div class="step-track__dot step-track__dot--future">4</div>
+      <div class="step-track__line step-track__line--pending"></div>
+      <div class="step-track__dot step-track__dot--future">5</div>
+      <div class="step-track__line step-track__line--pending"></div>
+      <div class="step-track__dot step-track__dot--future">6</div>
+      <div class="step-track__line step-track__line--pending"></div>
+      <div class="step-track__dot step-track__dot--future">7</div>
+      <div class="step-track__line step-track__line--pending"></div>
+      <div class="step-track__dot step-track__dot--future">8</div>
+    </div>
+  </div>
+
+  <!-- ═══ 금주 훈련 ═══ -->
+  <div class="section">
+    <div class="section__header">
+      <h2 class="section__title">금주 훈련</h2>
+      <span class="section__sub">Day 1 / 2 / 3 순환</span>
+    </div>
+
+    <!-- Day 1 -->
+    <div class="day-card day-card--today">
+      <div class="day-card__header">
+        <span class="day-card__badge">Day 1</span>
+        <span class="day-card__title">스쿼트 포커스</span>
+        <span class="day-card__today-tag">오늘</span>
+      </div>
+
+      <div class="exercise exercise--aux">
+        <span class="exercise__type exercise__type--aux">보조</span>
+        <div class="exercise__body">
+          <div class="exercise__name">밴드워크 3×12 · 클램쉘 3×15</div>
+          <div class="exercise__note">고관절 활성화, 둔근 프리셋</div>
+        </div>
+      </div>
+
+      <div class="exercise exercise--main">
+        <span class="exercise__type exercise__type--main">본훈련</span>
+        <div class="exercise__body">
+          <div class="exercise__name">백스쿼트 5×5 @ RPE 7</div>
+          <div class="exercise__note">무릎 트래킹 큐잉 집중</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 2 -->
+    <div class="day-card">
+      <div class="day-card__header">
+        <span class="day-card__badge">Day 2</span>
+        <span class="day-card__title">힌지 패턴</span>
+      </div>
+
+      <div class="exercise exercise--aux">
+        <span class="exercise__type exercise__type--aux">보조</span>
+        <div class="exercise__body">
+          <div class="exercise__name">풀오버 3×12 · 페이스풀 3×15</div>
+          <div class="exercise__note">흉추 가동성, 후면 사슬 활성화</div>
+        </div>
+      </div>
+
+      <div class="exercise exercise--main">
+        <span class="exercise__type exercise__type--main">본훈련</span>
+        <div class="exercise__body">
+          <div class="exercise__name">루마니안 데드리프트 4×8 @ RPE 7</div>
+          <div class="exercise__note">힙 힌지 패턴 정확도</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 3 -->
+    <div class="day-card">
+      <div class="day-card__header">
+        <span class="day-card__badge">Day 3</span>
+        <span class="day-card__title">편측 안정성</span>
+      </div>
+
+      <div class="exercise exercise--aux">
+        <span class="exercise__type exercise__type--aux">보조</span>
+        <div class="exercise__body">
+          <div class="exercise__name">스텝업 3×10 · 카프레이즈 3×20</div>
+          <div class="exercise__note">발목 안정성, 단측 밸런스</div>
+        </div>
+      </div>
+
+      <div class="exercise exercise--main">
+        <span class="exercise__type exercise__type--main">본훈련</span>
+        <div class="exercise__body">
+          <div class="exercise__name">불가리안 스플릿 스쿼트 4×8</div>
+          <div class="exercise__note">좌우 불균형 교정, 깊이 확보</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 코치 안내 ═══ -->
+  <div class="notice-card">
+    <div class="notice-card__icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
+      </svg>
+    </div>
+    <div class="notice-card__body">
+      <div class="notice-card__title">코치 안내</div>
+      <div class="notice-card__text">이번 주부터 과부하를 시작합니다. 무게보다 자세에 집중하시고, 통증이 있으면 바로 알려주세요.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Bottom Navigation -->
+<nav class="bottom-nav">
+  <a class="nav-item" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+    </svg>
+    <span class="nav-item__label">홈</span>
+  </a>
+  <a class="nav-item" href="challenge.html">
+    <span style="font-size:1.25rem;line-height:1;">🔥</span>
+    <span class="nav-item__label">챌린지</span>
+  </a>
+  <a class="nav-item active" href="program.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+    </svg>
+    <span class="nav-item__label">프로그램</span>
+  </a>
+  <a class="nav-item" href="change.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+    </svg>
+    <span class="nav-item__label">변경</span>
+  </a>
+  <a class="nav-item" href="class-status.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+    </svg>
+    <span class="nav-item__label">수업현황</span>
+  </a>
+</nav>
+
+</body>
+</html>

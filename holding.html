@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>근력학교 이화 — 홀딩 신청</title>
+<style>
+  /* ── FONT FACES ── */
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'TYPE졸업식';
+    src: url('fonts/TypeGraduation.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* ── RESET & VARIABLES ── */
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+  :root {
+    --purple-700: #3B2650;
+    --purple-600: #4B2D5E;
+    --purple-500: #5E3D74;
+    --purple-400: #7B5A93;
+    --purple-300: #9E82B0;
+    --purple-200: #C4B0D2;
+    --purple-100: #E8DFF0;
+    --purple-50:  #F5F0F8;
+
+    --rose-400: #D4829A;
+    --rose-300: #E4A5B8;
+    --rose-200: #F0C6D4;
+    --rose-100: #F9E4EC;
+    --rose-50:  #FDF5F8;
+
+    --bg-gradient-1: #EDE0F5;
+    --bg-gradient-2: #F9DDE8;
+    --bg-gradient-3: #E6DAF2;
+    --bg-card: rgba(255, 255, 255, 0.72);
+    --bg-card-solid: #fff;
+    --border-subtle: rgba(196, 176, 210, 0.3);
+
+    --text-primary: #2E1A3E;
+    --text-secondary: #6B5A7E;
+    --text-muted: #A89AB8;
+
+    --success: #5BB88A;
+    --warning: #E8A854;
+    --danger: #D94E6A;
+    --holding: #5E3D74;
+    --holding-light: rgba(120, 60, 180, 0.08);
+
+    --font-display: 'TYPE졸업식', sans-serif;
+    --font-body: 'CarmenSans', 'Noto Sans KR', sans-serif;
+
+    --nav-height: 68px;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: var(--font-body);
+    min-height: 100dvh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    background: var(--bg-gradient-1);
+    color: var(--text-primary);
+    padding-bottom: var(--nav-height);
+  }
+
+  /* ── GRADIENT BACKGROUND ── */
+  .bg-atmosphere {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 90% 70% at 10% 5%, rgba(190, 160, 220, 0.6) 0%, transparent 65%),
+      radial-gradient(ellipse 80% 60% at 90% 10%, rgba(240, 170, 200, 0.55) 0%, transparent 60%),
+      radial-gradient(ellipse 70% 60% at 75% 85%, rgba(180, 150, 220, 0.5) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 15% 85%, rgba(235, 180, 205, 0.45) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 50% 50%, rgba(255, 255, 255, 0.5) 0%, transparent 70%),
+      linear-gradient(150deg, #EDE0F5 0%, #F9DDE8 35%, #E6DAF2 65%, #F5E4EE 100%);
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    opacity: 0.018;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px;
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    position: relative;
+    z-index: 1;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 1.25rem 2rem;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-12px); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+  }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 0 1.5rem;
+    animation: fadeDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .back-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+
+  .back-btn:hover {
+    border-color: var(--purple-200);
+    color: var(--purple-500);
+  }
+
+  .back-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .page-header__title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--text-primary);
+  }
+
+  /* ── INFO BANNER ── */
+  .info-banner {
+    background: linear-gradient(135deg, rgba(75,45,94,0.08), rgba(75,45,94,0.03));
+    border: 1px solid rgba(75,45,94,0.12);
+    border-radius: 12px;
+    padding: 0.875rem 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    margin-bottom: 1.25rem;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+  }
+
+  .info-banner__icon {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    color: var(--purple-500);
+    margin-top: 1px;
+  }
+
+  .info-banner__text {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    margin-bottom: 1.5rem;
+  }
+
+  .section__title {
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  /* ── HOLDING STATUS CARD ── */
+  .status-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+  }
+
+  .status-card__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+  }
+
+  .status-card__row + .status-card__row {
+    border-top: 1px solid rgba(196, 176, 210, 0.12);
+  }
+
+  .status-card__label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .status-card__value {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .status-card__value--highlight {
+    color: var(--holding);
+    font-size: 1.125rem;
+  }
+
+  .status-card__value--used {
+    color: var(--text-muted);
+  }
+
+  /* ── HOLDING FORM ── */
+  .form-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 1.25rem;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+  }
+
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+
+  .form-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .form-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  /* ── CALENDAR ── */
+  .calendar {
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .calendar__nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+
+  .calendar__nav-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid var(--border-subtle);
+    background: rgba(255,255,255,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .calendar__nav-btn:active {
+    transform: scale(0.92);
+  }
+
+  .calendar__nav-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .calendar__month {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .calendar__weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 0.25rem;
+  }
+
+  .calendar__weekday {
+    text-align: center;
+    font-size: 0.625rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    padding: 0.25rem 0;
+  }
+
+  .calendar__days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+  }
+
+  .calendar__day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.15s;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+  }
+
+  .calendar__day:active {
+    transform: scale(0.88);
+  }
+
+  .calendar__day--empty {
+    cursor: default;
+  }
+
+  .calendar__day--empty:active {
+    transform: none;
+  }
+
+  .calendar__day--past {
+    color: var(--text-muted);
+    opacity: 0.4;
+    cursor: default;
+  }
+
+  .calendar__day--past:active {
+    transform: none;
+  }
+
+  .calendar__day--today {
+    font-weight: 700;
+    color: var(--purple-500);
+  }
+
+  .calendar__day--start {
+    background: var(--holding);
+    color: #fff !important;
+    font-weight: 700;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(120, 60, 180, 0.3);
+  }
+
+  .calendar__day--end {
+    background: var(--holding);
+    color: #fff !important;
+    font-weight: 700;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(120, 60, 180, 0.3);
+  }
+
+  .calendar__day--range {
+    background: rgba(120, 60, 180, 0.1);
+    color: var(--holding) !important;
+    font-weight: 600;
+    border-radius: 4px;
+  }
+
+  /* Error (over limit) states */
+  .calendar--error .calendar__day--start {
+    background: var(--danger);
+    box-shadow: 0 2px 8px rgba(217, 78, 106, 0.3);
+  }
+
+  .calendar--error .calendar__day--end {
+    background: var(--danger);
+    box-shadow: 0 2px 8px rgba(217, 78, 106, 0.3);
+  }
+
+  .calendar--error .calendar__day--range {
+    background: rgba(217, 78, 106, 0.1);
+    color: var(--danger) !important;
+  }
+
+  /* ── SELECTION SUMMARY ── */
+  .selection-summary {
+    margin-top: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    background: rgba(120, 60, 180, 0.06);
+    border: 1px solid rgba(120, 60, 180, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .selection-summary__dates {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .selection-summary__badge {
+    padding: 0.25rem 0.625rem;
+    border-radius: 20px;
+    background: rgba(120, 60, 180, 0.1);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: var(--holding);
+  }
+
+  .selection-summary__badge--error {
+    background: rgba(217, 78, 106, 0.1);
+    color: var(--danger);
+    font-size: 0.875rem;
+    padding: 0.375rem 0.75rem;
+  }
+
+  .selection-summary--error {
+    background: rgba(217, 78, 106, 0.06);
+    border-color: rgba(217, 78, 106, 0.2);
+  }
+
+  .selection-summary--error .selection-summary__dates {
+    color: var(--danger);
+  }
+
+  .selection-summary--empty {
+    justify-content: center;
+    background: transparent;
+    border: 1px dashed var(--border-subtle);
+  }
+
+  .selection-summary--empty .selection-summary__dates {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+
+  .form-textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    background: rgba(255,255,255,0.6);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    resize: vertical;
+    min-height: 80px;
+    transition: border-color 0.2s;
+  }
+
+  .form-textarea:focus {
+    outline: none;
+    border-color: var(--purple-300);
+  }
+
+  .form-textarea::placeholder {
+    color: var(--text-muted);
+  }
+
+  /* ── SUBMIT BUTTON ── */
+  .submit-btn {
+    width: 100%;
+    padding: 0.9375rem;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--purple-600), var(--purple-500), var(--rose-400));
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(75, 45, 94, 0.25);
+  }
+
+  .submit-btn:active {
+    transform: translateY(0);
+  }
+
+  /* ── HISTORY ── */
+  .history-section {
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+  }
+
+  .history-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.625rem;
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+  }
+
+  .history-card__icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .history-card__icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .history-card__icon--approved {
+    background: rgba(91, 184, 138, 0.12);
+    color: var(--success);
+  }
+
+  .history-card__icon--pending {
+    background: rgba(120, 60, 180, 0.1);
+    color: var(--holding);
+  }
+
+  .history-card__content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .history-card__title {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+  }
+
+  .history-card__detail {
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+  }
+
+  .history-card__status {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    padding: 0.25rem 0.625rem;
+    border-radius: 20px;
+    flex-shrink: 0;
+  }
+
+  .history-card__status--approved {
+    background: rgba(91, 184, 138, 0.12);
+    color: var(--success);
+  }
+
+  .history-card__status--pending {
+    background: rgba(120, 60, 180, 0.1);
+    color: var(--holding);
+  }
+
+  /* ── BOTTOM NAV ── */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--nav-height);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 50;
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    text-decoration: none;
+    color: var(--text-muted);
+    transition: color 0.2s;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .nav-item.active {
+    color: var(--purple-600);
+  }
+
+  .nav-item.active::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--purple-400), var(--rose-300));
+    border-radius: 1px;
+  }
+
+  .nav-item svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .nav-item__label {
+    font-size: 0.5625rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (min-width: 480px) {
+    .main { padding: 0 1.5rem 2rem; }
+  }
+
+  @media (min-width: 768px) {
+    .main {
+      max-width: 560px;
+      padding: 0 2rem 2rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-atmosphere"></div>
+
+<div class="main">
+  <!-- Page Header -->
+  <header class="page-header">
+    <a href="index.html" class="back-btn" aria-label="뒤로가기">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </a>
+    <h1 class="page-header__title">홀딩 신청</h1>
+  </header>
+
+  <!-- Info Banner -->
+  <div class="info-banner">
+    <svg class="info-banner__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+    </svg>
+    <p class="info-banner__text">1) 월 1회, 최대 7일까지 홀딩 신청이 가능합니다.<br>2) 홀딩 기간만큼 수강 종료일이 연장됩니다.</p>
+  </div>
+
+  <!-- Holding Status -->
+  <div class="section">
+    <h2 class="section__title">내 홀딩 현황</h2>
+    <div class="status-card">
+      <div class="status-card__row">
+        <span class="status-card__label">이번 달 신청</span>
+        <span class="status-card__value status-card__value--used">0 / 1회</span>
+      </div>
+      <div class="status-card__row">
+        <span class="status-card__label">1회 최대 신청일</span>
+        <span class="status-card__value">7일</span>
+      </div>
+      <div class="status-card__row">
+        <span class="status-card__label">이번 달 상태</span>
+        <span class="status-card__value status-card__value--highlight">신청 가능</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Holding Form -->
+  <div class="section">
+    <h2 class="section__title">신청하기</h2>
+    <div class="form-card">
+      <div class="form-group">
+        <label class="form-label">홀딩 기간 선택</label>
+        <div class="calendar" id="calendar">
+          <div class="calendar__nav">
+            <button class="calendar__nav-btn" id="prev-month">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <span class="calendar__month" id="calendar-month"></span>
+            <button class="calendar__nav-btn" id="next-month">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+          <div class="calendar__weekdays">
+            <span class="calendar__weekday">일</span>
+            <span class="calendar__weekday">월</span>
+            <span class="calendar__weekday">화</span>
+            <span class="calendar__weekday">수</span>
+            <span class="calendar__weekday">목</span>
+            <span class="calendar__weekday">금</span>
+            <span class="calendar__weekday">토</span>
+          </div>
+          <div class="calendar__days" id="calendar-days"></div>
+        </div>
+        <div class="selection-summary selection-summary--empty" id="selection-summary">
+          <span class="selection-summary__dates">날짜를 선택해주세요</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">사유 <span style="font-weight:400; color:var(--text-muted);">(선택)</span></label>
+        <textarea class="form-textarea" placeholder="사유가 있다면 입력해 주세요 (예: 출장, 부상 등)"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <button class="submit-btn" id="submit-btn">홀딩 신청하기</button>
+
+  <!-- History -->
+  <div class="section history-section" style="margin-top: 2rem;">
+    <h2 class="section__title">신청 내역</h2>
+
+    <div class="history-card">
+      <div class="history-card__icon history-card__icon--approved">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+      </div>
+      <div class="history-card__content">
+        <div class="history-card__title">2/17(월) ~ 2/21(금) · 5일</div>
+        <div class="history-card__detail">2026.02.08 신청 · 출장</div>
+      </div>
+      <span class="history-card__status history-card__status--approved">완료</span>
+    </div>
+
+    <div class="history-card">
+      <div class="history-card__icon history-card__icon--approved">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+      </div>
+      <div class="history-card__content">
+        <div class="history-card__title">1/20(월) ~ 1/24(금) · 5일</div>
+        <div class="history-card__detail">2026.01.18 신청 · 부상 회복</div>
+      </div>
+      <span class="history-card__status history-card__status--approved">완료</span>
+    </div>
+  </div>
+</div>
+
+<!-- Bottom Navigation -->
+<nav class="bottom-nav">
+  <a class="nav-item" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+    </svg>
+    <span class="nav-item__label">홈</span>
+  </a>
+  <a class="nav-item" href="journal.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+    </svg>
+    <span class="nav-item__label">일지</span>
+  </a>
+  <a class="nav-item" href="substitute.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+    </svg>
+    <span class="nav-item__label">대체수강</span>
+  </a>
+  <a class="nav-item active" href="holding.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/><line x1="10" y1="15" x2="10" y2="9"/><line x1="14" y1="15" x2="14" y2="9"/>
+    </svg>
+    <span class="nav-item__label">홀딩</span>
+  </a>
+  <a class="nav-item" href="class-status.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+    </svg>
+    <span class="nav-item__label">수업현황</span>
+  </a>
+</nav>
+
+<script>
+(function() {
+  var MAX_DAYS = 7;
+  var today = new Date();
+  today.setHours(0,0,0,0);
+
+  var currentMonth = today.getMonth();
+  var currentYear = today.getFullYear();
+  var startDate = null;
+  var endDate = null;
+
+  var daysContainer = document.getElementById('calendar-days');
+  var monthLabel = document.getElementById('calendar-month');
+  var prevBtn = document.getElementById('prev-month');
+  var nextBtn = document.getElementById('next-month');
+  var summary = document.getElementById('selection-summary');
+  var submitBtn = document.getElementById('submit-btn');
+
+  function formatDate(d) {
+    var m = d.getMonth() + 1;
+    var day = d.getDate();
+    var weekdays = ['일','월','화','수','목','금','토'];
+    var w = weekdays[d.getDay()];
+    return m + '/' + day + '(' + w + ')';
+  }
+
+  function isSameDay(a, b) {
+    return a && b && a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+  }
+
+  function renderCalendar() {
+    monthLabel.textContent = currentYear + '년 ' + (currentMonth + 1) + '월';
+
+    var firstDay = new Date(currentYear, currentMonth, 1).getDay();
+    var daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+    daysContainer.innerHTML = '';
+
+    // Toggle error class on calendar when over limit
+    var cal = document.getElementById('calendar');
+    var overLimit = false;
+    if (startDate && endDate) {
+      var diff = Math.round((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
+      overLimit = diff > MAX_DAYS;
+    }
+    if (overLimit) {
+      cal.classList.add('calendar--error');
+    } else {
+      cal.classList.remove('calendar--error');
+    }
+
+    // Empty cells for offset
+    for (var i = 0; i < firstDay; i++) {
+      var empty = document.createElement('div');
+      empty.className = 'calendar__day calendar__day--empty';
+      daysContainer.appendChild(empty);
+    }
+
+    for (var d = 1; d <= daysInMonth; d++) {
+      var cell = document.createElement('div');
+      cell.className = 'calendar__day';
+      cell.textContent = d;
+
+      var cellDate = new Date(currentYear, currentMonth, d);
+      cellDate.setHours(0,0,0,0);
+
+      // Past dates
+      if (cellDate < today) {
+        cell.classList.add('calendar__day--past');
+        daysContainer.appendChild(cell);
+        continue;
+      }
+
+      // Today
+      if (isSameDay(cellDate, today)) {
+        cell.classList.add('calendar__day--today');
+      }
+
+      // Selection states
+      if (isSameDay(cellDate, startDate)) {
+        cell.classList.add('calendar__day--start');
+      } else if (isSameDay(cellDate, endDate)) {
+        cell.classList.add('calendar__day--end');
+      } else if (startDate && endDate && cellDate > startDate && cellDate < endDate) {
+        cell.classList.add('calendar__day--range');
+      }
+
+      // Click handler
+      (function(date) {
+        cell.addEventListener('click', function() {
+          handleDayClick(date);
+        });
+      })(cellDate);
+
+      daysContainer.appendChild(cell);
+    }
+  }
+
+  function handleDayClick(date) {
+    if (!startDate || (startDate && endDate)) {
+      // First click or reset
+      startDate = date;
+      endDate = null;
+    } else {
+      // Second click
+      if (date < startDate) {
+        startDate = date;
+        endDate = null;
+      } else if (isSameDay(date, startDate)) {
+        // Same day = single day holding
+        endDate = date;
+      } else {
+        endDate = date;
+      }
+    }
+    renderCalendar();
+    updateSummary();
+  }
+
+  function updateSummary() {
+    if (!startDate) {
+      summary.className = 'selection-summary selection-summary--empty';
+      summary.innerHTML = '<span class="selection-summary__dates">날짜를 선택해주세요</span>';
+      return;
+    }
+
+    if (!endDate) {
+      summary.className = 'selection-summary selection-summary--empty';
+      summary.innerHTML = '<span class="selection-summary__dates">종료일을 선택해주세요</span>';
+      return;
+    }
+
+    var diff = Math.round((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
+    var overLimit = diff > MAX_DAYS;
+
+    summary.className = 'selection-summary' + (overLimit ? ' selection-summary--error' : '');
+    summary.innerHTML =
+      '<span class="selection-summary__dates">' + formatDate(startDate) + ' ~ ' + formatDate(endDate) + '</span>' +
+      '<span class="selection-summary__badge' + (overLimit ? ' selection-summary__badge--error' : '') + '">' +
+      diff + '일' + (overLimit ? ' · 최대 ' + MAX_DAYS + '일 초과' : '') +
+      '</span>';
+  }
+
+  prevBtn.addEventListener('click', function() {
+    currentMonth--;
+    if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+    renderCalendar();
+  });
+
+  nextBtn.addEventListener('click', function() {
+    currentMonth++;
+    if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+    renderCalendar();
+  });
+
+  submitBtn.addEventListener('click', function() {
+    if (!startDate || !endDate) return;
+    var diff = Math.round((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
+    if (diff > MAX_DAYS) return;
+
+    submitBtn.textContent = '신청 완료!';
+    submitBtn.style.background = 'linear-gradient(135deg, #5BB88A, #4AA87A)';
+    setTimeout(function() {
+      submitBtn.textContent = '홀딩 신청하기';
+      submitBtn.style.background = '';
+    }, 1500);
+  });
+
+  // Init
+  renderCalendar();
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>근력학교 이화 — 훈련일지</title>
+<style>
+  /* ── FONT FACES ── */
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'TYPE졸업식';
+    src: url('fonts/TypeGraduation.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* ── RESET & VARIABLES ── */
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+  :root {
+    --purple-700: #3B2650;
+    --purple-600: #4B2D5E;
+    --purple-500: #5E3D74;
+    --purple-400: #7B5A93;
+    --purple-300: #9E82B0;
+    --purple-200: #C4B0D2;
+    --purple-100: #E8DFF0;
+    --purple-50:  #F5F0F8;
+
+    --rose-400: #D4829A;
+    --rose-300: #E4A5B8;
+    --rose-200: #F0C6D4;
+    --rose-100: #F9E4EC;
+    --rose-50:  #FDF5F8;
+
+    --bg-gradient-1: #EDE0F5;
+    --bg-gradient-2: #F9DDE8;
+    --bg-gradient-3: #E6DAF2;
+    --bg-card: rgba(255, 255, 255, 0.72);
+    --bg-card-solid: #fff;
+    --border-subtle: rgba(196, 176, 210, 0.3);
+
+    --text-primary: #2E1A3E;
+    --text-secondary: #6B5A7E;
+    --text-muted: #A89AB8;
+
+    --success: #5BB88A;
+    --warning: #E8A854;
+    --danger: #D94E6A;
+    --journal: #3D6B3A;
+
+    --font-display: 'TYPE졸업식', sans-serif;
+    --font-body: 'CarmenSans', 'Noto Sans KR', sans-serif;
+
+    --nav-height: 68px;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: var(--font-body);
+    min-height: 100dvh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    background: var(--bg-gradient-1);
+    color: var(--text-primary);
+    padding-bottom: var(--nav-height);
+  }
+
+  /* ── GRADIENT BACKGROUND ── */
+  .bg-atmosphere {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 90% 70% at 10% 5%, rgba(190, 160, 220, 0.6) 0%, transparent 65%),
+      radial-gradient(ellipse 80% 60% at 90% 10%, rgba(240, 170, 200, 0.55) 0%, transparent 60%),
+      radial-gradient(ellipse 70% 60% at 75% 85%, rgba(180, 150, 220, 0.5) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 15% 85%, rgba(235, 180, 205, 0.45) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 50% 50%, rgba(255, 255, 255, 0.5) 0%, transparent 70%),
+      linear-gradient(150deg, #EDE0F5 0%, #F9DDE8 35%, #E6DAF2 65%, #F5E4EE 100%);
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    opacity: 0.018;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px;
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    position: relative;
+    z-index: 1;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 1.25rem 2rem;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-12px); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+  }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 0 1.5rem;
+    animation: fadeDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .back-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+
+  .back-btn:hover {
+    border-color: var(--purple-200);
+    color: var(--purple-500);
+  }
+
+  .back-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .page-header__title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--text-primary);
+  }
+
+  /* ── MONTH NAV ── */
+  .month-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+  }
+
+  .month-nav__btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .month-nav__btn:active {
+    transform: scale(0.92);
+  }
+
+  .month-nav__btn svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .month-nav__label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    min-width: 100px;
+    text-align: center;
+  }
+
+  /* ── JOURNAL CARD ── */
+  .journal-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 1.125rem 1.25rem;
+    margin-bottom: 0.75rem;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .journal-card:active {
+    transform: scale(0.98);
+  }
+
+  .journal-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+
+  .journal-card__date-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .journal-card__day {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(61, 107, 58, 0.1);
+    color: var(--journal);
+    font-size: 1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .journal-card__date-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .journal-card__weekday {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .journal-card__period {
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+  }
+
+  .journal-card__badge {
+    font-size: 0.625rem;
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
+    border-radius: 20px;
+    flex-shrink: 0;
+  }
+
+  .journal-card__badge--present {
+    background: rgba(91, 184, 138, 0.12);
+    color: var(--success);
+  }
+
+  .journal-card__badge--absent {
+    background: rgba(217, 78, 106, 0.1);
+    color: var(--danger);
+  }
+
+  /* ── EXERCISE LIST ── */
+  .journal-card__exercises {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .exercise {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.625rem;
+    border-radius: 8px;
+    background: rgba(61, 107, 58, 0.04);
+    border: 1px solid rgba(61, 107, 58, 0.08);
+  }
+
+  .exercise__icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    background: rgba(61, 107, 58, 0.1);
+    color: var(--journal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .exercise__icon svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .exercise__name {
+    flex: 1;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .exercise__detail {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    white-space: nowrap;
+  }
+
+  /* ── MEMO (trainer comment) ── */
+  .journal-card__memo {
+    margin-top: 0.625rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    background: rgba(94, 61, 116, 0.05);
+    border-left: 3px solid var(--purple-200);
+  }
+
+  .journal-card__memo-label {
+    font-size: 0.5625rem;
+    font-weight: 700;
+    color: var(--purple-400);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
+  }
+
+  .journal-card__memo-text {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  /* ── EXPAND DETAIL ── */
+  .journal-card__detail {
+    display: none;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(196, 176, 210, 0.15);
+  }
+
+  .journal-card__detail.open {
+    display: block;
+    animation: fadeUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .journal-card__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    margin-top: 0.625rem;
+    padding: 0.25rem;
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .journal-card__toggle svg {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.3s;
+  }
+
+  .journal-card__toggle.open svg {
+    transform: rotate(180deg);
+  }
+
+  .journal-card__toggle:hover {
+    color: var(--purple-400);
+  }
+
+  /* ── SET GROUP ── */
+  .set-table {
+    width: 100%;
+    margin-top: 0.375rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .set-table__header {
+    display: flex;
+    padding: 0 0.625rem 0.25rem;
+    font-size: 0.5625rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    gap: 0.5rem;
+  }
+
+  .set-table__header span:nth-child(1) { width: 28px; text-align: center; }
+  .set-table__header span:nth-child(2) { flex: 1; }
+  .set-table__header span:nth-child(3) { width: 44px; text-align: right; }
+
+  .set-row {
+    display: flex;
+    align-items: center;
+    padding: 0.3rem 0.625rem;
+    border-radius: 6px;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .set-row:nth-child(even) {
+    background: rgba(61, 107, 58, 0.03);
+  }
+
+  .set-row__num {
+    width: 28px;
+    text-align: center;
+    font-weight: 600;
+    color: var(--journal);
+    font-size: 0.6875rem;
+  }
+
+  .set-row__weight {
+    flex: 1;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .set-row__reps {
+    width: 44px;
+    text-align: right;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  /* ── EMPTY STATE ── */
+  .empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+  }
+
+  .empty-state__icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: rgba(61, 107, 58, 0.08);
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+  }
+
+  .empty-state__icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .empty-state__text {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ── FLOATING ACTION BUTTON ── */
+  .fab-write {
+    position: fixed;
+    bottom: calc(var(--nav-height) + env(safe-area-inset-bottom, 0px) + 16px);
+    right: 20px;
+    z-index: 55;
+    height: 48px;
+    border-radius: 24px;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(135deg, #3D6B3A, #4E8B4A);
+    box-shadow:
+      0 4px 16px rgba(61, 107, 58, 0.35),
+      0 2px 6px rgba(61, 107, 58, 0.2),
+      inset 0 1px 0 rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 1.125rem;
+    text-decoration: none;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s;
+    animation: fab-enter 0.4s 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+  .fab-write:active {
+    transform: scale(0.94);
+    box-shadow: 0 2px 8px rgba(61, 107, 58, 0.3);
+  }
+  .fab-write svg {
+    width: 20px;
+    height: 20px;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .fab-write__label {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #fff;
+    white-space: nowrap;
+    letter-spacing: 0.01em;
+  }
+  @keyframes fab-enter {
+    from { opacity: 0; transform: scale(0.5) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  /* ── BOTTOM NAV ── */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--nav-height);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 50;
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    text-decoration: none;
+    color: var(--text-muted);
+    transition: color 0.2s;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .nav-item.active {
+    color: var(--purple-600);
+  }
+
+  .nav-item.active::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--purple-400), var(--rose-300));
+    border-radius: 1px;
+  }
+
+  .nav-item svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .nav-item__label {
+    font-size: 0.5625rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  @media (min-width: 480px) {
+    .main { padding: 0 1.5rem 2rem; }
+  }
+
+  @media (min-width: 768px) {
+    .main {
+      max-width: 560px;
+      padding: 0 2rem 2rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-atmosphere"></div>
+
+<div class="main">
+  <!-- Page Header -->
+  <header class="page-header">
+    <a href="index.html" class="back-btn" aria-label="뒤로가기">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </a>
+    <h1 class="page-header__title">훈련일지</h1>
+  </header>
+
+  <!-- Month Navigation -->
+  <div class="month-nav">
+    <button class="month-nav__btn" id="prev-month">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <span class="month-nav__label" id="month-label">2026년 2월</span>
+    <button class="month-nav__btn" id="next-month">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+
+  <!-- Journal Entries -->
+  <div id="journal-list">
+
+    <!-- 2/7 (금) -->
+    <div class="journal-card" style="animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.1s both;">
+      <div class="journal-card__header">
+        <div class="journal-card__date-group">
+          <div class="journal-card__day">7</div>
+          <div class="journal-card__date-info">
+            <span class="journal-card__weekday">금요일</span>
+            <span class="journal-card__period">1교시 · 11:30~12:40</span>
+          </div>
+        </div>
+        <span class="journal-card__badge journal-card__badge--present">출석</span>
+      </div>
+      <div class="journal-card__exercises">
+        <div class="exercise">
+          <div class="exercise__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="2" y1="12" x2="22" y2="12"/><line x1="5" y1="8" x2="5" y2="16"/><line x1="19" y1="8" x2="19" y2="16"/></svg></div>
+          <span class="exercise__name">바벨 백스쿼트</span>
+          <span class="exercise__detail">40kg · 5set</span>
+        </div>
+        <div class="exercise">
+          <div class="exercise__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="2" y1="12" x2="22" y2="12"/><line x1="5" y1="8" x2="5" y2="16"/><line x1="19" y1="8" x2="19" y2="16"/></svg></div>
+          <span class="exercise__name">레그프레스</span>
+          <span class="exercise__detail">80kg · 4set</span>
+        </div>
+        <div class="exercise">
+          <div class="exercise__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="2" y1="12" x2="22" y2="12"/><line x1="5" y1="8" x2="5" y2="16"/><line x1="19" y1="8" x2="19" y2="16"/></svg></div>
+          <span class="exercise__name">루마니안 데드리프트</span>
+          <span class="exercise__detail">30kg · 4set</span>
+        </div>
+      </div>
+      <div class="journal-card__toggle" onclick="toggleDetail(this)">
+        세부 기록
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="journal-card__detail">
+        <div class="set-table">
+          <div class="set-table__header"><span>세트</span><span>바벨 백스쿼트</span><span>횟수</span></div>
+          <div class="set-row"><span class="set-row__num">1</span><span class="set-row__weight">30kg (워밍업)</span><span class="set-row__reps">10회</span></div>
+          <div class="set-row"><span class="set-row__num">2</span><span class="set-row__weight">35kg</span><span class="set-row__reps">8회</span></div>
+          <div class="set-row"><span class="set-row__num">3</span><span class="set-row__weight">40kg</span><span class="set-row__reps">8회</span></div>
+          <div class="set-row"><span class="set-row__num">4</span><span class="set-row__weight">40kg</span><span class="set-row__reps">6회</span></div>
+          <div class="set-row"><span class="set-row__num">5</span><span class="set-row__weight">40kg</span><span class="set-row__reps">6회</span></div>
+        </div>
+        <div class="set-table">
+          <div class="set-table__header"><span>세트</span><span>레그프레스</span><span>횟수</span></div>
+          <div class="set-row"><span class="set-row__num">1</span><span class="set-row__weight">60kg</span><span class="set-row__reps">12회</span></div>
+          <div class="set-row"><span class="set-row__num">2</span><span class="set-row__weight">70kg</span><span class="set-row__reps">10회</span></div>
+          <div class="set-row"><span class="set-row__num">3</span><span class="set-row__weight">80kg</span><span class="set-row__reps">10회</span></div>
+          <div class="set-row"><span class="set-row__num">4</span><span class="set-row__weight">80kg</span><span class="set-row__reps">8회</span></div>
+        </div>
+        <div class="set-table">
+          <div class="set-table__header"><span>세트</span><span>루마니안 데드리프트</span><span>횟수</span></div>
+          <div class="set-row"><span class="set-row__num">1</span><span class="set-row__weight">20kg</span><span class="set-row__reps">12회</span></div>
+          <div class="set-row"><span class="set-row__num">2</span><span class="set-row__weight">25kg</span><span class="set-row__reps">10회</span></div>
+          <div class="set-row"><span class="set-row__num">3</span><span class="set-row__weight">30kg</span><span class="set-row__reps">10회</span></div>
+          <div class="set-row"><span class="set-row__num">4</span><span class="set-row__weight">30kg</span><span class="set-row__reps">8회</span></div>
+        </div>
+        <div class="journal-card__memo">
+          <div class="journal-card__memo-label">코치 메모</div>
+          <div class="journal-card__memo-text">스쿼트 자세 많이 좋아졌어요! 다음 주부터 42.5kg 도전해봐요. 무릎이 안쪽으로 모이지 않게 신경써주세요.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2/5 (수) - 결석 -->
+    <div class="journal-card" style="animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.15s both;">
+      <div class="journal-card__header">
+        <div class="journal-card__date-group">
+          <div class="journal-card__day">5</div>
+          <div class="journal-card__date-info">
+            <span class="journal-card__weekday">수요일</span>
+            <span class="journal-card__period">1교시 · 11:30~12:40</span>
+          </div>
+        </div>
+        <span class="journal-card__badge journal-card__badge--absent">결석</span>
+      </div>
+      <div class="journal-card__exercises" style="opacity: 0.5;">
+        <div class="exercise">
+          <div class="exercise__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="2" y1="12" x2="22" y2="12"/><line x1="5" y1="8" x2="5" y2="16"/><line x1="19" y1="8" x2="19" y2="16"/></svg></div>
+          <span class="exercise__name">수업 불참</span>
+          <span class="exercise__detail">-</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2/3 (월) -->
+    <div class="journal-card" style="animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.2s both;">
+      <div class="journal-card__header">
+        <div class="journal-card__date-group">
+          <div class="journal-card__day">3</div>
+          <div class="journal-card__date-info">
+            <span class="journal-card__weekday">월요일</span>
+            <span class="journal-card__period">1교시 · 11:30~12:40</span>
+          </div>
+        </div>
+        <span class="journal-card__badge journal-card__badge--present">출석</span>
+      </div>
+      <div class="journal-card__exercises">
+        <div class="exercise">
+          <div class="exercise__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="2" y1="12" x2="22" y2="12"/><line x1="5" y1="8" x2="5" y2="16"/><line x1="19" y1="8" x2="19" y2="16"/></svg></div>
+          <span class="exercise__name">벤치프레스</span>
+          <span class="exercise__detail">25kg · 5set</span>
+        </div>
+        <div class="exercise">
+          <div class="exercise__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="2" y1="12" x2="22" y2="12"/><line x1="5" y1="8" x2="5" y2="16"/><line x1="19" y1="8" x2="19" y2="16"/></svg></div>
+          <span class="exercise__name">덤벨 숄더프레스</span>
+          <span class="exercise__detail">8kg · 4set</span>
+        </div>
+        <div class="exercise">
+          <div class="exercise__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="2" y1="12" x2="22" y2="12"/><line x1="5" y1="8" x2="5" y2="16"/><line x1="19" y1="8" x2="19" y2="16"/></svg></div>
+          <span class="exercise__name">케이블 트라이셉 푸쉬다운</span>
+          <span class="exercise__detail">15kg · 3set</span>
+        </div>
+        <div class="exercise">
+          <div class="exercise__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="2" y1="12" x2="22" y2="12"/><line x1="5" y1="8" x2="5" y2="16"/><line x1="19" y1="8" x2="19" y2="16"/></svg></div>
+          <span class="exercise__name">사이드 레터럴 레이즈</span>
+          <span class="exercise__detail">4kg · 3set</span>
+        </div>
+      </div>
+      <div class="journal-card__toggle" onclick="toggleDetail(this)">
+        세부 기록
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="journal-card__detail">
+        <div class="set-table">
+          <div class="set-table__header"><span>세트</span><span>벤치프레스</span><span>횟수</span></div>
+          <div class="set-row"><span class="set-row__num">1</span><span class="set-row__weight">15kg (워밍업)</span><span class="set-row__reps">12회</span></div>
+          <div class="set-row"><span class="set-row__num">2</span><span class="set-row__weight">20kg</span><span class="set-row__reps">10회</span></div>
+          <div class="set-row"><span class="set-row__num">3</span><span class="set-row__weight">25kg</span><span class="set-row__reps">8회</span></div>
+          <div class="set-row"><span class="set-row__num">4</span><span class="set-row__weight">25kg</span><span class="set-row__reps">8회</span></div>
+          <div class="set-row"><span class="set-row__num">5</span><span class="set-row__weight">25kg</span><span class="set-row__reps">6회</span></div>
+        </div>
+        <div class="set-table">
+          <div class="set-table__header"><span>세트</span><span>덤벨 숄더프레스</span><span>횟수</span></div>
+          <div class="set-row"><span class="set-row__num">1</span><span class="set-row__weight">6kg</span><span class="set-row__reps">12회</span></div>
+          <div class="set-row"><span class="set-row__num">2</span><span class="set-row__weight">8kg</span><span class="set-row__reps">10회</span></div>
+          <div class="set-row"><span class="set-row__num">3</span><span class="set-row__weight">8kg</span><span class="set-row__reps">8회</span></div>
+          <div class="set-row"><span class="set-row__num">4</span><span class="set-row__weight">8kg</span><span class="set-row__reps">8회</span></div>
+        </div>
+        <div class="journal-card__memo">
+          <div class="journal-card__memo-label">코치 메모</div>
+          <div class="journal-card__memo-text">상체 근력이 빠르게 늘고 있어요. 벤치프레스 그립 폭 조금 더 넓혀봐도 좋을 것 같아요. 어깨 가동성 운동 잊지 마세요!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1/31 (금) -->
+    <div class="journal-card" style="animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.25s both;">
+      <div class="journal-card__header">
+        <div class="journal-card__date-group">
+          <div class="journal-card__day">31</div>
+          <div class="journal-card__date-info">
+            <span class="journal-card__weekday">금요일</span>
+            <span class="journal-card__period">1교시 · 11:30~12:40</span>
+          </div>
+        </div>
+        <span class="journal-card__badge journal-card__badge--present">출석</span>
+      </div>
+      <div class="journal-card__exercises">
+        <div class="exercise">
+          <div class="exercise__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="2" y1="12" x2="22" y2="12"/><line x1="5" y1="8" x2="5" y2="16"/><line x1="19" y1="8" x2="19" y2="16"/></svg></div>
+          <span class="exercise__name">컨벤셔널 데드리프트</span>
+          <span class="exercise__detail">50kg · 5set</span>
+        </div>
+        <div class="exercise">
+          <div class="exercise__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="2" y1="12" x2="22" y2="12"/><line x1="5" y1="8" x2="5" y2="16"/><line x1="19" y1="8" x2="19" y2="16"/></svg></div>
+          <span class="exercise__name">바벨 로우</span>
+          <span class="exercise__detail">30kg · 4set</span>
+        </div>
+        <div class="exercise">
+          <div class="exercise__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="2" y1="12" x2="22" y2="12"/><line x1="5" y1="8" x2="5" y2="16"/><line x1="19" y1="8" x2="19" y2="16"/></svg></div>
+          <span class="exercise__name">랫풀다운</span>
+          <span class="exercise__detail">35kg · 4set</span>
+        </div>
+      </div>
+      <div class="journal-card__toggle" onclick="toggleDetail(this)">
+        세부 기록
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="journal-card__detail">
+        <div class="set-table">
+          <div class="set-table__header"><span>세트</span><span>컨벤셔널 데드리프트</span><span>횟수</span></div>
+          <div class="set-row"><span class="set-row__num">1</span><span class="set-row__weight">30kg (워밍업)</span><span class="set-row__reps">10회</span></div>
+          <div class="set-row"><span class="set-row__num">2</span><span class="set-row__weight">40kg</span><span class="set-row__reps">8회</span></div>
+          <div class="set-row"><span class="set-row__num">3</span><span class="set-row__weight">45kg</span><span class="set-row__reps">6회</span></div>
+          <div class="set-row"><span class="set-row__num">4</span><span class="set-row__weight">50kg</span><span class="set-row__reps">5회</span></div>
+          <div class="set-row"><span class="set-row__num">5</span><span class="set-row__weight">50kg</span><span class="set-row__reps">5회</span></div>
+        </div>
+        <div class="journal-card__memo">
+          <div class="journal-card__memo-label">코치 메모</div>
+          <div class="journal-card__memo-text">데드리프트 50kg 달성! 허리 중립 잘 유지하고 있어요. 그립이 빠지면 스트랩 써도 괜찮아요.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Floating Action Button: 작성하기 -->
+<a href="#" class="fab-write" onclick="alert('훈련일지 작성 화면으로 이동합니다'); return false;">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+  </svg>
+  <span class="fab-write__label">작성하기</span>
+</a>
+
+<!-- Bottom Navigation -->
+<nav class="bottom-nav">
+  <a class="nav-item" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+    </svg>
+    <span class="nav-item__label">홈</span>
+  </a>
+  <a class="nav-item" href="challenge.html">
+    <span style="font-size:1.25rem;line-height:1;">🔥</span>
+    <span class="nav-item__label">챌린지</span>
+  </a>
+  <a class="nav-item" href="program.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+    </svg>
+    <span class="nav-item__label">프로그램</span>
+  </a>
+  <a class="nav-item" href="change.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+    </svg>
+    <span class="nav-item__label">변경</span>
+  </a>
+  <a class="nav-item" href="class-status.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+    </svg>
+    <span class="nav-item__label">수업현황</span>
+  </a>
+</nav>
+
+<script>
+function toggleDetail(el) {
+  var detail = el.nextElementSibling;
+  el.classList.toggle('open');
+  detail.classList.toggle('open');
+}
+</script>
+
+</body>
+</html>

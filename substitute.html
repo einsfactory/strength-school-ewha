@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>근력학교 이화 — 대체수강</title>
+<style>
+  /* ── FONT FACES ── */
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'TYPE졸업식';
+    src: url('fonts/TypeGraduation.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* ── RESET & VARIABLES ── */
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+  :root {
+    --purple-700: #3B2650;
+    --purple-600: #4B2D5E;
+    --purple-500: #5E3D74;
+    --purple-400: #7B5A93;
+    --purple-300: #9E82B0;
+    --purple-200: #C4B0D2;
+    --purple-100: #E8DFF0;
+    --purple-50:  #F5F0F8;
+
+    --rose-400: #D4829A;
+    --rose-300: #E4A5B8;
+    --rose-200: #F0C6D4;
+    --rose-100: #F9E4EC;
+    --rose-50:  #FDF5F8;
+
+    --bg-gradient-1: #EDE0F5;
+    --bg-gradient-2: #F9DDE8;
+    --bg-gradient-3: #E6DAF2;
+    --bg-card: rgba(255, 255, 255, 0.72);
+    --bg-card-solid: #fff;
+    --border-subtle: rgba(196, 176, 210, 0.3);
+
+    --text-primary: #2E1A3E;
+    --text-secondary: #6B5A7E;
+    --text-muted: #A89AB8;
+
+    --success: #5BB88A;
+    --warning: #E8A854;
+    --danger: #D94E6A;
+    --orange: #E65A14;
+
+    --font-display: 'TYPE졸업식', sans-serif;
+    --font-body: 'CarmenSans', 'Noto Sans KR', sans-serif;
+
+    --nav-height: 68px;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: var(--font-body);
+    min-height: 100dvh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    background: var(--bg-gradient-1);
+    color: var(--text-primary);
+    padding-bottom: var(--nav-height);
+  }
+
+  /* ── GRADIENT BACKGROUND ── */
+  .bg-atmosphere {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 90% 70% at 10% 5%, rgba(190, 160, 220, 0.6) 0%, transparent 65%),
+      radial-gradient(ellipse 80% 60% at 90% 10%, rgba(240, 170, 200, 0.55) 0%, transparent 60%),
+      radial-gradient(ellipse 70% 60% at 75% 85%, rgba(180, 150, 220, 0.5) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 15% 85%, rgba(235, 180, 205, 0.45) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 50% 50%, rgba(255, 255, 255, 0.5) 0%, transparent 70%),
+      linear-gradient(150deg, #EDE0F5 0%, #F9DDE8 35%, #E6DAF2 65%, #F5E4EE 100%);
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    opacity: 0.018;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px;
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    position: relative;
+    z-index: 1;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 1.25rem 2rem;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-12px); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+  }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 0 1.5rem;
+    animation: fadeDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .back-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+
+  .back-btn:hover {
+    border-color: var(--purple-200);
+    color: var(--purple-500);
+  }
+
+  .back-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .page-header__title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--text-primary);
+  }
+
+  /* ── INFO BANNER ── */
+  .info-banner {
+    background: linear-gradient(135deg, rgba(75,45,94,0.08), rgba(75,45,94,0.03));
+    border: 1px solid rgba(75,45,94,0.12);
+    border-radius: 12px;
+    padding: 0.875rem 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    margin-bottom: 1.25rem;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+  }
+
+  .info-banner__icon {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    color: var(--purple-500);
+    margin-top: 1px;
+  }
+
+  .info-banner__text {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    margin-bottom: 1.5rem;
+  }
+
+  .section__title {
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  /* ── FORM ELEMENTS ── */
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+
+  .form-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .form-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  /* ── TIMETABLE ── */
+  .timetable-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 0.875rem;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .timetable {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 3px;
+  }
+
+  .timetable__header th {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    padding: 0.25rem 0;
+    text-align: center;
+  }
+
+  .timetable__header th:first-child {
+    width: 64px;
+  }
+
+  .timetable__period-label {
+    font-size: 0.5625rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    padding-right: 0.375rem;
+    text-align: right;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+
+  .timetable__period-time {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: 1px;
+  }
+
+  .timetable__cell {
+    min-width: 40px;
+    height: 42px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.45);
+    border: 1.5px solid rgba(196, 176, 210, 0.15);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+    font-family: var(--font-body);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .timetable__cell:active {
+    transform: scale(0.93);
+  }
+
+  /* 내 정규 수업 */
+  .timetable__cell--mine {
+    background: rgba(75, 45, 94, 0.18);
+    border-color: rgba(75, 45, 94, 0.35);
+  }
+
+  /* 결석 선택 (대체 전) */
+  .timetable__cell--absent {
+    background: rgba(75, 45, 94, 0.35) !important;
+    border-color: rgba(75, 45, 94, 0.6) !important;
+    box-shadow: 0 0 0 3px rgba(75, 45, 94, 0.15);
+    animation: cellPulse 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .timetable__cell--absent .cell-label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--purple-600);
+    letter-spacing: -0.02em;
+  }
+
+  /* 대체 후 선택 */
+  .timetable__cell--substitute {
+    background: rgba(58, 154, 100, 0.22) !important;
+    border-color: rgba(58, 154, 100, 0.55) !important;
+    box-shadow: 0 0 0 3px rgba(58, 154, 100, 0.12);
+    animation: cellPulse 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .timetable__cell--substitute .cell-label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #2D7A4E;
+    letter-spacing: -0.02em;
+  }
+
+  /* 여석 숫자 */
+  .cell-seats {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--purple-500);
+  }
+
+  /* 수업 없음 */
+  .timetable__cell--noclass {
+    background: rgba(180, 180, 190, 0.08);
+    border-color: transparent;
+    cursor: default;
+  }
+
+  .timetable__cell--noclass:active {
+    transform: none;
+  }
+
+  .cell-noclass {
+    font-size: 0.625rem;
+    color: rgba(180, 180, 190, 0.5);
+  }
+
+  /* 만석 */
+  .timetable__cell--full {
+    background: rgba(217, 78, 106, 0.06);
+    border-color: rgba(217, 78, 106, 0.12);
+    cursor: default;
+  }
+
+  .timetable__cell--full:active {
+    transform: none;
+  }
+
+  .timetable__cell--full .cell-seats {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: var(--danger);
+    opacity: 0.8;
+  }
+
+  /* 갭 행 */
+  .timetable__gap td {
+    text-align: center;
+    padding: 0.125rem 0;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 4px;
+  }
+
+  /* ── SELECTION GUIDE ── */
+  .selection-guide {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+  }
+
+  @keyframes popIn {
+    0% { transform: scale(0.92); opacity: 0.6; }
+    50% { transform: scale(1.04); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes cellPulse {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.15); }
+    60% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+  }
+
+  @keyframes checkDraw {
+    0% { stroke-dashoffset: 20; opacity: 0; }
+    50% { opacity: 1; }
+    100% { stroke-dashoffset: 0; opacity: 1; }
+  }
+
+  .selection-guide__step {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 0.75rem;
+    border-radius: 10px;
+    background: var(--bg-card);
+    border: 1.5px solid var(--border-subtle);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .selection-guide__step--active {
+    border-color: var(--purple-200);
+    box-shadow: 0 2px 8px rgba(75, 45, 94, 0.08);
+  }
+
+  /* 대체 전 선택 완료 */
+  .selection-guide__step--absent.selection-guide__step--done {
+    background: var(--purple-500);
+    border-color: var(--purple-500);
+    border-width: 2px;
+    box-shadow: 0 4px 16px rgba(75, 45, 94, 0.3);
+    animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .selection-guide__step--absent.selection-guide__step--done .selection-guide__label {
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 700;
+  }
+
+  .selection-guide__step--absent.selection-guide__step--done .selection-guide__value {
+    color: #fff;
+    font-size: 1.0625rem;
+  }
+
+  .selection-guide__step--absent.selection-guide__step--done .selection-guide__num {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+  }
+
+  /* 대체 후 선택 완료 */
+  .selection-guide__step--sub.selection-guide__step--done {
+    background: #3A9A64;
+    border-color: #3A9A64;
+    border-width: 2px;
+    box-shadow: 0 4px 16px rgba(58, 154, 100, 0.3);
+    animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .selection-guide__step--sub.selection-guide__step--done .selection-guide__label {
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 700;
+  }
+
+  .selection-guide__step--sub.selection-guide__step--done .selection-guide__value {
+    color: #fff;
+    font-size: 1.0625rem;
+  }
+
+  .selection-guide__step--sub.selection-guide__step--done .selection-guide__num {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+  }
+
+  .selection-guide__step--sub .selection-guide__num {
+    background: rgba(91, 184, 138, 0.12);
+    color: var(--success);
+  }
+
+  .selection-guide__num {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--purple-100);
+    color: var(--purple-500);
+    font-size: 0.625rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.3s;
+  }
+
+  .selection-guide__step--absent .selection-guide__num {
+    background: rgba(158, 130, 176, 0.2);
+    color: var(--purple-400);
+  }
+
+  .selection-guide__step--done .selection-guide__num {
+    transform: scale(1.1);
+  }
+
+  .selection-guide__info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .selection-guide__label {
+    font-size: 0.625rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 1px;
+  }
+
+  .selection-guide__value {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .selection-guide__arrow {
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+
+  .selection-guide__arrow svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* ── TIMETABLE LEGEND ── */
+  .timetable-legend {
+    display: flex;
+    gap: 0.875rem;
+    margin-top: 0.5rem;
+    padding: 0 0.25rem;
+  }
+
+  .timetable-legend__item {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.5625rem;
+    color: var(--text-muted);
+  }
+
+  .timetable-legend__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+
+  .timetable-legend__dot--mine {
+    background: var(--purple-500);
+  }
+
+  .timetable-legend__dot--available {
+    background: rgba(196, 176, 210, 0.4);
+  }
+
+  .form-textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    background: rgba(255,255,255,0.6);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    resize: vertical;
+    min-height: 80px;
+    transition: border-color 0.2s;
+  }
+
+  .form-textarea:focus {
+    outline: none;
+    border-color: var(--purple-300);
+  }
+
+  .form-textarea::placeholder {
+    color: var(--text-muted);
+  }
+
+  /* ── REASON CARD ── */
+  .reason-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 1rem 1.25rem;
+    margin-top: 0.75rem;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+  }
+
+  /* ── SUBMIT BUTTON ── */
+  .submit-btn {
+    width: 100%;
+    padding: 0.9375rem;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--purple-600), var(--purple-500), var(--rose-400));
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(75, 45, 94, 0.25);
+  }
+
+  .submit-btn:active {
+    transform: translateY(0);
+  }
+
+  /* ── HISTORY ── */
+  .history-section {
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+  }
+
+  .history-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.625rem;
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+  }
+
+  .history-card__icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .history-card__icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .history-card__icon--approved {
+    background: rgba(91, 184, 138, 0.12);
+    color: var(--success);
+  }
+
+  .history-card__content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .history-card__title {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+  }
+
+  .history-card__detail {
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+  }
+
+  .history-card__status {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    padding: 0.25rem 0.625rem;
+    border-radius: 20px;
+    flex-shrink: 0;
+  }
+
+  .history-card__status--approved {
+    background: rgba(91, 184, 138, 0.12);
+    color: var(--success);
+  }
+
+  /* ── BOTTOM NAV ── */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--nav-height);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 50;
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    text-decoration: none;
+    color: var(--text-muted);
+    transition: color 0.2s;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .nav-item.active {
+    color: var(--purple-600);
+  }
+
+  .nav-item.active::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--purple-400), var(--rose-300));
+    border-radius: 1px;
+  }
+
+  .nav-item svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .nav-item__label {
+    font-size: 0.5625rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (min-width: 480px) {
+    .main { padding: 0 1.5rem 2rem; }
+  }
+
+  @media (min-width: 768px) {
+    .main {
+      max-width: 560px;
+      padding: 0 2rem 2rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-atmosphere"></div>
+
+<div class="main">
+  <!-- Page Header -->
+  <header class="page-header">
+    <a href="index.html" class="back-btn" aria-label="뒤로가기">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </a>
+    <h1 class="page-header__title">대체수강 신청</h1>
+  </header>
+
+  <!-- Info Banner -->
+  <div class="info-banner">
+    <svg class="info-banner__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+    </svg>
+    <p class="info-banner__text">1) 같은 주에 한해<br>2) 클래스 여석이 있는 경우 대체수강이 가능합니다.<br>당일 변경은 불가하며, 전날까지 신청 가능합니다.</p>
+  </div>
+
+  <!-- Substitute Form -->
+  <div class="section">
+    <h2 class="section__title">신청하기</h2>
+
+    <!-- Selection Guide -->
+    <div class="selection-guide">
+      <div class="selection-guide__step selection-guide__step--absent selection-guide__step--active" id="step-absent">
+        <span class="selection-guide__num">1</span>
+        <div class="selection-guide__info">
+          <div class="selection-guide__label">대체 전</div>
+          <div class="selection-guide__value" id="absent-value">선택해주세요</div>
+        </div>
+      </div>
+      <div class="selection-guide__arrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </div>
+      <div class="selection-guide__step selection-guide__step--sub" id="step-sub">
+        <span class="selection-guide__num">2</span>
+        <div class="selection-guide__info">
+          <div class="selection-guide__label">대체 후</div>
+          <div class="selection-guide__value" id="sub-value">선택해주세요</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timetable -->
+    <div class="timetable-card">
+      <table class="timetable">
+        <thead>
+          <tr class="timetable__header">
+            <th></th>
+            <th>월</th>
+            <th>화</th>
+            <th>수</th>
+            <th>목</th>
+            <th>금</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- 1교시 11:30~12:40 -->
+          <tr>
+            <td class="timetable__period-label">1교시<span class="timetable__period-time">11:30~12:40</span></td>
+            <td class="timetable__cell timetable__cell--mine" data-period="1" data-day="월" data-seats="0"></td>
+            <td class="timetable__cell timetable__cell--noclass" data-period="1" data-day="화"></td>
+            <td class="timetable__cell timetable__cell--noclass" data-period="1" data-day="수"></td>
+            <td class="timetable__cell timetable__cell--noclass" data-period="1" data-day="목"></td>
+            <td class="timetable__cell timetable__cell--mine" data-period="1" data-day="금" data-seats="0"></td>
+          </tr>
+          <!-- 2교시 13:00~14:10 -->
+          <tr>
+            <td class="timetable__period-label">2교시<span class="timetable__period-time">13:00~14:10</span></td>
+            <td class="timetable__cell" data-period="2" data-day="월" data-seats="4"><span class="cell-seats">4</span></td>
+            <td class="timetable__cell timetable__cell--noclass" data-period="2" data-day="화"></td>
+            <td class="timetable__cell timetable__cell--noclass" data-period="2" data-day="수"></td>
+            <td class="timetable__cell timetable__cell--noclass" data-period="2" data-day="목"></td>
+            <td class="timetable__cell" data-period="2" data-day="금" data-seats="3"><span class="cell-seats">3</span></td>
+          </tr>
+          <!-- 6교시 17:00~18:10 -->
+          <tr>
+            <td class="timetable__period-label">6교시<span class="timetable__period-time">17:00~18:10</span></td>
+            <td class="timetable__cell" data-period="6" data-day="월" data-seats="1"><span class="cell-seats">1</span></td>
+            <td class="timetable__cell timetable__cell--noclass" data-period="6" data-day="화"></td>
+            <td class="timetable__cell timetable__cell--full" data-period="6" data-day="수" data-seats="0"><span class="cell-seats">만석</span></td>
+            <td class="timetable__cell timetable__cell--noclass" data-period="6" data-day="목"></td>
+            <td class="timetable__cell" data-period="6" data-day="금" data-seats="2"><span class="cell-seats">2</span></td>
+          </tr>
+          <!-- 7교시 18:30~19:40 -->
+          <tr>
+            <td class="timetable__period-label">7교시<span class="timetable__period-time">18:30~19:40</span></td>
+            <td class="timetable__cell" data-period="7" data-day="월" data-seats="2"><span class="cell-seats">2</span></td>
+            <td class="timetable__cell timetable__cell--full" data-period="7" data-day="화" data-seats="0"><span class="cell-seats">만석</span></td>
+            <td class="timetable__cell" data-period="7" data-day="수" data-seats="2"><span class="cell-seats">2</span></td>
+            <td class="timetable__cell" data-period="7" data-day="목" data-seats="1"><span class="cell-seats">1</span></td>
+            <td class="timetable__cell timetable__cell--full" data-period="7" data-day="금" data-seats="0"><span class="cell-seats">만석</span></td>
+          </tr>
+          <!-- 8교시 20:00~21:10 -->
+          <tr>
+            <td class="timetable__period-label">8교시<span class="timetable__period-time">20:00~21:10</span></td>
+            <td class="timetable__cell" data-period="8" data-day="월" data-seats="3"><span class="cell-seats">3</span></td>
+            <td class="timetable__cell" data-period="8" data-day="화" data-seats="1"><span class="cell-seats">1</span></td>
+            <td class="timetable__cell" data-period="8" data-day="수" data-seats="1"><span class="cell-seats">1</span></td>
+            <td class="timetable__cell timetable__cell--full" data-period="8" data-day="목" data-seats="0"><span class="cell-seats">만석</span></td>
+            <td class="timetable__cell" data-period="8" data-day="금" data-seats="3"><span class="cell-seats">3</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Reason -->
+    <div class="reason-card">
+      <div class="form-group">
+        <label class="form-label">사유 (선택)</label>
+        <textarea class="form-textarea" placeholder="대체수강 사유를 입력해 주세요"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <button class="submit-btn" id="submit-btn" disabled style="opacity:0.5; cursor:not-allowed;">대체수강 신청하기</button>
+
+  <!-- History -->
+  <div class="section history-section" style="margin-top: 2rem;">
+    <h2 class="section__title">신청 내역</h2>
+
+    <div class="history-card">
+      <div class="history-card__icon history-card__icon--approved">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+      </div>
+      <div class="history-card__content">
+        <div class="history-card__title">2/10(월) 1교시 → 2/11(화) 6교시</div>
+        <div class="history-card__detail">2026.02.08 신청</div>
+      </div>
+      <span class="history-card__status history-card__status--approved">완료</span>
+    </div>
+
+    <div class="history-card">
+      <div class="history-card__icon history-card__icon--approved">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+      </div>
+      <div class="history-card__content">
+        <div class="history-card__title">2/3(월) 1교시 → 2/4(화) 7교시</div>
+        <div class="history-card__detail">2026.02.01 신청</div>
+      </div>
+      <span class="history-card__status history-card__status--approved">완료</span>
+    </div>
+
+    <div class="history-card">
+      <div class="history-card__icon history-card__icon--approved">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+      </div>
+      <div class="history-card__content">
+        <div class="history-card__title">1/27(월) 1교시 → 1/29(수) 8교시</div>
+        <div class="history-card__detail">2026.01.25 신청</div>
+      </div>
+      <span class="history-card__status history-card__status--approved">완료</span>
+    </div>
+  </div>
+</div>
+
+<!-- Bottom Navigation -->
+<nav class="bottom-nav">
+  <a class="nav-item" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+    </svg>
+    <span class="nav-item__label">홈</span>
+  </a>
+  <a class="nav-item" href="journal.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+    </svg>
+    <span class="nav-item__label">일지</span>
+  </a>
+  <a class="nav-item" href="substitute.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+    </svg>
+    <span class="nav-item__label">대체수강</span>
+  </a>
+  <a class="nav-item" href="holding.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/><line x1="10" y1="15" x2="10" y2="9"/><line x1="14" y1="15" x2="14" y2="9"/>
+    </svg>
+    <span class="nav-item__label">홀딩</span>
+  </a>
+  <a class="nav-item" href="class-status.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+    </svg>
+    <span class="nav-item__label">수업현황</span>
+  </a>
+</nav>
+
+<script>
+(function() {
+  let absentCell = null;
+  let subCell = null;
+
+  const absentValue = document.getElementById('absent-value');
+  const subValue = document.getElementById('sub-value');
+  const stepAbsent = document.getElementById('step-absent');
+  const stepSub = document.getElementById('step-sub');
+  const submitBtn = document.getElementById('submit-btn');
+
+  // Only selectable cells (not noclass, not full)
+  const cells = document.querySelectorAll('.timetable__cell:not(.timetable__cell--noclass):not(.timetable__cell--full)');
+
+  var periodTimes = {
+    '1': '11:30~12:40', '2': '13:00~14:10', '6': '17:00~18:10',
+    '7': '18:30~19:40', '8': '20:00~21:10'
+  };
+
+  function getCellText(cell) {
+    return cell.dataset.day + ' ' + cell.dataset.period + '교시';
+  }
+
+  function retriggerAnim(el) {
+    el.style.animation = 'none';
+    el.offsetHeight; // force reflow
+    el.style.animation = '';
+  }
+
+  function updateUI() {
+    if (absentCell) {
+      absentValue.textContent = getCellText(absentCell);
+      if (!stepAbsent.classList.contains('selection-guide__step--done')) {
+        stepAbsent.classList.add('selection-guide__step--done');
+        retriggerAnim(stepAbsent);
+      }
+      stepAbsent.classList.remove('selection-guide__step--active');
+      if (!subCell) stepSub.classList.add('selection-guide__step--active');
+    } else {
+      absentValue.textContent = '선택해주세요';
+      stepAbsent.classList.remove('selection-guide__step--done');
+      stepAbsent.classList.add('selection-guide__step--active');
+      stepSub.classList.remove('selection-guide__step--active');
+    }
+
+    if (subCell) {
+      subValue.textContent = getCellText(subCell);
+      if (!stepSub.classList.contains('selection-guide__step--done')) {
+        stepSub.classList.add('selection-guide__step--done');
+        retriggerAnim(stepSub);
+      }
+      stepSub.classList.remove('selection-guide__step--active');
+    } else {
+      subValue.textContent = '선택해주세요';
+      stepSub.classList.remove('selection-guide__step--done');
+    }
+
+    if (absentCell && subCell) {
+      submitBtn.disabled = false;
+      submitBtn.style.opacity = '1';
+      submitBtn.style.cursor = 'pointer';
+    } else {
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.5';
+      submitBtn.style.cursor = 'not-allowed';
+    }
+  }
+
+  function restoreCell(cell) {
+    cell.classList.remove('timetable__cell--absent', 'timetable__cell--substitute');
+    var label = cell.querySelector('.cell-label');
+    if (label) label.remove();
+
+    // Restore original content
+    if (cell.classList.contains('timetable__cell--mine')) {
+      // mine cells stay empty (no checkmark)
+    } else {
+      if (!cell.querySelector('.cell-seats') && cell.dataset.seats) {
+        var s = document.createElement('span');
+        s.className = 'cell-seats';
+        s.textContent = cell.dataset.seats;
+        cell.appendChild(s);
+      }
+    }
+  }
+
+  function selectCell(cell, type) {
+    // Clear existing inner content
+    var seats = cell.querySelector('.cell-seats');
+    if (seats) seats.remove();
+    var old = cell.querySelector('.cell-label');
+    if (old) old.remove();
+
+    cell.classList.add(type === 'absent' ? 'timetable__cell--absent' : 'timetable__cell--substitute');
+    var label = document.createElement('span');
+    label.className = 'cell-label';
+    label.textContent = type === 'absent' ? '전' : '후';
+    cell.appendChild(label);
+  }
+
+  cells.forEach(function(cell) {
+    cell.addEventListener('click', function() {
+      var isMine = cell.classList.contains('timetable__cell--mine');
+      var hasSeats = parseInt(cell.dataset.seats || '0') > 0;
+
+      // Tapping current absent → deselect
+      if (cell === absentCell) {
+        restoreCell(cell);
+        absentCell = null;
+        if (subCell) { restoreCell(subCell); subCell = null; }
+        updateUI();
+        return;
+      }
+
+      // Tapping current sub → deselect
+      if (cell === subCell) {
+        restoreCell(cell);
+        subCell = null;
+        updateUI();
+        return;
+      }
+
+      // Mine cell → always set as "전" (대체 전)
+      if (isMine) {
+        if (absentCell) {
+          restoreCell(absentCell);
+          if (subCell) { restoreCell(subCell); subCell = null; }
+        }
+        absentCell = cell;
+        selectCell(cell, 'absent');
+        updateUI();
+        return;
+      }
+
+      // Available cell (has seats) → set as "후" (대체 후)
+      if (hasSeats) {
+        if (!absentCell) {
+          // Must select 대체 전 first
+          stepAbsent.style.animation = 'none';
+          stepAbsent.offsetHeight;
+          stepAbsent.style.animation = 'shake 0.4s ease';
+          return;
+        }
+        if (subCell) restoreCell(subCell);
+        subCell = cell;
+        selectCell(cell, 'substitute');
+        updateUI();
+        return;
+      }
+    });
+  });
+
+  // Submit → auto-approval
+  submitBtn.addEventListener('click', function() {
+    if (submitBtn.disabled) return;
+    submitBtn.textContent = '자동승인 완료!';
+    submitBtn.style.background = 'linear-gradient(135deg, #5BB88A, #4AA87A)';
+    setTimeout(function() {
+      submitBtn.textContent = '대체수강 신청하기';
+      submitBtn.style.background = '';
+      if (absentCell) { restoreCell(absentCell); absentCell = null; }
+      if (subCell) { restoreCell(subCell); subCell = null; }
+      updateUI();
+    }, 1500);
+  });
+})();
+</script>
+
+</body>
+</html>
