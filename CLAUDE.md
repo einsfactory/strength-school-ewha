@@ -1,5 +1,15 @@
 # 근력학교 이화 - 프로젝트 가이드
 
+## 목업 변경 시 GitHub 배포 규칙
+
+목업(mockups/) 파일에 변경사항이 생기면 **반드시** 아래 절차를 실행한다:
+
+1. 변경 내용을 커밋한다
+2. `main` 브랜치에 push하여 GitHub Pages 자동 배포를 트리거한다
+3. 배포 URL: https://einsfactory.github.io/strength-school-ewha/
+
+이 규칙은 목업 작업이 완료될 때마다 매번 수행한다. 사용자에게 확인 없이 자동 실행한다.
+
 ## 목업-Plan 동기화 규칙
 
 목업(mockups/) 파일에 변경사항이 생길 때마다, 해당 변경 내용을 Plan 문서(`docs/01-plan/features/strength-school-ewha.plan.md`)에 반영한다.
