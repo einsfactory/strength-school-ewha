@@ -897,6 +897,43 @@
     min-width: 0.875rem; text-align: center;
   }
 
+  /* Trainer Stamps */
+  .jentry__stamps {
+    display: flex; flex-wrap: wrap; gap: 0.375rem;
+    margin-bottom: 0.625rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px dashed rgba(196, 176, 210, 0.15);
+  }
+  .jentry__stamp {
+    height: 26px; padding: 0 0.625rem;
+    border-radius: 13px; border: 1.5px solid rgba(212, 130, 154, 0.25);
+    background: rgba(249, 228, 236, 0.3);
+    font-family: var(--font-body); font-size: 0.625rem; font-weight: 600;
+    color: var(--rose-400); cursor: pointer;
+    display: flex; align-items: center; gap: 0.25rem;
+    transition: all 0.25s; user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .jentry__stamp:hover {
+    background: rgba(249, 228, 236, 0.5);
+    border-color: var(--rose-300);
+    transform: scale(1.05);
+  }
+  .jentry__stamp:active { transform: scale(0.92); }
+  .jentry__stamp.active {
+    background: linear-gradient(135deg, rgba(212, 130, 154, 0.2), rgba(228, 165, 184, 0.25));
+    border-color: var(--rose-400);
+    color: var(--rose-400);
+    box-shadow: 0 2px 8px rgba(212, 130, 154, 0.2);
+  }
+  .jentry__stamp.active .jentry__stamp-check {
+    display: inline;
+  }
+  .jentry__stamp-check {
+    display: none;
+    font-size: 0.5rem;
+  }
+
   /* Comment section */
   .jentry__comments { margin-top: 0.5rem; }
   .jentry__comment {
@@ -1734,6 +1771,11 @@
       }
     });
 
+    // Stamp toggle (global function for onclick)
+    window.toggleStamp = function(el) {
+      el.classList.toggle('active');
+    };
+
     // Sticker toggle
     journalOverlay.querySelectorAll('.jentry__sticker').forEach(function(sticker) {
       sticker.addEventListener('click', function() {
@@ -1799,6 +1841,13 @@
           스쿼트 5x5 @ 50kg · 런지 3x12 · 레그프레스 4x10
         </div>
         <div class="jentry__text">오늘 스쿼트 50kg 도전했는데 3세트 넘어가니까 허리가 좀 힘들었다. 폼 무너지지 않게 집중했는데 마지막 세트는 살짝 앞으로 기울어진 것 같다. 런지는 균형 잡기가 점점 나아지고 있는 느낌!</div>
+        <div class="jentry__stamps">
+          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 잘했어요!</span>
+          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 파이팅!</span>
+          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 완벽!</span>
+          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 성장중!</span>
+          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 꾸준해요!</span>
+        </div>
         <div class="jentry__reactions">
           <span class="jentry__sticker" data-sticker="fire">🔥</span><span class="jentry__sticker-count"></span>
           <span class="jentry__sticker" data-sticker="strong">💪</span><span class="jentry__sticker-count"></span>
@@ -1826,6 +1875,13 @@
           벤치프레스 5x5 @ 35kg · 덤벨플라이 3x12 · 케이블크로스 3x15
         </div>
         <div class="jentry__text">벤치프레스 35kg 처음으로 5세트 다 채웠다!! 그립 넓이를 살짝 좁혔더니 어깨 부담이 훨씬 줄었다. 트레이너님이 가르쳐준 호흡법이 확실히 효과 있는 것 같다.</div>
+        <div class="jentry__stamps">
+          <span class="jentry__stamp active" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 잘했어요!</span>
+          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 파이팅!</span>
+          <span class="jentry__stamp active" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 완벽!</span>
+          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 성장중!</span>
+          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 꾸준해요!</span>
+        </div>
         <div class="jentry__reactions">
           <span class="jentry__sticker active" data-sticker="fire">🔥</span><span class="jentry__sticker-count">1</span>
           <span class="jentry__sticker active" data-sticker="strong">💪</span><span class="jentry__sticker-count">1</span>
@@ -1861,6 +1917,13 @@
           데드리프트 5x3 @ 40kg · 바벨로우 4x8 · 풀업밴드 3x8
         </div>
         <div class="jentry__text">설연휴 전 마지막 수업! 데드리프트 그립이 계속 미끄러져서 스트랩 쓰고 했다. 바벨로우는 등 수축 느끼는 게 어렵지만 거울 보면서 하니까 좀 나은 것 같다.</div>
+        <div class="jentry__stamps">
+          <span class="jentry__stamp active" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 잘했어요!</span>
+          <span class="jentry__stamp active" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 파이팅!</span>
+          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 완벽!</span>
+          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 성장중!</span>
+          <span class="jentry__stamp active" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 꾸준해요!</span>
+        </div>
         <div class="jentry__reactions">
           <span class="jentry__sticker active" data-sticker="fire">🔥</span><span class="jentry__sticker-count">1</span>
           <span class="jentry__sticker" data-sticker="strong">💪</span><span class="jentry__sticker-count"></span>
