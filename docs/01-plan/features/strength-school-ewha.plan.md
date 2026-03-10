@@ -395,10 +395,102 @@ src/
 | `substitute_requests` | 대체수강 신청 | id, member_id, original_schedule_id, target_schedule_id, target_date, status, reason |
 | `holding_requests` | 홀딩 신청 | id, member_id, start_date, end_date, reason, status |
 | `timechange_requests` | 시간 변경 신청 | id, member_id, original_schedule_id, target_schedule_id, start_from, reason, status, is_waitlist, waitlist_position |
-| `training_journals` | 훈련일지 | id, trainer_id, schedule_id, date, content, exercises (JSONB) |
-| `journal_members` | 훈련일지-수강생 매핑 | id, journal_id, member_id |
+| `training_journals` | 훈련일지 (수강생 작성) | id, member_id, schedule_id, date, week_num, day_num, focus_memo, aux_exercises (JSONB), main_exercises (JSONB), special_notes, remarks, feeling, status (draft/published) |
+| `journal_exercises` | 훈련일지 운동 상세 | id, journal_id, section (aux/main), order_num, exercise_name, sets (JSONB: [{memo, weight, reps}]) |
+| `journal_reactions` | 트레이너 리액션 | id, journal_id, trainer_id, reaction_type, comment, created_at |
 | `notices` | 공지사항 | id, trainer_id, title, content, is_pinned, created_at |
 | `attendance_records` | 출석 기록 | id, member_id, schedule_id, date, status (출석/결석/대체) |
+
+### 8.3 훈련일지 양식 패턴 (실물 분석)
+
+실물 손글씨 훈련일지 7장 분석 결과, 다음과 같은 구조 패턴이 확인됨.
+
+#### 양식 기본 구조 (4열)
+
+```
+┌─────────────────┬────────┬──────────┬────────┐
+│    워크아웃       │  중량   │  특이사항  │  비고   │
+├─────────────────┼────────┼──────────┼────────┤
+│ <보조>           │        │          │        │
+│ 1. 흉추 스트레칭   │ 12X2   │ 90-90    │        │
+│ 2. 밴드 풀어파트   │ 15X3   │ 골반 안돌리기│        │
+│ 3. 불가리안 스쿼트  │ 10X2   │          │        │
+├─────────────────┼────────┼──────────┼────────┤
+│ <본>             │        │          │        │
+│ 1. 벤치프레스      │ 5X3    │ 날개뼈 모으기│ 20→25K │
+│ 2. 백스쿼트       │ 40K 70%│ 허리 중립  │        │
+└─────────────────┴────────┴──────────┴────────┘
+```
+
+#### 헤더 메타 정보
+
+| 필드 | 설명 | 예시 |
+|------|------|------|
+| 훈련일 | 수업 날짜 | 2025년 10월 22일 |
+| 주차 | 프로그램 주차 | 2주차 |
+| 일차 | 주 내 훈련 일차 (Day 1/2/3) | 2일차 |
+| 상단 메모 | 오늘의 포커스/테마 | "피봇 week, 케틀벨 스킬 연습" |
+
+#### 운동 기록 패턴 (3가지 유형)
+
+| 유형 | 표기법 | 설명 | 예시 |
+|------|--------|------|------|
+| 직선 세트 | NXM | 동일 중량 반복 | 12X3 (12회 3세트) |
+| 피라미드/드롭 | N-N-N | 횟수/중량 점진 변화 | 11-9-7, 20K→25K→30K |
+| 시간 기반 | Nmin, Ns | EMOM/타이머/홀드 | 12min, 45s, 1분에 7개씩 |
+
+#### %RM 표기
+
+수강생이 1RM 기반 중량 산출을 직접 기록하는 패턴 확인.
+예: "20X70% = 64K", "5X3 (60%)"
+
+#### 특이사항/코칭 큐
+
+자세 교정 및 주의사항이 주로 기록되는 항목:
+- 자세 큐: "날개뼈 모으기", "팔꿈치 내리기!", "허리 붙이기"
+- 통증/주의: "어깨 쏠리지 X", "숨 잘지 않기"
+- 생활 코칭: "술 금지 X", "스트레칭 습관화"
+
+#### 트레이너 피드백 유형 (3종)
+
+| 유형 | 도구 | 앱 매핑 |
+|------|------|---------|
+| 스탬프/도장 | "참 잘했어요!!", "아주 좋아요!!" (캐릭터 도장) | 스티커 리액션 (🔥💪⭐❤️👏) |
+| 하트/Good | 빨간펜 하트, "Good!" | 리액션 이모지 |
+| 서명 코멘트 | 격려 메시지 + "— 정희 T —" 서명 | 트레이너 코멘트 + 서명 |
+
+#### 부가 요소
+
+- **근육 해부도(바디맵)**: 한 장에서 등 근육 후면 그림에 초록색 하이라이트 확인 → 향후 인터랙티브 바디맵 고려
+- **서킷 화살표(→)**: "벤치 → 플로어프레스 → 폼바 4K DB" 흐름 연결 → 슈퍼세트/서킷 UI 고려
+- **W. 표기**: "W. 4-3-2" 주차별 프로그래밍 메모
+
+#### exercises JSONB 구조 (training_journals 테이블)
+
+```json
+{
+  "aux": [
+    {
+      "order": 1,
+      "name": "흉추 스트레칭",
+      "sets": [
+        { "num": 1, "memo": "90/90", "weight": "", "reps": "12X2" }
+      ]
+    }
+  ],
+  "main": [
+    {
+      "order": 1,
+      "name": "벤치프레스",
+      "sets": [
+        { "num": 1, "memo": "워밍업", "weight": "15K", "reps": "12회" },
+        { "num": 2, "memo": "", "weight": "20K", "reps": "10회" },
+        { "num": 3, "memo": "70%", "weight": "25K", "reps": "8회" }
+      ]
+    }
+  ]
+}
+```
 
 ---
 
