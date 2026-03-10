@@ -1357,6 +1357,145 @@
   </a>
 </nav>
 
+<!-- Journal Overlay -->
+<div class="journal-overlay" id="journalOverlay">
+  <div class="journal-modal">
+    <div class="journal-modal__header">
+      <div class="journal-modal__handle"></div>
+      <div class="journal-modal__title-row">
+        <span class="journal-modal__title-icon">🌱</span>
+        <span class="journal-modal__title" id="journalTitle">훈련일지</span>
+        <button class="journal-modal__close" id="journalClose">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="journal-modal__body">
+
+      <!-- Entry 1 -->
+      <div class="jentry" style="animation-delay: 0.05s;">
+        <div class="jentry__date">2026.02.12 (수)</div>
+        <div class="jentry__workout">
+          <div class="jentry__workout-label">Today's Training</div>
+          스쿼트 5x5 @ 50kg · 런지 3x12 · 레그프레스 4x10
+        </div>
+        <div class="jentry__text">오늘 스쿼트 50kg 도전했는데 3세트 넘어가니까 허리가 좀 힘들었다. 폼 무너지지 않게 집중했는데 마지막 세트는 살짝 앞으로 기울어진 것 같다. 런지는 균형 잡기가 점점 나아지고 있는 느낌!</div>
+        <div class="jentry__stamps">
+          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 잘했어요!</span>
+          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 파이팅!</span>
+          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 완벽!</span>
+          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 성장중!</span>
+          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 꾸준해요!</span>
+        </div>
+        <div class="jentry__reactions">
+          <span class="jentry__sticker" data-sticker="fire">🔥</span><span class="jentry__sticker-count"></span>
+          <span class="jentry__sticker" data-sticker="strong">💪</span><span class="jentry__sticker-count"></span>
+          <span class="jentry__sticker" data-sticker="star">⭐</span><span class="jentry__sticker-count"></span>
+          <span class="jentry__sticker" data-sticker="heart">❤️</span><span class="jentry__sticker-count"></span>
+          <span class="jentry__sticker" data-sticker="clap">👏</span><span class="jentry__sticker-count"></span>
+        </div>
+        <div class="jentry__comments">
+          <div class="jentry__add-comment">
+            <input class="jentry__comment-input" placeholder="코멘트 남기기..." />
+            <button class="jentry__comment-send">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Entry 2 -->
+      <div class="jentry" style="animation-delay: 0.1s;">
+        <div class="jentry__date">2026.02.10 (월)</div>
+        <div class="jentry__workout">
+          <div class="jentry__workout-label">Today's Training</div>
+          벤치프레스 5x5 @ 35kg · 덤벨플라이 3x12 · 케이블크로스 3x15
+        </div>
+        <div class="jentry__text">벤치프레스 35kg 처음으로 5세트 다 채웠다!! 그립 넓이를 살짝 좁혔더니 어깨 부담이 훨씬 줄었다. 트레이너님이 가르쳐준 호흡법이 확실히 효과 있는 것 같다.</div>
+        <div class="jentry__stamps">
+          <span class="jentry__stamp active" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 잘했어요!</span>
+          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 파이팅!</span>
+          <span class="jentry__stamp active" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 완벽!</span>
+          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 성장중!</span>
+          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 꾸준해요!</span>
+        </div>
+        <div class="jentry__reactions">
+          <span class="jentry__sticker active" data-sticker="fire">🔥</span><span class="jentry__sticker-count">1</span>
+          <span class="jentry__sticker active" data-sticker="strong">💪</span><span class="jentry__sticker-count">1</span>
+          <span class="jentry__sticker" data-sticker="star">⭐</span><span class="jentry__sticker-count"></span>
+          <span class="jentry__sticker" data-sticker="heart">❤️</span><span class="jentry__sticker-count"></span>
+          <span class="jentry__sticker" data-sticker="clap">👏</span><span class="jentry__sticker-count"></span>
+        </div>
+        <div class="jentry__comments">
+          <div class="jentry__comment">
+            <div class="jentry__comment-avatar">T</div>
+            <div class="jentry__comment-body">
+              <div class="jentry__comment-name">트레이너</div>
+              <div class="jentry__comment-text">35kg 풀세트 축하해요! 호흡 타이밍 잘 잡고 있어요. 다음엔 내려올 때 2초 카운트 해보세요 💪</div>
+              <div class="jentry__comment-time">2/10 20:15</div>
+            </div>
+          </div>
+          <div class="jentry__add-comment">
+            <input class="jentry__comment-input" placeholder="코멘트 남기기..." />
+            <button class="jentry__comment-send">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Entry 3 -->
+      <div class="jentry" style="animation-delay: 0.15s;">
+        <div class="jentry__date">2026.02.07 (금)</div>
+        <div class="jentry__workout">
+          <div class="jentry__workout-label">Today's Training</div>
+          데드리프트 5x3 @ 40kg · 바벨로우 4x8 · 풀업밴드 3x8
+        </div>
+        <div class="jentry__text">설연휴 전 마지막 수업! 데드리프트 그립이 계속 미끄러져서 스트랩 쓰고 했다. 바벨로우는 등 수축 느끼는 게 어렵지만 거울 보면서 하니까 좀 나은 것 같다.</div>
+        <div class="jentry__stamps">
+          <span class="jentry__stamp active" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 잘했어요!</span>
+          <span class="jentry__stamp active" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 파이팅!</span>
+          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 완벽!</span>
+          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 성장중!</span>
+          <span class="jentry__stamp active" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 꾸준해요!</span>
+        </div>
+        <div class="jentry__reactions">
+          <span class="jentry__sticker active" data-sticker="fire">🔥</span><span class="jentry__sticker-count">1</span>
+          <span class="jentry__sticker" data-sticker="strong">💪</span><span class="jentry__sticker-count"></span>
+          <span class="jentry__sticker" data-sticker="star">⭐</span><span class="jentry__sticker-count"></span>
+          <span class="jentry__sticker active" data-sticker="heart">❤️</span><span class="jentry__sticker-count">1</span>
+          <span class="jentry__sticker" data-sticker="clap">👏</span><span class="jentry__sticker-count"></span>
+        </div>
+        <div class="jentry__comments">
+          <div class="jentry__comment">
+            <div class="jentry__comment-avatar">T</div>
+            <div class="jentry__comment-body">
+              <div class="jentry__comment-name">트레이너</div>
+              <div class="jentry__comment-text">그립 힘은 서서히 좋아질 거예요. 연휴 때 손가락 스트레칭 해주면 좋아요! 새해 복 많이 받으세요 🎊</div>
+              <div class="jentry__comment-time">2/7 21:30</div>
+            </div>
+          </div>
+          <div class="jentry__add-comment">
+            <input class="jentry__comment-input" placeholder="코멘트 남기기..." />
+            <button class="jentry__comment-send">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <script>
 (function() {
   // ══════════════════════════════════════════════
@@ -1815,145 +1954,6 @@
 
 })();
 </script>
-
-<!-- Journal Overlay -->
-<div class="journal-overlay" id="journalOverlay">
-  <div class="journal-modal">
-    <div class="journal-modal__header">
-      <div class="journal-modal__handle"></div>
-      <div class="journal-modal__title-row">
-        <span class="journal-modal__title-icon">🌱</span>
-        <span class="journal-modal__title" id="journalTitle">훈련일지</span>
-        <button class="journal-modal__close" id="journalClose">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-          </svg>
-        </button>
-      </div>
-    </div>
-    <div class="journal-modal__body">
-
-      <!-- Entry 1 -->
-      <div class="jentry" style="animation-delay: 0.05s;">
-        <div class="jentry__date">2026.02.12 (수)</div>
-        <div class="jentry__workout">
-          <div class="jentry__workout-label">Today's Training</div>
-          스쿼트 5x5 @ 50kg · 런지 3x12 · 레그프레스 4x10
-        </div>
-        <div class="jentry__text">오늘 스쿼트 50kg 도전했는데 3세트 넘어가니까 허리가 좀 힘들었다. 폼 무너지지 않게 집중했는데 마지막 세트는 살짝 앞으로 기울어진 것 같다. 런지는 균형 잡기가 점점 나아지고 있는 느낌!</div>
-        <div class="jentry__stamps">
-          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 잘했어요!</span>
-          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 파이팅!</span>
-          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 완벽!</span>
-          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 성장중!</span>
-          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 꾸준해요!</span>
-        </div>
-        <div class="jentry__reactions">
-          <span class="jentry__sticker" data-sticker="fire">🔥</span><span class="jentry__sticker-count"></span>
-          <span class="jentry__sticker" data-sticker="strong">💪</span><span class="jentry__sticker-count"></span>
-          <span class="jentry__sticker" data-sticker="star">⭐</span><span class="jentry__sticker-count"></span>
-          <span class="jentry__sticker" data-sticker="heart">❤️</span><span class="jentry__sticker-count"></span>
-          <span class="jentry__sticker" data-sticker="clap">👏</span><span class="jentry__sticker-count"></span>
-        </div>
-        <div class="jentry__comments">
-          <div class="jentry__add-comment">
-            <input class="jentry__comment-input" placeholder="코멘트 남기기..." />
-            <button class="jentry__comment-send">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Entry 2 -->
-      <div class="jentry" style="animation-delay: 0.1s;">
-        <div class="jentry__date">2026.02.10 (월)</div>
-        <div class="jentry__workout">
-          <div class="jentry__workout-label">Today's Training</div>
-          벤치프레스 5x5 @ 35kg · 덤벨플라이 3x12 · 케이블크로스 3x15
-        </div>
-        <div class="jentry__text">벤치프레스 35kg 처음으로 5세트 다 채웠다!! 그립 넓이를 살짝 좁혔더니 어깨 부담이 훨씬 줄었다. 트레이너님이 가르쳐준 호흡법이 확실히 효과 있는 것 같다.</div>
-        <div class="jentry__stamps">
-          <span class="jentry__stamp active" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 잘했어요!</span>
-          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 파이팅!</span>
-          <span class="jentry__stamp active" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 완벽!</span>
-          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 성장중!</span>
-          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 꾸준해요!</span>
-        </div>
-        <div class="jentry__reactions">
-          <span class="jentry__sticker active" data-sticker="fire">🔥</span><span class="jentry__sticker-count">1</span>
-          <span class="jentry__sticker active" data-sticker="strong">💪</span><span class="jentry__sticker-count">1</span>
-          <span class="jentry__sticker" data-sticker="star">⭐</span><span class="jentry__sticker-count"></span>
-          <span class="jentry__sticker" data-sticker="heart">❤️</span><span class="jentry__sticker-count"></span>
-          <span class="jentry__sticker" data-sticker="clap">👏</span><span class="jentry__sticker-count"></span>
-        </div>
-        <div class="jentry__comments">
-          <div class="jentry__comment">
-            <div class="jentry__comment-avatar">T</div>
-            <div class="jentry__comment-body">
-              <div class="jentry__comment-name">트레이너</div>
-              <div class="jentry__comment-text">35kg 풀세트 축하해요! 호흡 타이밍 잘 잡고 있어요. 다음엔 내려올 때 2초 카운트 해보세요 💪</div>
-              <div class="jentry__comment-time">2/10 20:15</div>
-            </div>
-          </div>
-          <div class="jentry__add-comment">
-            <input class="jentry__comment-input" placeholder="코멘트 남기기..." />
-            <button class="jentry__comment-send">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Entry 3 -->
-      <div class="jentry" style="animation-delay: 0.15s;">
-        <div class="jentry__date">2026.02.07 (금)</div>
-        <div class="jentry__workout">
-          <div class="jentry__workout-label">Today's Training</div>
-          데드리프트 5x3 @ 40kg · 바벨로우 4x8 · 풀업밴드 3x8
-        </div>
-        <div class="jentry__text">설연휴 전 마지막 수업! 데드리프트 그립이 계속 미끄러져서 스트랩 쓰고 했다. 바벨로우는 등 수축 느끼는 게 어렵지만 거울 보면서 하니까 좀 나은 것 같다.</div>
-        <div class="jentry__stamps">
-          <span class="jentry__stamp active" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 잘했어요!</span>
-          <span class="jentry__stamp active" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 파이팅!</span>
-          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 완벽!</span>
-          <span class="jentry__stamp" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 성장중!</span>
-          <span class="jentry__stamp active" onclick="toggleStamp(this)"><span class="jentry__stamp-check">✓</span> 꾸준해요!</span>
-        </div>
-        <div class="jentry__reactions">
-          <span class="jentry__sticker active" data-sticker="fire">🔥</span><span class="jentry__sticker-count">1</span>
-          <span class="jentry__sticker" data-sticker="strong">💪</span><span class="jentry__sticker-count"></span>
-          <span class="jentry__sticker" data-sticker="star">⭐</span><span class="jentry__sticker-count"></span>
-          <span class="jentry__sticker active" data-sticker="heart">❤️</span><span class="jentry__sticker-count">1</span>
-          <span class="jentry__sticker" data-sticker="clap">👏</span><span class="jentry__sticker-count"></span>
-        </div>
-        <div class="jentry__comments">
-          <div class="jentry__comment">
-            <div class="jentry__comment-avatar">T</div>
-            <div class="jentry__comment-body">
-              <div class="jentry__comment-name">트레이너</div>
-              <div class="jentry__comment-text">그립 힘은 서서히 좋아질 거예요. 연휴 때 손가락 스트레칭 해주면 좋아요! 새해 복 많이 받으세요 🎊</div>
-              <div class="jentry__comment-time">2/7 21:30</div>
-            </div>
-          </div>
-          <div class="jentry__add-comment">
-            <input class="jentry__comment-input" placeholder="코멘트 남기기..." />
-            <button class="jentry__comment-send">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
 
 </body>
 </html>
