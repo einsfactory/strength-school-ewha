@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>근력학교 이화 — 훈련일지 작성</title>
+<style>
+  /* ── FONT FACES ── */
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'CarmenSans';
+    src: url('fonts/CarmenSans/CarmenSansOTF-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'TYPE졸업식';
+    src: url('fonts/TypeGraduation.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* ── RESET & VARIABLES ── */
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+  :root {
+    --purple-700: #3B2650;
+    --purple-600: #4B2D5E;
+    --purple-500: #5E3D74;
+    --purple-400: #7B5A93;
+    --purple-300: #9E82B0;
+    --purple-200: #C4B0D2;
+    --purple-100: #E8DFF0;
+    --purple-50:  #F5F0F8;
+
+    --rose-400: #D4829A;
+    --rose-300: #E4A5B8;
+    --rose-200: #F0C6D4;
+    --rose-100: #F9E4EC;
+    --rose-50:  #FDF5F8;
+
+    --bg-gradient-1: #EDE0F5;
+    --bg-gradient-2: #F9DDE8;
+    --bg-gradient-3: #E6DAF2;
+    --bg-card: rgba(255, 255, 255, 0.72);
+    --bg-card-solid: #fff;
+    --border-subtle: rgba(196, 176, 210, 0.3);
+
+    --text-primary: #2E1A3E;
+    --text-secondary: #6B5A7E;
+    --text-muted: #A89AB8;
+
+    --success: #5BB88A;
+    --warning: #E8A854;
+    --danger: #D94E6A;
+    --journal: #3D6B3A;
+    --journal-light: rgba(61, 107, 58, 0.08);
+
+    --aux-color: #6B8E7B;
+    --aux-bg: rgba(107, 142, 123, 0.08);
+    --aux-border: rgba(107, 142, 123, 0.18);
+    --main-color: var(--purple-500);
+    --main-bg: rgba(94, 61, 116, 0.06);
+    --main-border: rgba(94, 61, 116, 0.14);
+
+    --font-display: 'TYPE졸업식', sans-serif;
+    --font-body: 'CarmenSans', 'Noto Sans KR', sans-serif;
+
+    --nav-height: 68px;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: var(--font-body);
+    min-height: 100dvh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    background: var(--bg-gradient-1);
+    color: var(--text-primary);
+    padding-bottom: calc(var(--nav-height) + 80px);
+  }
+
+  /* ── GRADIENT BACKGROUND ── */
+  .bg-atmosphere {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 90% 70% at 10% 5%, rgba(190, 160, 220, 0.6) 0%, transparent 65%),
+      radial-gradient(ellipse 80% 60% at 90% 10%, rgba(240, 170, 200, 0.55) 0%, transparent 60%),
+      radial-gradient(ellipse 70% 60% at 75% 85%, rgba(180, 150, 220, 0.5) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 15% 85%, rgba(235, 180, 205, 0.45) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 50% 50%, rgba(255, 255, 255, 0.5) 0%, transparent 70%),
+      linear-gradient(150deg, #EDE0F5 0%, #F9DDE8 35%, #E6DAF2 65%, #F5E4EE 100%);
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    opacity: 0.018;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px;
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    position: relative;
+    z-index: 1;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 1.25rem 2rem;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-12px); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+  }
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.95); }
+  }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 0 1.25rem;
+    animation: fadeDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .back-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+
+  .back-btn:hover {
+    border-color: var(--purple-200);
+    color: var(--purple-500);
+  }
+
+  .back-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .page-header__title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--text-primary);
+  }
+
+  /* ── DATE/WEEK HEADER CARD ── */
+  .meta-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 1rem 1.125rem;
+    margin-bottom: 1rem;
+    animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+  }
+
+  .meta-card__row {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+  }
+
+  .meta-card__row + .meta-card__row {
+    margin-top: 0.625rem;
+  }
+
+  .meta-card__label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    width: 48px;
+    flex-shrink: 0;
+    letter-spacing: 0.02em;
+  }
+
+  .meta-card__date-input {
+    flex: 1;
+    height: 36px;
+    border-radius: 10px;
+    border: 1px solid var(--border-subtle);
+    background: rgba(245, 240, 248, 0.5);
+    padding: 0 0.75rem;
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .meta-card__date-input:focus {
+    border-color: var(--purple-300);
+  }
+
+  .meta-card__week-group {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    flex: 1;
+  }
+
+  .meta-card__week-input {
+    width: 44px;
+    height: 36px;
+    border-radius: 10px;
+    border: 1px solid var(--border-subtle);
+    background: rgba(245, 240, 248, 0.5);
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .meta-card__week-input:focus {
+    border-color: var(--purple-300);
+  }
+
+  .meta-card__week-suffix {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .meta-card__focus-input {
+    flex: 1;
+    height: 36px;
+    border-radius: 10px;
+    border: 1px solid var(--border-subtle);
+    background: rgba(245, 240, 248, 0.5);
+    padding: 0 0.75rem;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .meta-card__focus-input::placeholder {
+    color: var(--text-muted);
+    font-size: 0.6875rem;
+  }
+
+  .meta-card__focus-input:focus {
+    border-color: var(--purple-300);
+  }
+
+  /* ── SECTION ── */
+  .section {
+    margin-bottom: 1rem;
+  }
+
+  .section__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+
+  .section__title-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .section__marker {
+    width: 4px;
+    height: 18px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .section__marker--aux {
+    background: linear-gradient(180deg, var(--aux-color), rgba(107, 142, 123, 0.4));
+  }
+
+  .section__marker--main {
+    background: linear-gradient(180deg, var(--purple-500), rgba(94, 61, 116, 0.4));
+  }
+
+  .section__title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--text-primary);
+  }
+
+  .section__count {
+    font-size: 0.625rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: rgba(168, 154, 184, 0.12);
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+  }
+
+  /* ── EXERCISE CARD ── */
+  .ex-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 0.875rem 1rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: scaleIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .ex-card--aux {
+    border-left: 3px solid var(--aux-border);
+  }
+
+  .ex-card--main {
+    border-left: 3px solid var(--main-border);
+  }
+
+  .ex-card__top {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.625rem;
+  }
+
+  .ex-card__num {
+    width: 22px;
+    height: 22px;
+    border-radius: 7px;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .ex-card__num--aux {
+    background: var(--aux-bg);
+    color: var(--aux-color);
+  }
+
+  .ex-card__num--main {
+    background: var(--main-bg);
+    color: var(--main-color);
+  }
+
+  .ex-card__name-input {
+    flex: 1;
+    height: 32px;
+    border: none;
+    border-bottom: 1.5px solid rgba(196, 176, 210, 0.25);
+    background: transparent;
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.2s;
+    padding: 0 0.25rem;
+  }
+
+  .ex-card__name-input::placeholder {
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  .ex-card__name-input:focus {
+    border-bottom-color: var(--purple-300);
+  }
+
+  .ex-card__remove {
+    width: 26px;
+    height: 26px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    opacity: 0.5;
+  }
+
+  .ex-card__remove:hover {
+    background: rgba(217, 78, 106, 0.08);
+    color: var(--danger);
+    opacity: 1;
+  }
+
+  .ex-card__remove svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* ── SET ROWS ── */
+  .sets-area {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .set-header {
+    display: grid;
+    grid-template-columns: 32px 1fr 68px 68px 26px;
+    gap: 0.375rem;
+    padding: 0 0.125rem 0.25rem;
+    font-size: 0.5625rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .set-header span:first-child {
+    text-align: center;
+  }
+
+  .set-row-input {
+    display: grid;
+    grid-template-columns: 32px 1fr 68px 68px 26px;
+    gap: 0.375rem;
+    align-items: center;
+    padding: 0.125rem;
+    border-radius: 8px;
+    transition: background 0.15s;
+  }
+
+  .set-row-input:nth-child(even) {
+    background: rgba(245, 240, 248, 0.3);
+  }
+
+  .set-row-input__num {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--text-muted);
+  }
+
+  .set-row-input__field {
+    height: 30px;
+    border-radius: 8px;
+    border: 1px solid rgba(196, 176, 210, 0.2);
+    background: rgba(245, 240, 248, 0.4);
+    padding: 0 0.5rem;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+
+  .set-row-input__field:focus {
+    border-color: var(--purple-300);
+    background: rgba(245, 240, 248, 0.7);
+  }
+
+  .set-row-input__field::placeholder {
+    color: var(--text-muted);
+    font-size: 0.6875rem;
+  }
+
+  .set-row-input__field--weight {
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .set-row-input__field--reps {
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .set-row-input__remove {
+    width: 26px;
+    height: 26px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.35;
+    transition: all 0.15s;
+  }
+
+  .set-row-input__remove:hover {
+    opacity: 1;
+    background: rgba(217, 78, 106, 0.08);
+    color: var(--danger);
+  }
+
+  .set-row-input__remove svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  /* ── ADD SET BUTTON ── */
+  .add-set-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    margin-top: 0.375rem;
+    padding: 0.375rem;
+    border: 1px dashed rgba(196, 176, 210, 0.3);
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: all 0.2s;
+    width: 100%;
+  }
+
+  .add-set-btn:hover {
+    border-color: var(--purple-300);
+    color: var(--purple-400);
+    background: rgba(94, 61, 116, 0.03);
+  }
+
+  .add-set-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* ── ADD EXERCISE BUTTON ── */
+  .add-ex-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem;
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 12px;
+    border: 1.5px dashed;
+    background: transparent;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    transition: all 0.25s;
+    margin-bottom: 0.5rem;
+  }
+
+  .add-ex-btn--aux {
+    border-color: var(--aux-border);
+    color: var(--aux-color);
+  }
+
+  .add-ex-btn--aux:hover {
+    background: rgba(107, 142, 123, 0.06);
+    border-color: var(--aux-color);
+  }
+
+  .add-ex-btn--main {
+    border-color: var(--main-border);
+    color: var(--main-color);
+  }
+
+  .add-ex-btn--main:hover {
+    background: rgba(94, 61, 116, 0.04);
+    border-color: var(--purple-400);
+  }
+
+  .add-ex-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* ── NOTES SECTION ── */
+  .notes-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 1rem 1.125rem;
+    margin-bottom: 0.75rem;
+    animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+  }
+
+  .notes-card__label {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+  }
+
+  .notes-card__label svg {
+    width: 14px;
+    height: 14px;
+    opacity: 0.7;
+  }
+
+  .notes-card__textarea {
+    width: 100%;
+    min-height: 60px;
+    border: 1px solid rgba(196, 176, 210, 0.2);
+    border-radius: 10px;
+    background: rgba(245, 240, 248, 0.4);
+    padding: 0.625rem 0.75rem;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: var(--text-primary);
+    outline: none;
+    resize: vertical;
+    transition: border-color 0.2s;
+  }
+
+  .notes-card__textarea::placeholder {
+    color: var(--text-muted);
+  }
+
+  .notes-card__textarea:focus {
+    border-color: var(--purple-300);
+    background: rgba(245, 240, 248, 0.6);
+  }
+
+  /* ── FEELING SECTION ── */
+  .feeling-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.625rem;
+  }
+
+  .feeling-row__label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .feeling-row__options {
+    display: flex;
+    gap: 0.375rem;
+    flex: 1;
+  }
+
+  .feeling-btn {
+    flex: 1;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid rgba(196, 176, 210, 0.25);
+    background: rgba(245, 240, 248, 0.3);
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .feeling-btn:hover {
+    border-color: var(--purple-200);
+    background: rgba(245, 240, 248, 0.6);
+  }
+
+  .feeling-btn.active {
+    border-color: var(--purple-400);
+    background: rgba(94, 61, 116, 0.1);
+    transform: scale(1.08);
+    box-shadow: 0 2px 8px rgba(94, 61, 116, 0.12);
+  }
+
+  /* ── SUBMIT AREA ── */
+  .submit-area {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border-subtle);
+    padding: 0.75rem 1.25rem calc(env(safe-area-inset-bottom, 0px) + 0.75rem);
+  }
+
+  .submit-area__inner {
+    max-width: 480px;
+    margin: 0 auto;
+    display: flex;
+    gap: 0.625rem;
+  }
+
+  .btn-draft {
+    flex: 1;
+    height: 46px;
+    border-radius: 12px;
+    border: 1.5px solid var(--border-subtle);
+    background: var(--bg-card);
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-draft:hover {
+    border-color: var(--purple-200);
+    color: var(--purple-500);
+  }
+
+  .btn-submit {
+    flex: 2;
+    height: 46px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(135deg, var(--purple-500), var(--purple-400));
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 14px rgba(94, 61, 116, 0.25);
+    letter-spacing: 0.02em;
+  }
+
+  .btn-submit:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(94, 61, 116, 0.3);
+  }
+
+  .btn-submit:active {
+    transform: scale(0.97);
+  }
+
+  /* ── SAVED TOAST ── */
+  .toast {
+    position: fixed;
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(-80px);
+    z-index: 200;
+    background: rgba(61, 107, 58, 0.95);
+    backdrop-filter: blur(12px);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    padding: 0.75rem 1.25rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(61, 107, 58, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+  }
+
+  .toast.show {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .toast svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  @media (min-width: 480px) {
+    .main { padding: 0 1.5rem 2rem; }
+  }
+
+  @media (min-width: 768px) {
+    .main {
+      max-width: 560px;
+      padding: 0 2rem 2rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-atmosphere"></div>
+
+<!-- Toast notification -->
+<div class="toast" id="toast">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+  저장되었습니다
+</div>
+
+<div class="main">
+  <!-- Page Header -->
+  <header class="page-header">
+    <a href="journal.html" class="back-btn" aria-label="뒤로가기">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </a>
+    <h1 class="page-header__title">훈련일지 작성</h1>
+  </header>
+
+  <!-- Date & Week Info -->
+  <div class="meta-card">
+    <div class="meta-card__row">
+      <span class="meta-card__label">훈련일</span>
+      <input type="date" class="meta-card__date-input" value="2026-03-11">
+    </div>
+    <div class="meta-card__row">
+      <span class="meta-card__label">주차</span>
+      <div class="meta-card__week-group">
+        <input type="number" class="meta-card__week-input" value="2" min="1" max="52">
+        <span class="meta-card__week-suffix">주차</span>
+        <input type="number" class="meta-card__week-input" value="3" min="1" max="7">
+        <span class="meta-card__week-suffix">일차</span>
+      </div>
+    </div>
+    <div class="meta-card__row">
+      <span class="meta-card__label">포커스</span>
+      <input type="text" class="meta-card__focus-input" placeholder="오늘의 훈련 포커스 (예: 피봇 week, 케틀벨 스킬)">
+    </div>
+  </div>
+
+  <!-- ═══════ 보조훈련 SECTION ═══════ -->
+  <section class="section" style="animation: fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) 0.1s both;">
+    <div class="section__header">
+      <div class="section__title-group">
+        <div class="section__marker section__marker--aux"></div>
+        <h2 class="section__title">보조훈련</h2>
+      </div>
+      <span class="section__count" id="aux-count">2개</span>
+    </div>
+
+    <div id="aux-exercises">
+      <!-- Aux Exercise 1 -->
+      <div class="ex-card ex-card--aux">
+        <div class="ex-card__top">
+          <span class="ex-card__num ex-card__num--aux">1</span>
+          <input type="text" class="ex-card__name-input" placeholder="운동 이름" value="흉추 스트레칭">
+          <button class="ex-card__remove" onclick="removeExercise(this)" aria-label="삭제">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div class="sets-area">
+          <div class="set-header">
+            <span>세트</span>
+            <span>메모</span>
+            <span>중량</span>
+            <span>횟수</span>
+            <span></span>
+          </div>
+          <div class="set-row-input">
+            <span class="set-row-input__num">1</span>
+            <input type="text" class="set-row-input__field" placeholder="90/90 스트레칭">
+            <input type="text" class="set-row-input__field set-row-input__field--weight" placeholder="—">
+            <input type="text" class="set-row-input__field set-row-input__field--reps" placeholder="10회" value="12X2">
+            <button class="set-row-input__remove" onclick="removeSet(this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+        </div>
+        <button class="add-set-btn" onclick="addSet(this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          세트 추가
+        </button>
+      </div>
+
+      <!-- Aux Exercise 2 -->
+      <div class="ex-card ex-card--aux">
+        <div class="ex-card__top">
+          <span class="ex-card__num ex-card__num--aux">2</span>
+          <input type="text" class="ex-card__name-input" placeholder="운동 이름" value="밴드 풀어파트">
+          <button class="ex-card__remove" onclick="removeExercise(this)" aria-label="삭제">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div class="sets-area">
+          <div class="set-header">
+            <span>세트</span>
+            <span>메모</span>
+            <span>중량</span>
+            <span>횟수</span>
+            <span></span>
+          </div>
+          <div class="set-row-input">
+            <span class="set-row-input__num">1</span>
+            <input type="text" class="set-row-input__field" placeholder="">
+            <input type="text" class="set-row-input__field set-row-input__field--weight" placeholder="—" value="밴드">
+            <input type="text" class="set-row-input__field set-row-input__field--reps" placeholder="10회" value="15X3">
+            <button class="set-row-input__remove" onclick="removeSet(this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+        </div>
+        <button class="add-set-btn" onclick="addSet(this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          세트 추가
+        </button>
+      </div>
+    </div>
+
+    <button class="add-ex-btn add-ex-btn--aux" onclick="addExercise('aux')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      보조훈련 추가
+    </button>
+  </section>
+
+  <!-- ═══════ 본훈련 SECTION ═══════ -->
+  <section class="section" style="animation: fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) 0.15s both;">
+    <div class="section__header">
+      <div class="section__title-group">
+        <div class="section__marker section__marker--main"></div>
+        <h2 class="section__title">본훈련</h2>
+      </div>
+      <span class="section__count" id="main-count">2개</span>
+    </div>
+
+    <div id="main-exercises">
+      <!-- Main Exercise 1 -->
+      <div class="ex-card ex-card--main">
+        <div class="ex-card__top">
+          <span class="ex-card__num ex-card__num--main">1</span>
+          <input type="text" class="ex-card__name-input" placeholder="운동 이름" value="벤치프레스">
+          <button class="ex-card__remove" onclick="removeExercise(this)" aria-label="삭제">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div class="sets-area">
+          <div class="set-header">
+            <span>세트</span>
+            <span>메모</span>
+            <span>중량</span>
+            <span>횟수</span>
+            <span></span>
+          </div>
+          <div class="set-row-input">
+            <span class="set-row-input__num">1</span>
+            <input type="text" class="set-row-input__field" placeholder="워밍업" value="워밍업">
+            <input type="text" class="set-row-input__field set-row-input__field--weight" placeholder="kg" value="15K">
+            <input type="text" class="set-row-input__field set-row-input__field--reps" placeholder="횟수" value="12회">
+            <button class="set-row-input__remove" onclick="removeSet(this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+          <div class="set-row-input">
+            <span class="set-row-input__num">2</span>
+            <input type="text" class="set-row-input__field" placeholder="">
+            <input type="text" class="set-row-input__field set-row-input__field--weight" placeholder="kg" value="20K">
+            <input type="text" class="set-row-input__field set-row-input__field--reps" placeholder="횟수" value="10회">
+            <button class="set-row-input__remove" onclick="removeSet(this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+          <div class="set-row-input">
+            <span class="set-row-input__num">3</span>
+            <input type="text" class="set-row-input__field" placeholder="">
+            <input type="text" class="set-row-input__field set-row-input__field--weight" placeholder="kg" value="25K">
+            <input type="text" class="set-row-input__field set-row-input__field--reps" placeholder="횟수" value="8회">
+            <button class="set-row-input__remove" onclick="removeSet(this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+          <div class="set-row-input">
+            <span class="set-row-input__num">4</span>
+            <input type="text" class="set-row-input__field" placeholder="">
+            <input type="text" class="set-row-input__field set-row-input__field--weight" placeholder="kg" value="25K">
+            <input type="text" class="set-row-input__field set-row-input__field--reps" placeholder="횟수" value="8회">
+            <button class="set-row-input__remove" onclick="removeSet(this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+          <div class="set-row-input">
+            <span class="set-row-input__num">5</span>
+            <input type="text" class="set-row-input__field" placeholder="">
+            <input type="text" class="set-row-input__field set-row-input__field--weight" placeholder="kg" value="25K">
+            <input type="text" class="set-row-input__field set-row-input__field--reps" placeholder="횟수" value="6회">
+            <button class="set-row-input__remove" onclick="removeSet(this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+        </div>
+        <button class="add-set-btn" onclick="addSet(this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          세트 추가
+        </button>
+      </div>
+
+      <!-- Main Exercise 2 -->
+      <div class="ex-card ex-card--main">
+        <div class="ex-card__top">
+          <span class="ex-card__num ex-card__num--main">2</span>
+          <input type="text" class="ex-card__name-input" placeholder="운동 이름" value="백스쿼트">
+          <button class="ex-card__remove" onclick="removeExercise(this)" aria-label="삭제">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div class="sets-area">
+          <div class="set-header">
+            <span>세트</span>
+            <span>메모</span>
+            <span>중량</span>
+            <span>횟수</span>
+            <span></span>
+          </div>
+          <div class="set-row-input">
+            <span class="set-row-input__num">1</span>
+            <input type="text" class="set-row-input__field" placeholder="" value="70%">
+            <input type="text" class="set-row-input__field set-row-input__field--weight" placeholder="kg" value="40K">
+            <input type="text" class="set-row-input__field set-row-input__field--reps" placeholder="횟수" value="5X3">
+            <button class="set-row-input__remove" onclick="removeSet(this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+        </div>
+        <button class="add-set-btn" onclick="addSet(this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          세트 추가
+        </button>
+      </div>
+    </div>
+
+    <button class="add-ex-btn add-ex-btn--main" onclick="addExercise('main')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      본훈련 추가
+    </button>
+  </section>
+
+  <!-- ═══════ NOTES ═══════ -->
+  <div class="notes-card">
+    <div class="notes-card__label">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      특이사항
+    </div>
+    <textarea class="notes-card__textarea" placeholder="자세 교정, 통증, 주의사항 등을 기록하세요&#10;예: 허리 붙이기, 팔꿈치 내리기, 날개뼈 모으기"></textarea>
+  </div>
+
+  <div class="notes-card" style="animation-delay: 0.25s;">
+    <div class="notes-card__label">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      비고
+    </div>
+    <textarea class="notes-card__textarea" placeholder="추가 메모, 중량 점진 기록, 다음 목표 등&#10;예: 다음 주 30K 도전, 스트레칭 습관화"></textarea>
+  </div>
+
+  <!-- Feeling -->
+  <div class="notes-card" style="animation-delay: 0.3s;">
+    <div class="notes-card__label">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+      오늘의 컨디션
+    </div>
+    <div class="feeling-row">
+      <div class="feeling-row__options">
+        <button class="feeling-btn" onclick="selectFeeling(this)" data-val="hard">😵</button>
+        <button class="feeling-btn" onclick="selectFeeling(this)" data-val="tired">😮‍💨</button>
+        <button class="feeling-btn" onclick="selectFeeling(this)" data-val="ok">😊</button>
+        <button class="feeling-btn active" onclick="selectFeeling(this)" data-val="good">💪</button>
+        <button class="feeling-btn" onclick="selectFeeling(this)" data-val="best">🔥</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Submit Area -->
+<div class="submit-area">
+  <div class="submit-area__inner">
+    <button class="btn-draft" onclick="saveDraft()">임시저장</button>
+    <button class="btn-submit" onclick="submitJournal()">저장하기</button>
+  </div>
+</div>
+
+<script>
+// ── Add Set ──
+function addSet(btn) {
+  var setsArea = btn.previousElementSibling;
+  var rows = setsArea.querySelectorAll('.set-row-input');
+  var num = rows.length + 1;
+
+  var row = document.createElement('div');
+  row.className = 'set-row-input';
+  row.innerHTML =
+    '<span class="set-row-input__num">' + num + '</span>' +
+    '<input type="text" class="set-row-input__field" placeholder="">' +
+    '<input type="text" class="set-row-input__field set-row-input__field--weight" placeholder="kg">' +
+    '<input type="text" class="set-row-input__field set-row-input__field--reps" placeholder="횟수">' +
+    '<button class="set-row-input__remove" onclick="removeSet(this)">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>' +
+    '</button>';
+
+  row.style.animation = 'scaleIn 0.25s cubic-bezier(0.16,1,0.3,1) both';
+  setsArea.appendChild(row);
+}
+
+// ── Remove Set ──
+function removeSet(btn) {
+  var row = btn.parentElement;
+  var setsArea = row.parentElement;
+  row.style.opacity = '0';
+  row.style.transform = 'scale(0.95)';
+  row.style.transition = 'all 0.2s';
+  setTimeout(function() {
+    row.remove();
+    renumberSets(setsArea);
+  }, 200);
+}
+
+// ── Renumber Sets ──
+function renumberSets(setsArea) {
+  var rows = setsArea.querySelectorAll('.set-row-input');
+  for (var i = 0; i < rows.length; i++) {
+    rows[i].querySelector('.set-row-input__num').textContent = i + 1;
+  }
+}
+
+// ── Add Exercise ──
+function addExercise(type) {
+  var container = document.getElementById(type + '-exercises');
+  var cards = container.querySelectorAll('.ex-card');
+  var num = cards.length + 1;
+  var isAux = type === 'aux';
+
+  var card = document.createElement('div');
+  card.className = 'ex-card ex-card--' + (isAux ? 'aux' : 'main');
+  card.innerHTML =
+    '<div class="ex-card__top">' +
+      '<span class="ex-card__num ex-card__num--' + (isAux ? 'aux' : 'main') + '">' + num + '</span>' +
+      '<input type="text" class="ex-card__name-input" placeholder="운동 이름">' +
+      '<button class="ex-card__remove" onclick="removeExercise(this)" aria-label="삭제">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +
+      '</button>' +
+    '</div>' +
+    '<div class="sets-area">' +
+      '<div class="set-header"><span>세트</span><span>메모</span><span>중량</span><span>횟수</span><span></span></div>' +
+      '<div class="set-row-input">' +
+        '<span class="set-row-input__num">1</span>' +
+        '<input type="text" class="set-row-input__field" placeholder="">' +
+        '<input type="text" class="set-row-input__field set-row-input__field--weight" placeholder="kg">' +
+        '<input type="text" class="set-row-input__field set-row-input__field--reps" placeholder="횟수">' +
+        '<button class="set-row-input__remove" onclick="removeSet(this)">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>' +
+        '</button>' +
+      '</div>' +
+    '</div>' +
+    '<button class="add-set-btn" onclick="addSet(this)">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>' +
+      '세트 추가' +
+    '</button>';
+
+  container.appendChild(card);
+  updateCounts();
+  card.querySelector('.ex-card__name-input').focus();
+}
+
+// ── Remove Exercise ──
+function removeExercise(btn) {
+  var card = btn.closest('.ex-card');
+  var container = card.parentElement;
+  card.style.opacity = '0';
+  card.style.transform = 'scale(0.96) translateY(-8px)';
+  card.style.transition = 'all 0.25s';
+  setTimeout(function() {
+    card.remove();
+    renumberExercises(container);
+    updateCounts();
+  }, 250);
+}
+
+// ── Renumber Exercises ──
+function renumberExercises(container) {
+  var cards = container.querySelectorAll('.ex-card');
+  for (var i = 0; i < cards.length; i++) {
+    cards[i].querySelector('.ex-card__num').textContent = i + 1;
+  }
+}
+
+// ── Update Counts ──
+function updateCounts() {
+  var auxN = document.querySelectorAll('#aux-exercises .ex-card').length;
+  var mainN = document.querySelectorAll('#main-exercises .ex-card').length;
+  document.getElementById('aux-count').textContent = auxN + '개';
+  document.getElementById('main-count').textContent = mainN + '개';
+}
+
+// ── Feeling Select ──
+function selectFeeling(btn) {
+  var btns = btn.parentElement.querySelectorAll('.feeling-btn');
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].classList.remove('active');
+  }
+  btn.classList.add('active');
+}
+
+// ── Toast ──
+function showToast(msg) {
+  var toast = document.getElementById('toast');
+  if (msg) toast.lastChild.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(function() {
+    toast.classList.remove('show');
+  }, 2200);
+}
+
+// ── Save ──
+function saveDraft() {
+  showToast('임시저장 되었습니다');
+}
+
+function submitJournal() {
+  var btn = document.querySelector('.btn-submit');
+  btn.textContent = '저장됨';
+  btn.style.background = 'linear-gradient(135deg, #3D6B3A, #5BB88A)';
+  showToast('저장되었습니다');
+  setTimeout(function() {
+    btn.textContent = '저장하기';
+    btn.style.background = '';
+  }, 2000);
+}
+</script>
+
+</body>
+</html>
