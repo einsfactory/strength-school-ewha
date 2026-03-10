@@ -268,11 +268,17 @@
     align-items: center;
   }
 
-  .meta-card__week-auto {
-    font-size: 0.6875rem;
-    color: var(--text-muted);
-    font-weight: 400;
-    font-style: italic;
+  .meta-card__row--week {
+    transition: all 0.3s ease;
+    overflow: hidden;
+    max-height: 50px;
+    opacity: 1;
+  }
+
+  .meta-card__row--week.hidden {
+    max-height: 0;
+    opacity: 0;
+    margin-top: 0 !important;
   }
 
   .meta-card__focus-input {
@@ -978,11 +984,10 @@
       <span class="meta-card__label">훈련일</span>
       <input type="date" class="meta-card__date-input" value="2026-03-11">
     </div>
-    <div class="meta-card__row">
+    <div class="meta-card__row meta-card__row--week" id="week-row">
       <span class="meta-card__label">주차</span>
       <div class="meta-card__week-group">
         <span class="meta-card__week-badge" id="week-badge">2주차</span>
-        <span class="meta-card__week-auto">자동 계산</span>
       </div>
     </div>
     <div class="meta-card__row">
@@ -1538,51 +1543,15 @@ function loadFreeTraining() {
   var freePill = document.querySelector('.day-pill--free');
   if (freePill) freePill.classList.add('active');
 
-  // Hide program banner
+  // Hide program banner and week row
   document.getElementById('program-banner').style.display = 'none';
+  document.getElementById('week-row').classList.add('hidden');
 
-  // Clear and add one empty exercise card each
-  var auxContainer = document.getElementById('aux-exercises');
-  auxContainer.innerHTML = '';
-  auxContainer.appendChild(createEmptyExercise('aux'));
-
-  var mainContainer = document.getElementById('main-exercises');
-  mainContainer.innerHTML = '';
-  mainContainer.appendChild(createEmptyExercise('main'));
+  // Clear exercises (only add buttons remain)
+  document.getElementById('aux-exercises').innerHTML = '';
+  document.getElementById('main-exercises').innerHTML = '';
 
   updateCounts();
-}
-
-// ── Create Empty Exercise Card ──
-function createEmptyExercise(type) {
-  var card = document.createElement('div');
-  card.className = 'exercise-card';
-
-  var color = type === 'aux' ? 'var(--aux-color)' : 'var(--main-color)';
-
-  card.innerHTML =
-    '<div class="exercise-card__header">' +
-      '<span class="exercise-card__marker" style="background:' + color + '"></span>' +
-      '<input type="text" class="exercise-card__name-input" placeholder="운동 이름 입력">' +
-      '<button class="exercise-card__remove" onclick="this.closest(\'.exercise-card\').remove(); updateCounts();">' +
-        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +
-      '</button>' +
-    '</div>' +
-    '<div class="exercise-card__sets">' +
-      '<div class="set-row-input">' +
-        '<span class="set-row-input__num">1</span>' +
-        '<input type="text" class="set-row-input__field" placeholder="">' +
-        '<input type="text" class="set-row-input__field set-row-input__field--weight" placeholder="kg">' +
-        '<input type="text" class="set-row-input__field set-row-input__field--reps" placeholder="횟수">' +
-        '<button class="set-row-input__remove" onclick="removeSet(this)">' +
-          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>' +
-        '</button>' +
-      '</div>' +
-    '</div>' +
-    '<button class="exercise-card__add-set" onclick="addSet(this)">+ 세트 추가</button>';
-
-  card.style.animation = 'scaleIn 0.25s cubic-bezier(0.16,1,0.3,1) both';
-  return card;
 }
 
 function loadDay(dayIndex) {
@@ -1606,8 +1575,9 @@ function loadDay(dayIndex) {
     }
   }
 
-  // Show program banner
+  // Show program banner and week row
   document.getElementById('program-banner').style.display = 'flex';
+  document.getElementById('week-row').classList.remove('hidden');
   document.getElementById('program-name').textContent = programData.name;
 
   // Generate aux exercises
