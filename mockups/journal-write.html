@@ -268,17 +268,29 @@
     align-items: center;
   }
 
-  .meta-card__row--week {
-    transition: all 0.3s ease;
-    overflow: hidden;
-    max-height: 50px;
-    opacity: 1;
+  .meta-card__week-input {
+    width: 44px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid var(--border-subtle);
+    background: rgba(245, 240, 248, 0.5);
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.2s;
   }
 
-  .meta-card__row--week.hidden {
-    max-height: 0;
-    opacity: 0;
-    margin-top: 0 !important;
+  .meta-card__week-input:focus {
+    border-color: var(--purple-300);
+  }
+
+  .meta-card__week-suffix {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 500;
   }
 
   .meta-card__focus-input {
@@ -986,8 +998,14 @@
     </div>
     <div class="meta-card__row meta-card__row--week" id="week-row">
       <span class="meta-card__label">주차</span>
-      <div class="meta-card__week-group">
+      <div class="meta-card__week-group" id="week-auto">
         <span class="meta-card__week-badge" id="week-badge">2주차</span>
+      </div>
+      <div class="meta-card__week-group" id="week-manual" style="display:none;">
+        <input type="number" class="meta-card__week-input" id="week-input" value="1" min="1" max="52">
+        <span class="meta-card__week-suffix">주차</span>
+        <input type="number" class="meta-card__week-input" id="day-input" value="1" min="1" max="7">
+        <span class="meta-card__week-suffix">일차</span>
       </div>
     </div>
     <div class="meta-card__row">
@@ -1543,9 +1561,10 @@ function loadFreeTraining() {
   var freePill = document.querySelector('.day-pill--free');
   if (freePill) freePill.classList.add('active');
 
-  // Hide program banner and week row
+  // Hide program banner, show manual week/day inputs
   document.getElementById('program-banner').style.display = 'none';
-  document.getElementById('week-row').classList.add('hidden');
+  document.getElementById('week-auto').style.display = 'none';
+  document.getElementById('week-manual').style.display = 'flex';
 
   // Clear exercises (only add buttons remain)
   document.getElementById('aux-exercises').innerHTML = '';
@@ -1575,9 +1594,10 @@ function loadDay(dayIndex) {
     }
   }
 
-  // Show program banner and week row
+  // Show program banner, show auto week badge
   document.getElementById('program-banner').style.display = 'flex';
-  document.getElementById('week-row').classList.remove('hidden');
+  document.getElementById('week-auto').style.display = 'flex';
+  document.getElementById('week-manual').style.display = 'none';
   document.getElementById('program-name').textContent = programData.name;
 
   // Generate aux exercises
