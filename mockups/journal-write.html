@@ -254,29 +254,25 @@
     flex: 1;
   }
 
-  .meta-card__week-input {
-    width: 44px;
-    height: 36px;
-    border-radius: 10px;
-    border: 1px solid var(--border-subtle);
-    background: rgba(245, 240, 248, 0.5);
-    text-align: center;
+  .meta-card__week-badge {
+    height: 32px;
+    padding: 0 0.875rem;
+    border-radius: 8px;
+    background: rgba(94, 61, 116, 0.08);
+    border: 1px solid rgba(94, 61, 116, 0.12);
     font-family: var(--font-body);
     font-size: 0.875rem;
     font-weight: 600;
-    color: var(--text-primary);
-    outline: none;
-    transition: border-color 0.2s;
+    color: var(--purple-500);
+    display: flex;
+    align-items: center;
   }
 
-  .meta-card__week-input:focus {
-    border-color: var(--purple-300);
-  }
-
-  .meta-card__week-suffix {
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-    font-weight: 500;
+  .meta-card__week-auto {
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    font-style: italic;
   }
 
   .meta-card__focus-input {
@@ -890,6 +886,24 @@
     color: var(--purple-500);
   }
 
+  .day-pill--free {
+    border-style: dashed;
+    border-color: rgba(107, 142, 123, 0.3);
+    background: rgba(107, 142, 123, 0.04);
+    color: var(--aux-color);
+  }
+
+  .day-pill--free.active {
+    border-color: var(--aux-color);
+    background: rgba(107, 142, 123, 0.12);
+    color: #4A6B52;
+    border-style: solid;
+  }
+
+  .day-pill--free.active .day-pill__sub {
+    color: var(--aux-color);
+  }
+
   /* ── PROGRAM BANNER ── */
   .program-banner {
     display: flex;
@@ -967,10 +981,8 @@
     <div class="meta-card__row">
       <span class="meta-card__label">주차</span>
       <div class="meta-card__week-group">
-        <input type="number" class="meta-card__week-input" value="2" min="1" max="52">
-        <span class="meta-card__week-suffix">주차</span>
-        <input type="number" class="meta-card__week-input" value="3" min="1" max="7">
-        <span class="meta-card__week-suffix">일차</span>
+        <span class="meta-card__week-badge" id="week-badge">2주차</span>
+        <span class="meta-card__week-auto">자동 계산</span>
       </div>
     </div>
     <div class="meta-card__row">
@@ -1296,6 +1308,22 @@ var prevWeights = {
 };
 
 var currentDay = 0;
+var isFreeTraining = false;
+
+// ── Auto-calculate Week ──
+function calcWeek() {
+  // Program start date (mock: 2026-02-23, Monday of week 1)
+  var programStart = new Date('2026-02-23');
+  var dateInput = document.querySelector('.meta-card__date-input');
+  var today = dateInput ? new Date(dateInput.value) : new Date();
+  var diff = today - programStart;
+  var weekNum = Math.floor(diff / (7 * 24 * 60 * 60 * 1000)) + 1;
+  if (weekNum < 1) weekNum = 1;
+  if (weekNum > 52) weekNum = 52;
+  var badge = document.getElementById('week-badge');
+  if (badge) badge.textContent = weekNum + '주차';
+  return weekNum;
+}
 
 // ── Add Set ──
 function addSet(btn) {
@@ -1493,24 +1521,93 @@ function createProgramExercise(type, exData, num) {
 }
 
 // ── Load Day from Program ──
+// ── Load Free Training (empty template) ──
+function loadFreeTraining() {
+  isFreeTraining = true;
+  currentDay = -1;
+
+  // Clear focus
+  document.getElementById('focus-input').value = '';
+  document.getElementById('focus-input').placeholder = '자유 훈련 포커스 (예: 상체 보충, 유산소)';
+
+  // Update pills - deactivate all, activate free pill
+  var pills = document.querySelectorAll('.day-pill');
+  for (var i = 0; i < pills.length; i++) {
+    pills[i].classList.remove('active');
+  }
+  var freePill = document.querySelector('.day-pill--free');
+  if (freePill) freePill.classList.add('active');
+
+  // Hide program banner
+  document.getElementById('program-banner').style.display = 'none';
+
+  // Clear and add one empty exercise card each
+  var auxContainer = document.getElementById('aux-exercises');
+  auxContainer.innerHTML = '';
+  auxContainer.appendChild(createEmptyExercise('aux'));
+
+  var mainContainer = document.getElementById('main-exercises');
+  mainContainer.innerHTML = '';
+  mainContainer.appendChild(createEmptyExercise('main'));
+
+  updateCounts();
+}
+
+// ── Create Empty Exercise Card ──
+function createEmptyExercise(type) {
+  var card = document.createElement('div');
+  card.className = 'exercise-card';
+
+  var color = type === 'aux' ? 'var(--aux-color)' : 'var(--main-color)';
+
+  card.innerHTML =
+    '<div class="exercise-card__header">' +
+      '<span class="exercise-card__marker" style="background:' + color + '"></span>' +
+      '<input type="text" class="exercise-card__name-input" placeholder="운동 이름 입력">' +
+      '<button class="exercise-card__remove" onclick="this.closest(\'.exercise-card\').remove(); updateCounts();">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +
+      '</button>' +
+    '</div>' +
+    '<div class="exercise-card__sets">' +
+      '<div class="set-row-input">' +
+        '<span class="set-row-input__num">1</span>' +
+        '<input type="text" class="set-row-input__field" placeholder="">' +
+        '<input type="text" class="set-row-input__field set-row-input__field--weight" placeholder="kg">' +
+        '<input type="text" class="set-row-input__field set-row-input__field--reps" placeholder="횟수">' +
+        '<button class="set-row-input__remove" onclick="removeSet(this)">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>' +
+        '</button>' +
+      '</div>' +
+    '</div>' +
+    '<button class="exercise-card__add-set" onclick="addSet(this)">+ 세트 추가</button>';
+
+  card.style.animation = 'scaleIn 0.25s cubic-bezier(0.16,1,0.3,1) both';
+  return card;
+}
+
 function loadDay(dayIndex) {
+  isFreeTraining = false;
   currentDay = dayIndex;
   var day = programData.days[dayIndex];
 
   // Update focus field
   document.getElementById('focus-input').value = day.focus;
+  document.getElementById('focus-input').placeholder = '오늘의 훈련 포커스 (예: 피봇 week, 케틀벨 스킬)';
 
-  // Update day pills active state
+  // Update day pills active state (including free pill)
   var pills = document.querySelectorAll('.day-pill');
   for (var i = 0; i < pills.length; i++) {
-    if (i === dayIndex) {
+    if (pills[i].classList.contains('day-pill--free')) {
+      pills[i].classList.remove('active');
+    } else if (parseInt(pills[i].getAttribute('data-day')) === dayIndex) {
       pills[i].classList.add('active');
     } else {
       pills[i].classList.remove('active');
     }
   }
 
-  // Update program banner
+  // Show program banner
+  document.getElementById('program-banner').style.display = 'flex';
   document.getElementById('program-name').textContent = programData.name;
 
   // Generate aux exercises
@@ -1544,6 +1641,22 @@ function initPage() {
       btn.onclick = function() { loadDay(idx); };
       pillsContainer.appendChild(btn);
     })(i);
+  }
+
+  // Add free training pill
+  var freeBtn = document.createElement('button');
+  freeBtn.className = 'day-pill day-pill--free';
+  freeBtn.innerHTML = '자유<span class="day-pill__sub">개인 훈련</span>';
+  freeBtn.onclick = function() { loadFreeTraining(); };
+  pillsContainer.appendChild(freeBtn);
+
+  // Auto-calculate week number
+  calcWeek();
+
+  // Re-calc week when date changes
+  var dateInput = document.querySelector('.meta-card__date-input');
+  if (dateInput) {
+    dateInput.addEventListener('change', calcWeek);
   }
 
   // Load first day
