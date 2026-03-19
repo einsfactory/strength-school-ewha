@@ -6,994 +6,621 @@
 <title>근력학교 이화 — 챌린지</title>
 <style>
   /* ── FONT FACES ── */
-  @font-face {
-    font-family: 'CarmenSans';
-    src: url('fonts/CarmenSans/CarmenSansOTF-Light.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'CarmenSans';
-    src: url('fonts/CarmenSans/CarmenSansOTF-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'CarmenSans';
-    src: url('fonts/CarmenSans/CarmenSansOTF-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'CarmenSans';
-    src: url('fonts/CarmenSans/CarmenSansOTF-SemiBold.ttf') format('truetype');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'CarmenSans';
-    src: url('fonts/CarmenSans/CarmenSansOTF-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'TYPE졸업식';
-    src: url('fonts/TypeGraduation.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
+  @font-face { font-family:'CarmenSans'; src:url('fonts/CarmenSans/CarmenSansOTF-Light.ttf') format('truetype'); font-weight:300; font-style:normal; font-display:swap; }
+  @font-face { font-family:'CarmenSans'; src:url('fonts/CarmenSans/CarmenSansOTF-Regular.ttf') format('truetype'); font-weight:400; font-style:normal; font-display:swap; }
+  @font-face { font-family:'CarmenSans'; src:url('fonts/CarmenSans/CarmenSansOTF-Medium.ttf') format('truetype'); font-weight:500; font-style:normal; font-display:swap; }
+  @font-face { font-family:'CarmenSans'; src:url('fonts/CarmenSans/CarmenSansOTF-SemiBold.ttf') format('truetype'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'CarmenSans'; src:url('fonts/CarmenSans/CarmenSansOTF-Bold.ttf') format('truetype'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TYPE졸업식'; src:url('fonts/TypeGraduation.ttf') format('truetype'); font-weight:400; font-style:normal; font-display:swap; }
 
-  /* ── RESET & VARIABLES ── */
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 
   :root {
-    --purple-700: #3B2650;
-    --purple-600: #4B2D5E;
-    --purple-500: #5E3D74;
-    --purple-400: #7B5A93;
-    --purple-300: #9E82B0;
-    --purple-200: #C4B0D2;
-    --purple-100: #E8DFF0;
-    --purple-50:  #F5F0F8;
-
-    --rose-400: #D4829A;
-    --rose-300: #E4A5B8;
-    --rose-200: #F0C6D4;
-    --rose-100: #F9E4EC;
-    --rose-50:  #FDF5F8;
-
-    --bg-gradient-1: #EDE0F5;
-    --bg-gradient-2: #F9DDE8;
-    --bg-gradient-3: #E6DAF2;
-    --bg-card: rgba(255, 255, 255, 0.72);
-    --bg-card-solid: #fff;
-    --border-subtle: rgba(196, 176, 210, 0.3);
-
-    --text-primary: #2E1A3E;
-    --text-secondary: #6B5A7E;
-    --text-muted: #A89AB8;
-
-    --success: #5BB88A;
-    --warning: #E8A854;
-    --danger: #D94E6A;
-
-    --font-display: 'TYPE졸업식', sans-serif;
-    --font-body: 'CarmenSans', 'Noto Sans KR', sans-serif;
-
-    --nav-height: 68px;
-
-    /* Challenge specific */
-    --flame-orange: #E8873A;
-    --flame-amber: #D4A026;
-    --flame-warm: #C4724A;
-    --badge-gold: #C49B2A;
-    --badge-gold-light: rgba(196, 155, 42, 0.12);
+    --purple-700:#3B2650; --purple-600:#4B2D5E; --purple-500:#5E3D74;
+    --purple-400:#7B5A93; --purple-300:#9E82B0; --purple-200:#C4B0D2;
+    --purple-100:#E8DFF0; --purple-50:#F5F0F8;
+    --rose-400:#D4829A; --rose-300:#E4A5B8; --rose-200:#F0C6D4;
+    --rose-100:#F9E4EC; --rose-50:#FDF5F8;
+    --bg-gradient-1:#EDE0F5; --bg-gradient-2:#F9DDE8; --bg-gradient-3:#E6DAF2;
+    --bg-card:rgba(255,255,255,0.72); --border-subtle:rgba(196,176,210,0.3);
+    --text-primary:#2E1A3E; --text-secondary:#6B5A7E; --text-muted:#A89AB8;
+    --success:#5BB88A; --warning:#E8A854; --danger:#D94E6A;
+    --font-display:'TYPE졸업식',sans-serif; --font-body:'CarmenSans','Noto Sans KR',sans-serif;
+    --nav-height:68px;
+    --flame-orange:#E8873A; --flame-amber:#D4A026;
+    --tree-green:#2D6B3F; --tree-green-light:rgba(45,107,63,0.12);
+    --ornament-red:#C0392B; --ornament-blue:#2980B9; --ornament-gold:#D4A026;
   }
 
-  html { font-size: 16px; }
+  html{font-size:16px}
+  body{font-family:var(--font-body);min-height:100dvh;overflow-x:hidden;-webkit-font-smoothing:antialiased;background:var(--bg-gradient-1);color:var(--text-primary);padding-bottom:var(--nav-height)}
 
-  body {
-    font-family: var(--font-body);
-    min-height: 100dvh;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    background: var(--bg-gradient-1);
-    color: var(--text-primary);
-    padding-bottom: var(--nav-height);
-  }
+  .bg-atmosphere{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse 90% 70% at 10% 5%,rgba(190,160,220,0.6) 0%,transparent 65%),radial-gradient(ellipse 80% 60% at 90% 10%,rgba(240,170,200,0.55) 0%,transparent 60%),radial-gradient(ellipse 70% 60% at 75% 85%,rgba(180,150,220,0.5) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 15% 85%,rgba(235,180,205,0.45) 0%,transparent 60%),radial-gradient(ellipse 40% 30% at 50% 50%,rgba(255,255,255,0.5) 0%,transparent 70%),linear-gradient(150deg,#EDE0F5 0%,#F9DDE8 35%,#E6DAF2 65%,#F5E4EE 100%)}
+  body::after{content:'';position:fixed;inset:0;opacity:0.018;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px;pointer-events:none;z-index:100}
 
-  /* ── GRADIENT BACKGROUND ── */
-  .bg-atmosphere {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    background:
-      radial-gradient(ellipse 90% 70% at 10% 5%, rgba(190, 160, 220, 0.6) 0%, transparent 65%),
-      radial-gradient(ellipse 80% 60% at 90% 10%, rgba(240, 170, 200, 0.55) 0%, transparent 60%),
-      radial-gradient(ellipse 70% 60% at 75% 85%, rgba(180, 150, 220, 0.5) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 50% at 15% 85%, rgba(235, 180, 205, 0.45) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 30% at 50% 50%, rgba(255, 255, 255, 0.5) 0%, transparent 70%),
-      linear-gradient(150deg, #EDE0F5 0%, #F9DDE8 35%, #E6DAF2 65%, #F5E4EE 100%);
-  }
+  .main{position:relative;z-index:1;max-width:480px;margin:0 auto;padding:0 1.25rem 2rem}
 
-  body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    opacity: 0.018;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size: 200px;
-    pointer-events: none;
-    z-index: 100;
-  }
-
-  /* ── MAIN CONTENT ── */
-  .main {
-    position: relative;
-    z-index: 1;
-    max-width: 480px;
-    margin: 0 auto;
-    padding: 0 1.25rem 2rem;
-  }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-12px); }
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-  }
-
-  @keyframes flameGlow {
-    0%, 100% { filter: drop-shadow(0 0 8px rgba(232, 135, 58, 0.4)); }
-    50% { filter: drop-shadow(0 0 16px rgba(232, 135, 58, 0.7)); }
-  }
-
-  @keyframes flameSway {
-    0%, 100% { transform: scale(1) rotate(0deg); }
-    25% { transform: scale(1.05) rotate(2deg); }
-    75% { transform: scale(0.98) rotate(-2deg); }
-  }
-
-  @keyframes progressFill {
-    from { stroke-dashoffset: var(--circumference); }
-    to { stroke-dashoffset: var(--dash-offset); }
-  }
-
-  @keyframes badgePop {
-    0% { transform: scale(0.6); opacity: 0; }
-    60% { transform: scale(1.1); }
-    100% { transform: scale(1); opacity: 1; }
-  }
-
-  @keyframes shimmer {
-    0% { background-position: -200% center; }
-    100% { background-position: 200% center; }
-  }
-
-  @keyframes dotPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.15); }
-  }
+  @keyframes fadeDown{from{opacity:0;transform:translateY(-12px)}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}}
+  @keyframes flameSway{0%,100%{transform:scale(1) rotate(0deg)}25%{transform:scale(1.05) rotate(2deg)}75%{transform:scale(0.98) rotate(-2deg)}}
+  @keyframes flameGlow{0%,100%{filter:drop-shadow(0 0 8px rgba(232,135,58,0.4))}50%{filter:drop-shadow(0 0 16px rgba(232,135,58,0.7))}}
+  @keyframes dotPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+  @keyframes starGlow{0%,100%{filter:drop-shadow(0 0 4px rgba(212,160,38,0.3))}50%{filter:drop-shadow(0 0 12px rgba(212,160,38,0.8)) brightness(1.15)}}
+  @keyframes treeSway{0%,100%{transform:rotate(0)}50%{transform:rotate(0.5deg)}}
 
   /* ── PAGE HEADER ── */
-  .page-header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 1rem 0 1.25rem;
-    animation: fadeDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
+  .page-header{display:flex;align-items:center;gap:0.75rem;padding:1rem 0 1.25rem;animation:fadeDown 0.6s cubic-bezier(0.16,1,0.3,1) both}
+  .back-btn{width:40px;height:40px;border-radius:12px;border:1px solid var(--border-subtle);background:var(--bg-card);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;color:var(--text-secondary);cursor:pointer;transition:all 0.2s;flex-shrink:0;text-decoration:none}
+  .back-btn:hover{border-color:var(--purple-200)}
+  .back-btn svg{width:18px;height:18px}
+  .page-header__title{font-family:var(--font-display);font-size:1.125rem;color:var(--text-primary)}
 
-  .back-btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
-    border: 1px solid var(--border-subtle);
-    background: var(--bg-card);
-    backdrop-filter: blur(12px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-secondary);
-    cursor: pointer;
-    transition: all 0.2s;
-    flex-shrink: 0;
-    text-decoration: none;
-  }
+  /* ── TAB BAR ── */
+  .tab-bar{display:flex;gap:0.25rem;background:rgba(196,176,210,0.12);border-radius:12px;padding:3px;margin-bottom:1.25rem;animation:fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) 0.05s both}
+  .tab-bar__item{flex:1;padding:0.5rem;text-align:center;font-size:0.8125rem;font-weight:600;color:var(--text-muted);border-radius:10px;cursor:pointer;transition:all 0.25s;border:none;background:transparent;font-family:var(--font-body)}
+  .tab-bar__item.active{background:#fff;color:var(--text-primary);box-shadow:0 2px 8px rgba(75,45,94,0.08)}
+  .tab-bar__item:not(.active):hover{color:var(--text-secondary)}
 
-  .back-btn:hover { border-color: var(--purple-200); }
-  .back-btn svg { width: 18px; height: 18px; }
-
-  .page-header__title {
-    font-family: var(--font-display);
-    font-size: 1.125rem;
-    color: var(--text-primary);
-  }
-
-  /* ── SECTION ── */
-  .section {
-    margin-bottom: 1.5rem;
-  }
-
-  .section__header {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 0.75rem;
-  }
-
-  .section__title {
-    font-family: var(--font-display);
-    font-size: 1rem;
-    color: var(--text-primary);
-  }
-
-  .section__sub {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    font-weight: 400;
-  }
+  .tab-content{display:none}
+  .tab-content.active{display:block}
 
   /* ── STREAK HERO ── */
-  .streak-hero {
-    background: var(--bg-card);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--border-subtle);
-    border-radius: 20px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    text-align: center;
-    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
-    position: relative;
-    overflow: hidden;
-  }
+  .streak-hero{background:var(--bg-card);backdrop-filter:blur(16px);border:1px solid var(--border-subtle);border-radius:20px;padding:1.5rem;margin-bottom:1.25rem;text-align:center;animation:fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.1s both;position:relative;overflow:hidden}
+  .streak-hero::before{content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:200%;height:60%;background:radial-gradient(ellipse,rgba(232,135,58,0.06) 0%,transparent 70%);pointer-events:none}
+  .streak-hero__flame{font-size:3.5rem;line-height:1;display:block;margin-bottom:0.5rem;animation:flameSway 3s ease-in-out infinite,flameGlow 2s ease-in-out infinite}
+  .streak-hero__count{font-family:var(--font-display);font-size:2.5rem;color:var(--flame-orange);line-height:1.1}
+  .streak-hero__label{font-size:0.9375rem;color:var(--text-secondary);font-weight:500;margin-top:0.25rem}
+  .streak-hero__sub{font-size:0.75rem;color:var(--text-muted);margin-top:0.5rem}
 
-  .streak-hero::before {
-    content: '';
-    position: absolute;
-    top: -30%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 200%;
-    height: 60%;
-    background: radial-gradient(ellipse, rgba(232, 135, 58, 0.06) 0%, transparent 70%);
-    pointer-events: none;
-  }
+  .week-tracker{display:flex;align-items:center;justify-content:center;gap:0.5rem;margin-top:1.25rem;padding-top:1rem;border-top:1px solid rgba(196,176,210,0.15)}
+  .week-dot{display:flex;flex-direction:column;align-items:center;gap:0.375rem}
+  .week-dot__day{font-size:0.6875rem;font-weight:600;color:var(--text-muted)}
+  .week-dot__circle{width:32px;height:32px;border-radius:50%;border:2px solid rgba(196,176,210,0.25);background:transparent;display:flex;align-items:center;justify-content:center;transition:all 0.3s;font-size:0.875rem}
+  .week-dot__circle--done{background:linear-gradient(135deg,var(--flame-orange),var(--flame-amber));border-color:transparent;color:#fff;box-shadow:0 2px 8px rgba(232,135,58,0.25)}
+  .week-dot__circle--today{border-color:var(--flame-orange);border-width:2.5px;animation:dotPulse 2s ease-in-out infinite}
+  .week-dot__circle--today .week-dot__inner{width:8px;height:8px;border-radius:50%;background:var(--flame-orange)}
+  .week-dot__circle--future{border-color:rgba(196,176,210,0.18);background:rgba(255,255,255,0.3)}
 
-  .streak-hero__flame {
-    font-size: 3.5rem;
-    line-height: 1;
-    display: block;
-    margin-bottom: 0.5rem;
-    animation: flameSway 3s ease-in-out infinite, flameGlow 2s ease-in-out infinite;
-  }
-
-  .streak-hero__count {
-    font-family: var(--font-display);
-    font-size: 2.5rem;
-    color: var(--flame-orange);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-  }
-
-  .streak-hero__label {
-    font-size: 0.9375rem;
-    color: var(--text-secondary);
-    font-weight: 500;
-    margin-top: 0.25rem;
-  }
-
-  .streak-hero__sub {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    margin-top: 0.5rem;
-  }
-
-  /* ── WEEK DOTS ── */
-  .week-tracker {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: 1.25rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(196, 176, 210, 0.15);
-  }
-
-  .week-dot {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.375rem;
-  }
-
-  .week-dot__day {
-    font-size: 0.6875rem;
-    font-weight: 600;
-    color: var(--text-muted);
-    letter-spacing: 0.01em;
-  }
-
-  .week-dot__circle {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border: 2px solid rgba(196, 176, 210, 0.25);
-    background: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s;
-    font-size: 0.875rem;
-  }
-
-  .week-dot__circle--done {
-    background: linear-gradient(135deg, var(--flame-orange), var(--flame-amber));
-    border-color: transparent;
-    color: #fff;
-    box-shadow: 0 2px 8px rgba(232, 135, 58, 0.25);
-  }
-
-  .week-dot__circle--today {
-    border-color: var(--flame-orange);
-    border-width: 2.5px;
-    animation: dotPulse 2s ease-in-out infinite;
-  }
-
-  .week-dot__circle--today .week-dot__inner {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--flame-orange);
-  }
-
-  .week-dot__circle--future {
-    border-color: rgba(196, 176, 210, 0.18);
-    background: rgba(255, 255, 255, 0.3);
-  }
-
-  /* ── CHALLENGE CARDS ── */
-  .challenge-card {
-    background: var(--bg-card);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--border-subtle);
-    border-radius: 18px;
-    padding: 1.25rem;
-    margin-bottom: 0.75rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
-    transition: border-color 0.2s, transform 0.15s;
-    cursor: pointer;
-  }
-
-  .challenge-card:hover {
-    border-color: var(--purple-200);
-    transform: translateY(-1px);
-  }
-
-  .challenge-card:nth-child(1) { animation-delay: 0.15s; }
-  .challenge-card:nth-child(2) { animation-delay: 0.25s; }
-  .challenge-card:nth-child(3) { animation-delay: 0.35s; }
-
-  /* Progress Ring */
-  .progress-ring {
-    flex-shrink: 0;
-    position: relative;
-    width: 64px;
-    height: 64px;
-  }
-
-  .progress-ring__svg {
-    width: 64px;
-    height: 64px;
-    transform: rotate(-90deg);
-  }
-
-  .progress-ring__bg {
-    fill: none;
-    stroke: rgba(196, 176, 210, 0.2);
-    stroke-width: 5;
-  }
-
-  .progress-ring__fill {
-    fill: none;
-    stroke-width: 5;
-    stroke-linecap: round;
-    transition: stroke-dashoffset 1s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .progress-ring__fill--purple {
-    stroke: url(#grad-purple);
-  }
-
-  .progress-ring__fill--amber {
-    stroke: url(#grad-amber);
-  }
-
-  .progress-ring__fill--rose {
-    stroke: url(#grad-rose);
-  }
-
-  .progress-ring__text {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.875rem;
-    font-weight: 700;
-    color: var(--text-primary);
-  }
-
-  /* Card Content */
-  .challenge-card__body {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .challenge-card__badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
-    font-size: 0.625rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    padding: 0.1875rem 0.5rem;
-    border-radius: 6px;
-    margin-bottom: 0.375rem;
-  }
-
-  .challenge-card__badge--active {
-    background: rgba(91, 184, 138, 0.12);
-    color: var(--success);
-  }
-
-  .challenge-card__badge--complete {
-    background: var(--badge-gold-light);
-    color: var(--badge-gold);
-  }
-
-  .challenge-card__title {
-    font-size: 0.9375rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 0.25rem;
-    line-height: 1.3;
-  }
-
-  .challenge-card__desc {
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-    line-height: 1.4;
-  }
-
-  .challenge-card__progress-text {
-    font-size: 0.6875rem;
-    color: var(--text-muted);
-    margin-top: 0.375rem;
-    font-weight: 500;
-  }
-
-  .challenge-card__progress-text strong {
-    color: var(--purple-500);
-  }
-
-  /* ── BADGE GRID ── */
-  .badge-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.75rem;
-  }
-
-  .badge-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.375rem;
-    animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-
-  .badge-item:nth-child(1) { animation-delay: 0.2s; }
-  .badge-item:nth-child(2) { animation-delay: 0.28s; }
-  .badge-item:nth-child(3) { animation-delay: 0.36s; }
-  .badge-item:nth-child(4) { animation-delay: 0.44s; }
-  .badge-item:nth-child(5) { animation-delay: 0.52s; }
-  .badge-item:nth-child(6) { animation-delay: 0.6s; }
-  .badge-item:nth-child(7) { animation-delay: 0.68s; }
-  .badge-item:nth-child(8) { animation-delay: 0.76s; }
-
-  .badge-item__icon {
-    width: 60px;
-    height: 60px;
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    position: relative;
-    transition: transform 0.2s;
-  }
-
-  .badge-item:hover .badge-item__icon {
-    transform: scale(1.08);
-  }
-
-  .badge-item__icon--earned {
-    background: linear-gradient(145deg, rgba(196, 155, 42, 0.15), rgba(232, 168, 84, 0.1));
-    border: 1.5px solid rgba(196, 155, 42, 0.25);
-    box-shadow: 0 2px 10px rgba(196, 155, 42, 0.1);
-  }
-
-  .badge-item__icon--locked {
-    background: rgba(196, 176, 210, 0.08);
-    border: 1.5px dashed rgba(196, 176, 210, 0.25);
-    filter: grayscale(0.8);
-    opacity: 0.5;
-  }
-
-  .badge-item__icon--earned::after {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    border-radius: 18px;
-    background: linear-gradient(135deg, rgba(196, 155, 42, 0.2), transparent, rgba(232, 168, 84, 0.15));
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .badge-item:hover .badge-item__icon--earned::after { opacity: 1; }
-
-  .badge-item__label {
-    font-size: 0.625rem;
-    font-weight: 600;
-    color: var(--text-secondary);
-    text-align: center;
-    line-height: 1.3;
-    max-width: 70px;
-  }
-
-  .badge-item__icon--locked + .badge-item__label {
-    color: var(--text-muted);
-  }
-
-  /* ── MOTIVATION CARD ── */
-  .motivation-card {
-    background:
-      linear-gradient(135deg, rgba(75, 45, 94, 0.06), rgba(212, 130, 154, 0.06)),
-      var(--bg-card);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--border-subtle);
-    border-radius: 18px;
-    padding: 1.25rem 1.5rem;
-    text-align: center;
-    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
-  }
-
-  .motivation-card__emoji {
-    font-size: 1.75rem;
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-
-  .motivation-card__text {
-    font-family: var(--font-display);
-    font-size: 1rem;
-    color: var(--text-primary);
-    line-height: 1.6;
-    letter-spacing: 0.01em;
-  }
-
-  .motivation-card__author {
-    font-size: 0.6875rem;
-    color: var(--text-muted);
-    margin-top: 0.5rem;
-    font-weight: 400;
-  }
+  /* ── SECTION ── */
+  .section{margin-bottom:1.5rem}
+  .section__header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:0.75rem}
+  .section__title{font-family:var(--font-display);font-size:1rem;color:var(--text-primary)}
+  .section__sub{font-size:0.75rem;color:var(--text-muted);font-weight:400}
 
   /* ── MONTHLY SUMMARY ── */
-  .monthly-summary {
-    background: var(--bg-card);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--border-subtle);
-    border-radius: 18px;
-    padding: 1.25rem;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.5rem;
-    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
-  }
+  .monthly-summary{background:var(--bg-card);backdrop-filter:blur(16px);border:1px solid var(--border-subtle);border-radius:18px;padding:1.25rem;display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;animation:fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.15s both}
+  .monthly-stat{text-align:center;padding:0.5rem 0}
+  .monthly-stat__value{font-family:var(--font-display);font-size:1.375rem;color:var(--text-primary);line-height:1.1}
+  .monthly-stat__value--highlight{color:var(--flame-orange)}
+  .monthly-stat__label{font-size:0.6875rem;color:var(--text-muted);margin-top:0.25rem;font-weight:500}
+  .monthly-stat+.monthly-stat{border-left:1px solid rgba(196,176,210,0.15)}
 
-  .monthly-stat {
-    text-align: center;
-    padding: 0.5rem 0;
-  }
+  /* ── STAR BADGES (출석) ── */
+  .badge-row{display:grid;grid-template-columns:repeat(6,1fr);gap:0.5rem}
+  .star-badge{display:flex;flex-direction:column;align-items:center;gap:0.25rem;animation:fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) both}
+  .star-badge__icon{width:48px;height:48px;display:flex;align-items:center;justify-content:center;position:relative;transition:transform 0.2s}
+  .star-badge:hover .star-badge__icon{transform:scale(1.12)}
+  .star-badge__icon svg{width:42px;height:42px}
+  .star-badge__icon--perfect svg{animation:starGlow 2s ease-in-out infinite}
+  .star-badge__month{font-size:0.5625rem;font-weight:700;color:var(--text-muted);text-align:center}
+  .star-badge--locked{opacity:0.3;filter:grayscale(0.8)}
+  .star-badge--locked .star-badge__month{color:var(--text-muted)}
 
-  .monthly-stat__value {
-    font-family: var(--font-display);
-    font-size: 1.375rem;
-    color: var(--text-primary);
-    line-height: 1.1;
-  }
+  /* ── ORNAMENT BADGES (숙제) ── */
+  .ornament-badge{display:flex;flex-direction:column;align-items:center;gap:0.25rem;animation:fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) both}
+  .ornament-badge__icon{width:48px;height:48px;display:flex;align-items:center;justify-content:center;transition:transform 0.2s}
+  .ornament-badge:hover .ornament-badge__icon{transform:scale(1.12) rotate(5deg)}
+  .ornament-badge__icon svg{width:36px;height:36px}
+  .ornament-badge__month{font-size:0.5625rem;font-weight:700;color:var(--text-muted);text-align:center}
+  .ornament-badge--locked{opacity:0.3;filter:grayscale(0.8)}
 
-  .monthly-stat__value--highlight {
-    color: var(--flame-orange);
-  }
+  /* ── HOMEWORK SECTION ── */
+  .hw-card{background:var(--bg-card);backdrop-filter:blur(16px);border:1px solid var(--border-subtle);border-radius:16px;padding:1rem 1.125rem;margin-bottom:0.625rem;animation:fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) both}
+  .hw-card__header{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.625rem}
+  .hw-card__label{font-size:0.6875rem;font-weight:600;color:var(--text-muted);letter-spacing:0.03em}
+  .hw-card__badge{font-size:0.5625rem;font-weight:700;padding:0.1875rem 0.5rem;border-radius:20px}
+  .hw-card__badge--common{background:rgba(94,61,116,0.08);color:var(--purple-500)}
+  .hw-card__badge--personal{background:rgba(212,130,154,0.12);color:var(--rose-400)}
 
-  .monthly-stat__label {
-    font-size: 0.6875rem;
-    color: var(--text-muted);
-    margin-top: 0.25rem;
-    font-weight: 500;
-  }
+  .hw-item{display:flex;align-items:center;gap:0.625rem;padding:0.5rem 0;border-bottom:1px solid rgba(196,176,210,0.08)}
+  .hw-item:last-child{border-bottom:none}
+  .hw-item__check{width:24px;height:24px;border-radius:8px;border:2px solid rgba(196,176,210,0.3);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.25s;flex-shrink:0}
+  .hw-item__check.checked{background:linear-gradient(135deg,var(--success),#4CA87A);border-color:transparent;box-shadow:0 2px 6px rgba(91,184,138,0.3)}
+  .hw-item__check.checked svg{opacity:1}
+  .hw-item__check svg{width:14px;height:14px;color:#fff;opacity:0;transition:opacity 0.2s}
+  .hw-item__check.disabled{opacity:0.35;cursor:not-allowed;border-style:dashed}
+  .hw-item__text{font-size:0.8125rem;color:var(--text-primary);font-weight:500;flex:1}
+  .hw-item__text.done{text-decoration:line-through;color:var(--text-muted)}
+  .hw-item__date{font-size:0.625rem;color:var(--text-muted);flex-shrink:0}
 
-  .monthly-stat + .monthly-stat {
-    border-left: 1px solid rgba(196, 176, 210, 0.15);
-  }
+  /* Progress Ring */
+  .progress-ring{flex-shrink:0;position:relative;width:72px;height:72px}
+  .progress-ring__svg{width:72px;height:72px;transform:rotate(-90deg)}
+  .progress-ring__bg{fill:none;stroke:rgba(196,176,210,0.15);stroke-width:6}
+  .progress-ring__fill{fill:none;stroke-width:6;stroke-linecap:round;transition:stroke-dashoffset 1s cubic-bezier(0.16,1,0.3,1)}
+  .progress-ring__text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .progress-ring__value{font-family:var(--font-display);font-size:1.125rem;color:var(--text-primary);line-height:1}
+  .progress-ring__label{font-size:0.5625rem;color:var(--text-muted);margin-top:0.125rem}
+
+  .hw-progress{background:var(--bg-card);backdrop-filter:blur(16px);border:1px solid var(--border-subtle);border-radius:18px;padding:1.25rem;display:flex;align-items:center;gap:1.25rem;animation:fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) 0.1s both;margin-bottom:1.25rem}
+  .hw-progress__info{flex:1}
+  .hw-progress__title{font-size:0.9375rem;font-weight:700;color:var(--text-primary);margin-bottom:0.25rem}
+  .hw-progress__desc{font-size:0.75rem;color:var(--text-secondary);line-height:1.4}
+  .hw-progress__stat{font-size:0.6875rem;color:var(--text-muted);margin-top:0.375rem;font-weight:500}
+  .hw-progress__stat strong{color:var(--tree-green)}
+
+  /* ── CHRISTMAS TREE ── */
+  .tree-section{background:linear-gradient(180deg,rgba(20,15,30,0.92) 0%,rgba(30,20,45,0.95) 100%);border-radius:20px;padding:1.5rem 1rem 1.25rem;text-align:center;position:relative;overflow:hidden;margin-bottom:1.5rem;animation:fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.2s both}
+  .tree-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 50% 20%,rgba(212,160,38,0.08) 0%,transparent 70%);pointer-events:none}
+  .tree-section__title{font-family:var(--font-display);font-size:1.0625rem;color:rgba(255,255,255,0.9);margin-bottom:0.25rem}
+  .tree-section__year{font-size:0.75rem;color:rgba(255,255,255,0.4);margin-bottom:1.25rem}
+
+  .tree-wrap{position:relative;width:240px;height:300px;margin:0 auto}
+  .tree-trunk{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:24px;height:32px;background:linear-gradient(180deg,#5D3A1A,#4A2E14);border-radius:0 0 4px 4px}
+  .tree-body{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);width:0;height:0}
+
+  /* Tree layers via CSS triangles */
+  .tree-layer{position:absolute;left:50%;transform:translateX(-50%);width:0;height:0;border-style:solid}
+  .tree-layer--1{bottom:150px;border-width:0 55px 70px 55px;border-color:transparent transparent rgba(45,107,63,0.85) transparent}
+  .tree-layer--2{bottom:100px;border-width:0 72px 75px 72px;border-color:transparent transparent rgba(38,92,52,0.85) transparent}
+  .tree-layer--3{bottom:30px;border-width:0 90px 85px 90px;border-color:transparent transparent rgba(32,78,44,0.85) transparent}
+
+  /* Tree star topper */
+  .tree-star{position:absolute;top:8px;left:50%;transform:translateX(-50%);animation:starGlow 2s ease-in-out infinite}
+  .tree-star svg{width:32px;height:32px}
+
+  /* Ornament positions on tree */
+  .tree-ornament{position:absolute;transition:transform 0.3s;cursor:pointer}
+  .tree-ornament:hover{transform:scale(1.2)}
+  .tree-ornament svg{filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3))}
+  .tree-ornament--locked{opacity:0.2}
+
+  .tree-legend{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:1rem}
+  .tree-legend__item{display:flex;align-items:center;gap:0.375rem;font-size:0.625rem;color:rgba(255,255,255,0.5)}
+  .tree-legend__dot{width:8px;height:8px;border-radius:50%}
+  .tree-legend__dot--star{background:linear-gradient(135deg,#D4A026,#E8C84A)}
+  .tree-legend__dot--ornament{background:linear-gradient(135deg,#C0392B,#E74C3C)}
+
+  /* ── ANNUAL REPORT ── */
+  .report-card{background:var(--bg-card);backdrop-filter:blur(16px);border:1px solid var(--border-subtle);border-radius:18px;padding:1.25rem;animation:fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) 0.25s both}
+  .report-card__title{font-family:var(--font-display);font-size:1rem;color:var(--text-primary);margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem}
+  .report-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:0.75rem;margin-bottom:1rem}
+  .report-stat{background:linear-gradient(135deg,rgba(245,240,248,0.6),rgba(249,228,236,0.4));border-radius:12px;padding:0.875rem;text-align:center}
+  .report-stat__value{font-family:var(--font-display);font-size:1.5rem;color:var(--purple-600);line-height:1.1}
+  .report-stat__label{font-size:0.6875rem;color:var(--text-muted);margin-top:0.25rem;font-weight:500}
+  .report-chart{display:flex;align-items:flex-end;gap:3px;height:60px;padding:0.5rem 0}
+  .report-chart__bar{flex:1;border-radius:3px 3px 0 0;transition:height 0.5s cubic-bezier(0.16,1,0.3,1);min-height:4px}
+  .report-chart__bar--fill{background:linear-gradient(180deg,var(--purple-400),var(--rose-300))}
+  .report-chart__bar--empty{background:rgba(196,176,210,0.15)}
+  .report-months{display:flex;gap:3px;margin-top:0.25rem}
+  .report-months span{flex:1;text-align:center;font-size:0.5rem;color:var(--text-muted)}
+
+  /* ── MOTIVATION CARD ── */
+  .motivation-card{background:linear-gradient(135deg,rgba(75,45,94,0.06),rgba(212,130,154,0.06)),var(--bg-card);backdrop-filter:blur(16px);border:1px solid var(--border-subtle);border-radius:18px;padding:1.25rem 1.5rem;text-align:center;animation:fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.3s both}
+  .motivation-card__emoji{font-size:1.75rem;display:block;margin-bottom:0.5rem}
+  .motivation-card__text{font-family:var(--font-display);font-size:1rem;color:var(--text-primary);line-height:1.6}
+  .motivation-card__author{font-size:0.6875rem;color:var(--text-muted);margin-top:0.5rem}
 
   /* ── BOTTOM NAV ── */
-  .bottom-nav {
-    position: fixed; bottom: 0; left: 0; right: 0;
-    height: var(--nav-height);
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-top: 1px solid var(--border-subtle);
-    display: flex; align-items: center; justify-content: space-around;
-    z-index: 50;
-    padding-bottom: env(safe-area-inset-bottom, 0);
-  }
+  .bottom-nav{position:fixed;bottom:0;left:0;right:0;height:var(--nav-height);background:rgba(255,255,255,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--border-subtle);display:flex;align-items:center;justify-content:space-around;z-index:50;padding-bottom:env(safe-area-inset-bottom,0)}
+  .nav-item{display:flex;flex-direction:column;align-items:center;gap:0.25rem;padding:0.5rem 0.75rem;text-decoration:none;color:var(--text-muted);transition:color 0.2s;cursor:pointer;position:relative}
+  .nav-item.active{color:var(--purple-600)}
+  .nav-item.active::before{content:'';position:absolute;top:-1px;left:50%;transform:translateX(-50%);width:20px;height:2px;background:linear-gradient(90deg,var(--purple-400),var(--rose-300));border-radius:1px}
+  .nav-item svg{width:22px;height:22px}
+  .nav-item__label{font-size:0.5625rem;font-weight:600;letter-spacing:0.02em}
 
-  .nav-item {
-    display: flex; flex-direction: column;
-    align-items: center; gap: 0.25rem;
-    padding: 0.5rem 0.75rem;
-    text-decoration: none; color: var(--text-muted);
-    transition: color 0.2s; cursor: pointer; position: relative;
-  }
-
-  .nav-item.active { color: var(--purple-600); }
-
-  .nav-item.active::before {
-    content: ''; position: absolute;
-    top: -1px; left: 50%; transform: translateX(-50%);
-    width: 20px; height: 2px;
-    background: linear-gradient(90deg, var(--purple-400), var(--rose-300));
-    border-radius: 1px;
-  }
-
-  .nav-item svg { width: 22px; height: 22px; }
-
-  .nav-item__label {
-    font-size: 0.5625rem; font-weight: 600; letter-spacing: 0.02em;
-  }
-
-  /* ── MEDIA QUERIES ── */
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
-  }
-
-  @media (min-width: 480px) { .main { padding: 0 1.5rem 2rem; } }
+  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}}
+  @media(min-width:480px){.main{padding:0 1.5rem 2rem}}
 </style>
 </head>
 <body>
 
-<!-- Gradient Background -->
 <div class="bg-atmosphere"></div>
 
-<!-- SVG Gradient Definitions -->
+<!-- SVG Defs -->
 <svg width="0" height="0" style="position:absolute">
-  <defs>
-    <linearGradient id="grad-purple" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#7B5A93"/>
-      <stop offset="100%" stop-color="#D4829A"/>
-    </linearGradient>
-    <linearGradient id="grad-amber" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#E8873A"/>
-      <stop offset="100%" stop-color="#D4A026"/>
-    </linearGradient>
-    <linearGradient id="grad-rose" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#D4829A"/>
-      <stop offset="100%" stop-color="#E4A5B8"/>
-    </linearGradient>
-  </defs>
+<defs>
+  <linearGradient id="grad-green" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#5BB88A"/><stop offset="100%" stop-color="#3D9B6A"/>
+  </linearGradient>
+  <linearGradient id="grad-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#7B5A93"/><stop offset="100%" stop-color="#D4829A"/>
+  </linearGradient>
+</defs>
 </svg>
 
 <div class="main">
-  <!-- Page Header -->
   <div class="page-header">
     <a class="back-btn" href="index.html">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="15 18 9 12 15 6"/>
-      </svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
     </a>
     <h1 class="page-header__title">챌린지</h1>
   </div>
 
-  <!-- ═══ STREAK HERO ═══ -->
-  <div class="streak-hero">
-    <span class="streak-hero__flame">🔥</span>
-    <div class="streak-hero__count">12일</div>
-    <div class="streak-hero__label">연속 출석 중</div>
-    <div class="streak-hero__sub">최장 기록: 23일 (2026년 1월)</div>
+  <!-- ═══ TAB BAR ═══ -->
+  <div class="tab-bar">
+    <button class="tab-bar__item active" data-tab="attendance">출석 챌린지</button>
+    <button class="tab-bar__item" data-tab="homework">숙제 챌린지</button>
+  </div>
 
-    <!-- Weekly Attendance Dots -->
-    <div class="week-tracker">
-      <div class="week-dot">
-        <span class="week-dot__day">월</span>
-        <div class="week-dot__circle week-dot__circle--done">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
+  <!-- ═══════════════════════════════════════ -->
+  <!-- TAB 1: 출석 챌린지                       -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="tab-content active" id="tab-attendance">
+    <!-- Streak Hero -->
+    <div class="streak-hero">
+      <span class="streak-hero__flame">🔥</span>
+      <div class="streak-hero__count">12일</div>
+      <div class="streak-hero__label">연속 출석 중</div>
+      <div class="streak-hero__sub">최장 기록: 23일 (2026년 1월)</div>
+      <div class="week-tracker">
+        <div class="week-dot"><span class="week-dot__day">월</span><div class="week-dot__circle week-dot__circle--done"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div></div>
+        <div class="week-dot"><span class="week-dot__day">화</span><div class="week-dot__circle week-dot__circle--done"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div></div>
+        <div class="week-dot"><span class="week-dot__day">수</span><div class="week-dot__circle week-dot__circle--done"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div></div>
+        <div class="week-dot"><span class="week-dot__day">목</span><div class="week-dot__circle week-dot__circle--today"><div class="week-dot__inner"></div></div></div>
+        <div class="week-dot"><span class="week-dot__day">금</span><div class="week-dot__circle week-dot__circle--future"></div></div>
       </div>
-      <div class="week-dot">
-        <span class="week-dot__day">화</span>
-        <div class="week-dot__circle week-dot__circle--done">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
+    </div>
+
+    <!-- 3월 요약 -->
+    <div class="section">
+      <div class="section__header"><h2 class="section__title">3월 요약</h2></div>
+      <div class="monthly-summary">
+        <div class="monthly-stat"><div class="monthly-stat__value">10</div><div class="monthly-stat__label">출석 일수</div></div>
+        <div class="monthly-stat"><div class="monthly-stat__value monthly-stat__value--highlight">92%</div><div class="monthly-stat__label">출석률</div></div>
+        <div class="monthly-stat"><div class="monthly-stat__value">1</div><div class="monthly-stat__label">결석</div></div>
       </div>
-      <div class="week-dot">
-        <span class="week-dot__day">수</span>
-        <div class="week-dot__circle week-dot__circle--done">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
+    </div>
+
+    <!-- 출석 뱃지 (별 모양) -->
+    <div class="section">
+      <div class="section__header">
+        <h2 class="section__title">출석 뱃지</h2>
+        <span class="section__sub">주 3회 · 2회 결석까지 획득</span>
       </div>
-      <div class="week-dot">
-        <span class="week-dot__day">목</span>
-        <div class="week-dot__circle week-dot__circle--today">
-          <div class="week-dot__inner"></div>
-        </div>
+      <div class="badge-row" id="star-badges">
+        <!-- JS로 생성 -->
       </div>
-      <div class="week-dot">
-        <span class="week-dot__day">금</span>
-        <div class="week-dot__circle week-dot__circle--future"></div>
-      </div>
+    </div>
+
+    <!-- 동기부여 -->
+    <div class="motivation-card">
+      <span class="motivation-card__emoji">✨</span>
+      <p class="motivation-card__text">꾸준함이 재능을 이깁니다.<br>오늘도 한 걸음 더!</p>
+      <span class="motivation-card__author">근력학교 이화</span>
     </div>
   </div>
 
-  <!-- ═══ 2월 요약 ═══ -->
-  <div class="section">
-    <div class="section__header">
-      <h2 class="section__title">2월 요약</h2>
-    </div>
-    <div class="monthly-summary">
-      <div class="monthly-stat">
-        <div class="monthly-stat__value">10</div>
-        <div class="monthly-stat__label">출석 일수</div>
-      </div>
-      <div class="monthly-stat">
-        <div class="monthly-stat__value monthly-stat__value--highlight">92%</div>
-        <div class="monthly-stat__label">출석률</div>
-      </div>
-      <div class="monthly-stat">
-        <div class="monthly-stat__value">1</div>
-        <div class="monthly-stat__label">결석</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══ 진행 중인 챌린지 ═══ -->
-  <div class="section">
-    <div class="section__header">
-      <h2 class="section__title">진행 중인 챌린지</h2>
-      <span class="section__sub">2개 참여 중</span>
-    </div>
-
-    <!-- Challenge 1: Attendance -->
-    <div class="challenge-card" data-challenge="attendance">
+  <!-- ═══════════════════════════════════════ -->
+  <!-- TAB 2: 숙제 챌린지                       -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="tab-content" id="tab-homework">
+    <!-- 이번 달 진행률 -->
+    <div class="hw-progress">
       <div class="progress-ring">
-        <svg class="progress-ring__svg" viewBox="0 0 64 64">
-          <circle class="progress-ring__bg" cx="32" cy="32" r="27"/>
-          <circle class="progress-ring__fill progress-ring__fill--purple"
-                  cx="32" cy="32" r="27"
-                  stroke-dasharray="169.646"
-                  stroke-dashoffset="16.965"
-                  style="--circumference: 169.646; --dash-offset: 16.965;"/>
-        </svg>
-        <div class="progress-ring__text">90%</div>
-      </div>
-      <div class="challenge-card__body">
-        <div class="challenge-card__badge challenge-card__badge--active">진행 중</div>
-        <div class="challenge-card__title">2월 출석 챌린지</div>
-        <div class="challenge-card__desc">이번 달 출석률 90% 이상 달성하기</div>
-        <div class="challenge-card__progress-text">10회 출석 / 11회 중 · <strong>달성 중!</strong></div>
-      </div>
-    </div>
-
-    <!-- Challenge 2: Personal Record -->
-    <div class="challenge-card" data-challenge="record">
-      <div class="progress-ring">
-        <svg class="progress-ring__svg" viewBox="0 0 64 64">
-          <circle class="progress-ring__bg" cx="32" cy="32" r="27"/>
-          <circle class="progress-ring__fill progress-ring__fill--amber"
-                  cx="32" cy="32" r="27"
-                  stroke-dasharray="169.646"
-                  stroke-dashoffset="84.823"
-                  style="--circumference: 169.646; --dash-offset: 84.823;"/>
-        </svg>
-        <div class="progress-ring__text">50%</div>
-      </div>
-      <div class="challenge-card__body">
-        <div class="challenge-card__badge challenge-card__badge--active">진행 중</div>
-        <div class="challenge-card__title">스쿼트 챌린지</div>
-        <div class="challenge-card__desc">8주 프로그램 동안 스쿼트 10kg 늘리기</div>
-        <div class="challenge-card__progress-text">현재 +5kg / 목표 +10kg</div>
-      </div>
-    </div>
-
-    <!-- Challenge 3: Completed -->
-    <div class="challenge-card" data-challenge="completed">
-      <div class="progress-ring">
-        <svg class="progress-ring__svg" viewBox="0 0 64 64">
-          <circle class="progress-ring__bg" cx="32" cy="32" r="27"/>
-          <circle class="progress-ring__fill progress-ring__fill--rose"
-                  cx="32" cy="32" r="27"
-                  stroke-dasharray="169.646"
-                  stroke-dashoffset="0"
-                  style="--circumference: 169.646; --dash-offset: 0;"/>
+        <svg class="progress-ring__svg" viewBox="0 0 72 72">
+          <circle class="progress-ring__bg" cx="36" cy="36" r="30"/>
+          <circle class="progress-ring__fill" cx="36" cy="36" r="30"
+                  stroke="url(#grad-green)"
+                  stroke-dasharray="188.496"
+                  stroke-dashoffset="75.398"/>
         </svg>
         <div class="progress-ring__text">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <span class="progress-ring__value">12</span>
+          <span class="progress-ring__label">/ 20일</span>
         </div>
       </div>
-      <div class="challenge-card__body">
-        <div class="challenge-card__badge challenge-card__badge--complete">완료</div>
-        <div class="challenge-card__title">1월 출석 챌린지</div>
-        <div class="challenge-card__desc">1월 출석률 90% 이상 달성하기</div>
-        <div class="challenge-card__progress-text">95% 달성 완료!</div>
+      <div class="hw-progress__info">
+        <div class="hw-progress__title">3월 숙제 진행률</div>
+        <div class="hw-progress__desc">20일 이상 수행하면 3월 오너먼트 뱃지를 받아요!</div>
+        <div class="hw-progress__stat">현재 <strong>12일</strong> 수행 · 남은 일수 11일</div>
+      </div>
+    </div>
+
+    <!-- 오늘의 숙제 -->
+    <div class="section">
+      <div class="section__header"><h2 class="section__title">오늘의 숙제</h2><span class="section__sub">3/20 (목)</span></div>
+
+      <div class="hw-card" style="animation-delay:0.15s">
+        <div class="hw-card__header">
+          <span class="hw-card__label">전체 숙제</span>
+          <span class="hw-card__badge hw-card__badge--common">공통</span>
+        </div>
+        <div class="hw-item">
+          <button class="hw-item__check" onclick="toggleHw(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+          <span class="hw-item__text">폼롤러 전신 스트레칭 10분</span>
+        </div>
+        <div class="hw-item">
+          <button class="hw-item__check" onclick="toggleHw(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+          <span class="hw-item__text">맨몸 스쿼트 3세트 × 15회</span>
+        </div>
+        <div class="hw-item">
+          <button class="hw-item__check" onclick="toggleHw(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+          <span class="hw-item__text">플랭크 30초 × 3세트</span>
+        </div>
+      </div>
+
+      <div class="hw-card" style="animation-delay:0.25s">
+        <div class="hw-card__header">
+          <span class="hw-card__label">은또 전용 숙제</span>
+          <span class="hw-card__badge hw-card__badge--personal">개별</span>
+        </div>
+        <div class="hw-item">
+          <button class="hw-item__check" onclick="toggleHw(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+          <span class="hw-item__text">고관절 모빌리티 드릴 5분</span>
+        </div>
+        <div class="hw-item">
+          <button class="hw-item__check" onclick="toggleHw(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+          <span class="hw-item__text">한발 서기 좌우 30초씩</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 지난 숙제 -->
+    <div class="section">
+      <div class="section__header"><h2 class="section__title">지난 숙제</h2></div>
+      <div class="hw-card" style="animation-delay:0.3s">
+        <div class="hw-card__header">
+          <span class="hw-card__label">3/19 (수)</span>
+        </div>
+        <div class="hw-item">
+          <button class="hw-item__check checked disabled"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+          <span class="hw-item__text done">폼롤러 전신 스트레칭 10분</span>
+          <span class="hw-item__date">완료</span>
+        </div>
+        <div class="hw-item">
+          <button class="hw-item__check checked disabled"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+          <span class="hw-item__text done">맨몸 스쿼트 3세트 × 15회</span>
+          <span class="hw-item__date">완료</span>
+        </div>
+        <div class="hw-item">
+          <button class="hw-item__check disabled"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+          <span class="hw-item__text" style="color:var(--text-muted)">플랭크 30초 × 3세트</span>
+          <span class="hw-item__date" style="color:var(--danger)">미수행</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 숙제 뱃지 (오너먼트) -->
+    <div class="section">
+      <div class="section__header">
+        <h2 class="section__title">숙제 뱃지</h2>
+        <span class="section__sub">월 20일 이상 수행</span>
+      </div>
+      <div class="badge-row" id="ornament-badges">
+        <!-- JS로 생성 -->
       </div>
     </div>
   </div>
 
-  <!-- ═══ 획득한 배지 ═══ -->
+  <!-- ═══════════════════════════════════════ -->
+  <!-- 크리스마스 트리 & 연간 리포트 (공통)       -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="tree-section">
+    <div class="tree-section__title">나의 크리스마스 트리</div>
+    <div class="tree-section__year">2026년</div>
+    <div class="tree-wrap" id="tree-wrap">
+      <!-- Tree trunk -->
+      <div class="tree-trunk"></div>
+      <!-- Tree layers -->
+      <div class="tree-layer tree-layer--1"></div>
+      <div class="tree-layer tree-layer--2"></div>
+      <div class="tree-layer tree-layer--3"></div>
+      <!-- Star topper (top badge) -->
+      <div class="tree-star" id="tree-star"></div>
+      <!-- Ornaments placed by JS -->
+    </div>
+    <div class="tree-legend">
+      <div class="tree-legend__item"><div class="tree-legend__dot tree-legend__dot--star"></div>출석 뱃지</div>
+      <div class="tree-legend__item"><div class="tree-legend__dot tree-legend__dot--ornament"></div>숙제 뱃지</div>
+    </div>
+  </div>
+
+  <!-- 연간 리포트 -->
   <div class="section">
-    <div class="section__header">
-      <h2 class="section__title">나의 배지</h2>
-      <span class="section__sub">5 / 8 획득</span>
+    <div class="report-card">
+      <div class="report-card__title">📊 2026 연간 수강 리포트</div>
+      <div class="report-stats">
+        <div class="report-stat"><div class="report-stat__value">28</div><div class="report-stat__label">총 출석일</div></div>
+        <div class="report-stat"><div class="report-stat__value">42</div><div class="report-stat__label">총 숙제 수행일</div></div>
+        <div class="report-stat"><div class="report-stat__value">93%</div><div class="report-stat__label">평균 출석률</div></div>
+        <div class="report-stat"><div class="report-stat__value">2개</div><div class="report-stat__label">출석 뱃지</div></div>
+      </div>
+      <div class="section__header" style="margin-bottom:0.375rem"><h2 class="section__title" style="font-size:0.8125rem">월별 출석률</h2></div>
+      <div class="report-chart" id="report-chart"></div>
+      <div class="report-months" id="report-months"></div>
     </div>
-
-    <div class="badge-grid">
-      <div class="badge-item">
-        <div class="badge-item__icon badge-item__icon--earned">💪</div>
-        <span class="badge-item__label">첫 수업</span>
-      </div>
-      <div class="badge-item">
-        <div class="badge-item__icon badge-item__icon--earned">🔥</div>
-        <span class="badge-item__label">7일 연속</span>
-      </div>
-      <div class="badge-item">
-        <div class="badge-item__icon badge-item__icon--earned">⭐</div>
-        <span class="badge-item__label">1월 챌린지</span>
-      </div>
-      <div class="badge-item">
-        <div class="badge-item__icon badge-item__icon--earned">🏋️</div>
-        <span class="badge-item__label">50회 출석</span>
-      </div>
-      <div class="badge-item">
-        <div class="badge-item__icon badge-item__icon--earned">🎯</div>
-        <span class="badge-item__label">개근상</span>
-      </div>
-      <div class="badge-item">
-        <div class="badge-item__icon badge-item__icon--locked">🏆</div>
-        <span class="badge-item__label">100회 출석</span>
-      </div>
-      <div class="badge-item">
-        <div class="badge-item__icon badge-item__icon--locked">👑</div>
-        <span class="badge-item__label">30일 연속</span>
-      </div>
-      <div class="badge-item">
-        <div class="badge-item__icon badge-item__icon--locked">🌟</div>
-        <span class="badge-item__label">6개월 출석</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══ 동기부여 카드 ═══ -->
-  <div class="motivation-card">
-    <span class="motivation-card__emoji">✨</span>
-    <p class="motivation-card__text">꾸준함이 재능을 이깁니다.<br>오늘도 한 걸음 더!</p>
-    <span class="motivation-card__author">근력학교 이화</span>
   </div>
 
 </div>
 
 <!-- Bottom Navigation -->
 <nav class="bottom-nav">
-  <a class="nav-item" href="index.html">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
-    </svg>
-    <span class="nav-item__label">홈</span>
-  </a>
-  <a class="nav-item active" href="challenge.html">
-    <span style="font-size:1.25rem;line-height:1;">🔥</span>
-    <span class="nav-item__label">챌린지</span>
-  </a>
-  <a class="nav-item" href="program.html">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-    </svg>
-    <span class="nav-item__label">프로그램</span>
-  </a>
-  <a class="nav-item" href="change.html">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
-    </svg>
-    <span class="nav-item__label">변경</span>
-  </a>
-  <a class="nav-item" href="class-status.html">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
-    </svg>
-    <span class="nav-item__label">수업현황</span>
-  </a>
+  <a class="nav-item" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span class="nav-item__label">홈</span></a>
+  <a class="nav-item active" href="challenge.html"><span style="font-size:1.25rem;line-height:1;">🔥</span><span class="nav-item__label">챌린지</span></a>
+  <a class="nav-item" href="program.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><span class="nav-item__label">프로그램</span></a>
+  <a class="nav-item" href="change.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg><span class="nav-item__label">변경</span></a>
+  <a class="nav-item" href="class-status.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span class="nav-item__label">수업현황</span></a>
 </nav>
 
 <script>
 (function() {
-  /* ══════════════════════════════════════
-     PROGRESS RING ANIMATION
-     ══════════════════════════════════════ */
-  var rings = document.querySelectorAll('.progress-ring__fill');
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        var el = entry.target;
-        var offset = el.style.getPropertyValue('--dash-offset').trim();
-        el.style.strokeDashoffset = el.getAttribute('stroke-dasharray');
-        requestAnimationFrame(function() {
-          requestAnimationFrame(function() {
-            el.style.strokeDashoffset = offset;
-          });
-        });
-        observer.unobserve(el);
-      }
-    });
-  }, { threshold: 0.3 });
-
-  rings.forEach(function(ring) {
-    ring.style.strokeDashoffset = ring.getAttribute('stroke-dasharray');
-    observer.observe(ring);
-  });
-
-  /* ══════════════════════════════════════
-     CHALLENGE CARD TAP FEEDBACK
-     ══════════════════════════════════════ */
-  document.querySelectorAll('.challenge-card').forEach(function(card) {
-    card.addEventListener('click', function() {
-      card.style.transform = 'scale(0.98)';
-      setTimeout(function() { card.style.transform = ''; }, 150);
+  // ══════════════════════════════════════
+  // TAB SWITCHING
+  // ══════════════════════════════════════
+  document.querySelectorAll('.tab-bar__item').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.tab-bar__item').forEach(function(b) { b.classList.remove('active'); });
+      document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.getAttribute('data-tab')).classList.add('active');
     });
   });
 
-  /* ══════════════════════════════════════
-     BADGE HOVER ANIMATION
-     ══════════════════════════════════════ */
-  document.querySelectorAll('.badge-item__icon--earned').forEach(function(badge) {
-    badge.addEventListener('click', function() {
-      badge.style.animation = 'none';
-      badge.offsetHeight;
-      badge.style.animation = 'badgePop 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
-    });
+  // ══════════════════════════════════════
+  // STAR BADGE DATA (출석 - 별 모양)
+  // ══════════════════════════════════════
+  var months = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+  // Colors for each month's star
+  var starColors = [
+    ['#D4A026','#E8C84A'], // 1월 gold
+    ['#C0392B','#E74C3C'], // 2월 red
+    ['#7B5A93','#D4829A'], // 3월 purple-rose
+    ['#27AE60','#2ECC71'], // 4월 green
+    ['#E4A5B8','#F0C6D4'], // 5월 rose
+    ['#2980B9','#3498DB'], // 6월 blue
+    ['#E8873A','#D4A026'], // 7월 orange
+    ['#8E44AD','#9B59B6'], // 8월 violet
+    ['#16A085','#1ABC9C'], // 9월 teal
+    ['#D35400','#E67E22'], // 10월 burnt orange
+    ['#C0392B','#922B21'], // 11월 deep red
+    ['#F1C40F','#F39C12'], // 12월 bright gold
+  ];
+
+  // Mock: 1,2월 획득, 2월 개근(perfect)
+  var starStatus = [
+    {earned:true, perfect:false},  // 1월
+    {earned:true, perfect:true},   // 2월
+    {earned:false, perfect:false}, // 3월 (진행 중)
+    {earned:false},{earned:false},{earned:false},{earned:false},{earned:false},
+    {earned:false},{earned:false},{earned:false},{earned:false}
+  ];
+
+  function createStar(c1, c2, perfect) {
+    var glow = perfect ? ' class="star-badge__icon--perfect"' : '';
+    return '<div' + glow + '><svg viewBox="0 0 48 48"><defs><linearGradient id="sg-' + c1.replace('#','') + '" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="' + c1 + '"/><stop offset="100%" stop-color="' + c2 + '"/></linearGradient></defs>' +
+      '<path d="M24 4l5.8 11.7 12.9 1.9-9.35 9.1 2.2 12.8L24 33.5l-11.55 6 2.2-12.8-9.35-9.1 12.9-1.9z" fill="url(#sg-' + c1.replace('#','') + ')" stroke="' + (perfect ? '#fff' : 'none') + '" stroke-width="' + (perfect ? '1' : '0') + '"/>' +
+      (perfect ? '<circle cx="24" cy="22" r="6" fill="rgba(255,255,255,0.35)"/>' : '') +
+      '<text x="24" y="26" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" font-family="var(--font-body)">' + '</text></svg></div>';
+  }
+
+  var starGrid = document.getElementById('star-badges');
+  for (var i = 0; i < 12; i++) {
+    var s = starStatus[i] || {earned:false, perfect:false};
+    var div = document.createElement('div');
+    div.className = 'star-badge' + (s.earned ? '' : ' star-badge--locked');
+    div.style.animationDelay = (0.2 + i * 0.06) + 's';
+    div.innerHTML = '<div class="star-badge__icon">' + createStar(starColors[i][0], starColors[i][1], s.perfect) + '</div>' +
+      '<span class="star-badge__month">' + months[i] + '</span>';
+    starGrid.appendChild(div);
+  }
+
+  // ══════════════════════════════════════
+  // ORNAMENT BADGE DATA (숙제 - 오너먼트)
+  // ══════════════════════════════════════
+  var ornamentColors = [
+    '#C0392B', // 1월 red
+    '#2980B9', // 2월 blue
+    '#D4A026', // 3월 gold
+    '#27AE60', // 4월 green
+    '#E4A5B8', // 5월 pink
+    '#8E44AD', // 6월 purple
+    '#E8873A', // 7월 orange
+    '#1ABC9C', // 8월 teal
+    '#D35400', // 9월 burnt orange
+    '#3498DB', // 10월 sky blue
+    '#C0392B', // 11월 deep red
+    '#F1C40F', // 12월 gold
+  ];
+
+  var ornamentStatus = [true, true, false, false, false, false, false, false, false, false, false, false];
+
+  function createOrnament(color) {
+    return '<svg viewBox="0 0 36 36">' +
+      '<rect x="14" y="2" width="8" height="5" rx="2" fill="' + color + '" opacity="0.6"/>' +
+      '<circle cx="18" cy="21" r="12" fill="' + color + '"/>' +
+      '<ellipse cx="18" cy="21" rx="12" ry="12" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>' +
+      '<ellipse cx="14" cy="16" rx="3" ry="4" fill="rgba(255,255,255,0.2)" transform="rotate(-20 14 16)"/>' +
+      '</svg>';
+  }
+
+  var ornGrid = document.getElementById('ornament-badges');
+  for (var j = 0; j < 12; j++) {
+    var d = document.createElement('div');
+    d.className = 'ornament-badge' + (ornamentStatus[j] ? '' : ' ornament-badge--locked');
+    d.style.animationDelay = (0.2 + j * 0.06) + 's';
+    d.innerHTML = '<div class="ornament-badge__icon">' + createOrnament(ornamentColors[j]) + '</div>' +
+      '<span class="ornament-badge__month">' + months[j] + '</span>';
+    ornGrid.appendChild(d);
+  }
+
+  // ══════════════════════════════════════
+  // HOMEWORK CHECK TOGGLE
+  // ══════════════════════════════════════
+  window.toggleHw = function(btn) {
+    if (btn.classList.contains('disabled')) return;
+    btn.classList.toggle('checked');
+    var textEl = btn.nextElementSibling;
+    if (textEl) textEl.classList.toggle('done');
+  };
+
+  // ══════════════════════════════════════
+  // CHRISTMAS TREE
+  // ══════════════════════════════════════
+  var treeWrap = document.getElementById('tree-wrap');
+
+  // Place star topper (best month's star or default)
+  var treeStar = document.getElementById('tree-star');
+  treeStar.innerHTML = '<svg viewBox="0 0 48 48"><path d="M24 4l5.8 11.7 12.9 1.9-9.35 9.1 2.2 12.8L24 33.5l-11.55 6 2.2-12.8-9.35-9.1 12.9-1.9z" fill="url(#sg-D4A026)" stroke="#fff" stroke-width="1.5"/><circle cx="24" cy="22" r="5" fill="rgba(255,255,255,0.3)"/></svg>';
+
+  // Ornament and star positions on tree
+  var ornPositions = [
+    // Stars (출석) - upper part
+    {x:105,y:85,type:'star',month:0}, {x:135,y:85,type:'star',month:1},
+    {x:85,y:135,type:'star',month:2}, {x:155,y:135,type:'star',month:3},
+    {x:70,y:190,type:'star',month:4}, {x:170,y:190,type:'star',month:5},
+    // Ornaments (숙제) - lower/mid
+    {x:120,y:120,type:'orn',month:0}, {x:100,y:165,type:'orn',month:1},
+    {x:140,y:165,type:'orn',month:2}, {x:80,y:220,type:'orn',month:3},
+    {x:120,y:215,type:'orn',month:4}, {x:160,y:220,type:'orn',month:5},
+  ];
+
+  ornPositions.forEach(function(pos) {
+    var el = document.createElement('div');
+    el.className = 'tree-ornament';
+    el.style.left = pos.x + 'px';
+    el.style.top = pos.y + 'px';
+
+    var earned = false;
+    if (pos.type === 'star') {
+      earned = starStatus[pos.month] && starStatus[pos.month].earned;
+      var sc = starColors[pos.month];
+      el.innerHTML = '<svg width="20" height="20" viewBox="0 0 48 48"><path d="M24 4l5.8 11.7 12.9 1.9-9.35 9.1 2.2 12.8L24 33.5l-11.55 6 2.2-12.8-9.35-9.1 12.9-1.9z" fill="' + sc[0] + '"/></svg>';
+    } else {
+      earned = ornamentStatus[pos.month];
+      var oc = ornamentColors[pos.month];
+      el.innerHTML = '<svg width="18" height="18" viewBox="0 0 36 36"><circle cx="18" cy="20" r="8" fill="' + oc + '"/><rect x="15" y="10" width="6" height="4" rx="1.5" fill="' + oc + '" opacity="0.6"/><ellipse cx="15" cy="17" rx="2" ry="3" fill="rgba(255,255,255,0.2)" transform="rotate(-20 15 17)"/></svg>';
+    }
+
+    if (!earned) el.classList.add('tree-ornament--locked');
+    treeWrap.appendChild(el);
   });
+
+  // ══════════════════════════════════════
+  // ANNUAL REPORT CHART
+  // ══════════════════════════════════════
+  var monthlyRates = [95, 88, 92, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 1~12월
+  var chartEl = document.getElementById('report-chart');
+  var monthsEl = document.getElementById('report-months');
+  var mLabels = ['1','2','3','4','5','6','7','8','9','10','11','12'];
+
+  mLabels.forEach(function(m, idx) {
+    var bar = document.createElement('div');
+    bar.className = 'report-chart__bar';
+    if (monthlyRates[idx] > 0) {
+      bar.classList.add('report-chart__bar--fill');
+      bar.style.height = monthlyRates[idx] + '%';
+    } else {
+      bar.classList.add('report-chart__bar--empty');
+      bar.style.height = '8%';
+    }
+    chartEl.appendChild(bar);
+
+    var label = document.createElement('span');
+    label.textContent = m + '월';
+    monthsEl.appendChild(label);
+  });
+
 })();
 </script>
 
