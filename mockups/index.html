@@ -1010,6 +1010,130 @@
     font-size: 0.875rem; font-weight: 500;
   }
 
+  /* ── NOTICE DETAIL MODAL ── */
+  .notice-overlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(46, 26, 62, 0.4);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    align-items: flex-end; justify-content: center;
+  }
+  .notice-overlay.open {
+    display: flex;
+    animation: notifFadeIn 0.2s ease;
+  }
+  .notice-modal {
+    width: 100%; max-width: 480px;
+    max-height: 80dvh;
+    background: #fff;
+    border-radius: 20px 20px 0 0;
+    display: flex; flex-direction: column;
+    animation: notifSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+  .notice-modal__handle {
+    width: 36px; height: 4px; border-radius: 2px;
+    background: var(--border-subtle);
+    margin: 0.75rem auto 0;
+    flex-shrink: 0;
+  }
+  .notice-modal__header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 1.5rem 0.75rem;
+    flex-shrink: 0;
+    border-bottom: 1px solid rgba(196, 176, 210, 0.15);
+  }
+  .notice-modal__title {
+    font-family: var(--font-display);
+    font-size: 1.0625rem; color: var(--text-primary);
+  }
+  .notice-modal__close {
+    width: 32px; height: 32px; border-radius: 50%;
+    border: none; background: rgba(245, 240, 248, 0.6);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-muted); cursor: pointer;
+    transition: all 0.2s;
+  }
+  .notice-modal__close:hover { background: rgba(245, 240, 248, 0.9); color: var(--text-primary); }
+  .notice-modal__close svg { width: 16px; height: 16px; }
+  .notice-modal__body {
+    overflow-y: auto; flex: 1;
+    padding: 0 1.5rem 2rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Detail view */
+  .notice-detail__badge {
+    display: inline-block;
+    font-size: 0.625rem; font-weight: 600;
+    padding: 0.25rem 0.625rem; border-radius: 20px;
+    background: linear-gradient(135deg, rgba(75,45,94,0.08), rgba(212,130,154,0.08));
+    color: var(--purple-500);
+    margin: 1rem 0 0.625rem;
+  }
+  .notice-detail__title {
+    font-family: var(--font-display);
+    font-size: 1.1875rem;
+    color: var(--text-primary);
+    line-height: 1.45;
+    margin-bottom: 0.5rem;
+  }
+  .notice-detail__date {
+    font-size: 0.75rem; color: var(--text-muted);
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(196, 176, 210, 0.12);
+  }
+  .notice-detail__content {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+  }
+  .notice-detail__content p { margin-bottom: 0.75rem; }
+  .notice-detail__content strong { color: var(--text-primary); font-weight: 600; }
+  .notice-detail__content .notice-highlight {
+    background: linear-gradient(135deg, rgba(245, 240, 248, 0.8), rgba(249, 228, 236, 0.6));
+    border-left: 3px solid var(--purple-400);
+    padding: 0.75rem 1rem;
+    border-radius: 0 10px 10px 0;
+    margin: 0.75rem 0;
+    font-size: 0.8125rem;
+  }
+
+  /* List view */
+  .notice-list-item {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(196, 176, 210, 0.1);
+    cursor: pointer;
+    transition: background 0.15s;
+    border-radius: 8px;
+  }
+  .notice-list-item:last-child { border-bottom: none; }
+  .notice-list-item:active { background: rgba(94, 61, 116, 0.04); }
+  .notice-list-item__icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: linear-gradient(135deg, rgba(75,45,94,0.08), rgba(212,130,154,0.08));
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; color: var(--purple-400);
+  }
+  .notice-list-item__icon svg { width: 17px; height: 17px; }
+  .notice-list-item__body { flex: 1; min-width: 0; }
+  .notice-list-item__title {
+    font-size: 0.8125rem; font-weight: 600;
+    color: var(--text-primary); line-height: 1.4;
+    margin-bottom: 0.25rem;
+  }
+  .notice-list-item__date {
+    font-size: 0.6875rem; color: var(--text-muted);
+  }
+  .notice-list-item__new {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--rose-400);
+    flex-shrink: 0; margin-top: 0.5rem;
+  }
+
   /* ── ANIMATIONS ── */
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
@@ -1074,9 +1198,9 @@
   <div class="section">
     <div class="section__header">
       <h2 class="section__title">공지사항</h2>
-      <a href="#" class="section__more">전체보기</a>
+      <a href="#" class="section__more" id="notice-all-btn">전체보기</a>
     </div>
-    <div class="notice-card">
+    <div class="notice-card" data-notice="0">
       <div class="notice-card__icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"/>
@@ -1113,7 +1237,7 @@
   <div class="section">
     <div class="section__header">
       <h2 class="section__title">이번 주 일정</h2>
-      <a href="#" class="section__more">전체보기</a>
+      <a href="class-status.html" class="section__more">전체보기</a>
     </div>
     <div class="schedule-list">
       <div class="schedule-item schedule-item--attended">
@@ -1262,8 +1386,148 @@
   </a>
 </nav>
 
+<!-- Notice Detail Modal -->
+<div class="notice-overlay" id="notice-detail-overlay">
+  <div class="notice-modal">
+    <div class="notice-modal__handle"></div>
+    <div class="notice-modal__header">
+      <span class="notice-modal__title">공지사항</span>
+      <button class="notice-modal__close" id="notice-detail-close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="notice-modal__body" id="notice-detail-body">
+    </div>
+  </div>
+</div>
+
+<!-- Notice List Modal -->
+<div class="notice-overlay" id="notice-list-overlay">
+  <div class="notice-modal">
+    <div class="notice-modal__handle"></div>
+    <div class="notice-modal__header">
+      <span class="notice-modal__title">공지사항</span>
+      <button class="notice-modal__close" id="notice-list-close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="notice-modal__body" id="notice-list-body">
+    </div>
+  </div>
+</div>
+
 <script>
 (function() {
+  // ══════════════════════════════════════════════
+  // NOTICE DATA
+  // ══════════════════════════════════════════════
+  var notices = [
+    {
+      title: '2월 설 연휴 휴관 안내 (2/7~2/10)',
+      date: '2026.02.05',
+      badge: '휴관',
+      isNew: true,
+      content: '<p>안녕하세요, 근력학교 이화입니다.</p><p>설 연휴 기간 동안 아래와 같이 <strong>휴관</strong>합니다.</p><div class="notice-highlight"><strong>휴관 기간:</strong> 2월 7일(금) ~ 2월 10일(월)<br><strong>정상 운영:</strong> 2월 11일(화)부터</div><p>연휴 기간 중 수강권은 <strong>자동 연장</strong> 처리됩니다. 별도의 홀딩 신청 없이 4일이 추가됩니다.</p><p>즐거운 명절 보내시고, 연휴 후 건강한 모습으로 만나요! 🎊</p>'
+    },
+    {
+      title: '2월 프로그램 안내: 하체 강화 집중 4주',
+      date: '2026.02.03',
+      badge: '프로그램',
+      isNew: false,
+      content: '<p>2월 프로그램이 업데이트되었습니다!</p><div class="notice-highlight"><strong>프로그램:</strong> 하체 강화 집중 4주<br><strong>기간:</strong> 2월 11일 ~ 3월 7일<br><strong>구성:</strong> 스쿼트, 데드리프트, 런지 중심</div><p>이번 달은 <strong>하체 근력</strong>에 집중합니다. 주 3회 수업에서 스쿼트 변형, 데드리프트, 런지 패턴을 체계적으로 훈련합니다.</p><p>초급반은 맨몸 및 가벼운 중량으로, 중급 이상은 점진적 과부하를 적용합니다.</p>'
+    },
+    {
+      title: '수강권 갱신 안내 (1월 만료 예정자)',
+      date: '2026.01.28',
+      badge: '안내',
+      isNew: false,
+      content: '<p>1월 말 수강권 만료 예정이신 분들께 안내드립니다.</p><p><strong>갱신 혜택:</strong> 만료 전 갱신 시 수강권 기간이 이어서 적용됩니다. 만료 후 갱신 시에는 갱신일부터 새로 시작됩니다.</p><div class="notice-highlight"><strong>갱신 방법:</strong> 프로필 > 수강권 관리에서 갱신하거나, 수업 시간에 트레이너에게 말씀해 주세요.</div><p>궁금한 점이 있으시면 카카오톡 채널로 문의해 주세요.</p>'
+    },
+    {
+      title: '1월 챌린지 결과 발표 🏆',
+      date: '2026.01.25',
+      badge: '챌린지',
+      isNew: false,
+      content: '<p>1월 출석 챌린지 결과를 발표합니다!</p><p><strong>🥇 1위:</strong> 김지은(은또) — 출석률 100%<br><strong>🥈 2위:</strong> 한예린(린이) — 출석률 96%<br><strong>🥉 3위:</strong> 박소현(소소) — 출석률 92%</p><div class="notice-highlight">참여해 주신 모든 분들 수고하셨습니다!<br>2월 챌린지도 곧 시작됩니다. 💪</div>'
+    }
+  ];
+
+  var notifIconSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"/></svg>';
+
+  // ── Notice Detail ──
+  var detailOverlay = document.getElementById('notice-detail-overlay');
+  var detailBody = document.getElementById('notice-detail-body');
+  var detailClose = document.getElementById('notice-detail-close');
+
+  function openNoticeDetail(idx) {
+    var n = notices[idx];
+    if (!n) return;
+    detailBody.innerHTML =
+      '<span class="notice-detail__badge">' + n.badge + '</span>' +
+      '<h2 class="notice-detail__title">' + n.title + '</h2>' +
+      '<div class="notice-detail__date">' + n.date + '</div>' +
+      '<div class="notice-detail__content">' + n.content + '</div>';
+    detailOverlay.classList.add('open');
+  }
+
+  detailClose.addEventListener('click', function() { detailOverlay.classList.remove('open'); });
+  detailOverlay.addEventListener('click', function(e) { if (e.target === detailOverlay) detailOverlay.classList.remove('open'); });
+
+  // Home notice card click
+  document.querySelector('.notice-card[data-notice]').addEventListener('click', function() {
+    openNoticeDetail(parseInt(this.getAttribute('data-notice')));
+  });
+
+  // ── Notice List ──
+  var listOverlay = document.getElementById('notice-list-overlay');
+  var listBody = document.getElementById('notice-list-body');
+  var listClose = document.getElementById('notice-list-close');
+
+  document.getElementById('notice-all-btn').addEventListener('click', function(e) {
+    e.preventDefault();
+    var html = '';
+    notices.forEach(function(n, i) {
+      html += '<div class="notice-list-item" data-notice-idx="' + i + '">' +
+        '<div class="notice-list-item__icon">' + notifIconSvg + '</div>' +
+        '<div class="notice-list-item__body">' +
+          '<div class="notice-list-item__title">' + n.title + '</div>' +
+          '<div class="notice-list-item__date">' + n.date + '</div>' +
+        '</div>' +
+        (n.isNew ? '<div class="notice-list-item__new"></div>' : '') +
+      '</div>';
+    });
+    listBody.innerHTML = html;
+
+    // Each item click -> close list, open detail
+    listBody.querySelectorAll('.notice-list-item').forEach(function(item) {
+      item.addEventListener('click', function() {
+        var idx = parseInt(this.getAttribute('data-notice-idx'));
+        listOverlay.classList.remove('open');
+        setTimeout(function() { openNoticeDetail(idx); }, 200);
+      });
+    });
+
+    listOverlay.classList.add('open');
+  });
+
+  listClose.addEventListener('click', function() { listOverlay.classList.remove('open'); });
+  listOverlay.addEventListener('click', function(e) { if (e.target === listOverlay) listOverlay.classList.remove('open'); });
+
+  // ESC key closes any open notice modal
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      detailOverlay.classList.remove('open');
+      listOverlay.classList.remove('open');
+    }
+  });
+
+  // ══════════════════════════════════════════════
+  // NOTIFICATION PANEL (existing)
+  // ══════════════════════════════════════════════
   var overlay = document.getElementById('notif-overlay');
   var notifBtn = document.querySelector('.icon-btn[aria-label="알림"]');
   var badge = notifBtn.querySelector('.icon-btn__badge');
