@@ -340,19 +340,13 @@
         </div>
       </div>
 
-      <div class="hw-card" style="animation-delay:0.25s">
+      <!-- 개별 숙제: JS에서 personalHomework 데이터가 있을 때만 표시 -->
+      <div class="hw-card" id="personal-hw-card" style="animation-delay:0.25s;display:none">
         <div class="hw-card__header">
-          <span class="hw-card__label">은또 전용 숙제</span>
+          <span class="hw-card__label" id="personal-hw-name">전용 숙제</span>
           <span class="hw-card__badge hw-card__badge--personal">개별</span>
         </div>
-        <div class="hw-item">
-          <button class="hw-item__check" onclick="toggleHw(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
-          <span class="hw-item__text">고관절 모빌리티 드릴 5분</span>
-        </div>
-        <div class="hw-item">
-          <button class="hw-item__check" onclick="toggleHw(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
-          <span class="hw-item__text">한발 서기 좌우 30초씩</span>
-        </div>
+        <div id="personal-hw-list"></div>
       </div>
     </div>
 
@@ -396,7 +390,7 @@
   <!-- ═══════════════════════════════════════ -->
   <!-- 크리스마스 트리 & 연간 리포트 (공통)       -->
   <!-- ═══════════════════════════════════════ -->
-  <div class="tree-section">
+  <div class="tree-section" id="tree-section" style="display:none">
     <div class="tree-section__title">나의 크리스마스 트리</div>
     <div class="tree-section__year">2026년</div>
     <div class="tree-wrap" id="tree-wrap">
@@ -416,8 +410,8 @@
     </div>
   </div>
 
-  <!-- 연간 리포트 -->
-  <div class="section">
+  <!-- 연간 리포트 (12월에만 표시) -->
+  <div class="section" id="annual-report-section" style="display:none">
     <div class="report-card">
       <div class="report-card__title">📊 2026 연간 수강 리포트</div>
       <div class="report-stats">
@@ -506,40 +500,44 @@
   }
 
   // ══════════════════════════════════════
-  // ORNAMENT BADGE DATA (숙제 - 오너먼트)
+  // ORNAMENT BADGE DATA (숙제 - 12가지 모양)
   // ══════════════════════════════════════
-  var ornamentColors = [
-    '#C0392B', // 1월 red
-    '#2980B9', // 2월 blue
-    '#D4A026', // 3월 gold
-    '#27AE60', // 4월 green
-    '#E4A5B8', // 5월 pink
-    '#8E44AD', // 6월 purple
-    '#E8873A', // 7월 orange
-    '#1ABC9C', // 8월 teal
-    '#D35400', // 9월 burnt orange
-    '#3498DB', // 10월 sky blue
-    '#C0392B', // 11월 deep red
-    '#F1C40F', // 12월 gold
-  ];
-
   var ornamentStatus = [true, true, false, false, false, false, false, false, false, false, false, false];
 
-  function createOrnament(color) {
-    return '<svg viewBox="0 0 36 36">' +
-      '<rect x="14" y="2" width="8" height="5" rx="2" fill="' + color + '" opacity="0.6"/>' +
-      '<circle cx="18" cy="21" r="12" fill="' + color + '"/>' +
-      '<ellipse cx="18" cy="21" rx="12" ry="12" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>' +
-      '<ellipse cx="14" cy="16" rx="3" ry="4" fill="rgba(255,255,255,0.2)" transform="rotate(-20 14 16)"/>' +
-      '</svg>';
-  }
+  // 12개월 각기 다른 오너먼트 SVG (색+모양 고유)
+  var ornamentSvgs = [
+    // 1월: 빨간 공 (클래식 볼)
+    '<svg viewBox="0 0 40 40"><rect x="17" y="2" width="6" height="5" rx="2" fill="#C0392B" opacity="0.7"/><circle cx="20" cy="24" r="13" fill="#C0392B"/><ellipse cx="15" cy="18" rx="4" ry="5" fill="rgba(255,255,255,0.2)" transform="rotate(-20 15 18)"/><path d="M14 30a13 13 0 0 0 12 0" stroke="rgba(255,255,255,0.15)" stroke-width="1" fill="none"/></svg>',
+    // 2월: 파란 다이아몬드
+    '<svg viewBox="0 0 40 40"><rect x="17" y="2" width="6" height="4" rx="2" fill="#2980B9" opacity="0.7"/><polygon points="20,8 32,22 20,38 8,22" fill="#2980B9"/><polygon points="20,8 26,22 20,38 14,22" fill="rgba(255,255,255,0.1)"/><line x1="8" y1="22" x2="32" y2="22" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/></svg>',
+    // 3월: 금색 종
+    '<svg viewBox="0 0 40 40"><circle cx="20" cy="5" r="2.5" fill="#D4A026"/><path d="M12 28c0-8 3-14 8-16 5 2 8 8 8 16z" fill="#D4A026"/><rect x="10" y="27" width="20" height="3" rx="1.5" fill="#B8860B"/><circle cx="20" cy="33" r="2" fill="#B8860B"/><ellipse cx="16" cy="20" rx="2" ry="4" fill="rgba(255,255,255,0.2)" transform="rotate(-10 16 20)"/></svg>',
+    // 4월: 초록 잎사귀 볼
+    '<svg viewBox="0 0 40 40"><rect x="17" y="2" width="6" height="4" rx="2" fill="#27AE60" opacity="0.7"/><circle cx="20" cy="24" r="13" fill="#27AE60"/><path d="M14 18c4-2 8-2 12 0" stroke="rgba(255,255,255,0.25)" stroke-width="1.2" fill="none"/><path d="M14 22c4-2 8-2 12 0" stroke="rgba(255,255,255,0.15)" stroke-width="1" fill="none"/><path d="M14 26c4-2 8-2 12 0" stroke="rgba(255,255,255,0.1)" stroke-width="0.8" fill="none"/></svg>',
+    // 5월: 핑크 하트
+    '<svg viewBox="0 0 40 40"><rect x="17" y="1" width="6" height="4" rx="2" fill="#E4A5B8" opacity="0.7"/><path d="M20 36 C10 26, 4 18, 12 10 C16 7, 20 10, 20 14 C20 10, 24 7, 28 10 C36 18, 30 26, 20 36z" fill="#E4A5B8"/><ellipse cx="15" cy="16" rx="3" ry="4" fill="rgba(255,255,255,0.2)" transform="rotate(-15 15 16)"/></svg>',
+    // 6월: 보라 별 볼
+    '<svg viewBox="0 0 40 40"><rect x="17" y="2" width="6" height="4" rx="2" fill="#8E44AD" opacity="0.7"/><circle cx="20" cy="24" r="13" fill="#8E44AD"/><path d="M20 14l2.2 4.5 5 0.7-3.6 3.5 0.85 5L20 25.5l-4.45 2.2 0.85-5-3.6-3.5 5-0.7z" fill="rgba(255,255,255,0.25)"/></svg>',
+    // 7월: 주황 드롭(물방울)
+    '<svg viewBox="0 0 40 40"><rect x="17" y="1" width="6" height="4" rx="2" fill="#E8873A" opacity="0.7"/><path d="M20 8 C20 8, 32 22, 32 27 C32 33, 26.6 38, 20 38 C13.4 38, 8 33, 8 27 C8 22, 20 8, 20 8z" fill="#E8873A"/><ellipse cx="16" cy="22" rx="3" ry="5" fill="rgba(255,255,255,0.2)" transform="rotate(-10 16 22)"/></svg>',
+    // 8월: 틸 육각형
+    '<svg viewBox="0 0 40 40"><rect x="17" y="1" width="6" height="4" rx="2" fill="#1ABC9C" opacity="0.7"/><polygon points="20,7 33,15 33,31 20,39 7,31 7,15" fill="#1ABC9C"/><polygon points="20,12 28,17 28,29 20,34 12,29 12,17" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/></svg>',
+    // 9월: 번트오렌지 도토리
+    '<svg viewBox="0 0 40 40"><rect x="16" y="3" width="8" height="4" rx="2" fill="#8B5E3C"/><ellipse cx="20" cy="8" rx="9" ry="4" fill="#A0522D"/><path d="M20 5v-2" stroke="#6B3A1F" stroke-width="1.5" stroke-linecap="round"/><ellipse cx="20" cy="25" rx="11" ry="13" fill="#D35400"/><ellipse cx="16" cy="20" rx="3" ry="5" fill="rgba(255,255,255,0.15)" transform="rotate(-10 16 20)"/></svg>',
+    // 10월: 스카이블루 눈결정(스노우플레이크)
+    '<svg viewBox="0 0 40 40"><rect x="17" y="1" width="6" height="4" rx="2" fill="#3498DB" opacity="0.7"/><g transform="translate(20,24)"><line x1="0" y1="-12" x2="0" y2="12" stroke="#3498DB" stroke-width="2.5"/><line x1="-10.4" y1="-6" x2="10.4" y2="6" stroke="#3498DB" stroke-width="2.5"/><line x1="-10.4" y1="6" x2="10.4" y2="-6" stroke="#3498DB" stroke-width="2.5"/><circle cx="0" cy="-12" r="2" fill="#3498DB"/><circle cx="0" cy="12" r="2" fill="#3498DB"/><circle cx="-10.4" cy="-6" r="2" fill="#3498DB"/><circle cx="10.4" cy="6" r="2" fill="#3498DB"/><circle cx="-10.4" cy="6" r="2" fill="#3498DB"/><circle cx="10.4" cy="-6" r="2" fill="#3498DB"/></g></svg>',
+    // 11월: 딥레드 리본
+    '<svg viewBox="0 0 40 40"><rect x="17" y="2" width="6" height="4" rx="2" fill="#922B21" opacity="0.7"/><circle cx="20" cy="24" r="13" fill="#922B21"/><path d="M13 20c2-3 5-4 7-3s5 0 7 3" stroke="rgba(255,255,255,0.25)" stroke-width="1.2" fill="none"/><rect x="18" y="16" width="4" height="6" rx="1" fill="rgba(255,255,255,0.2)"/><path d="M15 19l5-3 5 3" stroke="rgba(255,255,255,0.3)" stroke-width="1" fill="rgba(255,255,255,0.08)"/></svg>',
+    // 12월: 금색 별 탑퍼
+    '<svg viewBox="0 0 40 40"><rect x="17" y="1" width="6" height="4" rx="2" fill="#F1C40F" opacity="0.7"/><path d="M20 7l4.5 9.1 10 1.5-7.25 7.1 1.7 10L20 30.5l-8.95 4.2 1.7-10-7.25-7.1 10-1.5z" fill="#F1C40F"/><circle cx="20" cy="22" r="4" fill="rgba(255,255,255,0.25)"/></svg>'
+  ];
 
   var ornGrid = document.getElementById('ornament-badges');
   for (var j = 0; j < 12; j++) {
     var d = document.createElement('div');
     d.className = 'ornament-badge' + (ornamentStatus[j] ? '' : ' ornament-badge--locked');
     d.style.animationDelay = (0.2 + j * 0.06) + 's';
-    d.innerHTML = '<div class="ornament-badge__icon">' + createOrnament(ornamentColors[j]) + '</div>' +
+    d.innerHTML = '<div class="ornament-badge__icon">' + ornamentSvgs[j] + '</div>' +
       '<span class="ornament-badge__month">' + months[j] + '</span>';
     ornGrid.appendChild(d);
   }
@@ -555,71 +553,99 @@
   };
 
   // ══════════════════════════════════════
-  // CHRISTMAS TREE
+  // PERSONAL HOMEWORK (개별 숙제 - 데이터 기반)
   // ══════════════════════════════════════
-  var treeWrap = document.getElementById('tree-wrap');
-
-  // Place star topper (best month's star or default)
-  var treeStar = document.getElementById('tree-star');
-  treeStar.innerHTML = '<svg viewBox="0 0 48 48"><path d="M24 4l5.8 11.7 12.9 1.9-9.35 9.1 2.2 12.8L24 33.5l-11.55 6 2.2-12.8-9.35-9.1 12.9-1.9z" fill="url(#sg-D4A026)" stroke="#fff" stroke-width="1.5"/><circle cx="24" cy="22" r="5" fill="rgba(255,255,255,0.3)"/></svg>';
-
-  // Ornament and star positions on tree
-  var ornPositions = [
-    // Stars (출석) - upper part
-    {x:105,y:85,type:'star',month:0}, {x:135,y:85,type:'star',month:1},
-    {x:85,y:135,type:'star',month:2}, {x:155,y:135,type:'star',month:3},
-    {x:70,y:190,type:'star',month:4}, {x:170,y:190,type:'star',month:5},
-    // Ornaments (숙제) - lower/mid
-    {x:120,y:120,type:'orn',month:0}, {x:100,y:165,type:'orn',month:1},
-    {x:140,y:165,type:'orn',month:2}, {x:80,y:220,type:'orn',month:3},
-    {x:120,y:215,type:'orn',month:4}, {x:160,y:220,type:'orn',month:5},
+  // null이면 개별 숙제 없음 → 카드 숨김
+  var personalHomework = [
+    '고관절 모빌리티 드릴 5분',
+    '한발 서기 좌우 30초씩'
   ];
+  var memberNickname = '은또';
 
-  ornPositions.forEach(function(pos) {
-    var el = document.createElement('div');
-    el.className = 'tree-ornament';
-    el.style.left = pos.x + 'px';
-    el.style.top = pos.y + 'px';
+  if (personalHomework && personalHomework.length > 0) {
+    var phCard = document.getElementById('personal-hw-card');
+    var phList = document.getElementById('personal-hw-list');
+    var phName = document.getElementById('personal-hw-name');
+    phName.textContent = memberNickname + ' 전용 숙제';
+    phCard.style.display = 'block';
 
-    var earned = false;
-    if (pos.type === 'star') {
-      earned = starStatus[pos.month] && starStatus[pos.month].earned;
-      var sc = starColors[pos.month];
-      el.innerHTML = '<svg width="20" height="20" viewBox="0 0 48 48"><path d="M24 4l5.8 11.7 12.9 1.9-9.35 9.1 2.2 12.8L24 33.5l-11.55 6 2.2-12.8-9.35-9.1 12.9-1.9z" fill="' + sc[0] + '"/></svg>';
-    } else {
-      earned = ornamentStatus[pos.month];
-      var oc = ornamentColors[pos.month];
-      el.innerHTML = '<svg width="18" height="18" viewBox="0 0 36 36"><circle cx="18" cy="20" r="8" fill="' + oc + '"/><rect x="15" y="10" width="6" height="4" rx="1.5" fill="' + oc + '" opacity="0.6"/><ellipse cx="15" cy="17" rx="2" ry="3" fill="rgba(255,255,255,0.2)" transform="rotate(-20 15 17)"/></svg>';
-    }
-
-    if (!earned) el.classList.add('tree-ornament--locked');
-    treeWrap.appendChild(el);
-  });
+    var checkSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+    personalHomework.forEach(function(hw) {
+      var item = document.createElement('div');
+      item.className = 'hw-item';
+      item.innerHTML = '<button class="hw-item__check" onclick="toggleHw(this)">' + checkSvg + '</button>' +
+        '<span class="hw-item__text">' + hw + '</span>';
+      phList.appendChild(item);
+    });
+  }
 
   // ══════════════════════════════════════
-  // ANNUAL REPORT CHART
+  // CHRISTMAS TREE + ANNUAL REPORT (12월에만 표시)
   // ══════════════════════════════════════
-  var monthlyRates = [95, 88, 92, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 1~12월
-  var chartEl = document.getElementById('report-chart');
-  var monthsEl = document.getElementById('report-months');
-  var mLabels = ['1','2','3','4','5','6','7','8','9','10','11','12'];
+  var currentMonth = new Date().getMonth(); // 0=1월, 11=12월
+  var showYearEnd = (currentMonth === 11); // 12월에만
 
-  mLabels.forEach(function(m, idx) {
-    var bar = document.createElement('div');
-    bar.className = 'report-chart__bar';
-    if (monthlyRates[idx] > 0) {
-      bar.classList.add('report-chart__bar--fill');
-      bar.style.height = monthlyRates[idx] + '%';
-    } else {
-      bar.classList.add('report-chart__bar--empty');
-      bar.style.height = '8%';
-    }
-    chartEl.appendChild(bar);
+  if (showYearEnd) {
+    document.getElementById('tree-section').style.display = 'block';
+    document.getElementById('annual-report-section').style.display = 'block';
 
-    var label = document.createElement('span');
-    label.textContent = m + '월';
-    monthsEl.appendChild(label);
-  });
+    var treeWrap = document.getElementById('tree-wrap');
+    var treeStar = document.getElementById('tree-star');
+    treeStar.innerHTML = '<svg viewBox="0 0 48 48"><path d="M24 4l5.8 11.7 12.9 1.9-9.35 9.1 2.2 12.8L24 33.5l-11.55 6 2.2-12.8-9.35-9.1 12.9-1.9z" fill="url(#sg-D4A026)" stroke="#fff" stroke-width="1.5"/><circle cx="24" cy="22" r="5" fill="rgba(255,255,255,0.3)"/></svg>';
+
+    var ornPositions = [
+      {x:105,y:85,type:'star',month:0}, {x:135,y:85,type:'star',month:1},
+      {x:85,y:135,type:'star',month:2}, {x:155,y:135,type:'star',month:3},
+      {x:70,y:190,type:'star',month:4}, {x:170,y:190,type:'star',month:5},
+      {x:120,y:120,type:'orn',month:0}, {x:100,y:165,type:'orn',month:1},
+      {x:140,y:165,type:'orn',month:2}, {x:80,y:220,type:'orn',month:3},
+      {x:120,y:215,type:'orn',month:4}, {x:160,y:220,type:'orn',month:5},
+    ];
+
+    // Tree ornament mini SVGs (simplified versions)
+    var treeOrnMini = [
+      '<svg width="18" height="18" viewBox="0 0 40 40"><circle cx="20" cy="24" r="8" fill="C"/></svg>',
+    ];
+
+    ornPositions.forEach(function(pos) {
+      var el = document.createElement('div');
+      el.className = 'tree-ornament';
+      el.style.left = pos.x + 'px';
+      el.style.top = pos.y + 'px';
+      var earned = false;
+      if (pos.type === 'star') {
+        earned = starStatus[pos.month] && starStatus[pos.month].earned;
+        var sc = starColors[pos.month];
+        el.innerHTML = '<svg width="20" height="20" viewBox="0 0 48 48"><path d="M24 4l5.8 11.7 12.9 1.9-9.35 9.1 2.2 12.8L24 33.5l-11.55 6 2.2-12.8-9.35-9.1 12.9-1.9z" fill="' + sc[0] + '"/></svg>';
+      } else {
+        earned = ornamentStatus[pos.month];
+        // Use a small version of the unique ornament
+        el.innerHTML = '<div style="width:18px;height:18px;display:flex;align-items:center;justify-content:center">' + ornamentSvgs[pos.month].replace('viewBox="0 0 40 40"', 'viewBox="0 0 40 40" width="18" height="18"') + '</div>';
+      }
+      if (!earned) el.classList.add('tree-ornament--locked');
+      treeWrap.appendChild(el);
+    });
+
+    // Annual report chart
+    var monthlyRates = [95, 88, 92, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    var chartEl = document.getElementById('report-chart');
+    var monthsEl = document.getElementById('report-months');
+    ['1','2','3','4','5','6','7','8','9','10','11','12'].forEach(function(m, idx) {
+      var bar = document.createElement('div');
+      bar.className = 'report-chart__bar';
+      if (monthlyRates[idx] > 0) {
+        bar.classList.add('report-chart__bar--fill');
+        bar.style.height = monthlyRates[idx] + '%';
+      } else {
+        bar.classList.add('report-chart__bar--empty');
+        bar.style.height = '8%';
+      }
+      chartEl.appendChild(bar);
+      var label = document.createElement('span');
+      label.textContent = m + '월';
+      monthsEl.appendChild(label);
+    });
+  }
 
 })();
 </script>
