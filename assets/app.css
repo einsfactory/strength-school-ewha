@@ -1,0 +1,55 @@
+/* 근력학교 이화 — 공통 스타일(정돈 레이어)
+   화면별 스타일 뒤에 불러와, 화면마다 달랐던 값을 하나로 맞춘다. 색·배치는 기준 목업 그대로. */
+
+:root{
+  /* 화면마다 빠져 있거나 달랐던 변수를 한 벌로 */
+  --bg-card:rgba(255,255,255,.72);--bg-card-solid:#fff;--bg-input:rgba(245,240,248,.6);--border-subtle:rgba(196,176,210,.3);
+  --text-placeholder:#C4B0D2;
+  --success:#3A9A64;--success-light:rgba(58,154,100,.12);
+  --warning:#E8A854;--warning-light:rgba(232,168,84,.12);
+  --danger:#D94E6A;--danger-light:rgba(217,78,106,.1);
+  --nav-height:68px;
+  --r-sm:10px;--r-md:14px;--r-lg:20px;      /* 모서리: 작은 요소 / 카드 / 대표 카드 */
+  --safe-b:env(safe-area-inset-bottom,0px);
+}
+html{-webkit-text-size-adjust:100%}
+body{-webkit-tap-highlight-color:transparent;overscroll-behavior-y:none}
+a,button{touch-action:manipulation}
+
+/* 배경: 모든 화면이 홈과 같은 배경 */
+.bg-atmosphere{background:
+ radial-gradient(ellipse 90% 70% at 10% 5%,rgba(190,160,220,.6) 0%,transparent 65%),
+ radial-gradient(ellipse 80% 60% at 90% 10%,rgba(240,170,200,.55) 0%,transparent 60%),
+ radial-gradient(ellipse 70% 60% at 75% 85%,rgba(180,150,220,.5) 0%,transparent 60%),
+ radial-gradient(ellipse 60% 50% at 15% 85%,rgba(235,180,205,.45) 0%,transparent 60%),
+ radial-gradient(ellipse 40% 30% at 50% 50%,rgba(255,255,255,.5) 0%,transparent 70%),
+ linear-gradient(150deg,#EDE0F5 0%,#F9DDE8 35%,#E6DAF2 65%,#F5E4EE 100%)}
+/* 머리줄: 홈·대시보드를 뺀 모든 화면이 「뒤로 + 제목」 한 형식 */
+.page-header{display:flex;align-items:center;gap:.75rem;padding:1rem 0 1.25rem}
+.page-header__title{font-size:1.25rem;font-family:var(--font-display);font-weight:400;color:var(--text-primary)}
+.back-btn{width:40px;height:40px;border-radius:12px;border:1px solid var(--border-subtle);background:var(--bg-card);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;color:var(--text-secondary);text-decoration:none;flex-shrink:0;cursor:pointer}
+.back-btn svg{width:18px;height:18px;stroke-width:1.5}
+.icon-btn{border-radius:50%}
+/* 구역 제목 */
+.section__title{font-size:1.0625rem}
+/* 탭 */
+.tab-bar{border-radius:var(--r-md);padding:.25rem}
+/* 카드 모서리: 일반 카드 14px, 대표 카드 20px */
+.day-card,.hw-card,.menu-card,.monthly-summary,.motivation-card,.report-card{border-radius:var(--r-md)}
+.membership-card,.program-hero,.revenue-hero,.today-card,.today-hero{border-radius:var(--r-lg)}
+/* 하단 메뉴: 아이폰 홈 막대 영역만큼 띄움 */
+.bottom-nav{height:calc(var(--nav-height) + var(--safe-b));padding-bottom:var(--safe-b)}
+body{padding-bottom:calc(var(--nav-height) + var(--safe-b))}
+.fab-journal{bottom:calc(var(--nav-height) + var(--safe-b) + 16px)}
+/* 설치해서 열었을 때 위쪽 상태 막대 영역 */
+@media (display-mode:standalone){.main{padding-top:env(safe-area-inset-top,0px)}}
+/* 설치 안내(로그인 화면 아래에서 올라옴) */
+.gs-install{position:fixed;left:12px;right:12px;bottom:calc(12px + var(--safe-b));z-index:200;max-width:456px;margin:0 auto;padding:1rem 1.125rem;border-radius:var(--r-lg);
+  background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid var(--border-subtle);box-shadow:0 12px 40px rgba(75,45,94,.22);
+  color:var(--text-primary);font-family:var(--font-body);translate:0 120%;opacity:0;transition:translate .45s cubic-bezier(.34,1.56,.64,1),opacity .3s}
+.gs-install.on{translate:0 0;opacity:1}
+.gs-install__title{font-family:var(--font-display);font-size:1.0625rem;margin-bottom:.5rem;padding-right:2rem}
+.gs-install__x{position:absolute;top:.5rem;right:.5rem;width:36px;height:36px;border:0;border-radius:50%;background:var(--purple-50);color:var(--text-secondary);font-size:1.25rem;line-height:1;cursor:pointer}
+.gs-install__steps{margin:0;padding-left:1.25rem;font-size:.9375rem;line-height:1.9;color:var(--text-secondary)} .gs-install__steps b{color:var(--purple-600)}
+.gs-install__desc{font-size:.9375rem;color:var(--text-secondary);margin:0 0 .75rem}
+.gs-install__btn{width:100%;padding:.75rem;border:0;border-radius:12px;background:linear-gradient(135deg,var(--purple-600),var(--purple-500));color:#fff;font:600 1rem var(--font-body);cursor:pointer}
