@@ -355,8 +355,10 @@
 if(!localStorage.getItem('gs.session')&&p!=='login.html'){location.replace('login.html');return}
 if(!sessionStorage.getItem('gs.splash')){sessionStorage.setItem('gs.splash','1');var d=document.documentElement;d.classList.add('gs-splash-on');window.__gsSplash=true;
 var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
-setTimeout(function(){window.__gsSplash=false;dispatchEvent(new Event('gs-splash-done'))},rm?600:1450);
-setTimeout(function(){d.classList.remove('gs-splash-on')},rm?950:1950)}}catch(e){}})();</script>
+var cont=/android/i.test(navigator.userAgent)&&matchMedia('(display-mode: standalone)').matches;if(cont)d.classList.add('gs-splash-cont');
+var t=rm?600:cont?1250:1450;
+setTimeout(function(){window.__gsSplash=false;dispatchEvent(new Event('gs-splash-done'))},t);
+setTimeout(function(){d.classList.remove('gs-splash-on')},t+(rm?350:500))}}catch(e){}})();</script>
 <meta name="theme-color" content="#EDE0F5">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="assets/icon-180.png">
@@ -365,7 +367,7 @@ setTimeout(function(){d.classList.remove('gs-splash-on')},rm?950:1950)}}catch(e)
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="근력학교 이화">
-<link rel="stylesheet" href="assets/app.css?v=2026.11.11-4">
+<link rel="stylesheet" href="assets/app.css?v=2026.11.11-5">
 </head>
 <body>
 <!-- 실행 스플래시: 로고 애니메이션 시안 A 「가운데 선에서 나옴」을 앱에 맞춰 변형(원본: 작업/로고-스플래시-애니메이션/근력학교-모던). 세션에 한 번만 보임 -->
@@ -382,7 +384,6 @@ setTimeout(function(){d.classList.remove('gs-splash-on')},rm?950:1950)}}catch(e)
 .gsS .ch3{animation:gsUp .75s cubic-bezier(.16,1,.3,1) .67s forwards}.gsS .ch4{animation:gsUp .75s cubic-bezier(.16,1,.3,1) .73s forwards}
 @keyframes gsUp{to{transform:none}}
 @keyframes gsSplashOut{to{opacity:0;visibility:hidden}}
-@keyframes gsLogoOut{to{transform:translateY(-14px)}}
 @media (prefers-reduced-motion:reduce){.gsS,.gsS *{animation:none!important;transform:none!important}.gs-splash-on #gs-splash{animation:gsSplashOut .3s linear .6s forwards}}
 /* 반짝이(선택): 앱에서 누를 때 튀는 것과 같은 네 갈래 별·같은 색. 로고가 다 나온 직후 한 번. html에 gs-splash-plain 이 있으면 끔 */
 .gsS .sp{transform-box:fill-box;transform-origin:center;scale:0;animation:gsSp .55s cubic-bezier(.16,1,.3,1) forwards}
@@ -390,6 +391,15 @@ setTimeout(function(){d.classList.remove('gs-splash-on')},rm?950:1950)}}catch(e)
 @keyframes gsSp{0%{scale:0;rotate:-30deg}45%{scale:1;rotate:10deg}100%{scale:0;rotate:40deg}}
 .gs-splash-plain .gsS .sps{display:none}
 @media (prefers-reduced-motion:reduce){.gsS .sps{display:none}}
+/* 이어지는 판(안드로이드 설치 앱): OS 실행 화면의 작은 로고 자리·크기에서 시작해 커지며 제자리로 가고, 글자와 반짝이가 이어진다. 띠가 다시 나오는 동작은 생략 */
+.gs-splash-cont .gsS{transform-origin:50% 37.4%;transform:translateY(calc(2vh + min(7.3vw,32.8px))) scale(.36);animation:gsGrow .6s cubic-bezier(.16,1,.3,1) forwards,gsLogoOut .45s cubic-bezier(.16,1,.3,1) 1.25s forwards}
+.gs-splash-cont .gsS .u,.gs-splash-cont .gsS .l{transform:none;animation:none}
+.gs-splash-cont .gsS .ch1{animation-delay:.25s}.gs-splash-cont .gsS .ch2{animation-delay:.31s}.gs-splash-cont .gsS .ch3{animation-delay:.37s}.gs-splash-cont .gsS .ch4{animation-delay:.43s}
+.gs-splash-cont .gsS .sp1{animation-delay:.62s}.gs-splash-cont .gsS .sp2{animation-delay:.72s}.gs-splash-cont .gsS .sp3{animation-delay:.68s}.gs-splash-cont .gsS .sp4{animation-delay:.78s}.gs-splash-cont .gsS .sp5{animation-delay:.84s}
+.gs-splash-cont.gs-splash-on #gs-splash{animation-delay:1.25s}
+@keyframes gsGrow{to{transform:none}}
+@keyframes gsLogoOut{to{translate:0 -14px}}
+@media (prefers-reduced-motion:reduce){.gs-splash-cont .gsS{transform:none!important}}
 </style>
 <div id="gs-splash" aria-hidden="true"><svg class="gsS" xmlns="http://www.w3.org/2000/svg" viewBox="110 110 500 500" ><defs><clipPath id="gs-ca"><rect x="110" y="110" width="500" height="186.8"/></clipPath><clipPath id="gs-cb"><rect x="110" y="296.8" width="500" height="130"/></clipPath><clipPath id="gs-tc"><rect x="110" y="446" width="500" height="92"/></clipPath></defs><g clip-path="url(#gs-ca)"><path class="u" fill="currentColor" d="M385.71,187.09L385.66,187.29C385.61,187.49 380.07,207.92 357.42,230.55C344.40,243.56 328.28,254.81 309.52,263.97C288.81,274.09 267.72,280.68 236.74,286.72C219.17,290.14 204.26,291.98 186.87,292.85L186.88,293.39C187.89,293.37 287.71,291.33 308.68,290.63C328.77,289.97 349.93,287.31 366.74,283.34C390.84,277.64 411.96,269.06 429.54,257.82C443.61,248.83 455.44,238.14 464.72,226.03C480.52,205.40 483.44,187.58 483.47,187.40L483.52,187.09L385.71,187.09Z"/></g><g clip-path="url(#gs-cb)"><path class="l" fill="currentColor" d="M533.11,300.42C532.11,300.44 432.29,302.47 411.32,303.17C391.23,303.83 370.07,306.49 353.26,310.47C329.16,316.16 308.03,324.74 290.46,335.98C276.39,344.97 264.56,355.67 255.28,367.77C239.48,388.40 236.56,406.23 236.53,406.40L236.48,406.71L334.08,406.71L334.28,406.71L334.34,406.51C334.39,406.31 339.93,385.88 362.58,363.26C375.60,350.24 391.72,338.99 410.48,329.83C431.19,319.71 452.27,313.12 483.26,307.08C500.82,303.66 515.74,301.83 533.14,300.95L533.11,300.42Z"/></g><g clip-path="url(#gs-tc)"><g class="ch ch1"><path fill="currentColor" d="M201.61,506.40L189.46,506.40L189.46,533.04L250.24,533.04L250.24,522.09L201.61,522.09L201.61,506.40Z"/><path fill="currentColor" d="M237.50,471.50C237.50,473.25 237.15,474.83 236.43,476.33C235.70,477.86 234.38,479.49 232.53,481.17L230.44,483.06L239.04,490.73L240.73,489.24C243.93,486.41 246.22,483.57 247.52,480.80C248.83,478.01 249.49,474.88 249.49,471.50L249.49,457.78L188.63,457.78L188.63,468.65L237.50,468.65L237.50,471.50Z"/><path fill="currentColor" d="M185.70,492.97H252.50V503.77H185.70ZZ"/></g><g class="ch ch2"><path fill="currentColor" d="M331.79,461.59L325.63,461.59L325.63,472.32L331.79,472.32L331.79,474.41L325.63,474.41L325.63,485.14L331.79,485.14L331.79,498.37L343.93,498.37L343.93,455.97L331.79,455.97L331.79,461.59Z"/><path fill="currentColor" d="M325.76,487.24L292.96,487.24L292.96,483.29L322.59,483.29L322.59,457.78L280.82,457.78L280.82,468.65L309.01,468.65L309.01,472.64L280.82,472.64L280.82,497.96L325.76,497.96L325.76,487.24Z"/><path fill="currentColor" d="M281.95,511.66L331.94,511.66L331.94,518.03C331.94,518.94 331.57,519.66 330.76,520.36C329.84,521.15 328.59,521.53 326.94,521.53L324.41,521.53L324.41,532.40L326.94,532.40C329.84,532.40 332.38,532.01 334.49,531.22C336.64,530.42 338.45,529.32 339.86,527.94C341.27,526.56 342.32,524.97 342.98,523.21C343.61,521.53 343.93,519.78 343.93,518.03L343.93,500.79L281.95,500.79L281.95,511.66Z"/></g><g class="ch ch3"><path fill="currentColor" d="M418.92,459.55L402.12,459.55L402.12,452.99L389.98,452.99L389.98,459.55L373.18,459.55L373.18,470.05L418.92,470.05L418.92,459.55Z"/><path fill="currentColor" d="M374.73,512.37L422.50,512.37L422.50,518.73C422.50,519.65 422.14,520.37 421.32,521.07C420.40,521.85 419.16,522.23 417.51,522.23L414.97,522.23L414.97,533.11L417.51,533.11C420.41,533.11 422.94,532.71 425.05,531.93C427.21,531.13 429.01,530.03 430.42,528.65C431.84,527.26 432.89,525.67 433.54,523.92C434.17,522.24 434.50,520.49 434.50,518.73L434.50,501.49L374.73,501.49L374.73,512.37Z"/><path fill="currentColor" d="M434.49,455.97L422.35,455.97L422.35,498.37L434.49,498.37L434.49,481.85L444.66,481.85L444.66,470.83L434.49,470.83L434.49,455.97Z"/><path fill="currentColor" d="M407.67,485.72C407.67,487.34 407.06,487.70 406.80,487.86C406.11,488.27 404.71,488.76 401.92,488.76L390.18,488.76C387.39,488.76 385.99,488.27 385.30,487.86C385.04,487.70 384.43,487.34 384.43,485.72L384.43,485.04C384.43,483.42 385.04,483.06 385.30,482.90C385.99,482.49 387.39,482.00 390.18,482.00L401.92,482.00C404.70,482.00 406.11,482.49 406.80,482.90C407.06,483.06 407.67,483.42 407.67,485.04L407.67,485.72M377.77,496.01C380.84,497.85 385.01,498.78 390.18,498.78L401.92,498.78C407.08,498.78 411.26,497.85 414.33,496.01C416.73,494.58 419.59,491.62 419.59,485.72L419.59,485.04C419.59,479.14 416.73,476.19 414.33,474.75C411.25,472.91 407.08,471.98 401.92,471.98L390.18,471.98C385.02,471.98 380.84,472.91 377.77,474.75C375.37,476.18 372.51,479.14 372.51,485.04L372.51,485.72C372.51,491.63 375.37,494.58 377.77,496.01Z"/></g><g class="ch ch4"><path fill="currentColor" d="M509.13,520.61L509.13,487.90L497.28,487.90L497.28,520.61L489.97,520.61L489.97,487.90L478.13,487.90L478.13,520.61L463.96,520.61L463.96,531.56L534.30,531.56L534.30,520.61L509.13,520.61Z"/><path fill="currentColor" d="M520.89,489.95C520.89,491.70 520.54,493.28 519.82,494.78C519.09,496.31 517.78,497.94 515.93,499.62L513.84,501.51L522.44,509.18L524.12,507.69C527.33,504.86 529.62,502.02 530.91,499.25C532.22,496.46 532.89,493.33 532.89,489.95L532.89,456.38L465.65,456.38L465.65,467.26L520.89,467.26L520.89,489.95Z"/></g></g><g class="sps"><g transform="translate(530 196)"><path class="sp sp1" fill="#D4829A" d="M0,-22L4.8,-4.8L22,0L4.8,4.8L0,22L-4.8,4.8L-22,0L-4.8,-4.8Z"/></g><g transform="translate(560 240)"><path class="sp sp2" fill="#E8A854" d="M0,-10L2.2,-2.2L10,0L2.2,2.2L0,10L-2.2,2.2L-10,0L-2.2,-2.2Z"/></g><g transform="translate(262 224)"><path class="sp sp3" fill="#9E82B0" d="M0,-13L2.9,-2.9L13,0L2.9,2.9L0,13L-2.9,2.9L-13,0L-2.9,-2.9Z"/></g><g transform="translate(480 384)"><path class="sp sp4" fill="#9E82B0" d="M0,-15L3.3,-3.3L15,0L3.3,3.3L0,15L-3.3,3.3L-15,0L-3.3,-3.3Z"/></g><g transform="translate(212 378)"><path class="sp sp5" fill="#E8A854" d="M0,-9L2.0,-2.0L9,0L2.0,2.0L0,9L-2.0,2.0L-9,0L-2.0,-2.0Z"/></g></g></svg></div>
 
@@ -559,6 +569,6 @@ setTimeout(function(){d.classList.remove('gs-splash-on')},rm?950:1950)}}catch(e)
   </a>
 </nav>
 
-<script src="assets/app.js?v=2026.11.11-4"></script>
+<script src="assets/app.js?v=2026.11.11-5"></script>
 </body>
 </html>
