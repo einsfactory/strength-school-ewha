@@ -1,5 +1,11 @@
 /* 근력학교 이화 — 공통 스타일(정돈 레이어)
    화면별 스타일 뒤에 불러와, 화면마다 달랐던 값을 하나로 맞춘다. 색·배치는 기준 목업 그대로. */
+@font-face{font-family:'CarmenSans';src:url('fonts/CarmenSans-Light.woff2') format('woff2');font-weight:300;font-display:swap}
+@font-face{font-family:'CarmenSans';src:url('fonts/CarmenSans-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'CarmenSans';src:url('fonts/CarmenSans-Medium.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'CarmenSans';src:url('fonts/CarmenSans-SemiBold.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'CarmenSans';src:url('fonts/CarmenSans-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:'TYPE졸업식';src:url('fonts/TypeGraduation.woff2') format('woff2');font-weight:400;font-display:swap}
 
 :root{
   /* 화면마다 빠져 있거나 달랐던 변수를 한 벌로 */
