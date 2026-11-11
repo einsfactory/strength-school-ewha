@@ -104,6 +104,8 @@
     confetti(x, y);
   });
 
+  // 화면 등장·숫자·메뉴·알림 모션. 실행 스플래시가 떠 있으면 끝난 뒤 시작한다
+  const enter = () => {
   // 화면 등장
   if (main) {
     main.animate([{ opacity: 0, translate: `${36 * dir}px ${dir ? 0 : 18}px` }, { opacity: 1, translate: '0 0' }], { duration: 460, easing: OUT });
@@ -130,6 +132,8 @@
   $$('.badge-item').forEach((b, i) => { b.animate([{ scale: 0, rotate: '-40deg', opacity: 0 }, { scale: 1, rotate: '0deg', opacity: getComputedStyle(b).opacity }], { duration: 520, delay: 500 + i * 60, easing: SPRING, fill: 'backwards' }); if (i < 2) setTimeout(() => { const r = b.getBoundingClientRect(); if (r.top < innerHeight) sparkle(r.left + r.width / 2, r.top + r.height / 3, 10, 34); }, 1000 + i * 60); });
   $$('.week-dot').forEach((d, i) => d.animate([{ scale: 0 }, { scale: 1 }], { duration: 420, delay: 450 + i * 90, easing: SPRING, fill: 'backwards' }));
   document.addEventListener('click', e => { if (!e.target.closest('.tab-bar__item')) return; setTimeout(() => { const c = document.querySelector('.tab-content.active,.tab-panel.active'); c && c.animate([{ opacity: 0, translate: '0 14px' }, { opacity: 1, translate: '0 0' }], { duration: 360, easing: OUT }); }, 0); });
+  };
+  if (window.__gsSplash) addEventListener('gs-splash-done', enter, { once: true }); else enter();
   // 내려가며 나타나기
   if ('IntersectionObserver' in window && main) {
     const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.animate([{ opacity: .2, translate: '0 26px', scale: .97 }, { opacity: 1, translate: '0 0', scale: 1 }], { duration: 560, easing: SPRING }); io.unobserve(en.target); } }), { threshold: .15 });

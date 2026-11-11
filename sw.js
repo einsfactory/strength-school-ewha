@@ -1,5 +1,5 @@
 // 근력학교 이화 — 서비스 워커: 화면은 새 것 먼저(안 되면 저장본), 폰트·이미지는 저장본 먼저
-const V = 'gs-preview-2026.11.11-2', FILES = ["login.html", "index.html", "challenge.html", "program.html", "change.html", "class-status.html", "journal.html", "journal-write.html", "profile.html", "admin-dashboard.html", "admin-timetable.html", "admin-members.html", "member-detail.html", "admin-revenue.html", "admin-notice.html", "assets/app.js", "assets/icon-512.png", "assets/logo.png", "assets/icon-180.png", "assets/icon-maskable-512.png", "assets/icon-192.png", "assets/app.css"];
+const V = 'gs-preview-2026.11.11-3', FILES = ["login.html", "index.html", "challenge.html", "program.html", "change.html", "class-status.html", "journal.html", "journal-write.html", "profile.html", "admin-dashboard.html", "admin-timetable.html", "admin-members.html", "member-detail.html", "admin-revenue.html", "admin-notice.html", "assets/icon-192.png", "assets/app.js", "assets/icon-512.png", "assets/logo.png", "assets/app.css", "assets/icon-maskable-512.png", "assets/icon-180.png"];
 self.addEventListener('install', e => e.waitUntil(caches.open(V).then(c => c.addAll(FILES)).then(() => self.skipWaiting())));
 self.addEventListener('activate', e => e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== V).map(k => caches.delete(k)))).then(() => self.clients.claim())));
 self.addEventListener('fetch', e => {
